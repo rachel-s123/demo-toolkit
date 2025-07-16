@@ -215,22 +215,33 @@ export default function BrandSetup() {
   };
 
   const generateBrandLocale = async () => {
+    console.log("Generate button clicked");
+    console.log("Form data:", formData);
+    
     if (!formData.brandName || !formData.brandCode || !formData.adaptationPrompt) {
       alert("Please fill in all required fields");
       return;
     }
 
+    console.log("Validation passed, starting generation...");
     setIsGenerating(true);
 
     try {
+      console.log("Getting base site copy...");
       const baseSiteCopy = languages.en_template;
+      console.log("Base site copy loaded:", baseSiteCopy);
+      
+      console.log("Fetching config template...");
       const baseConfigResponse = await fetch("/locales/config_en_template.json");
 
       if (!baseConfigResponse.ok) {
+        console.error("Failed to load template config:", baseConfigResponse.status, baseConfigResponse.statusText);
         throw new Error("Failed to load template config");
       }
 
+      console.log("Config template fetched successfully");
       const baseConfigContent = await baseConfigResponse.json();
+      console.log("Base config content:", baseConfigContent);
 
       let logoPath = formData.logoPath;
       if (formData.icon) {
@@ -240,6 +251,7 @@ export default function BrandSetup() {
       // Clean up empty array items
       const cleanArrayField = (arr: string[]) => arr.filter(item => item.trim() !== "");
 
+      console.log("Creating adaptation options...");
       const adaptationOptions: BrandAdaptationOptions = {
         brandName: formData.brandName,
         brandCode: formData.brandCode,
@@ -256,22 +268,27 @@ export default function BrandSetup() {
         productCategories: cleanArrayField(formData.productCategories)
       };
 
+      console.log("Calling LocaleGenerator.generateBrandFiles...");
       const generatedFiles = await LocaleGenerator.generateBrandFiles(
         baseSiteCopy,
         baseConfigContent,
         adaptationOptions
       );
+      console.log("Generated files:", generatedFiles);
 
+      console.log("Generating installation instructions...");
       const installationInstructions = LocaleGenerator.generateInstallationInstructions(
         formData.brandName,
         formData.brandCode
       );
 
+      console.log("Setting generated content...");
       setGeneratedContent({
         siteCopyFile: generatedFiles.siteCopy,
         configContentFile: generatedFiles.configContent,
         installationInstructions,
       });
+      console.log("Generation completed successfully!");
     } catch (error) {
       console.error("Error generating brand locale:", error);
       alert("Error generating brand locale. Please try again.");
@@ -525,7 +542,16 @@ export default function BrandSetup() {
 
           <div className="mt-8 flex justify-center">
             <Button
-              onClick={generateBrandLocale}
+              onClick={(e) => {
+                e.preventDefault();
+                console.log("Button clicked directly");
+                console.log("Button disabled state:", isGenerating || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt);
+                console.log("isGenerating:", isGenerating);
+                console.log("brandName:", formData.brandName);
+                console.log("brandCode:", formData.brandCode);
+                console.log("adaptationPrompt:", formData.adaptationPrompt);
+                generateBrandLocale();
+              }}
               disabled={isGenerating || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt}
               className="px-8 py-3"
             >
