@@ -5,8 +5,10 @@ import LocaleGenerator, { BrandAdaptationOptions } from "./LocaleGenerator";
 import { useLanguage } from "../../../context/LanguageContext";
 import { useConfig } from "../../../hooks/useConfig";
 import { languages } from "../../../locales";
+import { Plus, X, ChevronDown, ChevronUp } from "lucide-react";
 
 export interface BrandFormData {
+  // Basic Information
   brandName: string;
   brandCode: string;
   industry: string;
@@ -14,6 +16,15 @@ export interface BrandFormData {
   adaptationPrompt: string;
   icon?: File;
   logoPath?: string;
+  
+  // Enhanced Fields
+  targetAudience: string;
+  keyBenefits: string[];
+  uniqueSellingPoints: string[];
+  campaignGoals: string[];
+  competitorDifferentiators: string[];
+  brandValues: string[];
+  productCategories: string[];
 }
 
 interface GeneratedContent {
@@ -21,6 +32,60 @@ interface GeneratedContent {
   configContentFile: string;
   installationInstructions: string;
 }
+
+// ArrayInput component moved outside to prevent recreation on every render
+const ArrayInput = ({ 
+  label, 
+  field, 
+  placeholder, 
+  helpText,
+  values,
+  onArrayInputChange,
+  onAddItem,
+  onRemoveItem
+}: { 
+  label: string; 
+  field: keyof BrandFormData; 
+  placeholder: string;
+  helpText?: string;
+  values: string[];
+  onArrayInputChange: (field: keyof BrandFormData, index: number, value: string) => void;
+  onAddItem: (field: keyof BrandFormData) => void;
+  onRemoveItem: (field: keyof BrandFormData, index: number) => void;
+}) => {
+  return (
+    <div className="space-y-2">
+      <label className="block text-sm font-medium text-gray-700">{label}</label>
+      {helpText && <p className="text-xs text-gray-500">{helpText}</p>}
+      {values.map((value, index) => (
+        <div key={`${field}-${index}`} className="flex gap-2">
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => onArrayInputChange(field, index, e.target.value)}
+            placeholder={placeholder}
+            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+          {values.length > 1 && (
+            <button
+              onClick={() => onRemoveItem(field, index)}
+              className="p-2 text-red-500 hover:bg-red-50 rounded-lg"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+      ))}
+      <button
+        onClick={() => onAddItem(field)}
+        className="flex items-center gap-2 px-3 py-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+      >
+        <Plus className="w-4 h-4" />
+        Add {label.slice(0, -1)}
+      </button>
+    </div>
+  );
+};
 
 export default function BrandSetup() {
   const { language } = useLanguage();
@@ -33,21 +98,28 @@ export default function BrandSetup() {
     adaptationPrompt: "",
     icon: undefined,
     logoPath: "",
+    targetAudience: "",
+    keyBenefits: [""],
+    uniqueSellingPoints: [""],
+    campaignGoals: [""],
+    competitorDifferentiators: [""],
+    brandValues: [""],
+    productCategories: [""]
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generatedContent, setGeneratedContent] =
-    useState<GeneratedContent | null>(null);
-  const [previewType, setPreviewType] = useState<
-    "siteCopy" | "configContent" | "instructions"
-  >("siteCopy");
+  const [generatedContent, setGeneratedContent] = useState<GeneratedContent | null>(null);
+  const [previewType, setPreviewType] = useState<"siteCopy" | "configContent" | "instructions">("siteCopy");
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    basic: true,
+    audience: false,
+    benefits: false,
+    campaign: false,
+    brand: false
+  });
 
-  const handleInputChange = (
-    field: keyof BrandFormData,
-    value: string | File
-  ) => {
+  const handleInputChange = (field: keyof BrandFormData, value: string | File) => {
     if (field === "brandName" && typeof value === "string") {
-      // Auto-generate brand code from brand name
       const brandCode = value
         .toLowerCase()
         .replace(/[^a-z0-9\s]/g, "")
@@ -60,10 +132,7 @@ export default function BrandSetup() {
         brandCode,
       }));
     } else if (field === "icon" && value instanceof File) {
-      // Handle logo file upload
-      const logoPath = `/assets/logos/${
-        formData.brandCode || "brand"
-      }.${value.name.split(".").pop()}`;
+      const logoPath = `/assets/logos/${formData.brandCode || "brand"}.${value.name.split(".").pop()}`;
       setFormData((prev) => ({
         ...prev,
         icon: value,
@@ -77,12 +146,42 @@ export default function BrandSetup() {
     }
   };
 
+  const handleArrayInputChange = (field: keyof BrandFormData, index: number, value: string) => {
+    const array = formData[field] as string[];
+    const newArray = [...array];
+    newArray[index] = value;
+    setFormData((prev) => ({
+      ...prev,
+      [field]: newArray,
+    }));
+  };
+
+  const addArrayItem = (field: keyof BrandFormData) => {
+    const array = formData[field] as string[];
+    setFormData((prev) => ({
+      ...prev,
+      [field]: [...array, ""],
+    }));
+  };
+
+  const removeArrayItem = (field: keyof BrandFormData, index: number) => {
+    const array = formData[field] as string[];
+    const newArray = array.filter((_, i) => i !== index);
+    setFormData((prev) => ({
+      ...prev,
+      [field]: newArray.length > 0 ? newArray : [""],
+    }));
+  };
+
+  const toggleSection = (section: string) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
   const generateBrandLocale = async () => {
-    if (
-      !formData.brandName ||
-      !formData.brandCode ||
-      !formData.adaptationPrompt
-    ) {
+    if (!formData.brandName || !formData.brandCode || !formData.adaptationPrompt) {
       alert("Please fill in all required fields");
       return;
     }
@@ -90,11 +189,8 @@ export default function BrandSetup() {
     setIsGenerating(true);
 
     try {
-      // Always use template files as base
       const baseSiteCopy = languages.en_template;
-      const baseConfigResponse = await fetch(
-        "/locales/config_en_template.json"
-      );
+      const baseConfigResponse = await fetch("/locales/config_en_template.json");
 
       if (!baseConfigResponse.ok) {
         throw new Error("Failed to load template config");
@@ -102,17 +198,14 @@ export default function BrandSetup() {
 
       const baseConfigContent = await baseConfigResponse.json();
 
-      // Process logo if provided
       let logoPath = formData.logoPath;
       if (formData.icon) {
-        // In a real implementation, you would upload this to your asset server
-        // For now, we'll use the planned path
-        logoPath = `/assets/logos/${formData.brandCode}.${formData.icon.name
-          .split(".")
-          .pop()}`;
+        logoPath = `/assets/logos/${formData.brandCode}.${formData.icon.name.split(".").pop()}`;
       }
 
-      // Generate brand files
+      // Clean up empty array items
+      const cleanArrayField = (arr: string[]) => arr.filter(item => item.trim() !== "");
+
       const adaptationOptions: BrandAdaptationOptions = {
         brandName: formData.brandName,
         brandCode: formData.brandCode,
@@ -120,6 +213,13 @@ export default function BrandSetup() {
         industry: formData.industry,
         tone: formData.tone,
         logoPath,
+        targetAudience: formData.targetAudience,
+        keyBenefits: cleanArrayField(formData.keyBenefits),
+        uniqueSellingPoints: cleanArrayField(formData.uniqueSellingPoints),
+        campaignGoals: cleanArrayField(formData.campaignGoals),
+        competitorDifferentiators: cleanArrayField(formData.competitorDifferentiators),
+        brandValues: cleanArrayField(formData.brandValues),
+        productCategories: cleanArrayField(formData.productCategories)
       };
 
       const generatedFiles = await LocaleGenerator.generateBrandFiles(
@@ -128,20 +228,16 @@ export default function BrandSetup() {
         adaptationOptions
       );
 
-      const installationInstructions =
-        LocaleGenerator.generateInstallationInstructions(
-          formData.brandName,
-          formData.brandCode
-        );
+      const installationInstructions = LocaleGenerator.generateInstallationInstructions(
+        formData.brandName,
+        formData.brandCode
+      );
 
       setGeneratedContent({
         siteCopyFile: generatedFiles.siteCopy,
         configContentFile: generatedFiles.configContent,
         installationInstructions,
       });
-
-      // Automatically add new brand to dropdown
-      await addBrandToDropdown(formData.brandName, formData.brandCode);
     } catch (error) {
       console.error("Error generating brand locale:", error);
       alert("Error generating brand locale. Please try again.");
@@ -150,11 +246,7 @@ export default function BrandSetup() {
     }
   };
 
-  const downloadFile = (
-    content: string,
-    filename: string,
-    type: string = "text/plain"
-  ) => {
+  const downloadFile = (content: string, filename: string, type: string = "text/plain") => {
     const blob = new Blob([content], { type });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -166,171 +258,117 @@ export default function BrandSetup() {
     URL.revokeObjectURL(url);
   };
 
-  const downloadSiteCopyFile = () => {
-    if (generatedContent) {
-      downloadFile(
-        generatedContent.siteCopyFile,
-        `${formData.brandCode}.ts`,
-        "text/typescript"
-      );
-    }
-  };
-
-  const downloadConfigFile = () => {
-    if (generatedContent) {
-      downloadFile(
-        generatedContent.configContentFile,
-        `config_${formData.brandCode}.json`,
-        "application/json"
-      );
-    }
-  };
-
-  const downloadInstructions = () => {
-    if (generatedContent) {
-      downloadFile(
-        generatedContent.installationInstructions,
-        `${formData.brandCode}-setup-instructions.md`,
-        "text/markdown"
-      );
-    }
-  };
-
   const downloadAll = () => {
     if (generatedContent) {
-      // Create a combined ZIP would be ideal, but for now download separately
-      downloadSiteCopyFile();
-      setTimeout(() => downloadConfigFile(), 500);
-      setTimeout(() => downloadInstructions(), 1000);
-
-      // If there's a logo, create a download instruction for it
-      if (formData.icon) {
-        setTimeout(() => downloadLogoInstructions(), 1500);
-      }
+      downloadFile(generatedContent.siteCopyFile, `${formData.brandCode}.ts`, "text/typescript");
+      setTimeout(() => downloadFile(generatedContent.configContentFile, `config_${formData.brandCode}.json`, "application/json"), 500);
+      setTimeout(() => downloadFile(generatedContent.installationInstructions, `${formData.brandCode}-setup-instructions.md`, "text/markdown"), 1000);
     }
   };
 
-  const downloadLogoInstructions = () => {
-    if (formData.icon) {
-      const instructions = `# Logo Installation Instructions
 
-Your brand logo should be saved as: ${formData.logoPath}
 
-1. Save your logo file as: \`${formData.brandCode}.${formData.icon.name
-        .split(".")
-        .pop()}\`
-2. Place it in the \`public/assets/logos/\` directory
-3. The logo will automatically appear when using the ${
-        formData.brandCode
-      } locale
-
-Recommended logo specifications:
-- Format: PNG with transparent background
-- Size: 256x256px or similar square aspect ratio
-- File size: Under 100KB for best performance
-
- Your logo file name: ${formData.icon.name}
- Target path: public/assets/logos/${formData.brandCode}.${formData.icon.name
-        .split(".")
-        .pop()}
-`;
-
-      downloadFile(
-        instructions,
-        `${formData.brandCode}-logo-instructions.md`,
-        "text/markdown"
-      );
-    }
-  };
+  const CollapsibleSection = ({ 
+    title, 
+    section, 
+    children 
+  }: { 
+    title: string; 
+    section: string; 
+    children: React.ReactNode;
+  }) => (
+    <div className="border border-gray-200 rounded-lg overflow-hidden">
+      <button
+        onClick={() => toggleSection(section)}
+        className="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 flex items-center justify-between text-left"
+      >
+        <span className="font-medium text-gray-900">{title}</span>
+        {expandedSections[section] ? (
+          <ChevronUp className="w-5 h-5 text-gray-500" />
+        ) : (
+          <ChevronDown className="w-5 h-5 text-gray-500" />
+        )}
+      </button>
+      {expandedSections[section] && (
+        <div className="p-4 space-y-4">
+          {children}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <div className="space-y-6">
       <Card>
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Brand Setup</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Enhanced Brand Setup</h2>
           <p className="text-gray-600 mb-6">
-            Create a new brand locale with customized content. This will
-            generate both UI text and content data files that adapt the entire
-            application for your brand.
+            Create a rich, contextual brand experience with tailored content that resonates with your target audience.
+            The more details you provide, the more personalized and relevant the generated content will be.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Basic Brand Info */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Brand Information
-              </h3>
+          <div className="space-y-4">
+            {/* Basic Information */}
+            <CollapsibleSection title="Basic Information *" section="basic">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Brand Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.brandName}
+                    onChange={(e) => handleInputChange("brandName", e.target.value)}
+                    placeholder="e.g., EcoTech Solutions"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Brand Name *
-                </label>
-                <input
-                  type="text"
-                  value={formData.brandName}
-                  onChange={(e) =>
-                    handleInputChange("brandName", e.target.value)
-                  }
-                  placeholder="e.g., EcoTech Solutions"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Brand Code *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.brandCode}
+                    onChange={(e) => handleInputChange("brandCode", e.target.value)}
+                    placeholder="Auto-generated"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Short code for file naming (auto-generated from brand name)
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Industry/Focus
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.industry}
+                    onChange={(e) => handleInputChange("industry", e.target.value)}
+                    placeholder="e.g., sustainability, technology, healthcare"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Communication Tone
+                  </label>
+                  <select
+                    value={formData.tone}
+                    onChange={(e) => handleInputChange("tone", e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="professional">Professional</option>
+                    <option value="friendly">Friendly</option>
+                    <option value="technical">Technical</option>
+                    <option value="casual">Casual</option>
+                  </select>
+                </div>
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Brand Code *
-                </label>
-                <input
-                  type="text"
-                  value={formData.brandCode}
-                  onChange={(e) =>
-                    handleInputChange("brandCode", e.target.value)
-                  }
-                  placeholder="Auto-generated"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Short code for file naming (auto-generated from brand name)
-                </p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Industry/Focus
-                </label>
-                <input
-                  type="text"
-                  value={formData.industry}
-                  onChange={(e) =>
-                    handleInputChange("industry", e.target.value)
-                  }
-                  placeholder="e.g., sustainability, technology, healthcare"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Communication Tone
-                </label>
-                <select
-                  value={formData.tone}
-                  onChange={(e) => handleInputChange("tone", e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                >
-                  <option value="professional">Professional</option>
-                  <option value="friendly">Friendly</option>
-                  <option value="technical">Technical</option>
-                  <option value="casual">Casual</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Adaptation Settings */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Content Adaptation
-              </h3>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -339,33 +377,12 @@ Recommended logo specifications:
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={(e) =>
-                    handleInputChange("icon", e.target.files?.[0] || "")
-                  }
+                  onChange={(e) => handleInputChange("icon", e.target.files?.[0] || "")}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   Upload your brand icon (recommended: PNG, 256x256px)
                 </p>
-                {formData.icon && (
-                  <div className="mt-3 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-sm font-medium text-gray-700 mb-2">
-                      Logo Preview:
-                    </p>
-                    <div className="flex items-center space-x-3">
-                      <img
-                        src={URL.createObjectURL(formData.icon)}
-                        alt="Logo preview"
-                        className="h-12 w-12 object-contain border border-gray-200 rounded bg-white"
-                      />
-                      <div className="text-xs text-gray-600">
-                        <p>File: {formData.icon.name}</p>
-                        <p>Size: {(formData.icon.size / 1024).toFixed(1)} KB</p>
-                        <p>Target path: {formData.logoPath}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
 
               <div>
@@ -374,35 +391,113 @@ Recommended logo specifications:
                 </label>
                 <textarea
                   value={formData.adaptationPrompt}
-                  onChange={(e) =>
-                    handleInputChange("adaptationPrompt", e.target.value)
-                  }
-                  placeholder="Describe how to adapt content for your brand. E.g., 'Focus on sustainability and renewable energy. Replace motorcycle terminology with eco-friendly solutions. Target environmentally conscious consumers.'"
-                  rows={6}
+                  onChange={(e) => handleInputChange("adaptationPrompt", e.target.value)}
+                  placeholder="Describe your brand's focus, values, and how content should be adapted. Include specific terminology replacements, key themes, and any industry-specific requirements."
+                  rows={4}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  Detailed instructions for adapting content, messaging, and
-                  terminology
-                </p>
               </div>
-            </div>
+            </CollapsibleSection>
+
+            {/* Target Audience */}
+            <CollapsibleSection title="Target Audience" section="audience">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Target Audience Description
+                </label>
+                <textarea
+                  value={formData.targetAudience}
+                  onChange={(e) => handleInputChange("targetAudience", e.target.value)}
+                  placeholder="Describe your ideal customers, their roles, challenges, and what motivates them..."
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+            </CollapsibleSection>
+
+            {/* Key Benefits & USPs */}
+            <CollapsibleSection title="Benefits & Unique Selling Points" section="benefits">
+              <ArrayInput
+                label="Key Benefits"
+                field="keyBenefits"
+                placeholder="e.g., Reduce costs by 30%"
+                helpText="What are the main benefits customers get from your solution?"
+                values={formData.keyBenefits}
+                onArrayInputChange={handleArrayInputChange}
+                onAddItem={addArrayItem}
+                onRemoveItem={removeArrayItem}
+              />
+              
+              <ArrayInput
+                label="Unique Selling Points"
+                field="uniqueSellingPoints"
+                placeholder="e.g., Only solution with real-time analytics"
+                helpText="What makes your brand different from competitors?"
+                values={formData.uniqueSellingPoints}
+                onArrayInputChange={handleArrayInputChange}
+                onAddItem={addArrayItem}
+                onRemoveItem={removeArrayItem}
+              />
+              
+              <ArrayInput
+                label="Competitor Differentiators"
+                field="competitorDifferentiators"
+                placeholder="e.g., 50% faster implementation than alternatives"
+                helpText="How do you specifically outperform competitors?"
+                values={formData.competitorDifferentiators}
+                onArrayInputChange={handleArrayInputChange}
+                onAddItem={addArrayItem}
+                onRemoveItem={removeArrayItem}
+              />
+            </CollapsibleSection>
+
+            {/* Campaign Goals */}
+            <CollapsibleSection title="Campaign Goals & Objectives" section="campaign">
+              <ArrayInput
+                label="Campaign Goals"
+                field="campaignGoals"
+                placeholder="e.g., Generate 500 qualified leads"
+                helpText="What are you trying to achieve with this campaign?"
+                values={formData.campaignGoals}
+                onArrayInputChange={handleArrayInputChange}
+                onAddItem={addArrayItem}
+                onRemoveItem={removeArrayItem}
+              />
+            </CollapsibleSection>
+
+            {/* Brand Values & Categories */}
+            <CollapsibleSection title="Brand Values & Products" section="brand">
+              <ArrayInput
+                label="Brand Values"
+                field="brandValues"
+                placeholder="e.g., Innovation, Sustainability, Customer-First"
+                helpText="Core values that guide your brand"
+                values={formData.brandValues}
+                onArrayInputChange={handleArrayInputChange}
+                onAddItem={addArrayItem}
+                onRemoveItem={removeArrayItem}
+              />
+              
+              <ArrayInput
+                label="Product Categories"
+                field="productCategories"
+                placeholder="e.g., Cloud Solutions, Analytics Platform"
+                helpText="Main product or service categories you offer"
+                values={formData.productCategories}
+                onArrayInputChange={handleArrayInputChange}
+                onAddItem={addArrayItem}
+                onRemoveItem={removeArrayItem}
+              />
+            </CollapsibleSection>
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <Button
               onClick={generateBrandLocale}
-              disabled={
-                isGenerating ||
-                !formData.brandName ||
-                !formData.brandCode ||
-                !formData.adaptationPrompt
-              }
+              disabled={isGenerating || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt}
               className="px-8 py-3"
             >
-              {isGenerating
-                ? "Generating Brand Files..."
-                : "Generate Brand Locale"}
+              {isGenerating ? "Generating Rich Brand Content..." : "Generate Enhanced Brand Locale"}
             </Button>
           </div>
         </div>
@@ -425,135 +520,36 @@ Recommended logo specifications:
               </Button>
               <Button
                 onClick={() => setPreviewType("configContent")}
-                variant={
-                  previewType === "configContent" ? "primary" : "secondary"
-                }
+                variant={previewType === "configContent" ? "primary" : "secondary"}
                 size="sm"
               >
                 Config Content (config_{formData.brandCode}.json)
               </Button>
               <Button
                 onClick={() => setPreviewType("instructions")}
-                variant={
-                  previewType === "instructions" ? "primary" : "secondary"
-                }
+                variant={previewType === "instructions" ? "primary" : "secondary"}
                 size="sm"
               >
                 Installation Instructions
               </Button>
             </div>
 
-            <div
-              className="bg-gray-50 rounded-lg p-4 mb-4"
-              style={{ maxHeight: "400px", overflow: "auto" }}
-            >
-              <pre className="text-sm text-gray-800 whitespace-pre-wrap">
+            <div className="bg-gray-50 p-4 rounded-lg mb-4 max-h-96 overflow-y-auto">
+              <pre className="text-xs text-gray-700 whitespace-pre-wrap">
                 {previewType === "siteCopy" && generatedContent.siteCopyFile}
-                {previewType === "configContent" &&
-                  generatedContent.configContentFile}
-                {previewType === "instructions" &&
-                  generatedContent.installationInstructions}
+                {previewType === "configContent" && generatedContent.configContentFile}
+                {previewType === "instructions" && generatedContent.installationInstructions}
               </pre>
             </div>
 
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Button onClick={downloadSiteCopyFile} variant="secondary">
-                Download Site Copy (.ts)
-              </Button>
-              <Button onClick={downloadConfigFile} variant="secondary">
-                Download Config Content (.json)
-              </Button>
-              <Button onClick={downloadInstructions} variant="secondary">
-                Download Instructions (.md)
-              </Button>
+            <div className="flex justify-center">
               <Button onClick={downloadAll} variant="primary">
                 Download All Files
               </Button>
             </div>
-
-            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-              <p className="text-sm text-blue-800">
-                <strong>Next Steps:</strong> Follow the installation
-                instructions to integrate these files into your project. Both
-                the site copy and config content files work together to provide
-                complete brand localization.
-              </p>
-            </div>
-
-            <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
-              <p className="text-sm text-green-800">
-                <strong>✅ Ready to Install:</strong> Your brand files are
-                ready! The system will guide you through adding the brand to the
-                dropdown. Check the browser console for the exact code snippets
-                to copy.
-              </p>
-            </div>
           </div>
         </Card>
       )}
-
-      {/* Current Brand Display */}
-      <Card>
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">
-            Current Brand Configuration
-          </h3>
-
-          {config?.brand ? (
-            <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-              <img
-                src={config.brand.logo}
-                alt={config.brand.logoAlt}
-                className="h-16 w-auto object-contain border border-gray-200 rounded bg-white p-2"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = "none";
-                }}
-              />
-              <div>
-                <h4 className="text-lg font-medium text-gray-900">
-                  {config.brand.name}
-                </h4>
-                <p className="text-sm text-gray-600">
-                  Logo: {config.brand.logo}
-                </p>
-                <p className="text-sm text-gray-600">
-                  Language: {language.toUpperCase()}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="p-4 bg-yellow-50 rounded-lg">
-              <p className="text-yellow-800">
-                No brand configuration found for the current locale. Use the
-                form above to create a new brand configuration.
-              </p>
-            </div>
-          )}
-        </div>
-      </Card>
     </div>
   );
-}
-
-// Helper function to automatically add brand to dropdown
-async function addBrandToDropdown(
-  brandName: string,
-  brandCode: string
-): Promise<void> {
-  try {
-    // Note: In a real implementation, this would require a backend service
-    // to modify files. For now, we'll just log the required changes.
-    console.log(`✅ Brand Generated Successfully!
-    
-To complete setup, add to Header.tsx brandDisplayNames:
-${brandCode}: "${brandName}",
-
-And add dropdown options:
-<option value="${brandCode}">${brandName}</option>
-
-The brand files have been generated and can be downloaded above.`);
-  } catch (error) {
-    console.warn("Note: Manual dropdown setup required:", error);
-  }
 }
