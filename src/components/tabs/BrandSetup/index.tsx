@@ -87,6 +87,40 @@ const ArrayInput = ({
   );
 };
 
+// CollapsibleSection component moved outside to prevent recreation on every render
+const CollapsibleSection = ({ 
+  title, 
+  section, 
+  children,
+  expandedSections,
+  onToggleSection
+}: { 
+  title: string; 
+  section: string; 
+  children: React.ReactNode;
+  expandedSections: Record<string, boolean>;
+  onToggleSection: (section: string) => void;
+}) => (
+  <div className="border border-gray-200 rounded-lg overflow-hidden">
+    <button
+      onClick={() => onToggleSection(section)}
+      className="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 flex items-center justify-between text-left"
+    >
+      <span className="font-medium text-gray-900">{title}</span>
+      {expandedSections[section] ? (
+        <ChevronUp className="w-5 h-5 text-gray-500" />
+      ) : (
+        <ChevronDown className="w-5 h-5 text-gray-500" />
+      )}
+    </button>
+    {expandedSections[section] && (
+      <div className="p-4 space-y-4">
+        {children}
+      </div>
+    )}
+  </div>
+);
+
 export default function BrandSetup() {
   const { language } = useLanguage();
   const { config } = useConfig();
@@ -268,34 +302,7 @@ export default function BrandSetup() {
 
 
 
-  const CollapsibleSection = ({ 
-    title, 
-    section, 
-    children 
-  }: { 
-    title: string; 
-    section: string; 
-    children: React.ReactNode;
-  }) => (
-    <div className="border border-gray-200 rounded-lg overflow-hidden">
-      <button
-        onClick={() => toggleSection(section)}
-        className="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 flex items-center justify-between text-left"
-      >
-        <span className="font-medium text-gray-900">{title}</span>
-        {expandedSections[section] ? (
-          <ChevronUp className="w-5 h-5 text-gray-500" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-gray-500" />
-        )}
-      </button>
-      {expandedSections[section] && (
-        <div className="p-4 space-y-4">
-          {children}
-        </div>
-      )}
-    </div>
-  );
+
 
   return (
     <div className="space-y-6">
@@ -309,7 +316,12 @@ export default function BrandSetup() {
 
           <div className="space-y-4">
             {/* Basic Information */}
-            <CollapsibleSection title="Basic Information *" section="basic">
+            <CollapsibleSection 
+              title="Basic Information *" 
+              section="basic"
+              expandedSections={expandedSections}
+              onToggleSection={toggleSection}
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -400,7 +412,12 @@ export default function BrandSetup() {
             </CollapsibleSection>
 
             {/* Target Audience */}
-            <CollapsibleSection title="Target Audience" section="audience">
+            <CollapsibleSection 
+              title="Target Audience" 
+              section="audience"
+              expandedSections={expandedSections}
+              onToggleSection={toggleSection}
+            >
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Target Audience Description
@@ -416,7 +433,12 @@ export default function BrandSetup() {
             </CollapsibleSection>
 
             {/* Key Benefits & USPs */}
-            <CollapsibleSection title="Benefits & Unique Selling Points" section="benefits">
+            <CollapsibleSection 
+              title="Benefits & Unique Selling Points" 
+              section="benefits"
+              expandedSections={expandedSections}
+              onToggleSection={toggleSection}
+            >
               <ArrayInput
                 label="Key Benefits"
                 field="keyBenefits"
@@ -452,7 +474,12 @@ export default function BrandSetup() {
             </CollapsibleSection>
 
             {/* Campaign Goals */}
-            <CollapsibleSection title="Campaign Goals & Objectives" section="campaign">
+            <CollapsibleSection 
+              title="Campaign Goals & Objectives" 
+              section="campaign"
+              expandedSections={expandedSections}
+              onToggleSection={toggleSection}
+            >
               <ArrayInput
                 label="Campaign Goals"
                 field="campaignGoals"
@@ -466,7 +493,12 @@ export default function BrandSetup() {
             </CollapsibleSection>
 
             {/* Brand Values & Categories */}
-            <CollapsibleSection title="Brand Values & Products" section="brand">
+            <CollapsibleSection 
+              title="Brand Values & Products" 
+              section="brand"
+              expandedSections={expandedSections}
+              onToggleSection={toggleSection}
+            >
               <ArrayInput
                 label="Brand Values"
                 field="brandValues"
