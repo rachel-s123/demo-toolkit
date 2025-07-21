@@ -12,17 +12,29 @@ interface HeaderProps {
   onLogout?: () => void;
 }
 
-const brandDisplayNames: Record<string, string> = {
-  en: "Brilliant Noise",
+const brandDisplayNames: Record<string, string> = {en: "Brilliant Noise",
   edf: "\uD83C\uDDEC\uD83C\uDDE7 EDF Energy",
   edf_fr: "\uD83C\uDDEB\uD83C\uDDF7 EDF \u00C9nergie",
   bmw: "BMW Motorrad",
   hedosoph: "Hedosophia",
-  nestl: "Nestlé",
+
 };
 
 const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
-  const { language, setLanguage, translations } = useLanguage();
+  // Add safety checks for context availability
+  let language: LanguageCode = 'en';
+  let setLanguage = (lang: LanguageCode) => {};
+  let translations: any = {};
+  
+  try {
+    const languageContext = useLanguage();
+    language = languageContext.language;
+    setLanguage = languageContext.setLanguage;
+    translations = languageContext.translations;
+  } catch (error) {
+    console.warn('Language context not available in Header');
+  }
+  
   const { isHighlightEnabled } = useHighlight();
   const { config } = useConfig();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -133,7 +145,6 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
                 <option value="bmw">{brandDisplayNames.bmw}</option>
                 <option value="hedosoph">Hedosophia</option>
-                <option value="nestl">Nestlé</option>
               </select>
             </div>
           </div>
@@ -241,12 +252,12 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   onChange={handleLanguageChange}
                   className="flex-1 rounded-md border-secondary-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                 >
-                  <option value="en">{brandDisplayNames.en}</option>
-                  <option value="edf">{brandDisplayNames.edf}</option>
-                  <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
-                  <option value="bmw">{brandDisplayNames.bmw}</option>
-                  <option value="hedosoph">Hedosophia</option>
-                  <option value="nestl">Nestlé</option>
+                                  <option value="en">{brandDisplayNames.en}</option>
+                <option value="edf">{brandDisplayNames.edf}</option>
+                <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
+                <option value="bmw">{brandDisplayNames.bmw}</option>
+                                  <option value="hedosoph">Hedosophia</option>
+    
                 </select>
               </div>
 

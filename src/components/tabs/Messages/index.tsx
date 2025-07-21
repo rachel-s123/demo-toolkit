@@ -20,7 +20,15 @@ const Messages: React.FC = () => {
   const t = useTranslations();
   const copy = t.messages;
   const { isHighlightEnabled } = useHighlight();
-  const { language } = useLanguage();
+  
+  // Add safety check for context availability
+  let language: string = 'en';
+  try {
+    const languageContext = useLanguage();
+    language = languageContext.language;
+  } catch (error) {
+    console.warn('Language context not available in Messages');
+  }
   const [messages, setMessages] = useState<Message[]>([]);
 
   // Always initialize filter state from URL params

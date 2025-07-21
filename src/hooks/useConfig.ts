@@ -35,7 +35,18 @@ export const useConfig = (): UseConfigReturn => {
   const [config, setConfig] = useState<ConfigData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { language } = useLanguage();
+  
+  // Add safety check for context availability
+  let language: string = 'en'; // Default fallback
+  try {
+    const languageContext = useLanguage();
+    if (languageContext && languageContext.language) {
+      language = languageContext.language;
+    }
+  } catch (error) {
+    // If context is not available yet, use default language
+    console.warn('Language context not available, using default language');
+  }
 
   const fetchConfig = async () => {
     try {

@@ -7,9 +7,11 @@ import * as path from 'path';
 import { Config } from '../src/types';
 import { verifyToken } from './auth';
 import { checkEnv } from './envCheck';
+import { completeBrandSetup } from '../src/utils/brandSetupUtils';
 
 dotenv.config();
-checkEnv();
+// Only check environment variables for non-upload endpoints
+// checkEnv();
 
 const app = express();
 const PORT = process.env.API_PORT || 3001;
@@ -97,6 +99,8 @@ async function syncConfigs(): Promise<Config> {
 // GET /api/config - Get configuration with sync
 app.get('/api/config', verifyToken, async (req, res) => {
   try {
+    // Check environment variables for this endpoint
+    checkEnv();
     const config = await syncConfigs();
     res.json(config);
   } catch (error) {
@@ -120,6 +124,156 @@ app.put('/api/guides/:id', verifyToken, (req, res) => {
   res.status(403).json({ error: 'Editing disabled' });
 });
 
+// POST /api/upload-files - Upload generated files to backend
+app.post('/api/upload-files', verifyToken, (req, res) => {
+  try {
+    console.log(`[${new Date().toISOString()}] Upload Files Handler: Processing POST request`);
+    console.log("Upload Files Handler: Request body:", req.body);
+
+    const { files, brandCode, brandName } = req.body;
+
+    if (!files || !Array.isArray(files)) {
+      return res.status(400).json({ 
+        error: "Invalid request: 'files' array is required" 
+      });
+    }
+
+    const results: any[] = [];
+    const allowedDirectories = [
+      "public/locales",
+      "public/assets",
+      "public/assets/logos",
+      "src/locales"
+    ];
+
+    for (const file of files) {
+      try {
+        const { filename, content, targetPath, isBinary, mimeType } = file;
+
+        if (!filename || !content) {
+          results.push({
+            filename: filename || "unknown",
+            success: false,
+            error: "Missing filename or content"
+          });
+          continue;
+        }
+
+        // Determine the target directory
+        let finalPath: string;
+        if (targetPath) {
+          // Validate targetPath to prevent directory traversal attacks
+          const normalizedPath = path.normalize(targetPath);
+          const isAllowed = allowedDirectories.some(allowedDir => 
+            normalizedPath.startsWith(allowedDir)
+          );
+          
+          if (!isAllowed) {
+            results.push({
+              filename,
+              success: false,
+              error: `Path not allowed: ${targetPath}`
+            });
+            continue;
+          }
+          
+          finalPath = path.join(process.cwd(), normalizedPath);
+        } else {
+          // Default to public/locales if no targetPath specified
+          finalPath = path.join(process.cwd(), "public", "locales", filename);
+        }
+
+        // Ensure the directory exists
+        const dir = path.dirname(finalPath);
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+          console.log(`Created directory: ${dir}`);
+        }
+
+        // Write the file
+        if (isBinary && mimeType) {
+          // Handle binary files (like images)
+          try {
+            const buffer = Buffer.from(content, 'base64');
+            fs.writeFileSync(finalPath, buffer);
+            console.log(`✅ Successfully wrote binary file: ${finalPath} (${mimeType})`);
+          } catch (binaryError: any) {
+            console.error(`Error writing binary file ${filename}:`, binaryError);
+            results.push({
+              filename,
+              success: false,
+              error: `Binary file write failed: ${binaryError.message}`
+            });
+            continue;
+          }
+        } else {
+          // Handle text files
+          fs.writeFileSync(finalPath, content, "utf8");
+          console.log(`✅ Successfully wrote text file: ${finalPath}`);
+        }
+        
+        results.push({
+          filename,
+          path: finalPath,
+          success: true
+        });
+
+      } catch (fileError: any) {
+        console.error(`Error processing file ${file.filename || "unknown"}:`, fileError);
+        results.push({
+          filename: file.filename || "unknown",
+          success: false,
+          error: fileError.message
+        });
+      }
+    }
+
+    const successCount = results.filter(r => r.success).length;
+    const failureCount = results.length - successCount;
+
+    console.log(`✅ Upload Files Handler: Processed ${results.length} files. ${successCount} successful, ${failureCount} failed`);
+
+    // If brand setup information is provided, complete the brand setup
+    let brandSetupResult = null;
+    if (brandCode && brandName && successCount > 0) {
+      console.log(`🔄 Completing brand setup for ${brandName} (${brandCode})...`);
+      try {
+        brandSetupResult = completeBrandSetup(brandCode, brandName);
+        console.log(`✅ Brand setup result:`, brandSetupResult);
+      } catch (brandSetupError: any) {
+        console.error(`❌ Brand setup failed:`, brandSetupError);
+        brandSetupResult = {
+          success: false,
+          message: `Brand setup failed: ${brandSetupError.message}`,
+          details: {
+            localeIndexUpdated: false,
+            headerUpdated: false,
+            errors: [brandSetupError.message]
+          }
+        };
+      }
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: `Processed ${results.length} files`,
+      results,
+      summary: {
+        total: results.length,
+        successful: successCount,
+        failed: failureCount
+      },
+      brandSetup: brandSetupResult
+    });
+
+  } catch (error: any) {
+    console.error("Upload Files Handler: Error:", error);
+    return res.status(500).json({ 
+      error: "Internal server error", 
+      details: error.message 
+    });
+  }
+});
 
 // Health check
 app.get('/health', (req, res) => {

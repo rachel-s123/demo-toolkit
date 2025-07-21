@@ -112,12 +112,11 @@ export interface BrandAdaptationOptions {
   adaptationPrompt: string;
   logoPath?: string;
   
-  // New enhanced optional fields for richer content generation
-  targetAudience?: string;              // Description of ideal customers
-  keyBenefits?: string[];              // Main benefits of the solution
-  uniqueSellingPoints?: string[];       // What makes the brand unique
-  campaignGoals?: string[];            // Specific campaign objectives
-  competitorDifferentiators?: string[]; // How brand outperforms competitors
-  brandValues?: string[];              // Core values that guide the brand
-  productCategories?: string[];        // Main product/service categories
+  // Campaign Context
+  campaignType: "product-launch" | "internal-training" | "dealer-enablement" | "event-marketing" | "compliance-training" | "custom";
+  targetAudience: "external-customers" | "internal-teams" | "partners" | "dealers" | "custom";
+  primaryGoal: string;
+  keyDeliverables: string[];
+  customCampaignType?: string;
+  customTargetAudience?: string;
 }

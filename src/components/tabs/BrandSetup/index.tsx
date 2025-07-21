@@ -15,22 +15,13 @@ export interface BrandFormData {
   icon?: File;
   logoPath?: string;
   
-  // Campaign Context (NEW)
+  // Campaign Context
   campaignType: "product-launch" | "internal-training" | "dealer-enablement" | "event-marketing" | "compliance-training" | "custom";
   targetAudience: "external-customers" | "internal-teams" | "partners" | "dealers" | "custom";
   primaryGoal: string;
   keyDeliverables: string[];
   customCampaignType?: string;
   customTargetAudience?: string;
-  
-  // Enhanced Fields
-  targetAudienceDescription: string;
-  keyBenefits: string[];
-  uniqueSellingPoints: string[];
-  campaignGoals: string[];
-  competitorDifferentiators: string[];
-  brandValues: string[];
-  productCategories: string[];
 }
 
 interface GeneratedContent {
@@ -131,7 +122,14 @@ const CollapsibleSection = ({
 );
 
 export default function BrandSetup() {
-  const { language } = useLanguage();
+  // Add safety check for context availability
+  let language: string = 'en';
+  try {
+    const languageContext = useLanguage();
+    language = languageContext.language;
+  } catch (error) {
+    console.warn('Language context not available in BrandSetup');
+  }
   const [formData, setFormData] = useState<BrandFormData>({
     brandName: "",
     brandCode: "",
@@ -146,25 +144,16 @@ export default function BrandSetup() {
     keyDeliverables: [""],
     customCampaignType: "",
     customTargetAudience: "",
-    targetAudienceDescription: "",
-    keyBenefits: [""],
-    uniqueSellingPoints: [""],
-    campaignGoals: [""],
-    competitorDifferentiators: [""],
-    brandValues: [""],
-    productCategories: [""]
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedContent, setGeneratedContent] = useState<GeneratedContent | null>(null);
+  const [hasGeneratedOnce, setHasGeneratedOnce] = useState(false);
+  const [lastGeneratedFormData, setLastGeneratedFormData] = useState<string>("");
   const [previewType, setPreviewType] = useState<"siteCopy" | "configContent" | "instructions">("siteCopy");
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     basic: true,
-    "campaign-context": true,
-    audience: false,
-    benefits: false,
-    campaign: false,
-    brand: false
+    "campaign-context": true
   });
 
   const handleInputChange = (field: keyof BrandFormData, value: string | File) => {
@@ -280,20 +269,41 @@ export default function BrandSetup() {
               keyDeliverables: cleanArrayField(formData.keyDeliverables),
               customCampaignType: formData.customCampaignType,
               customTargetAudience: formData.customTargetAudience,
-              
-              // Enhanced options
-              targetAudienceDescription: formData.targetAudienceDescription,
-              keyBenefits: cleanArrayField(formData.keyBenefits),
-              uniqueSellingPoints: cleanArrayField(formData.uniqueSellingPoints),
-              campaignGoals: cleanArrayField(formData.campaignGoals),
-              competitorDifferentiators: cleanArrayField(formData.competitorDifferentiators),
-              brandValues: cleanArrayField(formData.brandValues),
-              productCategories: cleanArrayField(formData.productCategories)
             };
 
       console.log("Calling LLMGenerator.generateBrandFiles...");
-      const generatedFiles = await LLMGenerator.generateBrandFiles(llmFormData);
-      console.log("Generated files:", generatedFiles);
+      let generatedFiles;
+      try {
+        generatedFiles = await LLMGenerator.generateBrandFiles(llmFormData);
+        console.log("Generated files with LLM:", generatedFiles);
+      } catch (llmError) {
+        console.log("LLM generation failed, falling back to basic generator:", llmError);
+        // Fallback to basic generator
+        const LocaleGenerator = (await import('./LocaleGenerator')).default;
+        const baseSiteCopy = (await import('../../../locales')).languages.en_template;
+        const baseConfigResponse = await fetch('/locales/config_en.json');
+        const baseConfigContent = await baseConfigResponse.json();
+        
+        generatedFiles = await LocaleGenerator.generateBrandFiles(
+          baseSiteCopy,
+          baseConfigContent,
+          {
+            brandName: formData.brandName,
+            brandCode: formData.brandCode,
+            industry: formData.industry,
+            tone: formData.tone,
+            adaptationPrompt: formData.adaptationPrompt,
+            logoPath,
+            campaignType: formData.campaignType,
+            targetAudience: formData.targetAudience,
+            primaryGoal: formData.primaryGoal,
+            keyDeliverables: cleanArrayField(formData.keyDeliverables),
+            customCampaignType: formData.customCampaignType,
+            customTargetAudience: formData.customTargetAudience,
+          }
+        );
+        console.log("Generated files with fallback:", generatedFiles);
+      }
 
       console.log("Generating installation instructions...");
       const installationInstructions = `# ${formData.brandName} Setup Instructions
@@ -320,6 +330,8 @@ export default function BrandSetup() {
         configContentFile: generatedFiles.configContent,
         installationInstructions,
       });
+      setHasGeneratedOnce(true);
+      setLastGeneratedFormData(JSON.stringify(formData));
       console.log("Generation completed successfully!");
     } catch (error) {
       console.error("Error generating brand locale:", error);
@@ -347,6 +359,116 @@ export default function BrandSetup() {
       setTimeout(() => downloadFile(generatedContent.configContentFile, `config_${formData.brandCode}.json`, "application/json"), 500);
       setTimeout(() => downloadFile(generatedContent.installationInstructions, `${formData.brandCode}-setup-instructions.md`, "text/markdown"), 1000);
     }
+  };
+
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadResult, setUploadResult] = useState<{ success: boolean; message: string } | null>(null);
+
+  const uploadToBackend = async () => {
+    if (!generatedContent) return;
+
+    setIsUploading(true);
+    setUploadResult(null);
+
+    try {
+      const files: Array<{
+        filename: string;
+        content: string;
+        targetPath: string;
+        isBinary?: boolean;
+        mimeType?: string;
+      }> = [
+        {
+          filename: `${formData.brandCode}.ts`,
+          content: generatedContent.siteCopyFile,
+          targetPath: `src/locales/${formData.brandCode}.ts`
+        },
+        {
+          filename: `config_${formData.brandCode}.json`,
+          content: generatedContent.configContentFile,
+          targetPath: `public/locales/config_${formData.brandCode}.json`
+        }
+      ];
+
+      // Add logo file if uploaded
+      if (formData.icon) {
+        try {
+          // Convert File to base64
+          const arrayBuffer = await formData.icon.arrayBuffer();
+          const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+          const fileExtension = formData.icon.name.split('.').pop() || 'png';
+          
+          files.push({
+            filename: `${formData.brandCode}.${fileExtension}`,
+            content: base64,
+            targetPath: `public/assets/logos/${formData.brandCode}.${fileExtension}`,
+            isBinary: true,
+            mimeType: formData.icon.type
+          });
+        } catch (logoError) {
+          console.error('Error processing logo file:', logoError);
+          // Continue without logo if there's an error
+        }
+      }
+
+      const response = await fetch('/api/upload-files', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          files,
+          brandCode: formData.brandCode,
+          brandName: formData.brandName
+        })
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        let message = `Successfully uploaded ${result.summary.successful} files to backend!`;
+        
+        // Add brand setup information if available
+        if (result.brandSetup) {
+          if (result.brandSetup.success) {
+            message += ` ${result.brandSetup.message}`;
+          } else {
+            message += ` Files uploaded, but brand setup had issues: ${result.brandSetup.message}`;
+          }
+        }
+        
+        setUploadResult({
+          success: true,
+          message
+        });
+      } else {
+        setUploadResult({
+          success: false,
+          message: `Upload failed: ${result.error || 'Unknown error'}`
+        });
+      }
+    } catch (error) {
+      console.error('Error uploading files:', error);
+      setUploadResult({
+        success: false,
+        message: `Upload failed: ${error instanceof Error ? error.message : 'Network error'}`
+      });
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const hasFormChanged = () => {
+    if (!hasGeneratedOnce || !lastGeneratedFormData) return false;
+    const currentFormData = JSON.stringify(formData);
+    return currentFormData !== lastGeneratedFormData;
+  };
+
+  const getButtonText = () => {
+    if (isGenerating) return "Generating Rich Brand Content...";
+    if (!hasGeneratedOnce) return "Generate Enhanced Brand Locale";
+    if (hasFormChanged()) return "Regenerate with Changes";
+    return "Regenerate";
   };
 
 
@@ -567,120 +689,9 @@ export default function BrandSetup() {
                 />
               </div>
             </CollapsibleSection>
-
-            {/* Target Audience */}
-            <CollapsibleSection 
-              title="Target Audience" 
-              section="audience"
-              expandedSections={expandedSections}
-              onToggleSection={toggleSection}
-            >
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Target Audience Description
-                </label>
-                <textarea
-                  value={formData.targetAudienceDescription}
-                  onChange={(e) => handleInputChange("targetAudienceDescription", e.target.value)}
-                  placeholder="Describe your ideal customers, their roles, challenges, and what motivates them..."
-                  rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-            </CollapsibleSection>
-
-            {/* Key Benefits & USPs */}
-            <CollapsibleSection 
-              title="Benefits & Unique Selling Points" 
-              section="benefits"
-              expandedSections={expandedSections}
-              onToggleSection={toggleSection}
-            >
-              <ArrayInput
-                label="Key Benefits"
-                field="keyBenefits"
-                placeholder="e.g., Reduce costs by 30%"
-                helpText="What are the main benefits customers get from your solution?"
-                values={formData.keyBenefits}
-                onArrayInputChange={handleArrayInputChange}
-                onAddItem={addArrayItem}
-                onRemoveItem={removeArrayItem}
-              />
-              
-              <ArrayInput
-                label="Unique Selling Points"
-                field="uniqueSellingPoints"
-                placeholder="e.g., Only solution with real-time analytics"
-                helpText="What makes your brand different from competitors?"
-                values={formData.uniqueSellingPoints}
-                onArrayInputChange={handleArrayInputChange}
-                onAddItem={addArrayItem}
-                onRemoveItem={removeArrayItem}
-              />
-              
-              <ArrayInput
-                label="Competitor Differentiators"
-                field="competitorDifferentiators"
-                placeholder="e.g., 50% faster implementation than alternatives"
-                helpText="How do you specifically outperform competitors?"
-                values={formData.competitorDifferentiators}
-                onArrayInputChange={handleArrayInputChange}
-                onAddItem={addArrayItem}
-                onRemoveItem={removeArrayItem}
-              />
-            </CollapsibleSection>
-
-            {/* Campaign Goals */}
-            <CollapsibleSection 
-              title="Campaign Goals & Objectives" 
-              section="campaign"
-              expandedSections={expandedSections}
-              onToggleSection={toggleSection}
-            >
-              <ArrayInput
-                label="Campaign Goals"
-                field="campaignGoals"
-                placeholder="e.g., Generate 500 qualified leads"
-                helpText="What are you trying to achieve with this campaign?"
-                values={formData.campaignGoals}
-                onArrayInputChange={handleArrayInputChange}
-                onAddItem={addArrayItem}
-                onRemoveItem={removeArrayItem}
-              />
-            </CollapsibleSection>
-
-            {/* Brand Values & Categories */}
-            <CollapsibleSection 
-              title="Brand Values & Products" 
-              section="brand"
-              expandedSections={expandedSections}
-              onToggleSection={toggleSection}
-            >
-              <ArrayInput
-                label="Brand Values"
-                field="brandValues"
-                placeholder="e.g., Innovation, Sustainability, Customer-First"
-                helpText="Core values that guide your brand"
-                values={formData.brandValues}
-                onArrayInputChange={handleArrayInputChange}
-                onAddItem={addArrayItem}
-                onRemoveItem={removeArrayItem}
-              />
-              
-              <ArrayInput
-                label="Product Categories"
-                field="productCategories"
-                placeholder="e.g., Cloud Solutions, Analytics Platform"
-                helpText="Main product or service categories you offer"
-                values={formData.productCategories}
-                onArrayInputChange={handleArrayInputChange}
-                onAddItem={addArrayItem}
-                onRemoveItem={removeArrayItem}
-              />
-            </CollapsibleSection>
           </div>
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex justify-center gap-3">
             <Button
               onClick={(e) => {
                 e.preventDefault();
@@ -695,8 +706,20 @@ export default function BrandSetup() {
               disabled={isGenerating || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt}
               className="px-8 py-3"
             >
-              {isGenerating ? "Generating Rich Brand Content..." : "Generate Enhanced Brand Locale"}
+              {getButtonText()}
             </Button>
+            {hasGeneratedOnce && (
+              <Button
+                onClick={() => {
+                  setGeneratedContent(null);
+                  setHasGeneratedOnce(false);
+                }}
+                variant="outline"
+                className="px-6 py-3"
+              >
+                Reset
+              </Button>
+            )}
           </div>
         </div>
       </Card>
@@ -740,11 +763,31 @@ export default function BrandSetup() {
               </pre>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center gap-3">
               <Button onClick={downloadAll} variant="primary">
                 Download All Files
               </Button>
+              <Button 
+                onClick={uploadToBackend} 
+                variant="secondary"
+                disabled={isUploading}
+              >
+                {isUploading ? "Uploading..." : "Add to Backend"}
+              </Button>
             </div>
+
+            {uploadResult && (
+              <div className={`mt-4 p-3 rounded-lg ${
+                uploadResult.success 
+                  ? 'bg-green-50 border border-green-200 text-green-800' 
+                  : 'bg-red-50 border border-red-200 text-red-800'
+              }`}>
+                <p className="text-sm font-medium">
+                  {uploadResult.success ? "✅ " : "❌ "}
+                  {uploadResult.message}
+                </p>
+              </div>
+            )}
           </div>
         </Card>
       )}
