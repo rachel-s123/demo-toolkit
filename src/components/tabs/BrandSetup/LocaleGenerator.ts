@@ -7,8 +7,17 @@ export interface BrandAdaptationOptions {
   tone: 'professional' | 'friendly' | 'technical' | 'casual';
   adaptationPrompt: string;
   logoPath?: string;
-  // New enhanced options
-  targetAudience?: string;
+  
+  // Campaign Context (NEW)
+  campaignType: "product-launch" | "internal-training" | "dealer-enablement" | "event-marketing" | "compliance-training" | "custom";
+  targetAudience: "external-customers" | "internal-teams" | "partners" | "dealers" | "custom";
+  primaryGoal: string;
+  keyDeliverables: string[];
+  customCampaignType?: string;
+  customTargetAudience?: string;
+  
+  // Enhanced options
+  targetAudienceDescription?: string;
   keyBenefits?: string[];
   uniqueSellingPoints?: string[];
   campaignGoals?: string[];
@@ -28,6 +37,83 @@ interface IndustryProfile {
 }
 
 type ToneType = 'professional' | 'friendly' | 'technical' | 'casual';
+
+// Campaign type templates for context-aware content generation
+interface CampaignTemplate {
+  journeySteps: Array<{ title: string; description: string; icon: string }>;
+  assetTypes: string[];
+  messageTypes: string[];
+  guideTypes: string[];
+  contentFocus: string;
+}
+
+const campaignTemplates: Record<string, CampaignTemplate> = {
+  'product-launch': {
+    journeySteps: [
+      { title: 'Awareness', description: 'Build initial product awareness and interest', icon: 'Rocket' },
+      { title: 'Interest', description: 'Generate customer engagement and consideration', icon: 'Calendar' },
+      { title: 'Consideration', description: 'Guide prospects through evaluation process', icon: 'Store' },
+      { title: 'Conversion', description: 'Drive purchase decisions and sales', icon: 'MessageSquare' },
+      { title: 'Advocacy', description: 'Turn customers into brand advocates', icon: 'UserPlus' }
+    ],
+    assetTypes: ['Social Media Graphics', 'Email Templates', 'Landing Page Assets', 'Product Photos', 'Video Content'],
+    messageTypes: ['Social Posts', 'Email Campaigns', 'Landing Page Copy', 'Press Releases', 'Influencer Content'],
+    guideTypes: ['Social Media Strategy', 'Email Campaign Best Practices', 'Landing Page Optimization', 'Customer Journey Mapping'],
+    contentFocus: 'external customer engagement and conversion'
+  },
+  'internal-training': {
+    journeySteps: [
+      { title: 'Assessment', description: 'Evaluate current skill levels and knowledge gaps', icon: 'Rocket' },
+      { title: 'Foundation', description: 'Build core knowledge and foundational skills', icon: 'Calendar' },
+      { title: 'Application', description: 'Practice and implement new skills in real scenarios', icon: 'Store' },
+      { title: 'Mastery', description: 'Achieve proficiency and confidence in new capabilities', icon: 'MessageSquare' },
+      { title: 'Leadership', description: 'Share knowledge and mentor others', icon: 'UserPlus' }
+    ],
+    assetTypes: ['Presentation Slides', 'Training Videos', 'Workshop Materials', 'Assessment Tools', 'Reference Guides'],
+    messageTypes: ['Internal Emails', 'Workshop Agendas', 'Progress Updates', 'Training Announcements', 'Knowledge Sharing'],
+    guideTypes: ['Training Facilitation', 'Skill Assessment Methods', 'Knowledge Retention Strategies', 'Peer Learning Implementation'],
+    contentFocus: 'internal team development and skill building'
+  },
+  'dealer-enablement': {
+    journeySteps: [
+      { title: 'Onboarding', description: 'Introduce dealers to new products and processes', icon: 'Rocket' },
+      { title: 'Training', description: 'Provide comprehensive product and sales training', icon: 'Calendar' },
+      { title: 'Implementation', description: 'Support dealers in implementing new strategies', icon: 'Store' },
+      { title: 'Optimization', description: 'Help dealers optimize performance and sales', icon: 'MessageSquare' },
+      { title: 'Growth', description: 'Enable dealers to expand and scale their business', icon: 'UserPlus' }
+    ],
+    assetTypes: ['Product Specs', 'Sales Materials', 'Training Guides', 'Marketing Templates', 'Performance Dashboards'],
+    messageTypes: ['Dealer Communications', 'Sales Scripts', 'Marketing Campaigns', 'Performance Reports', 'Best Practices'],
+    guideTypes: ['Sales Enablement', 'Marketing Strategy', 'Performance Optimization', 'Customer Service Excellence'],
+    contentFocus: 'dealer success and sales enablement'
+  },
+  'event-marketing': {
+    journeySteps: [
+      { title: 'Promotion', description: 'Build excitement and awareness for the event', icon: 'Rocket' },
+      { title: 'Registration', description: 'Drive registrations and manage attendee expectations', icon: 'Calendar' },
+      { title: 'Preparation', description: 'Prepare attendees and build anticipation', icon: 'Store' },
+      { title: 'Execution', description: 'Deliver an exceptional event experience', icon: 'MessageSquare' },
+      { title: 'Follow-up', description: 'Maintain engagement and drive post-event actions', icon: 'UserPlus' }
+    ],
+    assetTypes: ['Event Graphics', 'Promotional Materials', 'Registration Pages', 'Event Guides', 'Post-Event Content'],
+    messageTypes: ['Event Promotions', 'Registration Drives', 'Pre-Event Communications', 'Event Updates', 'Post-Event Follow-up'],
+    guideTypes: ['Event Planning', 'Promotion Strategy', 'Attendee Engagement', 'Post-Event Marketing'],
+    contentFocus: 'event success and attendee engagement'
+  },
+  'compliance-training': {
+    journeySteps: [
+      { title: 'Assessment', description: 'Evaluate current compliance knowledge and gaps', icon: 'Rocket' },
+      { title: 'Education', description: 'Provide comprehensive compliance training and resources', icon: 'Calendar' },
+      { title: 'Implementation', description: 'Support teams in applying compliance requirements', icon: 'Store' },
+      { title: 'Monitoring', description: 'Track compliance progress and identify areas for improvement', icon: 'MessageSquare' },
+      { title: 'Certification', description: 'Validate compliance knowledge and maintain standards', icon: 'UserPlus' }
+    ],
+    assetTypes: ['Training Modules', 'Compliance Checklists', 'Policy Documents', 'Assessment Tools', 'Reference Materials'],
+    messageTypes: ['Training Announcements', 'Policy Updates', 'Compliance Reminders', 'Progress Reports', 'Certification Notifications'],
+    guideTypes: ['Compliance Implementation', 'Training Facilitation', 'Policy Communication', 'Audit Preparation'],
+    contentFocus: 'compliance education and policy adherence'
+  }
+};
 
 export default class LocaleGenerator {
   // Enhanced industry profiles with rich contextual information
@@ -212,9 +298,9 @@ export default class LocaleGenerator {
     // Enhanced home section
     adapted.home = {
       ...adapted.home,
-      mainTitle: this.generateContextualTitle(brandName, industryProfile),
+      mainTitle: this.generateContextualTitle(brandName, industryProfile, options),
       mainDescription: this.generateValueProposition(brandName, industryProfile, options),
-      welcomeLead: this.generateWelcomeMessage(brandName, industryProfile, tone),
+      welcomeLead: this.generateWelcomeMessage(brandName, industryProfile, tone, options),
       helpYouList: this.generateBenefitsList(industryProfile, options),
       journeySteps: this.generateJourneySteps(brandName, industryProfile, options)
     };
@@ -232,42 +318,89 @@ export default class LocaleGenerator {
   }
 
   /**
-   * Generate contextual title based on brand and industry
+   * Generate contextual title based on brand, industry, and campaign context
    */
-  private static generateContextualTitle(brandName: string, profile: IndustryProfile): string {
-    const themes = profile.contentThemes;
-    const primaryTheme = themes[0] || 'Excellence';
-    return `${brandName} ${primaryTheme} Platform`;
+  private static generateContextualTitle(brandName: string, profile: IndustryProfile, options: BrandAdaptationOptions): string {
+    const campaignTemplate = campaignTemplates[options.campaignType] || campaignTemplates['product-launch'];
+    const campaignTypeName = options.campaignType.replace('-', ' ');
+    
+    switch (options.campaignType) {
+      case 'product-launch':
+        return `${brandName} Product Launch Toolkit`;
+      case 'internal-training':
+        return `${brandName} Training & Development Platform`;
+      case 'dealer-enablement':
+        return `${brandName} Dealer Enablement Toolkit`;
+      case 'event-marketing':
+        return `${brandName} Event Marketing Hub`;
+      case 'compliance-training':
+        return `${brandName} Compliance Training Platform`;
+      case 'custom':
+        const customType = options.customCampaignType || campaignTypeName;
+        return `${brandName} ${customType.charAt(0).toUpperCase() + customType.slice(1)} Toolkit`;
+      default:
+        return `${brandName} ${campaignTypeName.charAt(0).toUpperCase() + campaignTypeName.slice(1)} Platform`;
+    }
   }
 
   /**
-   * Generate compelling value proposition
+   * Generate compelling value proposition based on campaign context
    */
   private static generateValueProposition(
     brandName: string,
     profile: IndustryProfile,
     options: BrandAdaptationOptions
   ): string {
-    const painPoint = profile.painPoints[0];
-    const solution = profile.solutions[0];
-    const benefit = options.keyBenefits?.[0] || 'transformative results';
+    const campaignTemplate = campaignTemplates[options.campaignType] || campaignTemplates['product-launch'];
     
-    return `${brandName} addresses ${painPoint.toLowerCase()} through ${solution.toLowerCase()}, delivering ${benefit} for forward-thinking organizations.`;
+    switch (options.campaignType) {
+      case 'product-launch':
+        return `${brandName} empowers you to successfully launch new products with comprehensive marketing assets, messaging templates, and strategic guidance for maximum market impact.`;
+      case 'internal-training':
+        return `${brandName} provides everything you need to develop your team's skills and knowledge with structured training materials, assessment tools, and implementation guides.`;
+      case 'dealer-enablement':
+        return `${brandName} equips your dealer network with the tools, training, and support they need to effectively represent your brand and drive sales success.`;
+      case 'event-marketing':
+        return `${brandName} delivers complete event marketing solutions with promotional materials, attendee engagement strategies, and post-event follow-up systems.`;
+      case 'compliance-training':
+        return `${brandName} ensures your organization meets regulatory requirements with comprehensive training modules, policy documentation, and compliance tracking tools.`;
+      case 'custom':
+        return `${brandName} provides specialized tools and resources for ${options.primaryGoal.toLowerCase()}, helping you achieve your objectives efficiently and effectively.`;
+      default:
+        const painPoint = profile.painPoints[0];
+        const solution = profile.solutions[0];
+        const benefit = options.keyBenefits?.[0] || 'transformative results';
+        return `${brandName} addresses ${painPoint.toLowerCase()} through ${solution.toLowerCase()}, delivering ${benefit} for forward-thinking organizations.`;
+    }
   }
 
   /**
-   * Generate personalized welcome message
+   * Generate personalized welcome message based on campaign context
    */
   private static generateWelcomeMessage(
     brandName: string,
     profile: IndustryProfile,
-    tone: string
+    tone: string,
+    options: BrandAdaptationOptions
   ): string {
+    const campaignTemplate = campaignTemplates[options.campaignType] || campaignTemplates['product-launch'];
+    
+    const baseMessages: Record<string, string> = {
+      'product-launch': `Welcome to ${brandName}'s comprehensive product launch toolkit.`,
+      'internal-training': `Welcome to ${brandName}'s training and development platform.`,
+      'dealer-enablement': `Welcome to ${brandName}'s dealer enablement toolkit.`,
+      'event-marketing': `Welcome to ${brandName}'s event marketing hub.`,
+      'compliance-training': `Welcome to ${brandName}'s compliance training platform.`,
+      'custom': `Welcome to ${brandName}'s specialized toolkit for ${options.primaryGoal.toLowerCase()}.`
+    };
+    
+    const baseMessage = baseMessages[options.campaignType] || baseMessages['product-launch'];
+    
     const toneMap: Record<ToneType, string> = {
-      professional: `Welcome to ${brandName}'s comprehensive ${profile.terminology.campaign} platform.`,
-      friendly: `Hi there! Welcome to ${brandName} - your partner in ${profile.contentThemes[0].toLowerCase()}.`,
-      technical: `Access ${brandName}'s advanced ${profile.terminology.product} architecture and technical resources.`,
-      casual: `Hey! Ready to explore what ${brandName} can do for your ${profile.terminology.facility}?`
+      professional: baseMessage,
+      friendly: `Hi there! ${baseMessage}`,
+      technical: `Access ${baseMessage}`,
+      casual: `Hey! ${baseMessage}`
     };
     
     return toneMap[tone as ToneType] || toneMap.professional;
@@ -883,38 +1016,16 @@ export default class LocaleGenerator {
     options: BrandAdaptationOptions,
     profile: IndustryProfile
   ): any[] {
-    return [
-      {
-        id: "1",
-        title: "Launch",
-        description: `Initial ${profile.terminology.campaign} launch and awareness building`,
-        icon: "Rocket"
-      },
-      {
-        id: "2",
-        title: "Generate Test Rides",
-        description: `Convert interest into ${profile.terminology.trial} bookings`,
-        icon: "Calendar"
-      },
-      {
-        id: "3",
-        title: "In-Store",
-        description: `${profile.terminology.facility} experience and ${profile.terminology.product} showcase`,
-        icon: "Store"
-      },
-      {
-        id: "4",
-        title: "Follow-Up",
-        description: `Post-${profile.terminology.purchase} communication and satisfaction`,
-        icon: "MessageSquare"
-      },
-      {
-        id: "5",
-        title: "Welcome",
-        description: `Onboarding new ${profile.terminology.customer}s to the ${options.brandName} family`,
-        icon: "UserPlus"
-      }
-    ];
+    // Get campaign template based on campaign type
+    const campaignTemplate = campaignTemplates[options.campaignType] || campaignTemplates['product-launch'];
+    
+    // Use campaign-specific journey steps
+    return campaignTemplate.journeySteps.map((step, index) => ({
+      id: (index + 1).toString(),
+      title: step.title,
+      description: step.description,
+      icon: step.icon
+    }));
   }
 
   /**

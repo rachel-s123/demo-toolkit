@@ -17,8 +17,16 @@ export interface BrandFormData {
   icon?: File;
   logoPath?: string;
   
+  // Campaign Context (NEW)
+  campaignType: "product-launch" | "internal-training" | "dealer-enablement" | "event-marketing" | "compliance-training" | "custom";
+  targetAudience: "external-customers" | "internal-teams" | "partners" | "dealers" | "custom";
+  primaryGoal: string;
+  keyDeliverables: string[];
+  customCampaignType?: string;
+  customTargetAudience?: string;
+  
   // Enhanced Fields
-  targetAudience: string;
+  targetAudienceDescription: string;
   keyBenefits: string[];
   uniqueSellingPoints: string[];
   campaignGoals: string[];
@@ -135,7 +143,13 @@ export default function BrandSetup() {
     adaptationPrompt: "",
     icon: undefined,
     logoPath: "",
-    targetAudience: "",
+    campaignType: "custom",
+    targetAudience: "custom",
+    primaryGoal: "",
+    keyDeliverables: [""],
+    customCampaignType: "",
+    customTargetAudience: "",
+    targetAudienceDescription: "",
     keyBenefits: [""],
     uniqueSellingPoints: [""],
     campaignGoals: [""],
@@ -149,6 +163,7 @@ export default function BrandSetup() {
   const [previewType, setPreviewType] = useState<"siteCopy" | "configContent" | "instructions">("siteCopy");
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     basic: true,
+    "campaign-context": true,
     audience: false,
     benefits: false,
     campaign: false,
@@ -221,8 +236,8 @@ export default function BrandSetup() {
     console.log("Generate button clicked");
     console.log("Form data:", formData);
     
-    if (!formData.brandName || !formData.brandCode || !formData.adaptationPrompt) {
-      alert("Please fill in all required fields");
+    if (!formData.brandName || !formData.brandCode || !formData.adaptationPrompt || !formData.primaryGoal) {
+      alert("Please fill in all required fields (Brand Name, Brand Code, Adaptation Instructions, and Primary Goal)");
       return;
     }
 
@@ -262,7 +277,17 @@ export default function BrandSetup() {
         industry: formData.industry,
         tone: formData.tone,
         logoPath,
+        
+        // Campaign Context (NEW)
+        campaignType: formData.campaignType,
         targetAudience: formData.targetAudience,
+        primaryGoal: formData.primaryGoal,
+        keyDeliverables: cleanArrayField(formData.keyDeliverables),
+        customCampaignType: formData.customCampaignType,
+        customTargetAudience: formData.customTargetAudience,
+        
+        // Enhanced options
+        targetAudienceDescription: formData.targetAudienceDescription,
         keyBenefits: cleanArrayField(formData.keyBenefits),
         uniqueSellingPoints: cleanArrayField(formData.uniqueSellingPoints),
         campaignGoals: cleanArrayField(formData.campaignGoals),
@@ -431,6 +456,114 @@ export default function BrandSetup() {
               </div>
             </CollapsibleSection>
 
+            {/* Campaign Context */}
+            <CollapsibleSection 
+              title="Campaign Context" 
+              section="campaign-context"
+              expandedSections={expandedSections}
+              onToggleSection={toggleSection}
+            >
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Campaign Type *
+                  </label>
+                  <select
+                    value={formData.campaignType}
+                    onChange={(e) => handleInputChange("campaignType", e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="product-launch">Product Launch</option>
+                    <option value="internal-training">Internal Training</option>
+                    <option value="dealer-enablement">Dealer/Partner Enablement</option>
+                    <option value="event-marketing">Event Marketing</option>
+                    <option value="compliance-training">Compliance Training</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                  <p className="text-xs text-gray-500 mt-1">
+                    What type of campaign or initiative is this toolkit for?
+                  </p>
+                </div>
+
+                {formData.campaignType === "custom" && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Custom Campaign Type
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.customCampaignType || ""}
+                      onChange={(e) => handleInputChange("customCampaignType", e.target.value)}
+                      placeholder="e.g., customer onboarding, product training, market expansion"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Target Audience *
+                  </label>
+                  <select
+                    value={formData.targetAudience}
+                    onChange={(e) => handleInputChange("targetAudience", e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="external-customers">External Customers</option>
+                    <option value="internal-teams">Internal Teams</option>
+                    <option value="partners">Partners/Dealers</option>
+                    <option value="dealers">Dealers</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Who will be using this toolkit?
+                  </p>
+                </div>
+
+                {formData.targetAudience === "custom" && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Custom Target Audience
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.customTargetAudience || ""}
+                      onChange={(e) => handleInputChange("customTargetAudience", e.target.value)}
+                      placeholder="e.g., franchise owners, consultants, students"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Primary Goal *
+                  </label>
+                  <textarea
+                    value={formData.primaryGoal}
+                    onChange={(e) => handleInputChange("primaryGoal", e.target.value)}
+                    placeholder="e.g., Launch plant-based product to European market, Improve team AI literacy, Enable dealers to sell new models"
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    What is the main objective of this campaign/initiative?
+                  </p>
+                </div>
+
+                <ArrayInput
+                  label="Key Deliverables"
+                  field="keyDeliverables"
+                  placeholder="e.g., Social media posts, Email campaigns, Training materials"
+                  helpText="What specific assets and content will this toolkit contain?"
+                  values={formData.keyDeliverables}
+                  onArrayInputChange={handleArrayInputChange}
+                  onAddItem={addArrayItem}
+                  onRemoveItem={removeArrayItem}
+                />
+              </div>
+            </CollapsibleSection>
+
             {/* Target Audience */}
             <CollapsibleSection 
               title="Target Audience" 
@@ -443,8 +576,8 @@ export default function BrandSetup() {
                   Target Audience Description
                 </label>
                 <textarea
-                  value={formData.targetAudience}
-                  onChange={(e) => handleInputChange("targetAudience", e.target.value)}
+                  value={formData.targetAudienceDescription}
+                  onChange={(e) => handleInputChange("targetAudienceDescription", e.target.value)}
                   placeholder="Describe your ideal customers, their roles, challenges, and what motivates them..."
                   rows={3}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"

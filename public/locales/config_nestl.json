@@ -1,0 +1,1389 @@
+{
+  "isDemo": true,
+  "demoNotice": "These are demo assets using placeholder images. Replace with actual BMW marketing materials.",
+  "lastUpdated": "2025-06-03T06:06:20.361Z",
+  "assets": [
+    {
+      "id": "nestl_infographics_1",
+      "title": "Nestlé  Infographics - Key Statistics",
+      "description": "Visual representation of industry impact metrics",
+      "model": "Nestlé ",
+      "category": "Visual Content",
+      "type": "IMAGE",
+      "tags": [
+        "data",
+        "statistics",
+        "visual",
+        "Environmental impact",
+        "Cost savings through sustainability"
+      ],
+      "channel": "Social Media",
+      "dateCreated": "2025-07-21T15:39:59.823Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1080x1080",
+      "fileExtension": "jpg",
+      "thumbnail": "/assets/images/nestl_infographics_1_thumb.jpg",
+      "url": "/assets/images/nestl_infographics_1.jpg",
+      "metrics": {
+        "expectedEngagement": "high",
+        "targetAudience": "decision-makers"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_infographics_2",
+      "title": "Nestlé  Infographics - Process Overview",
+      "description": "Step-by-step visual guide to implementation",
+      "model": "Nestlé ",
+      "category": "Visual Content",
+      "type": "IMAGE",
+      "tags": [
+        "process",
+        "guide",
+        "educational",
+        "Environmental impact",
+        "Cost savings through sustainability"
+      ],
+      "channel": "Email",
+      "dateCreated": "2025-07-21T15:39:59.824Z",
+      "phase": "ENGAGEMENT",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "jpg",
+      "thumbnail": "/assets/images/nestl_infographics_2_thumb.jpg",
+      "url": "/assets/images/nestl_infographics_2.jpg",
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetAudience": "implementers"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_case_studies_1",
+      "title": "Nestlé  Case Studies - Success Story",
+      "description": "Real-world implementation and results",
+      "model": "Nestlé ",
+      "category": "Proof Points",
+      "type": "PDF",
+      "tags": [
+        "success",
+        "results",
+        "proof",
+        "Environmental impact",
+        "Cost savings through sustainability"
+      ],
+      "channel": "Website",
+      "dateCreated": "2025-07-21T15:39:59.824Z",
+      "phase": "CONVERSION",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "pdf",
+      "thumbnail": "/assets/pdfs/nestl_case_studies_1_thumb.jpg",
+      "url": "/assets/pdfs/nestl_case_studies_1.pdf",
+      "metrics": {
+        "expectedEngagement": "high",
+        "targetAudience": "executives"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_case_studies_2",
+      "title": "Nestlé  Case Studies - ROI Analysis",
+      "description": "Detailed financial impact assessment",
+      "model": "Nestlé ",
+      "category": "Proof Points",
+      "type": "PDF",
+      "tags": [
+        "roi",
+        "financial",
+        "analysis",
+        "Environmental impact",
+        "Cost savings through sustainability"
+      ],
+      "channel": "Sales",
+      "dateCreated": "2025-07-21T15:39:59.824Z",
+      "phase": "CONVERSION",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "pdf",
+      "thumbnail": "/assets/pdfs/nestl_case_studies_2_thumb.jpg",
+      "url": "/assets/pdfs/nestl_case_studies_2.pdf",
+      "metrics": {
+        "expectedEngagement": "very high",
+        "targetAudience": "finance-teams"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_roi_calculators_1",
+      "title": "Nestlé  ROI Calculators - Overview",
+      "description": "Comprehensive roi calculators overview",
+      "model": "Nestlé ",
+      "category": "Tools",
+      "type": "PDF",
+      "tags": [
+        "overview",
+        "general",
+        "Environmental impact",
+        "Cost savings through sustainability"
+      ],
+      "channel": "Website",
+      "dateCreated": "2025-07-21T15:39:59.824Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "pdf",
+      "thumbnail": "/assets/pdfs/nestl_roi_calculators_1_thumb.jpg",
+      "url": "/assets/pdfs/nestl_roi_calculators_1.pdf",
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetAudience": "general"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_certification_guides_1",
+      "title": "Nestlé  Certification Guides - Overview",
+      "description": "Comprehensive certification guides overview",
+      "model": "Nestlé ",
+      "category": "General Content",
+      "type": "PDF",
+      "tags": [
+        "overview",
+        "general",
+        "Environmental impact",
+        "Cost savings through sustainability"
+      ],
+      "channel": "Website",
+      "dateCreated": "2025-07-21T15:39:59.824Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "pdf",
+      "thumbnail": "/assets/pdfs/nestl_certification_guides_1_thumb.jpg",
+      "url": "/assets/pdfs/nestl_certification_guides_1.pdf",
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetAudience": "general"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_impact_reports_1",
+      "title": "Nestlé  Impact Reports - Overview",
+      "description": "Comprehensive impact reports overview",
+      "model": "Nestlé ",
+      "category": "General Content",
+      "type": "PDF",
+      "tags": [
+        "overview",
+        "general",
+        "Environmental impact",
+        "Cost savings through sustainability"
+      ],
+      "channel": "Website",
+      "dateCreated": "2025-07-21T15:39:59.824Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "pdf",
+      "thumbnail": "/assets/pdfs/nestl_impact_reports_1_thumb.jpg",
+      "url": "/assets/pdfs/nestl_impact_reports_1.pdf",
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetAudience": "general"
+      },
+      "isDemo": false
+    }
+  ],
+  "contentOutline": {
+    "phases": [
+      {
+        "name": "Launch",
+        "key": "LAUNCH",
+        "messaging": [
+          "Pre-Launch Teaser WhatsApp",
+          "Launch Announcement Email",
+          "Instagram & Facebook Launch Post",
+          "Social Media Ad Copy"
+        ],
+        "guides": [
+          "Launch Communication Strategy"
+        ]
+      },
+      {
+        "name": "Generate Test Rides",
+        "key": "GENERATE TEST RIDES",
+        "messaging": [
+          "Test Ride Invitation WhatsApp/SMS & Email",
+          "Test Ride Booking Confirmation SMS",
+          "Test Ride Event Invitation (Email)",
+          "Test Ride Reminder Email",
+          "Book a Test Ride Social Post (Instagram & Facebook)"
+        ],
+        "guides": [
+          "DIY Video Walkaround Filming Guide",
+          "Social Media Clip Editing Guide",
+          "Test Ride Generation Guide"
+        ]
+      },
+      {
+        "name": "In-Store",
+        "key": "IN-STORE",
+        "messaging": [
+          "In-Store Feature Poster Copy",
+          "Key Features Talking Points Script",
+          "Digital Screen Copy"
+        ],
+        "guides": [
+          "In-Store Comms Guide"
+        ]
+      },
+      {
+        "name": "Follow-Up",
+        "key": "FOLLOW-UP",
+        "messaging": [
+          "Financing Options Email",
+          "Post-Test Ride Follow-Up Email",
+          "Special Offer Follow-Up Email",
+          "Phone Follow-Up Script",
+          "Waitlist Update Communication"
+        ],
+        "guides": [
+          "Effective Follow-Up Strategies"
+        ]
+      },
+      {
+        "name": "Welcome",
+        "key": "WELCOME",
+        "messaging": [
+          "New Owner Welcome Email",
+          "New Owner Welcome SMS",
+          "Accessory Promotion Email",
+          "In-Store Delivery Email & SMS/WhatsApp"
+        ],
+        "guides": [
+          "New Owner Welcome Process"
+        ]
+      }
+    ]
+  },
+  "messages": [
+    {
+      "id": "nestl_launch_email",
+      "title": "Introducing Nestlé 's sustainable solution - Email",
+      "content": "Subject: Nestlé  Transforms Environmental impact\n\nDear Valued Partner\n\nWe're excited to introduce Nestlé 's revolutionary approach to carbon footprint reduction. Our sustainable solution delivers carbon tracking and reporting that drives measurable co2 reduction.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[CTA Button: Learn More] [CTA Button: Schedule Demo]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Email",
+      "stage": "LAUNCH",
+      "model": "Nestlé ",
+      "tags": [
+        "launch",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "high",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_launch_linkedin",
+      "title": "Introducing Nestlé 's sustainable solution - LinkedIn",
+      "content": "Subject: Nestlé  Transforms Environmental impact\n\nDear Valued Partner\n\nWe're excited to introduce Nestlé 's revolutionary approach to carbon footprint reduction. Our sustainable solution delivers carbon tracking and reporting that drives measurable co2 reduction.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\nConnect with our team to explore opportunities. [Learn More]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "LinkedIn",
+      "stage": "LAUNCH",
+      "model": "Nestlé ",
+      "tags": [
+        "launch",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "high",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_launch_industry publications",
+      "title": "Introducing Nestlé 's sustainable solution - Industry Publications",
+      "content": "Subject: Nestlé  Transforms Environmental impact\n\nDear Valued Partner\n\nWe're excited to introduce Nestlé 's revolutionary approach to carbon footprint reduction. Our sustainable solution delivers carbon tracking and reporting that drives measurable co2 reduction.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Industry Publications",
+      "stage": "LAUNCH",
+      "model": "Nestlé ",
+      "tags": [
+        "launch",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "high",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_launch_webinars",
+      "title": "Introducing Nestlé 's sustainable solution - Webinars",
+      "content": "Subject: Nestlé  Transforms Environmental impact\n\nDear Valued Partner\n\nWe're excited to introduce Nestlé 's revolutionary approach to carbon footprint reduction. Our sustainable solution delivers carbon tracking and reporting that drives measurable co2 reduction.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Register Now] for our upcoming session on this topic.\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Webinars",
+      "stage": "LAUNCH",
+      "model": "Nestlé ",
+      "tags": [
+        "launch",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "high",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_launch_conferences",
+      "title": "Introducing Nestlé 's sustainable solution - Conferences",
+      "content": "Subject: Nestlé  Transforms Environmental impact\n\nDear Valued Partner\n\nWe're excited to introduce Nestlé 's revolutionary approach to carbon footprint reduction. Our sustainable solution delivers carbon tracking and reporting that drives measurable co2 reduction.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Conferences",
+      "stage": "LAUNCH",
+      "model": "Nestlé ",
+      "tags": [
+        "launch",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "high",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_generate_interest_email",
+      "title": "Discover Nestlé 's sustainable solution - Email",
+      "content": "Subject: See How Nestlé  Solves Carbon footprint reduction\n\nDear Valued Partner\n\nAre you struggling with carbon footprint reduction? Discover how leading eco-conscious partners are achieving co2 reduction improvements with Nestlé .\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[CTA Button: Learn More] [CTA Button: Schedule Demo]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Email",
+      "stage": "GENERATE INTEREST",
+      "model": "Nestlé ",
+      "tags": [
+        "generate interest",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_generate_interest_linkedin",
+      "title": "Discover Nestlé 's sustainable solution - LinkedIn",
+      "content": "Subject: See How Nestlé  Solves Carbon footprint reduction\n\nDear Valued Partner\n\nAre you struggling with carbon footprint reduction? Discover how leading eco-conscious partners are achieving co2 reduction improvements with Nestlé .\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\nConnect with our team to explore opportunities. [Learn More]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "LinkedIn",
+      "stage": "GENERATE INTEREST",
+      "model": "Nestlé ",
+      "tags": [
+        "generate interest",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_generate_interest_industry publications",
+      "title": "Discover Nestlé 's sustainable solution - Industry Publications",
+      "content": "Subject: See How Nestlé  Solves Carbon footprint reduction\n\nDear Valued Partner\n\nAre you struggling with carbon footprint reduction? Discover how leading eco-conscious partners are achieving co2 reduction improvements with Nestlé .\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Industry Publications",
+      "stage": "GENERATE INTEREST",
+      "model": "Nestlé ",
+      "tags": [
+        "generate interest",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_generate_interest_webinars",
+      "title": "Discover Nestlé 's sustainable solution - Webinars",
+      "content": "Subject: See How Nestlé  Solves Carbon footprint reduction\n\nDear Valued Partner\n\nAre you struggling with carbon footprint reduction? Discover how leading eco-conscious partners are achieving co2 reduction improvements with Nestlé .\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Register Now] for our upcoming session on this topic.\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Webinars",
+      "stage": "GENERATE INTEREST",
+      "model": "Nestlé ",
+      "tags": [
+        "generate interest",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_generate_interest_conferences",
+      "title": "Discover Nestlé 's sustainable solution - Conferences",
+      "content": "Subject: See How Nestlé  Solves Carbon footprint reduction\n\nDear Valued Partner\n\nAre you struggling with carbon footprint reduction? Discover how leading eco-conscious partners are achieving co2 reduction improvements with Nestlé .\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Conferences",
+      "stage": "GENERATE INTEREST",
+      "model": "Nestlé ",
+      "tags": [
+        "generate interest",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_engagement_email",
+      "title": "Experience Nestlé 's sustainable solution - Email",
+      "content": "Subject: Your Personalized Nestlé  sustainability assessment\n\nDear Valued Partner\n\nThank you for your interest in Nestlé . We've prepared a customized sustainability assessment that addresses your specific needs in environmental impact.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[CTA Button: Learn More] [CTA Button: Schedule Demo]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Email",
+      "stage": "ENGAGEMENT",
+      "model": "Nestlé ",
+      "tags": [
+        "engagement",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_engagement_linkedin",
+      "title": "Experience Nestlé 's sustainable solution - LinkedIn",
+      "content": "Subject: Your Personalized Nestlé  sustainability assessment\n\nDear Valued Partner\n\nThank you for your interest in Nestlé . We've prepared a customized sustainability assessment that addresses your specific needs in environmental impact.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\nConnect with our team to explore opportunities. [Learn More]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "LinkedIn",
+      "stage": "ENGAGEMENT",
+      "model": "Nestlé ",
+      "tags": [
+        "engagement",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_engagement_industry publications",
+      "title": "Experience Nestlé 's sustainable solution - Industry Publications",
+      "content": "Subject: Your Personalized Nestlé  sustainability assessment\n\nDear Valued Partner\n\nThank you for your interest in Nestlé . We've prepared a customized sustainability assessment that addresses your specific needs in environmental impact.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Industry Publications",
+      "stage": "ENGAGEMENT",
+      "model": "Nestlé ",
+      "tags": [
+        "engagement",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_engagement_webinars",
+      "title": "Experience Nestlé 's sustainable solution - Webinars",
+      "content": "Subject: Your Personalized Nestlé  sustainability assessment\n\nDear Valued Partner\n\nThank you for your interest in Nestlé . We've prepared a customized sustainability assessment that addresses your specific needs in environmental impact.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Register Now] for our upcoming session on this topic.\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Webinars",
+      "stage": "ENGAGEMENT",
+      "model": "Nestlé ",
+      "tags": [
+        "engagement",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_engagement_conferences",
+      "title": "Experience Nestlé 's sustainable solution - Conferences",
+      "content": "Subject: Your Personalized Nestlé  sustainability assessment\n\nDear Valued Partner\n\nThank you for your interest in Nestlé . We've prepared a customized sustainability assessment that addresses your specific needs in environmental impact.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Conferences",
+      "stage": "ENGAGEMENT",
+      "model": "Nestlé ",
+      "tags": [
+        "engagement",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_conversion_email",
+      "title": "Get Started With Nestlé 's sustainable solution - Email",
+      "content": "Subject: Nestlé  CONVERSION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[CTA Button: Learn More] [CTA Button: Schedule Demo]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Email",
+      "stage": "CONVERSION",
+      "model": "Nestlé ",
+      "tags": [
+        "conversion",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_conversion_linkedin",
+      "title": "Get Started With Nestlé 's sustainable solution - LinkedIn",
+      "content": "Subject: Nestlé  CONVERSION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\nConnect with our team to explore opportunities. [Learn More]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "LinkedIn",
+      "stage": "CONVERSION",
+      "model": "Nestlé ",
+      "tags": [
+        "conversion",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_conversion_industry publications",
+      "title": "Get Started With Nestlé 's sustainable solution - Industry Publications",
+      "content": "Subject: Nestlé  CONVERSION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Industry Publications",
+      "stage": "CONVERSION",
+      "model": "Nestlé ",
+      "tags": [
+        "conversion",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_conversion_webinars",
+      "title": "Get Started With Nestlé 's sustainable solution - Webinars",
+      "content": "Subject: Nestlé  CONVERSION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Register Now] for our upcoming session on this topic.\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Webinars",
+      "stage": "CONVERSION",
+      "model": "Nestlé ",
+      "tags": [
+        "conversion",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_conversion_conferences",
+      "title": "Get Started With Nestlé 's sustainable solution - Conferences",
+      "content": "Subject: Nestlé  CONVERSION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Conferences",
+      "stage": "CONVERSION",
+      "model": "Nestlé ",
+      "tags": [
+        "conversion",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_retention_email",
+      "title": "Maximize Nestlé 's sustainable solution - Email",
+      "content": "Subject: Nestlé  RETENTION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[CTA Button: Learn More] [CTA Button: Schedule Demo]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Email",
+      "stage": "RETENTION",
+      "model": "Nestlé ",
+      "tags": [
+        "retention",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_retention_linkedin",
+      "title": "Maximize Nestlé 's sustainable solution - LinkedIn",
+      "content": "Subject: Nestlé  RETENTION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\nConnect with our team to explore opportunities. [Learn More]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "LinkedIn",
+      "stage": "RETENTION",
+      "model": "Nestlé ",
+      "tags": [
+        "retention",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_retention_industry publications",
+      "title": "Maximize Nestlé 's sustainable solution - Industry Publications",
+      "content": "Subject: Nestlé  RETENTION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Industry Publications",
+      "stage": "RETENTION",
+      "model": "Nestlé ",
+      "tags": [
+        "retention",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_retention_webinars",
+      "title": "Maximize Nestlé 's sustainable solution - Webinars",
+      "content": "Subject: Nestlé  RETENTION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Register Now] for our upcoming session on this topic.\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Webinars",
+      "stage": "RETENTION",
+      "model": "Nestlé ",
+      "tags": [
+        "retention",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_retention_conferences",
+      "title": "Maximize Nestlé 's sustainable solution - Conferences",
+      "content": "Subject: Nestlé  RETENTION Update\n\nDear Valued Partner\n\nDiscover how Nestlé 's sustainable solution can transform your environmental impact initiatives.\n\nThis initiative specifically helps you launch and establish a strong brand identity for nestlé’s plant-based range in key european markets..\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe Nestlé  Team",
+      "channel": "Conferences",
+      "stage": "RETENTION",
+      "model": "Nestlé ",
+      "tags": [
+        "retention",
+        "environmental impact",
+        "launch-and-establish-a-strong-brand-identity-for-nestlé’s-plant-based-range-in-key-european-markets."
+      ],
+      "personalization": {
+        "audienceSegment": "eco-conscious partner",
+        "contentTheme": "Environmental impact",
+        "primaryMetric": "CO2 Reduction"
+      },
+      "metrics": {
+        "expectedEngagement": "medium",
+        "targetMetric": "CO2 Reduction",
+        "channel": "Email"
+      },
+      "isDemo": false
+    }
+  ],
+  "guides": [
+    {
+      "id": "nestl_guide_1",
+      "title": "Nestlé 's Guide to Carbon footprint reduction",
+      "description": "Comprehensive strategies for addressing carbon footprint reduction in your green facility",
+      "stage": "ASSESSMENT",
+      "model": "Nestlé ",
+      "category": "Strategic Guide",
+      "sections": [
+        {
+          "title": "Understanding the Challenge",
+          "content": "Overview of carbon footprint reduction challenges in green facilitys"
+        },
+        {
+          "title": "Solution Approach",
+          "content": "How Carbon tracking and reporting addresses carbon footprint reduction"
+        },
+        {
+          "title": "Implementation Steps",
+          "content": "Step-by-step guide to implementing solutions"
+        },
+        {
+          "title": "Measuring Success",
+          "content": "Key metrics including CO2 Reduction tracking"
+        }
+      ],
+      "estimatedReadTime": "10-15 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-21T15:39:59.824Z",
+      "metrics": {
+        "expectedImpact": "high",
+        "implementationTime": "30-60 days"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_guide_2",
+      "title": "Nestlé 's Guide to Waste management optimization",
+      "description": "Comprehensive strategies for addressing waste management optimization in your green facility",
+      "stage": "IMPLEMENTATION",
+      "model": "Nestlé ",
+      "category": "Strategic Guide",
+      "sections": [
+        {
+          "title": "Understanding the Challenge",
+          "content": "Overview of waste management optimization challenges in green facilitys"
+        },
+        {
+          "title": "Solution Approach",
+          "content": "How Carbon tracking and reporting addresses waste management optimization"
+        },
+        {
+          "title": "Implementation Steps",
+          "content": "Step-by-step guide to implementing solutions"
+        },
+        {
+          "title": "Measuring Success",
+          "content": "Key metrics including CO2 Reduction tracking"
+        }
+      ],
+      "estimatedReadTime": "10-15 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-21T15:39:59.824Z",
+      "metrics": {
+        "expectedImpact": "high",
+        "implementationTime": "30-60 days"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_guide_3",
+      "title": "Nestlé 's Guide to Energy efficiency improvements",
+      "description": "Comprehensive strategies for addressing energy efficiency improvements in your green facility",
+      "stage": "OPTIMIZATION",
+      "model": "Nestlé ",
+      "category": "Strategic Guide",
+      "sections": [
+        {
+          "title": "Understanding the Challenge",
+          "content": "Overview of energy efficiency improvements challenges in green facilitys"
+        },
+        {
+          "title": "Solution Approach",
+          "content": "How Carbon tracking and reporting addresses energy efficiency improvements"
+        },
+        {
+          "title": "Implementation Steps",
+          "content": "Step-by-step guide to implementing solutions"
+        },
+        {
+          "title": "Measuring Success",
+          "content": "Key metrics including CO2 Reduction tracking"
+        }
+      ],
+      "estimatedReadTime": "10-15 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-21T15:39:59.824Z",
+      "metrics": {
+        "expectedImpact": "high",
+        "implementationTime": "30-60 days"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_guide_4",
+      "title": "Nestlé 's Guide to Sustainable supply chain development",
+      "description": "Comprehensive strategies for addressing sustainable supply chain development in your green facility",
+      "stage": "ASSESSMENT",
+      "model": "Nestlé ",
+      "category": "Strategic Guide",
+      "sections": [
+        {
+          "title": "Understanding the Challenge",
+          "content": "Overview of sustainable supply chain development challenges in green facilitys"
+        },
+        {
+          "title": "Solution Approach",
+          "content": "How Carbon tracking and reporting addresses sustainable supply chain development"
+        },
+        {
+          "title": "Implementation Steps",
+          "content": "Step-by-step guide to implementing solutions"
+        },
+        {
+          "title": "Measuring Success",
+          "content": "Key metrics including CO2 Reduction tracking"
+        }
+      ],
+      "estimatedReadTime": "10-15 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-21T15:39:59.824Z",
+      "metrics": {
+        "expectedImpact": "high",
+        "implementationTime": "30-60 days"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_guide_5",
+      "title": "Nestlé 's Guide to Environmental compliance",
+      "description": "Comprehensive strategies for addressing environmental compliance in your green facility",
+      "stage": "ASSESSMENT",
+      "model": "Nestlé ",
+      "category": "Strategic Guide",
+      "sections": [
+        {
+          "title": "Understanding the Challenge",
+          "content": "Overview of environmental compliance challenges in green facilitys"
+        },
+        {
+          "title": "Solution Approach",
+          "content": "How Carbon tracking and reporting addresses environmental compliance"
+        },
+        {
+          "title": "Implementation Steps",
+          "content": "Step-by-step guide to implementing solutions"
+        },
+        {
+          "title": "Measuring Success",
+          "content": "Key metrics including CO2 Reduction tracking"
+        }
+      ],
+      "estimatedReadTime": "10-15 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-21T15:39:59.824Z",
+      "metrics": {
+        "expectedImpact": "high",
+        "implementationTime": "30-60 days"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_solution_guide_1",
+      "title": "Implementing Carbon tracking and reporting with Nestlé ",
+      "description": "Step-by-step guide to carbon tracking and reporting implementation",
+      "stage": "IMPLEMENTATION",
+      "model": "Nestlé ",
+      "category": "Implementation Guide",
+      "sections": [
+        {
+          "title": "Solution Overview",
+          "content": "Comprehensive overview of carbon tracking and reporting"
+        },
+        {
+          "title": "Technical Requirements",
+          "content": "Technical specifications and requirements"
+        },
+        {
+          "title": "Implementation Process",
+          "content": "Detailed implementation methodology"
+        },
+        {
+          "title": "Success Metrics",
+          "content": "Measuring CO2 Reduction and other key indicators"
+        }
+      ],
+      "estimatedReadTime": "20-30 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-21T15:39:59.824Z",
+      "metrics": {
+        "expectedImpact": "very high",
+        "implementationTime": "60-90 days"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_solution_guide_2",
+      "title": "Implementing Renewable energy integration with Nestlé ",
+      "description": "Step-by-step guide to renewable energy integration implementation",
+      "stage": "IMPLEMENTATION",
+      "model": "Nestlé ",
+      "category": "Implementation Guide",
+      "sections": [
+        {
+          "title": "Solution Overview",
+          "content": "Comprehensive overview of renewable energy integration"
+        },
+        {
+          "title": "Technical Requirements",
+          "content": "Technical specifications and requirements"
+        },
+        {
+          "title": "Implementation Process",
+          "content": "Detailed implementation methodology"
+        },
+        {
+          "title": "Success Metrics",
+          "content": "Measuring CO2 Reduction and other key indicators"
+        }
+      ],
+      "estimatedReadTime": "20-30 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-21T15:39:59.824Z",
+      "metrics": {
+        "expectedImpact": "very high",
+        "implementationTime": "60-90 days"
+      },
+      "isDemo": false
+    },
+    {
+      "id": "nestl_solution_guide_3",
+      "title": "Implementing Circular economy implementation with Nestlé ",
+      "description": "Step-by-step guide to circular economy implementation implementation",
+      "stage": "IMPLEMENTATION",
+      "model": "Nestlé ",
+      "category": "Implementation Guide",
+      "sections": [
+        {
+          "title": "Solution Overview",
+          "content": "Comprehensive overview of circular economy implementation"
+        },
+        {
+          "title": "Technical Requirements",
+          "content": "Technical specifications and requirements"
+        },
+        {
+          "title": "Implementation Process",
+          "content": "Detailed implementation methodology"
+        },
+        {
+          "title": "Success Metrics",
+          "content": "Measuring CO2 Reduction and other key indicators"
+        }
+      ],
+      "estimatedReadTime": "20-30 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-21T15:39:59.824Z",
+      "metrics": {
+        "expectedImpact": "very high",
+        "implementationTime": "60-90 days"
+      },
+      "isDemo": false
+    }
+  ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Launch",
+      "description": "Initial sustainability initiative launch and awareness building",
+      "icon": "Rocket"
+    },
+    {
+      "id": "2",
+      "title": "Generate Test Rides",
+      "description": "Convert interest into sustainability assessment bookings",
+      "icon": "Calendar"
+    },
+    {
+      "id": "3",
+      "title": "In-Store",
+      "description": "green facility experience and sustainable solution showcase",
+      "icon": "Store"
+    },
+    {
+      "id": "4",
+      "title": "Follow-Up",
+      "description": "Post-green investment communication and satisfaction",
+      "icon": "MessageSquare"
+    },
+    {
+      "id": "5",
+      "title": "Welcome",
+      "description": "Onboarding new eco-conscious partners to the Nestlé  family",
+      "icon": "UserPlus"
+    }
+  ],
+  "filterOptions": {
+    "phases": [
+      "ALL",
+      "PHASE 1",
+      "PHASE 2"
+    ],
+    "types": [
+      "ALL",
+      "STATIC",
+      "VIDEO"
+    ],
+    "models": [
+      "ALL",
+      "R1300 R",
+      "R1300 RS",
+      "R1300 RT"
+    ],
+    "channels": [
+      "ALL",
+      "Digital",
+      "Email",
+      "Facebook",
+      "In-Store",
+      "Instagram",
+      "Phone",
+      "Print",
+      "SMS",
+      "Social",
+      "WhatsApp"
+    ],
+    "actionTypes": [
+      "ALL",
+      "LAUNCH",
+      "GENERATE TEST RIDES",
+      "IN-STORE",
+      "FOLLOW-UP",
+      "WELCOME"
+    ]
+  },
+  "metadata": {
+    "lastModified": "2025-06-02T20:31:04.812Z",
+    "modifiedBy": "force-update-script",
+    "version": 58,
+    "source": "file"
+  },
+  "lastModified": "2025-06-02T20:31:04.812Z",
+  "pathConfig": {
+    "environments": {
+      "development": {
+        "baseUrl": "",
+        "assetsPath": "/assets",
+        "imagesPath": "/assets/images",
+        "videosPath": "/assets/videos"
+      },
+      "staging": {
+        "baseUrl": "https://staging-cdn.bmw-dealer-toolkit.com",
+        "assetsPath": "/assets",
+        "imagesPath": "/assets/images",
+        "videosPath": "/assets/videos"
+      },
+      "production": {
+        "baseUrl": "https://cdn.bmw-dealer-toolkit.com",
+        "assetsPath": "/assets",
+        "imagesPath": "/assets/images",
+        "videosPath": "/assets/videos"
+      },
+      "cdn": {
+        "baseUrl": "https://fast-cdn.example.com",
+        "assetsPath": "/bmw-assets",
+        "imagesPath": "/bmw-assets/images",
+        "videosPath": "/bmw-assets/videos"
+      }
+    },
+    "activeEnvironment": "development",
+    "videoSources": {
+      "primary": {
+        "quality": "high",
+        "path": "/assets/videos",
+        "description": "High quality videos"
+      },
+      "compressed": {
+        "quality": "medium",
+        "path": "/assets/videos/compressed",
+        "description": "Compressed videos for mobile"
+      },
+      "preview": {
+        "quality": "low",
+        "path": "/assets/videos/previews",
+        "description": "Low quality previews"
+      }
+    },
+    "activeVideoSource": "primary",
+    "usage": {
+      "description": "Use these variables to dynamically construct asset paths",
+      "examples": {
+        "fullImageUrl": "${baseUrl}${imagesPath}/filename.jpg",
+        "fullVideoUrl": "${baseUrl}${videosPath}/filename.mp4",
+        "dynamicVideoUrl": "${baseUrl}${videoSources[activeVideoSource].path}/filename.mp4"
+      }
+    }
+  },
+  "brand": {
+    "name": "Nestlé ",
+    "logo": "/assets/logos/nestle.png",
+    "logoAlt": "Nestlé  Logo"
+  },
+  "contentStrategy": {
+    "primaryThemes": [
+      "Environmental impact",
+      "Cost savings through sustainability",
+      "Corporate responsibility",
+      "Future-proofing business",
+      "Regulatory compliance"
+    ],
+    "targetChannels": [
+      "Email",
+      "LinkedIn",
+      "Industry Publications",
+      "Webinars",
+      "Conferences"
+    ],
+    "keyMessages": [
+      "Address carbon footprint reduction",
+      "Address waste management optimization",
+      "Address energy efficiency improvements",
+      "Address sustainable supply chain development",
+      "Address environmental compliance"
+    ],
+    "contentTypes": [
+      "Infographics",
+      "Case Studies",
+      "ROI Calculators",
+      "Certification Guides",
+      "Impact Reports"
+    ]
+  },
+  "campaignThemes": [
+    {
+      "name": "Environmental impact",
+      "description": "Environmental impact focused messaging and content",
+      "targetAudience": "eco-conscious partner",
+      "keyMetrics": [
+        "CO2 Reduction",
+        "Energy Savings"
+      ]
+    },
+    {
+      "name": "Cost savings through sustainability",
+      "description": "Cost savings through sustainability focused messaging and content",
+      "targetAudience": "eco-conscious partner",
+      "keyMetrics": [
+        "CO2 Reduction",
+        "Energy Savings"
+      ]
+    },
+    {
+      "name": "Corporate responsibility",
+      "description": "Corporate responsibility focused messaging and content",
+      "targetAudience": "eco-conscious partner",
+      "keyMetrics": [
+        "CO2 Reduction",
+        "Energy Savings"
+      ]
+    },
+    {
+      "name": "Future-proofing business",
+      "description": "Future-proofing business focused messaging and content",
+      "targetAudience": "eco-conscious partner",
+      "keyMetrics": [
+        "CO2 Reduction",
+        "Energy Savings"
+      ]
+    },
+    {
+      "name": "Regulatory compliance",
+      "description": "Regulatory compliance focused messaging and content",
+      "targetAudience": "eco-conscious partner",
+      "keyMetrics": [
+        "CO2 Reduction",
+        "Energy Savings"
+      ]
+    }
+  ],
+  "audienceSegments": [
+    {
+      "name": "Decision Makers",
+      "description": "C-level executives and senior management",
+      "painPoints": [
+        "Carbon footprint reduction",
+        "Waste management optimization"
+      ],
+      "preferredChannels": [
+        "Email",
+        "LinkedIn"
+      ]
+    },
+    {
+      "name": "Technical Teams",
+      "description": "IT and technical implementation teams",
+      "painPoints": [
+        "Energy efficiency improvements",
+        "Sustainable supply chain development"
+      ],
+      "preferredChannels": [
+        "LinkedIn",
+        "Industry Publications"
+      ]
+    }
+  ]
+}
