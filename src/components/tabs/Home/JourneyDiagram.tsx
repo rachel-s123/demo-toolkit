@@ -10,7 +10,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Card from "../../ui/Card";
-import { ActionButtonType } from "../../../types";
+import { ActionButtonType, JourneyStep } from "../../../types";
 import { useTranslations } from "../../../context/LanguageContext";
 import { useHighlight } from "../../../context/HighlightContext";
 
@@ -36,18 +36,63 @@ const JourneyDiagram: React.FC<JourneyDiagramProps> = ({
   const copy = t.home;
   const { isHighlightEnabled } = useHighlight();
 
-  // Map journey step IDs to translation keys and actions
-  const journeyStepMap = [
-    { id: "1", key: "launch", action: "LAUNCH" as ActionButtonType },
-    {
-      id: "2",
-      key: "generateTestRides",
-      action: "GENERATE TEST RIDES" as ActionButtonType,
-    },
-    { id: "3", key: "inStore", action: "IN-STORE" as ActionButtonType },
-    { id: "4", key: "followUp", action: "FOLLOW-UP" as ActionButtonType },
-    { id: "5", key: "welcome", action: "WELCOME" as ActionButtonType },
-  ];
+  // Map journey step titles to action types for navigation
+  const getActionFromTitle = (title: string): ActionButtonType => {
+    // Get available action types from current config
+    const availableActionTypes = config?.filterOptions?.actionTypes || [];
+    
+    // Create a mapping based on available action types
+    const titleToAction: Record<string, ActionButtonType> = {};
+    
+    // BMW-style mappings
+    if (availableActionTypes.includes("LAUNCH")) {
+      titleToAction["Launch"] = "LAUNCH";
+      titleToAction["Discovery"] = "LAUNCH";
+    }
+    if (availableActionTypes.includes("GENERATE TEST RIDES")) {
+      titleToAction["Generate Test Rides"] = "GENERATE TEST RIDES";
+      titleToAction["Assessment"] = "GENERATE TEST RIDES";
+      titleToAction["Planning"] = "GENERATE TEST RIDES";
+    }
+    if (availableActionTypes.includes("IN-STORE")) {
+      titleToAction["In-Store"] = "IN-STORE";
+      titleToAction["Implementation"] = "IN-STORE";
+    }
+    if (availableActionTypes.includes("FOLLOW-UP")) {
+      titleToAction["Follow-Up"] = "FOLLOW-UP";
+      titleToAction["Optimization"] = "FOLLOW-UP";
+    }
+    if (availableActionTypes.includes("WELCOME")) {
+      titleToAction["Welcome"] = "WELCOME";
+    }
+    
+    // Hedosophia-style mappings
+    if (availableActionTypes.includes("FOUNDATION")) {
+      titleToAction["Foundation"] = "FOUNDATION";
+    }
+    if (availableActionTypes.includes("EXPLORATION")) {
+      titleToAction["Exploration"] = "EXPLORATION";
+    }
+    if (availableActionTypes.includes("IMPLEMENTATION")) {
+      titleToAction["Implementation"] = "IMPLEMENTATION";
+    }
+    if (availableActionTypes.includes("OPTIMIZATION")) {
+      titleToAction["Optimization"] = "OPTIMIZATION";
+    }
+    if (availableActionTypes.includes("MASTERY")) {
+      titleToAction["Mastery"] = "MASTERY";
+    }
+    
+    // Return the mapped action or the first available action type (excluding "ALL")
+    const mappedAction = titleToAction[title];
+    if (mappedAction) {
+      return mappedAction;
+    }
+    
+    // Fallback to first non-"ALL" action type
+    const firstActionType = availableActionTypes.find(type => type !== "ALL");
+    return (firstActionType as ActionButtonType) || "LAUNCH";
+  };
 
   if (loading) {
     return (
@@ -94,25 +139,17 @@ const JourneyDiagram: React.FC<JourneyDiagramProps> = ({
 
         {/* Journey Steps - Horizontal Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {journeyStepMap.map((stepMapping, index) => {
+          {config.journeySteps.map((step: JourneyStep, index: number) => {
             // Get icon from config
-            const configStep = config.journeySteps.find(
-              (s) => s.id === stepMapping.id
-            );
             const IconComponent =
-              iconMap[configStep?.icon as keyof typeof iconMap] || Rocket;
+              iconMap[step.icon as keyof typeof iconMap] || Rocket;
 
-            // Get translations
-            const stepTranslations =
-              copy.journeySteps[
-                stepMapping.key as keyof typeof copy.journeySteps
-              ];
-            const action = stepMapping.action;
+            const action = getActionFromTitle(step.title);
             const isSelected = selectedAction === action;
 
             return (
               <motion.div
-                key={stepMapping.id}
+                key={step.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -120,7 +157,7 @@ const JourneyDiagram: React.FC<JourneyDiagramProps> = ({
                 onClick={() => {
                   console.log(
                     "Journey Step CLICKED:",
-                    stepTranslations.title,
+                    step.title,
                     "Action:",
                     action
                   );
@@ -128,12 +165,12 @@ const JourneyDiagram: React.FC<JourneyDiagramProps> = ({
                 }}
                 role="button"
                 tabIndex={0}
-                aria-label={`View ${stepTranslations.title} messages`}
+                aria-label={`View ${step.title} messages`}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     console.log(
                       "Journey Step KEYDOWN:",
-                      stepTranslations.title,
+                      step.title,
                       "Action:",
                       action
                     );
@@ -168,7 +205,7 @@ const JourneyDiagram: React.FC<JourneyDiagramProps> = ({
                         color: isHighlightEnabled ? "green" : "inherit",
                       }}
                     >
-                      {stepTranslations.title}
+                      {step.title}
                       <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                     </h3>
                     <p
@@ -177,7 +214,7 @@ const JourneyDiagram: React.FC<JourneyDiagramProps> = ({
                         color: isHighlightEnabled ? "green" : "inherit",
                       }}
                     >
-                      {stepTranslations.description}
+                      {step.description}
                     </p>
                   </div>
                 </div>

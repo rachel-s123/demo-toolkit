@@ -3,574 +3,1151 @@ import { SiteCopy } from '../../../types/siteCopy';
 export interface BrandAdaptationOptions {
   brandName: string;
   brandCode: string;
+  industry: string;
+  tone: 'professional' | 'friendly' | 'technical' | 'casual';
   adaptationPrompt: string;
-  industry?: string;
-  tone?: 'professional' | 'friendly' | 'technical' | 'casual';
-  targetAudience?: string;
   logoPath?: string;
+  // New enhanced options
+  targetAudience?: string;
+  keyBenefits?: string[];
+  uniqueSellingPoints?: string[];
+  campaignGoals?: string[];
+  competitorDifferentiators?: string[];
+  brandValues?: string[];
+  productCategories?: string[];
 }
 
-export interface BrandConfigContent {
-  isDemo: boolean;
-  demoNotice: string;
-  lastUpdated: string;
-  brand?: {
-    name: string;
-    logo: string;
-    logoAlt: string;
+interface IndustryProfile {
+  terminology: Record<string, string>;
+  painPoints: string[];
+  solutions: string[];
+  channels: string[];
+  metrics: string[];
+  contentThemes: string[];
+  assetTypes: string[];
+}
+
+type ToneType = 'professional' | 'friendly' | 'technical' | 'casual';
+
+export default class LocaleGenerator {
+  // Enhanced industry profiles with rich contextual information
+  private static industryProfiles: Record<string, IndustryProfile> = {
+    sustainability: {
+      terminology: {
+        product: 'sustainable solution',
+        customer: 'eco-conscious partner',
+        trial: 'sustainability assessment',
+        purchase: 'green investment',
+        facility: 'green facility',
+        campaign: 'sustainability initiative'
+      },
+      painPoints: [
+        'Carbon footprint reduction',
+        'Waste management optimization',
+        'Energy efficiency improvements',
+        'Sustainable supply chain development',
+        'Environmental compliance'
+      ],
+      solutions: [
+        'Carbon tracking and reporting',
+        'Renewable energy integration',
+        'Circular economy implementation',
+        'Sustainable material sourcing',
+        'Green certification support'
+      ],
+      channels: ['Email', 'LinkedIn', 'Industry Publications', 'Webinars', 'Conferences'],
+      metrics: ['CO2 Reduction', 'Energy Savings', 'Waste Diversion Rate', 'ROI', 'Compliance Score'],
+      contentThemes: [
+        'Environmental impact',
+        'Cost savings through sustainability',
+        'Corporate responsibility',
+        'Future-proofing business',
+        'Regulatory compliance'
+      ],
+      assetTypes: ['Infographics', 'Case Studies', 'ROI Calculators', 'Certification Guides', 'Impact Reports']
+    },
+    technology: {
+      terminology: {
+        product: 'technology solution',
+        customer: 'technology partner',
+        trial: 'proof of concept',
+        purchase: 'implementation',
+        facility: 'innovation center',
+        campaign: 'digital transformation initiative'
+      },
+      painPoints: [
+        'Legacy system modernization',
+        'Data silos and integration',
+        'Cybersecurity vulnerabilities',
+        'Scalability limitations',
+        'Technical debt'
+      ],
+      solutions: [
+        'Cloud migration services',
+        'API integration platforms',
+        'AI/ML implementation',
+        'DevOps automation',
+        'Security enhancement'
+      ],
+      channels: ['Email', 'Tech Blogs', 'GitHub', 'Stack Overflow', 'Product Hunt'],
+      metrics: ['Performance Improvement', 'Uptime', 'Time to Market', 'Cost Reduction', 'User Adoption'],
+      contentThemes: [
+        'Innovation and disruption',
+        'Efficiency and automation',
+        'Scalability and growth',
+        'Security and compliance',
+        'Competitive advantage'
+      ],
+      assetTypes: ['Demo Videos', 'Technical Whitepapers', 'API Documentation', 'Architecture Diagrams', 'Performance Benchmarks']
+    },
+    healthcare: {
+      terminology: {
+        product: 'healthcare solution',
+        customer: 'healthcare provider',
+        trial: 'clinical evaluation',
+        purchase: 'implementation',
+        facility: 'healthcare facility',
+        campaign: 'patient care initiative'
+      },
+      painPoints: [
+        'Patient outcome improvement',
+        'Operational efficiency',
+        'Regulatory compliance',
+        'Cost management',
+        'Staff burnout'
+      ],
+      solutions: [
+        'Patient engagement platforms',
+        'Clinical decision support',
+        'Telehealth solutions',
+        'EHR optimization',
+        'Workflow automation'
+      ],
+      channels: ['Email', 'Medical Journals', 'Healthcare Conferences', 'Professional Networks', 'Webinars'],
+      metrics: ['Patient Satisfaction', 'Clinical Outcomes', 'Operational Efficiency', 'Compliance Rate', 'ROI'],
+      contentThemes: [
+        'Patient-centered care',
+        'Clinical excellence',
+        'Operational efficiency',
+        'Regulatory compliance',
+        'Healthcare innovation'
+      ],
+      assetTypes: ['Clinical Studies', 'Patient Testimonials', 'Compliance Guides', 'ROI Analysis', 'Implementation Roadmaps']
+    }
   };
-  assets: any[];
-  messages: any[];
-  guides: any[];
-  journeySteps?: any[];
-  filterOptions?: any;
-  contentOutline?: any;
-}
 
-export interface GeneratedBrandFiles {
-  siteCopy: string; // TypeScript file content
-  configContent: string; // JSON file content
-}
-
-/**
- * Advanced locale content adaptation engine
- * This handles BOTH site copy (.ts) and config content (.json) files
- */
-export class LocaleGenerator {
-  
   /**
-   * Generates both site copy and config content for a brand
+   * Enhanced content generation with AI-like contextual understanding
    */
   static async generateBrandFiles(
-    baseSiteCopy: SiteCopy, 
-    baseConfigContent: BrandConfigContent,
+    baseSiteCopy: SiteCopy,
+    baseConfigContent: any,
     options: BrandAdaptationOptions
-  ): Promise<GeneratedBrandFiles> {
+  ): Promise<{ siteCopy: string; configContent: string }> {
+    // Get industry profile or create custom one
+    const industryProfile = this.getIndustryProfile(options);
     
-    // Adapt the site copy (UI text)
-    const adaptedSiteCopy = this.adaptLocale(baseSiteCopy, options);
+    // Generate enhanced site copy with rich context
+    const adaptedSiteCopy = this.generateEnhancedSiteCopy(baseSiteCopy, options, industryProfile);
     
-    // Adapt the config content (assets, messages, guides)
-    const adaptedConfigContent = this.adaptConfigContent(baseConfigContent, options);
+    // Generate comprehensive config content
+    const adaptedConfig = this.generateEnhancedConfigContent(baseConfigContent, options, industryProfile);
     
-    return {
-      siteCopy: this.generateLocaleFile(options.brandCode, adaptedSiteCopy),
-      configContent: JSON.stringify(adaptedConfigContent, null, 2)
-    };
+    // Convert to file strings
+    const siteCopyFile = this.generateSiteCopyFile(adaptedSiteCopy, options);
+    const configContentFile = JSON.stringify(adaptedConfig, null, 2);
+    
+    return { siteCopy: siteCopyFile, configContent: configContentFile };
   }
-  
+
   /**
-   * Adapts config content (messages, assets, guides) for the brand
+   * Get or generate industry profile based on inputs
    */
-  static adaptConfigContent(baseConfig: BrandConfigContent, options: BrandAdaptationOptions): BrandConfigContent {
-    const { brandName, adaptationPrompt, logoPath } = options;
-    const adapted = JSON.parse(JSON.stringify(baseConfig)) as BrandConfigContent;
+  private static getIndustryProfile(options: BrandAdaptationOptions): IndustryProfile {
+    const { industry, adaptationPrompt } = options;
     
-    // Update demo notice for the brand
-    adapted.demoNotice = `These are demo assets and content for ${brandName}. Replace with actual brand materials.`;
-    adapted.lastUpdated = new Date().toISOString();
+    // Check if we have a predefined profile
+    const lowerIndustry = industry.toLowerCase();
+    for (const [key, profile] of Object.entries(this.industryProfiles)) {
+      if (lowerIndustry.includes(key) || adaptationPrompt.toLowerCase().includes(key)) {
+        return profile;
+      }
+    }
     
-    // Add/update brand information
-    adapted.brand = {
-      name: brandName,
-      logo: logoPath || `/assets/logos/${options.brandCode}.png`,
-      logoAlt: `${brandName} Logo`
+    // Generate custom profile based on adaptation prompt
+    return this.generateCustomIndustryProfile(options);
+  }
+
+  /**
+   * Generate custom industry profile from adaptation prompt
+   */
+  private static generateCustomIndustryProfile(options: BrandAdaptationOptions): IndustryProfile {
+    const { adaptationPrompt, industry, tone } = options;
+    
+    // Extract key terms and patterns from the prompt
+    const customProfile: IndustryProfile = {
+      terminology: this.extractTerminology(adaptationPrompt),
+      painPoints: this.extractPainPoints(adaptationPrompt, industry),
+      solutions: this.extractSolutions(adaptationPrompt, industry),
+      channels: this.determineChannels(industry, tone),
+      metrics: this.determineMetrics(industry),
+      contentThemes: this.extractContentThemes(adaptationPrompt, industry),
+      assetTypes: this.determineAssetTypes(industry, tone)
     };
     
-    // Generate comprehensive content instead of just adapting
-    adapted.messages = this.generateComprehensiveMessages(options);
-    adapted.assets = this.generateComprehensiveAssets(options);
-    adapted.guides = this.generateComprehensiveGuides(options);
-    adapted.journeySteps = this.generateRelevantJourneySteps(options);
-    adapted.filterOptions = this.generateFilterOptions(options);
-    adapted.contentOutline = this.generateContentOutline(options);
+    return customProfile;
+  }
+
+  /**
+   * Generate enhanced site copy with rich contextual content
+   */
+  private static generateEnhancedSiteCopy(
+    baseSiteCopy: SiteCopy,
+    options: BrandAdaptationOptions,
+    industryProfile: IndustryProfile
+  ): SiteCopy {
+    const adapted = JSON.parse(JSON.stringify(baseSiteCopy));
+    const { brandName, tone } = options;
+    
+    // Enhanced home section
+    adapted.home = {
+      ...adapted.home,
+      mainTitle: this.generateContextualTitle(brandName, industryProfile),
+      mainDescription: this.generateValueProposition(brandName, industryProfile, options),
+      welcomeLead: this.generateWelcomeMessage(brandName, industryProfile, tone),
+      helpYouList: this.generateBenefitsList(industryProfile, options),
+      journeySteps: this.generateJourneySteps(brandName, industryProfile, options)
+    };
+    
+    // Enhanced navigation with industry-specific sections
+    adapted.navigation = this.generateIndustryNavigation(adapted.navigation, industryProfile);
+    
+    // Enhanced content sections
+    adapted.assets = this.enhanceAssetsSection(adapted.assets, brandName, industryProfile);
+    adapted.messages = this.enhanceMessagesSection(adapted.messages, brandName, industryProfile);
+    adapted.guides = this.enhanceGuidesSection(adapted.guides, brandName, industryProfile);
+    adapted.journeyOverview = this.enhanceJourneySection(adapted.journeyOverview, brandName, industryProfile);
     
     return adapted;
   }
-  
+
   /**
-   * Adapts message content for the brand
+   * Generate contextual title based on brand and industry
    */
-  private static adaptMessages(messages: any[], options: BrandAdaptationOptions): any[] {
-    const { brandName, adaptationPrompt } = options;
+  private static generateContextualTitle(brandName: string, profile: IndustryProfile): string {
+    const themes = profile.contentThemes;
+    const primaryTheme = themes[0] || 'Excellence';
+    return `${brandName} ${primaryTheme} Platform`;
+  }
+
+  /**
+   * Generate compelling value proposition
+   */
+  private static generateValueProposition(
+    brandName: string,
+    profile: IndustryProfile,
+    options: BrandAdaptationOptions
+  ): string {
+    const painPoint = profile.painPoints[0];
+    const solution = profile.solutions[0];
+    const benefit = options.keyBenefits?.[0] || 'transformative results';
     
-    return messages.map(message => {
-      const adaptedMessage = { ...message };
-      
-      // Adapt message content based on brand and industry
-      if (adaptationPrompt.toLowerCase().includes('sustainability')) {
-        adaptedMessage.content = this.adaptForSustainability(message.content, brandName);
-        adaptedMessage.channel = this.adaptChannelForIndustry(message.channel, 'sustainability');
-      } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-        adaptedMessage.content = this.adaptForTechnology(message.content, brandName);
-        adaptedMessage.channel = this.adaptChannelForIndustry(message.channel, 'technology');
-      } else if (adaptationPrompt.toLowerCase().includes('healthcare')) {
-        adaptedMessage.content = this.adaptForHealthcare(message.content, brandName);
-        adaptedMessage.channel = this.adaptChannelForIndustry(message.channel, 'healthcare');
-      } else {
-        // Generic brand adaptation
-        adaptedMessage.content = this.adaptGenericContent(message.content, brandName);
-      }
-      
-      // Update model references to brand-specific terminology
-      adaptedMessage.model = this.getBrandEquivalent(message.model, options);
-      adaptedMessage.title = adaptedMessage.title.replace(/BMW|R\d+/g, brandName);
-      
-      return adaptedMessage;
+    return `${brandName} addresses ${painPoint.toLowerCase()} through ${solution.toLowerCase()}, delivering ${benefit} for forward-thinking organizations.`;
+  }
+
+  /**
+   * Generate personalized welcome message
+   */
+  private static generateWelcomeMessage(
+    brandName: string,
+    profile: IndustryProfile,
+    tone: string
+  ): string {
+    const toneMap: Record<ToneType, string> = {
+      professional: `Welcome to ${brandName}'s comprehensive ${profile.terminology.campaign} platform.`,
+      friendly: `Hi there! Welcome to ${brandName} - your partner in ${profile.contentThemes[0].toLowerCase()}.`,
+      technical: `Access ${brandName}'s advanced ${profile.terminology.product} architecture and technical resources.`,
+      casual: `Hey! Ready to explore what ${brandName} can do for your ${profile.terminology.facility}?`
+    };
+    
+    return toneMap[tone as ToneType] || toneMap.professional;
+  }
+
+  /**
+   * Generate comprehensive benefits list
+   */
+  private static generateBenefitsList(
+    profile: IndustryProfile,
+    options: BrandAdaptationOptions
+  ): string[] {
+    const benefits = [];
+    
+    // Add pain point solutions
+    profile.painPoints.slice(0, 2).forEach(painPoint => {
+      benefits.push(`Solve ${painPoint.toLowerCase()} challenges`);
     });
-  }
-  
-  /**
-   * Adapts asset content for the brand
-   */
-  private static adaptAssets(assets: any[], options: BrandAdaptationOptions): any[] {
-    const { brandName } = options;
     
-    return assets.map(asset => {
-      const adaptedAsset = { ...asset };
-      
-      // Update asset titles and descriptions
-      adaptedAsset.title = asset.title.replace(/BMW|R\d+/gi, brandName);
-      adaptedAsset.model = this.getBrandEquivalent(asset.model, options);
-      
-      // Update file naming to reflect brand
-      if (adaptedAsset.newAssetName) {
-        adaptedAsset.newAssetName = adaptedAsset.newAssetName.replace(/BMW|R\d+/gi, options.brandCode);
+    // Add unique selling points if provided
+    if (options.uniqueSellingPoints) {
+      benefits.push(...options.uniqueSellingPoints.slice(0, 2));
+    }
+    
+    // Add metric-driven benefit
+    const metric = profile.metrics[0];
+    benefits.push(`Achieve measurable improvements in ${metric.toLowerCase()}`);
+    
+    // Add outcome-focused benefit
+    benefits.push(`Transform your ${profile.terminology.facility} with proven ${profile.terminology.product}s`);
+    
+    return benefits.slice(0, 4);
+  }
+
+  /**
+   * Generate journey steps
+   */
+  private static generateJourneySteps(
+    brandName: string,
+    profile: IndustryProfile,
+    options: BrandAdaptationOptions
+  ): any[] {
+    return [
+      {
+        title: 'Discovery',
+        description: `Explore ${brandName}'s ${profile.terminology.product} capabilities`
+      },
+      {
+        title: 'Assessment',
+        description: `Evaluate how our solutions address your ${profile.painPoints[0].toLowerCase()}`
+      },
+      {
+        title: 'Implementation',
+        description: `Deploy ${profile.solutions[0].toLowerCase()} with expert support`
+      },
+      {
+        title: 'Optimization',
+        description: `Achieve ${profile.metrics[0].toLowerCase()} improvements and scale success`
       }
-      
-      return adaptedAsset;
-    });
-  }
-  
-  /**
-   * Adapts guide content for the brand
-   */
-  private static adaptGuides(guides: any[], options: BrandAdaptationOptions): any[] {
-    const { brandName, adaptationPrompt } = options;
-    
-    return guides.map(guide => {
-      const adaptedGuide = { ...guide };
-      
-      // Adapt guide titles and content
-      adaptedGuide.title = guide.title.replace(/BMW|Motorrad|dealership/gi, brandName);
-      
-      if (adaptationPrompt.toLowerCase().includes('sustainability')) {
-        adaptedGuide.title = this.adaptGuideForSustainability(guide.title);
-      } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-        adaptedGuide.title = this.adaptGuideForTechnology(guide.title);
-      }
-      
-      adaptedGuide.model = this.getBrandEquivalent(guide.model, options);
-      
-      return adaptedGuide;
-    });
-  }
-  
-  /**
-   * Adapts content for sustainability focus
-   */
-  private static adaptForSustainability(content: string, brandName: string): string {
-    return content
-      .replace(/BMW R \d+ \w+/gi, `${brandName} Green Solution`)
-      .replace(/motorcycle|bike/gi, 'sustainable solution')
-      .replace(/test ride/gi, 'sustainability assessment')
-      .replace(/dealership/gi, 'green facility')
-      .replace(/145hp/gi, 'eco-efficient')
-      .replace(/Boxer engine/gi, 'renewable technology')
-      .replace(/Book your test ride/gi, 'Schedule your sustainability consultation')
-      .replace(/Launch|launch/g, 'Green Initiative')
-      .replace(/BMW Motorrad/gi, brandName);
-  }
-  
-  /**
-   * Adapts content for technology focus
-   */
-  private static adaptForTechnology(content: string, brandName: string): string {
-    return content
-      .replace(/BMW R \d+ \w+/gi, `${brandName} Tech Platform`)
-      .replace(/motorcycle|bike/gi, 'technology solution')
-      .replace(/test ride/gi, 'demo session')
-      .replace(/dealership/gi, 'technology center')
-      .replace(/145hp/gi, 'high-performance')
-      .replace(/Boxer engine/gi, 'advanced processor')
-      .replace(/Book your test ride/gi, 'Schedule your demo')
-      .replace(/Launch|launch/g, 'Product Release')
-      .replace(/BMW Motorrad/gi, brandName);
-  }
-  
-  /**
-   * Adapts content for healthcare focus
-   */
-  private static adaptForHealthcare(content: string, brandName: string): string {
-    return content
-      .replace(/BMW R \d+ \w+/gi, `${brandName} Care System`)
-      .replace(/motorcycle|bike/gi, 'healthcare solution')
-      .replace(/test ride/gi, 'consultation')
-      .replace(/dealership/gi, 'healthcare facility')
-      .replace(/145hp/gi, 'advanced capability')
-      .replace(/Boxer engine/gi, 'care technology')
-      .replace(/Book your test ride/gi, 'Schedule your consultation')
-      .replace(/Launch|launch/g, 'Care Program')
-      .replace(/BMW Motorrad/gi, brandName);
-  }
-  
-  /**
-   * Generic content adaptation
-   */
-  private static adaptGenericContent(content: string, brandName: string): string {
-    return content
-      .replace(/BMW R \d+ \w+/gi, `${brandName} Product`)
-      .replace(/BMW Motorrad/gi, brandName)
-      .replace(/dealership/gi, 'location')
-      .replace(/test ride/gi, 'trial experience');
-  }
-  
-  /**
-   * Gets brand equivalent for BMW model names
-   */
-  private static getBrandEquivalent(model: string, options: BrandAdaptationOptions): string {
-    const { brandName, adaptationPrompt } = options;
-    
-    if (adaptationPrompt.toLowerCase().includes('sustainability')) {
-      return model.replace(/R\d+ \w+/gi, 'Green Solution');
-    } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-      return model.replace(/R\d+ \w+/gi, 'Tech Platform');
-    } else if (adaptationPrompt.toLowerCase().includes('healthcare')) {
-      return model.replace(/R\d+ \w+/gi, 'Care System');
-    }
-    
-    return `${brandName} Product`;
-  }
-  
-  /**
-   * Adapts communication channels for different industries
-   */
-  private static adaptChannelForIndustry(channel: string, industry: string): string {
-    if (industry === 'healthcare' && channel === 'WhatsApp') {
-      return 'Secure Messaging';
-    } else if (industry === 'sustainability' && channel === 'Instagram') {
-      return 'Social';
-    }
-    return channel;
-  }
-  
-  /**
-   * Adapts guide titles for sustainability
-   */
-  private static adaptGuideForSustainability(title: string): string {
-    return title
-      .replace(/Test Ride/gi, 'Sustainability Assessment')
-      .replace(/In-Store/gi, 'On-Site')
-      .replace(/Launch/gi, 'Green Initiative')
-      .replace(/Customer/gi, 'Stakeholder');
-  }
-  
-  /**
-   * Adapts guide titles for technology
-   */
-  private static adaptGuideForTechnology(title: string): string {
-    return title
-      .replace(/Test Ride/gi, 'Demo Session')
-      .replace(/In-Store/gi, 'On-Platform')
-      .replace(/Launch/gi, 'Product Release')
-      .replace(/Customer/gi, 'User');
-  }
-  
-  /**
-   * Adapts a base locale for a specific brand (UI/site copy)
-   */
-  static adaptLocale(baseLocale: SiteCopy, options: BrandAdaptationOptions): SiteCopy {
-    // Deep clone the base locale
-    const adapted = JSON.parse(JSON.stringify(baseLocale)) as SiteCopy;
-    
-    // Apply brand-specific adaptations
-    this.adaptMainTitle(adapted, options);
-    this.adaptWelcomeContent(adapted, options);
-    this.adaptJourneySteps(adapted, options);
-    this.adaptContentSections(adapted, options);
-    this.adaptPromptSpecificContent(adapted, options);
-    
-    return adapted;
-  }
-  
-  /**
-   * Adapts the main title and brand references
-   */
-  private static adaptMainTitle(locale: SiteCopy, options: BrandAdaptationOptions): void {
-    const { brandName } = options;
-    
-    // Replace BMW Motorrad references
-    locale.home.mainTitle = locale.home.mainTitle
-      .replace(/BMW Motorrad R Series/gi, brandName)
-      .replace(/BMW R Series/gi, brandName)
-      .replace(/BMW Motorrad/gi, brandName);
-    
-    locale.home.welcomeLead = locale.home.welcomeLead
-      .replace(/BMW R Series/gi, brandName)
-      .replace(/BMW Motorrad/gi, brandName);
-  }
-  
-  /**
-   * Adapts welcome content and value propositions
-   */
-  private static adaptWelcomeContent(locale: SiteCopy, options: BrandAdaptationOptions): void {
-    const { adaptationPrompt } = options;
-    
-    // Adapt help you list based on industry context
-    if (adaptationPrompt.toLowerCase().includes('sustainability') || 
-        adaptationPrompt.toLowerCase().includes('energy')) {
-      locale.home.helpYouList = [
-        "Understand sustainable business practices",
-        "Implement energy-efficient solutions",
-        "Communicate your green initiatives effectively"
-      ];
-    } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-      locale.home.helpYouList = [
-        "Leverage cutting-edge technology solutions",
-        "Maximize digital transformation initiatives",
-        "Deliver consistent innovation across all platforms"
-      ];
-    } else if (adaptationPrompt.toLowerCase().includes('healthcare')) {
-      locale.home.helpYouList = [
-        "Improve patient engagement and care",
-        "Implement healthcare best practices",
-        "Ensure consistent quality across all touchpoints"
-      ];
-    }
-  }
-  
-  /**
-   * Adapts customer journey steps for different industries
-   */
-  private static adaptJourneySteps(locale: SiteCopy, options: BrandAdaptationOptions): void {
-    const { brandName, adaptationPrompt } = options;
-    
-    if (adaptationPrompt.toLowerCase().includes('sustainability') || adaptationPrompt.toLowerCase().includes('energy')) {
-      locale.home.journeySteps = {
-        launch: {
-          title: "Discovery",
-          description: `Understanding ${brandName}'s sustainability needs and goals`
-        },
-        generateTestRides: {
-          title: "Assessment", 
-          description: "Evaluating current practices and identifying opportunities"
-        },
-        inStore: {
-          title: "Implementation",
-          description: "Deploying sustainable solutions and practices"
-        },
-        followUp: {
-          title: "Optimization",
-          description: "Measuring impact and refining approaches"
-        },
-        welcome: {
-          title: "Advocacy",
-          description: "Sharing success stories and inspiring others"
-        }
-      };
-    } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-      locale.home.journeySteps = {
-        launch: {
-          title: "Exploration",
-          description: `Discovering ${brandName}'s technology opportunities and needs`
-        },
-        generateTestRides: {
-          title: "Demonstration",
-          description: "Testing and validating technology solutions"
-        },
-        inStore: {
-          title: "Integration",
-          description: "Implementing technology into workflows"
-        },
-        followUp: {
-          title: "Optimization",
-          description: "Fine-tuning and maximizing technology value"
-        },
-        welcome: {
-          title: "Innovation",
-          description: "Becoming a technology leader and innovator"
-        }
-      };
-    } else if (adaptationPrompt.toLowerCase().includes('healthcare')) {
-      locale.home.journeySteps = {
-        launch: {
-          title: "Consultation",
-          description: `Initial ${brandName} assessment and goal setting`
-        },
-        generateTestRides: {
-          title: "Planning",
-          description: "Developing personalized strategies and solutions"
-        },
-        inStore: {
-          title: "Treatment",
-          description: "Implementing care plans and interventions"
-        },
-        followUp: {
-          title: "Monitoring",
-          description: "Tracking progress and adjusting approaches"
-        },
-        welcome: {
-          title: "Wellness",
-          description: "Maintaining long-term health and wellbeing"
-        }
-      };
-    } else {
-      locale.home.journeySteps = {
-        launch: {
-          title: "Awareness",
-          description: `Introducing customers to ${brandName}`
-        },
-        generateTestRides: {
-          title: "Interest",
-          description: "Building engagement and generating leads"
-        },
-        inStore: {
-          title: "Consideration",
-          description: "Evaluating solutions and building trust"
-        },
-        followUp: {
-          title: "Decision",
-          description: "Converting prospects into customers"
-        },
-        welcome: {
-          title: "Loyalty",
-          description: "Building lasting relationships and advocacy"
-        }
-      };
-    }
-  }
-  
-  /**
-   * Adapts content sections like assets, messages, guides
-   */
-  private static adaptContentSections(locale: SiteCopy, options: BrandAdaptationOptions): void {
-    const { brandName, adaptationPrompt } = options;
-    
-    // Adapt assets section
-    if (adaptationPrompt.toLowerCase().includes('sustainability')) {
-      locale.assets.title = "Resource Library";
-      locale.assets.introParagraph1 = `Welcome to the central hub for all sustainability resources and materials for ${brandName}.`;
-      locale.assets.phase1Details = "Includes sustainability reports, infographics, and case studies to support your green communications.";
-    }
-    
-    // Adapt messages section
-    if (adaptationPrompt.toLowerCase().includes('energy')) {
-      locale.messages.introParagraph1 = "All messaging here is designed to help you communicate your energy initiatives and environmental impact effectively.";
-      locale.messages.introParagraph2 = "These templates focus on sustainability, energy efficiency, and environmental responsibility.";
-    }
-    
-    // Adapt guides section
-    locale.guides.introParagraph1 = `Explore comprehensive guides tailored for ${brandName}'s specific needs and industry requirements.`;
-  }
-  
-  /**
-   * Applies specific adaptations based on the user's prompt
-   */
-  private static adaptPromptSpecificContent(locale: SiteCopy, options: BrandAdaptationOptions): void {
-    const { adaptationPrompt } = options;
-    const prompt = adaptationPrompt.toLowerCase();
-    
-    // Apply keyword-based transformations
-    const transformations = [
-      { from: /motorcycle|bike|motorbike/gi, to: this.getReplacementTerm(prompt, 'vehicle') },
-      { from: /dealership|dealer/gi, to: this.getReplacementTerm(prompt, 'business') },
-      { from: /test ride/gi, to: this.getReplacementTerm(prompt, 'trial') },
-      { from: /marketing/gi, to: this.getReplacementTerm(prompt, 'outreach') },
-      { from: /campaign/gi, to: this.getReplacementTerm(prompt, 'initiative') }
     ];
-    
-    // Apply transformations to all text content
-    this.applyTransformations(locale, transformations);
   }
-  
+
   /**
-   * Gets appropriate replacement terms based on context
+   * Generate industry-specific navigation
    */
-  private static getReplacementTerm(prompt: string, category: string): string {
-    const replacements: Record<string, Record<string, string>> = {
-      vehicle: {
-        sustainability: 'solution',
-        energy: 'system',
-        technology: 'platform',
-        healthcare: 'service'
-      },
-      business: {
-        sustainability: 'organization',
-        energy: 'facility',
-        technology: 'company',
-        healthcare: 'practice'
-      },
-      trial: {
-        sustainability: 'assessment',
-        energy: 'evaluation',
-        technology: 'demo',
-        healthcare: 'consultation'
-      },
-      outreach: {
-        sustainability: 'communication',
-        energy: 'engagement',
-        technology: 'promotion',
-        healthcare: 'patient engagement'
-      },
-      initiative: {
-        sustainability: 'program',
-        energy: 'project',
-        technology: 'deployment',
-        healthcare: 'care program'
-      }
+  private static generateIndustryNavigation(navigation: any, profile: IndustryProfile): any {
+    // The navigation object only has tab properties, not sections
+    // Just return the navigation as-is since it's already properly structured
+    return navigation;
+  }
+
+  /**
+   * Enhance assets section
+   */
+  private static enhanceAssetsSection(assets: any, brandName: string, profile: IndustryProfile): any {
+    return {
+      ...assets,
+      title: `${brandName} ${profile.contentThemes[0]} Assets`,
+      description: `Comprehensive ${profile.assetTypes.join(', ').toLowerCase()} for your ${profile.terminology.campaign}`
+    };
+  }
+
+  /**
+   * Enhance messages section
+   */
+  private static enhanceMessagesSection(messages: any, brandName: string, profile: IndustryProfile): any {
+    return {
+      ...messages,
+      title: `${brandName} Communication Hub`,
+      description: `Targeted messaging across ${profile.channels.join(', ').toLowerCase()} channels`
+    };
+  }
+
+  /**
+   * Enhance guides section
+   */
+  private static enhanceGuidesSection(guides: any, brandName: string, profile: IndustryProfile): any {
+    return {
+      ...guides,
+      title: `${brandName} Implementation Guides`,
+      description: `Strategic guidance for ${profile.solutions.join(', ').toLowerCase()}`
+    };
+  }
+
+  /**
+   * Enhance journey section
+   */
+  private static enhanceJourneySection(journey: any, brandName: string, profile: IndustryProfile): any {
+    return {
+      ...journey,
+      title: `${brandName} ${profile.terminology.campaign} Journey`,
+      description: `Your path to ${profile.contentThemes[0].toLowerCase()} success`
+    };
+  }
+
+  /**
+   * Generate enhanced config content with rich, relevant data
+   */
+  private static generateEnhancedConfigContent(
+    baseConfig: any,
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile
+  ): any {
+    const adapted = { ...baseConfig };
+    
+    // Update brand information
+    adapted.brand = {
+      name: options.brandName,
+      logo: options.logoPath || `/assets/logos/${options.brandCode}.png`,
+      logoAlt: `${options.brandName} Logo`
     };
     
-    for (const [keyword, replacement] of Object.entries(replacements[category] || {})) {
-      if (prompt.includes(keyword)) {
-        return replacement;
+    // Generate comprehensive, contextual content
+    adapted.messages = this.generateContextualMessages(options, profile);
+    adapted.assets = this.generateRelevantAssets(options, profile);
+    adapted.guides = this.generateIndustryGuides(options, profile);
+    adapted.journeySteps = this.generateCustomJourneySteps(options, profile);
+    
+    // Add new rich content sections
+    adapted.contentStrategy = this.generateContentStrategy(options, profile);
+    adapted.campaignThemes = this.generateCampaignThemes(options, profile);
+    adapted.audienceSegments = this.generateAudienceSegments(options, profile);
+    
+    return adapted;
+  }
+
+  /**
+   * Generate contextual messages based on industry and campaign goals
+   */
+  private static generateContextualMessages(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile
+  ): any[] {
+    const messages: any[] = [];
+    const { brandName, tone, campaignGoals = [] } = options;
+    
+    // Generate messages for each journey stage
+    const stages = ['LAUNCH', 'GENERATE INTEREST', 'ENGAGEMENT', 'CONVERSION', 'RETENTION'];
+    
+    stages.forEach(stage => {
+      // Generate multiple messages per stage across different channels
+      profile.channels.forEach(channel => {
+        const message = {
+          id: `${options.brandCode}_${stage.toLowerCase().replace(' ', '_')}_${channel.toLowerCase()}`,
+          title: this.generateMessageTitle(stage, channel, brandName, profile),
+          content: this.generateMessageContent(stage, channel, brandName, profile, tone, campaignGoals),
+          channel: channel,
+          stage: stage,
+          model: brandName,
+          tags: this.generateMessageTags(stage, profile, campaignGoals),
+          personalization: this.generatePersonalizationOptions(stage, profile),
+          metrics: this.generateMessageMetrics(stage, profile),
+          isDemo: false
+        };
+        messages.push(message);
+      });
+    });
+    
+    return messages;
+  }
+
+  /**
+   * Generate message title with context
+   */
+  private static generateMessageTitle(
+    stage: string,
+    channel: string,
+    brandName: string,
+    profile: IndustryProfile
+  ): string {
+    const stageActions: Record<string, string[]> = {
+      'LAUNCH': ['Introducing', 'Announcing', 'Unveiling'],
+      'GENERATE INTEREST': ['Discover', 'Explore', 'Learn About'],
+      'ENGAGEMENT': ['Experience', 'Engage With', 'Connect Through'],
+      'CONVERSION': ['Get Started With', 'Implement', 'Choose'],
+      'RETENTION': ['Maximize', 'Optimize', 'Grow With']
+    };
+    
+    const action = stageActions[stage]?.[0] || 'Discover';
+    return `${action} ${brandName}'s ${profile.terminology.product} - ${channel}`;
+  }
+
+  /**
+   * Generate rich message content
+   */
+  private static generateMessageContent(
+    stage: string,
+    channel: string,
+    brandName: string,
+    profile: IndustryProfile,
+    tone: string,
+    campaignGoals: string[]
+  ): string {
+    // Generate content based on stage, channel, and campaign goals
+    const painPoint = profile.painPoints[0];
+    const solution = profile.solutions[0];
+    const metric = profile.metrics[0];
+    const theme = profile.contentThemes[0];
+    
+    let content = '';
+    
+    // Stage-specific content generation
+    switch (stage) {
+      case 'LAUNCH':
+        content = `Subject: ${brandName} Transforms ${theme}\n\n`;
+        content += this.getToneSpecificGreeting(tone);
+        content += `\n\nWe're excited to introduce ${brandName}'s revolutionary approach to ${painPoint.toLowerCase()}. `;
+        content += `Our ${profile.terminology.product} delivers ${solution.toLowerCase()} that drives measurable ${metric.toLowerCase()}.`;
+        break;
+        
+      case 'GENERATE INTEREST':
+        content = `Subject: See How ${brandName} Solves ${painPoint}\n\n`;
+        content += this.getToneSpecificGreeting(tone);
+        content += `\n\nAre you struggling with ${painPoint.toLowerCase()}? `;
+        content += `Discover how leading ${profile.terminology.customer}s are achieving ${metric.toLowerCase()} improvements with ${brandName}.`;
+        break;
+        
+      case 'ENGAGEMENT':
+        content = `Subject: Your Personalized ${brandName} ${profile.terminology.trial}\n\n`;
+        content += this.getToneSpecificGreeting(tone);
+        content += `\n\nThank you for your interest in ${brandName}. `;
+        content += `We've prepared a customized ${profile.terminology.trial} that addresses your specific needs in ${theme.toLowerCase()}.`;
+        break;
+        
+      default:
+        content = this.generateGenericStageContent(stage, brandName, profile, tone);
+    }
+    
+    // Add campaign goal specific content
+    if (campaignGoals.length > 0) {
+      content += `\n\nThis initiative specifically helps you ${campaignGoals[0].toLowerCase()}.`;
+    }
+    
+    // Add channel-specific CTAs
+    content += this.generateChannelCTA(channel, stage, profile);
+    
+    // Add signature
+    content += `\n\nBest regards,\nThe ${brandName} Team`;
+    
+    return content;
+  }
+
+  /**
+   * Generate generic stage content
+   */
+  private static generateGenericStageContent(
+    stage: string,
+    brandName: string,
+    profile: IndustryProfile,
+    tone: string
+  ): string {
+    const greeting = this.getToneSpecificGreeting(tone);
+    const product = profile.terminology.product;
+    const theme = profile.contentThemes[0];
+    
+    return `Subject: ${brandName} ${stage} Update\n\n${greeting}\n\nDiscover how ${brandName}'s ${product} can transform your ${theme.toLowerCase()} initiatives.`;
+  }
+
+  /**
+   * Generate message tags
+   */
+  private static generateMessageTags(
+    stage: string,
+    profile: IndustryProfile,
+    campaignGoals: string[]
+  ): string[] {
+    const baseTags = [stage.toLowerCase(), profile.contentThemes[0].toLowerCase()];
+    const goalTags = campaignGoals.map(goal => goal.toLowerCase().replace(/\s+/g, '-'));
+    return [...baseTags, ...goalTags.slice(0, 2)];
+  }
+
+  /**
+   * Generate personalization options
+   */
+  private static generatePersonalizationOptions(stage: string, profile: IndustryProfile): any {
+    return {
+      audienceSegment: profile.terminology.customer,
+      contentTheme: profile.contentThemes[0],
+      primaryMetric: profile.metrics[0]
+    };
+  }
+
+  /**
+   * Generate message metrics
+   */
+  private static generateMessageMetrics(stage: string, profile: IndustryProfile): any {
+    return {
+      expectedEngagement: stage === 'LAUNCH' ? 'high' : 'medium',
+      targetMetric: profile.metrics[0],
+      channel: profile.channels[0]
+    };
+  }
+
+  /**
+   * Generate relevant assets based on industry profile
+   */
+  private static generateRelevantAssets(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile
+  ): any[] {
+    const assets: any[] = [];
+    const { brandName, brandCode } = options;
+    
+    // Generate assets for each type in the industry profile
+    profile.assetTypes.forEach((assetType, typeIndex) => {
+      // Generate multiple variations of each asset type
+      const variations = this.getAssetVariations(assetType);
+      
+      variations.forEach((variation, varIndex) => {
+        const asset = {
+          id: `${brandCode}_${assetType.toLowerCase().replace(/\s+/g, '_')}_${varIndex + 1}`,
+          title: `${brandName} ${assetType} - ${variation.topic}`,
+          description: variation.description,
+          model: brandName,
+          category: this.mapAssetTypeToCategory(assetType),
+          type: variation.format,
+          tags: [...variation.tags, ...profile.contentThemes.slice(0, 2)],
+          channel: variation.channel,
+          dateCreated: new Date().toISOString(),
+          phase: variation.phase,
+          orientation: variation.orientation || 'landscape',
+          dimensions: variation.dimensions || '1920x1080',
+          fileExtension: variation.fileExtension,
+          thumbnail: `/assets/${variation.format.toLowerCase()}s/${brandCode}_${assetType.toLowerCase().replace(/\s+/g, '_')}_${varIndex + 1}_thumb.jpg`,
+          url: `/assets/${variation.format.toLowerCase()}s/${brandCode}_${assetType.toLowerCase().replace(/\s+/g, '_')}_${varIndex + 1}.${variation.fileExtension}`,
+          metrics: {
+            expectedEngagement: variation.expectedEngagement,
+            targetAudience: variation.targetAudience
+          },
+          isDemo: false
+        };
+        assets.push(asset);
+      });
+    });
+    
+    return assets;
+  }
+
+  /**
+   * Get variations for each asset type
+   */
+  private static getAssetVariations(assetType: string): any[] {
+    const variationMap: Record<string, any[]> = {
+      'Infographics': [
+        {
+          topic: 'Key Statistics',
+          description: 'Visual representation of industry impact metrics',
+          format: 'IMAGE',
+          tags: ['data', 'statistics', 'visual'],
+          channel: 'Social Media',
+          phase: 'LAUNCH',
+          dimensions: '1080x1080',
+          fileExtension: 'jpg',
+          expectedEngagement: 'high',
+          targetAudience: 'decision-makers'
+        },
+        {
+          topic: 'Process Overview',
+          description: 'Step-by-step visual guide to implementation',
+          format: 'IMAGE',
+          tags: ['process', 'guide', 'educational'],
+          channel: 'Email',
+          phase: 'ENGAGEMENT',
+          dimensions: '1920x1080',
+          fileExtension: 'jpg',
+          expectedEngagement: 'medium',
+          targetAudience: 'implementers'
+        }
+      ],
+      'Case Studies': [
+        {
+          topic: 'Success Story',
+          description: 'Real-world implementation and results',
+          format: 'PDF',
+          tags: ['success', 'results', 'proof'],
+          channel: 'Website',
+          phase: 'CONVERSION',
+          fileExtension: 'pdf',
+          expectedEngagement: 'high',
+          targetAudience: 'executives'
+        },
+        {
+          topic: 'ROI Analysis',
+          description: 'Detailed financial impact assessment',
+          format: 'PDF',
+          tags: ['roi', 'financial', 'analysis'],
+          channel: 'Sales',
+          phase: 'CONVERSION',
+          fileExtension: 'pdf',
+          expectedEngagement: 'very high',
+          targetAudience: 'finance-teams'
+        }
+      ],
+      'Demo Videos': [
+        {
+          topic: 'Product Overview',
+          description: 'Comprehensive walkthrough of key features',
+          format: 'VIDEO',
+          tags: ['demo', 'features', 'overview'],
+          channel: 'Website',
+          phase: 'GENERATE INTEREST',
+          dimensions: '1920x1080',
+          fileExtension: 'mp4',
+          expectedEngagement: 'very high',
+          targetAudience: 'all-audiences'
+        },
+        {
+          topic: 'Quick Start Guide',
+          description: 'Get up and running in minutes',
+          format: 'VIDEO',
+          tags: ['tutorial', 'quickstart', 'guide'],
+          channel: 'Support',
+          phase: 'RETENTION',
+          dimensions: '1920x1080',
+          fileExtension: 'mp4',
+          expectedEngagement: 'high',
+          targetAudience: 'new-users'
+        }
+      ]
+    };
+    
+    // Return variations or generate generic ones
+    return variationMap[assetType] || this.generateGenericAssetVariations(assetType);
+  }
+
+  /**
+   * Generate generic asset variations
+   */
+  private static generateGenericAssetVariations(assetType: string): any[] {
+    return [
+      {
+        topic: 'Overview',
+        description: `Comprehensive ${assetType.toLowerCase()} overview`,
+        format: 'PDF',
+        tags: ['overview', 'general'],
+        channel: 'Website',
+        phase: 'LAUNCH',
+        fileExtension: 'pdf',
+        expectedEngagement: 'medium',
+        targetAudience: 'general'
+      }
+    ];
+  }
+
+  /**
+   * Map asset type to category
+   */
+  private static mapAssetTypeToCategory(assetType: string): string {
+    const categoryMap: Record<string, string> = {
+      'Infographics': 'Visual Content',
+      'Case Studies': 'Proof Points',
+      'Demo Videos': 'Educational Content',
+      'Technical Whitepapers': 'Technical Content',
+      'ROI Calculators': 'Tools',
+      'Clinical Studies': 'Research',
+      'Patient Testimonials': 'Social Proof'
+    };
+    
+    return categoryMap[assetType] || 'General Content';
+  }
+
+  /**
+   * Generate comprehensive guides based on industry needs
+   */
+  private static generateIndustryGuides(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile
+  ): any[] {
+    const guides: any[] = [];
+    const { brandName, brandCode } = options;
+    
+    // Generate guides for each pain point
+    profile.painPoints.forEach((painPoint, index) => {
+      const guide = {
+        id: `${brandCode}_guide_${index + 1}`,
+        title: `${brandName}'s Guide to ${painPoint}`,
+        description: `Comprehensive strategies for addressing ${painPoint.toLowerCase()} in your ${profile.terminology.facility}`,
+        stage: this.mapPainPointToStage(painPoint),
+        model: brandName,
+        category: 'Strategic Guide',
+        sections: this.generateGuideSections(painPoint, profile),
+        estimatedReadTime: '10-15 minutes',
+        downloadFormat: 'PDF',
+        lastUpdated: new Date().toISOString(),
+        metrics: {
+          expectedImpact: 'high',
+          implementationTime: '30-60 days'
+        },
+        isDemo: false
+      };
+      guides.push(guide);
+    });
+    
+    // Add solution-specific guides
+    profile.solutions.slice(0, 3).forEach((solution, index) => {
+      const guide = {
+        id: `${brandCode}_solution_guide_${index + 1}`,
+        title: `Implementing ${solution} with ${brandName}`,
+        description: `Step-by-step guide to ${solution.toLowerCase()} implementation`,
+        stage: 'IMPLEMENTATION',
+        model: brandName,
+        category: 'Implementation Guide',
+        sections: this.generateSolutionGuideSections(solution, profile),
+        estimatedReadTime: '20-30 minutes',
+        downloadFormat: 'PDF',
+        lastUpdated: new Date().toISOString(),
+        metrics: {
+          expectedImpact: 'very high',
+          implementationTime: '60-90 days'
+        },
+        isDemo: false
+      };
+      guides.push(guide);
+    });
+    
+    return guides;
+  }
+
+  /**
+   * Map pain point to stage
+   */
+  private static mapPainPointToStage(painPoint: string): string {
+    const stageMap: Record<string, string> = {
+      'carbon': 'ASSESSMENT',
+      'waste': 'IMPLEMENTATION',
+      'energy': 'OPTIMIZATION',
+      'legacy': 'MODERNIZATION',
+      'patient': 'ENGAGEMENT'
+    };
+    
+    const lowerPainPoint = painPoint.toLowerCase();
+    for (const [key, stage] of Object.entries(stageMap)) {
+      if (lowerPainPoint.includes(key)) {
+        return stage;
       }
     }
     
-    return replacements[category]?.sustainability || category;
+    return 'ASSESSMENT';
   }
-  
+
   /**
-   * Applies text transformations recursively to locale object
+   * Generate guide sections
    */
-  private static applyTransformations(obj: any, transformations: Array<{from: RegExp, to: string}>): void {
-    for (const key in obj) {
-      if (typeof obj[key] === 'string') {
-        transformations.forEach(({ from, to }) => {
-          obj[key] = obj[key].replace(from, to);
-        });
-      } else if (Array.isArray(obj[key])) {
-        obj[key].forEach((item: any, index: number) => {
-          if (typeof item === 'string') {
-            transformations.forEach(({ from, to }) => {
-              obj[key][index] = item.replace(from, to);
-            });
-          } else if (typeof item === 'object') {
-            this.applyTransformations(item, transformations);
+  private static generateGuideSections(painPoint: string, profile: IndustryProfile): any[] {
+    return [
+      {
+        title: 'Understanding the Challenge',
+        content: `Overview of ${painPoint.toLowerCase()} challenges in ${profile.terminology.facility}s`
+      },
+      {
+        title: 'Solution Approach',
+        content: `How ${profile.solutions[0]} addresses ${painPoint.toLowerCase()}`
+      },
+      {
+        title: 'Implementation Steps',
+        content: `Step-by-step guide to implementing solutions`
+      },
+      {
+        title: 'Measuring Success',
+        content: `Key metrics including ${profile.metrics[0]} tracking`
+      }
+    ];
+  }
+
+  /**
+   * Generate solution guide sections
+   */
+  private static generateSolutionGuideSections(solution: string, profile: IndustryProfile): any[] {
+    return [
+      {
+        title: 'Solution Overview',
+        content: `Comprehensive overview of ${solution.toLowerCase()}`
+      },
+      {
+        title: 'Technical Requirements',
+        content: `Technical specifications and requirements`
+      },
+      {
+        title: 'Implementation Process',
+        content: `Detailed implementation methodology`
+      },
+      {
+        title: 'Success Metrics',
+        content: `Measuring ${profile.metrics[0]} and other key indicators`
+      }
+    ];
+  }
+
+  /**
+   * Generate custom journey steps
+   */
+  private static generateCustomJourneySteps(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile
+  ): any[] {
+    return [
+      {
+        id: "1",
+        title: "Launch",
+        description: `Initial ${profile.terminology.campaign} launch and awareness building`,
+        icon: "Rocket"
+      },
+      {
+        id: "2",
+        title: "Generate Test Rides",
+        description: `Convert interest into ${profile.terminology.trial} bookings`,
+        icon: "Calendar"
+      },
+      {
+        id: "3",
+        title: "In-Store",
+        description: `${profile.terminology.facility} experience and ${profile.terminology.product} showcase`,
+        icon: "Store"
+      },
+      {
+        id: "4",
+        title: "Follow-Up",
+        description: `Post-${profile.terminology.purchase} communication and satisfaction`,
+        icon: "MessageSquare"
+      },
+      {
+        id: "5",
+        title: "Welcome",
+        description: `Onboarding new ${profile.terminology.customer}s to the ${options.brandName} family`,
+        icon: "UserPlus"
+      }
+    ];
+  }
+
+  /**
+   * Generate content strategy
+   */
+  private static generateContentStrategy(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile
+  ): any {
+    return {
+      primaryThemes: profile.contentThemes,
+      targetChannels: profile.channels,
+      keyMessages: profile.painPoints.map(pain => `Address ${pain.toLowerCase()}`),
+      contentTypes: profile.assetTypes
+    };
+  }
+
+  /**
+   * Generate campaign themes
+   */
+  private static generateCampaignThemes(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile
+  ): any[] {
+    return profile.contentThemes.map(theme => ({
+      name: theme,
+      description: `${theme} focused messaging and content`,
+      targetAudience: profile.terminology.customer,
+      keyMetrics: profile.metrics.slice(0, 2)
+    }));
+  }
+
+  /**
+   * Generate audience segments
+   */
+  private static generateAudienceSegments(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile
+  ): any[] {
+    return [
+      {
+        name: 'Decision Makers',
+        description: 'C-level executives and senior management',
+        painPoints: profile.painPoints.slice(0, 2),
+        preferredChannels: profile.channels.slice(0, 2)
+      },
+      {
+        name: 'Technical Teams',
+        description: 'IT and technical implementation teams',
+        painPoints: profile.painPoints.slice(2, 4),
+        preferredChannels: profile.channels.slice(1, 3)
+      }
+    ];
+  }
+
+  /**
+   * Helper methods for extracting information from prompts
+   */
+  private static extractTerminology(prompt: string): Record<string, string> {
+    const terminology: Record<string, string> = {};
+    
+    // Extract replacement patterns from prompt
+    const replacements = prompt.match(/replace\s+(\w+)\s+with\s+(\w+)/gi) || [];
+    replacements.forEach(replacement => {
+      const match = replacement.match(/replace\s+(\w+)\s+with\s+(\w+)/i);
+      if (match) {
+        terminology[match[1].toLowerCase()] = match[2].toLowerCase();
+      }
+    });
+    
+    // Add default terminology if not specified
+    return {
+      product: terminology.product || 'solution',
+      customer: terminology.customer || 'partner',
+      trial: terminology.trial || 'evaluation',
+      purchase: terminology.purchase || 'implementation',
+      facility: terminology.facility || 'facility',
+      campaign: terminology.campaign || 'initiative',
+      ...terminology
+    };
+  }
+
+  private static extractPainPoints(prompt: string, industry: string): string[] {
+    const painPoints = [];
+    
+    // Look for problem-related keywords
+    const problemKeywords = ['challenge', 'problem', 'issue', 'struggle', 'difficulty', 'pain point'];
+    const sentences = prompt.split(/[.!?]+/);
+    
+    sentences.forEach(sentence => {
+      const lower = sentence.toLowerCase();
+      if (problemKeywords.some(keyword => lower.includes(keyword))) {
+        painPoints.push(sentence.trim());
+      }
+    });
+    
+    // Add industry-specific pain points if none found
+    if (painPoints.length === 0) {
+      painPoints.push(
+        `Optimizing operational efficiency in ${industry}`,
+        `Managing compliance and regulatory requirements`,
+        `Scaling operations while maintaining quality`,
+        `Reducing costs without compromising outcomes`,
+        `Adapting to rapidly changing market conditions`
+      );
+    }
+    
+    return painPoints.slice(0, 5);
+  }
+
+  private static extractSolutions(prompt: string, industry: string): string[] {
+    const solutions = [];
+    
+    // Look for solution-related keywords
+    const solutionKeywords = ['solution', 'solve', 'address', 'improve', 'enhance', 'optimize'];
+    const sentences = prompt.split(/[.!?]+/);
+    
+    sentences.forEach(sentence => {
+      const lower = sentence.toLowerCase();
+      if (solutionKeywords.some(keyword => lower.includes(keyword))) {
+        solutions.push(sentence.trim());
+      }
+    });
+    
+    // Add generic solutions if none found
+    if (solutions.length === 0) {
+      solutions.push(
+        `Comprehensive ${industry} management platform`,
+        `Data-driven insights and analytics`,
+        `Automated workflow optimization`,
+        `Integrated communication systems`,
+        `Scalable infrastructure solutions`
+      );
+    }
+    
+    return solutions.slice(0, 5);
+  }
+
+  private static extractContentThemes(prompt: string, industry: string): string[] {
+    const themes = [];
+    
+    // Extract themes from prompt
+    const themeKeywords = ['focus on', 'emphasize', 'highlight', 'promote', 'feature'];
+    const sentences = prompt.split(/[.!?]+/);
+    
+    sentences.forEach(sentence => {
+      const lower = sentence.toLowerCase();
+      themeKeywords.forEach(keyword => {
+        if (lower.includes(keyword)) {
+          const afterKeyword = lower.split(keyword)[1];
+          if (afterKeyword) {
+            themes.push(afterKeyword.trim().split(/[,\s]+/)[0]);
           }
-        });
-      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-        this.applyTransformations(obj[key], transformations);
-      }
-    }
-  }
-  
-  /**
-   * Generates the TypeScript file content for a brand locale
-   */
-  static generateLocaleFile(brandCode: string, adaptedLocale: SiteCopy): string {
-    const capitalizedBrandCode = brandCode.charAt(0).toUpperCase() + brandCode.slice(1);
+        }
+      });
+    });
     
-    return `import { SiteCopy } from '../types/siteCopy';
-
-// ${capitalizedBrandCode} brand locale - UI/Site copy
-// Auto-generated by Brand Setup tool
-const ${brandCode}Strings: SiteCopy = ${JSON.stringify(adaptedLocale, null, 2)};
-
-export default ${brandCode}Strings;`;
+    // Add industry-specific themes
+    themes.push(
+      `${industry} excellence`,
+      'Innovation and transformation',
+      'Customer success',
+      'Sustainable growth',
+      'Operational efficiency'
+    );
+    
+    return [...new Set(themes)].slice(0, 5);
   }
-  
+
+  private static determineChannels(industry: string, tone: string): string[] {
+    const channelMap: Record<ToneType, string[]> = {
+      professional: ['Email', 'LinkedIn', 'Whitepapers', 'Webinars', 'Industry Publications'],
+      friendly: ['Email', 'Social Media', 'Blog', 'Community Forums', 'Newsletters'],
+      technical: ['Email', 'Documentation', 'GitHub', 'Technical Forums', 'API Docs'],
+      casual: ['Social Media', 'SMS', 'Blog', 'YouTube', 'Podcasts']
+    };
+    
+    return channelMap[tone as ToneType] || channelMap.professional;
+  }
+
+  private static determineMetrics(industry: string): string[] {
+    const baseMetrics = ['ROI', 'Customer Satisfaction', 'Efficiency Gains', 'Cost Reduction', 'Time Savings'];
+    
+    // Add industry-specific metrics
+    const industryMetrics: Record<string, string[]> = {
+      sustainability: ['Carbon Footprint Reduction', 'Energy Savings', 'Waste Reduction'],
+      technology: ['System Uptime', 'Performance Improvement', 'User Adoption Rate'],
+      healthcare: ['Patient Satisfaction', 'Clinical Outcomes', 'Compliance Rate'],
+      finance: ['Risk Reduction', 'Transaction Speed', 'Accuracy Rate'],
+      retail: ['Conversion Rate', 'Customer Lifetime Value', 'Inventory Turnover']
+    };
+    
+    const specific = industryMetrics[industry.toLowerCase()] || [];
+    return [...specific, ...baseMetrics].slice(0, 5);
+  }
+
+  private static determineAssetTypes(industry: string, tone: string): string[] {
+    const baseAssets = ['Case Studies', 'Whitepapers', 'Infographics'];
+    
+    const toneAssets: Record<ToneType, string[]> = {
+      professional: ['Executive Summaries', 'ROI Calculators', 'Industry Reports'],
+      friendly: ['Success Stories', 'How-To Guides', 'Customer Testimonials'],
+      technical: ['Technical Documentation', 'API Guides', 'Architecture Diagrams'],
+      casual: ['Video Tutorials', 'Quick Tips', 'Social Media Content']
+    };
+    
+    return [...baseAssets, ...(toneAssets[tone as ToneType] || [])].slice(0, 6);
+  }
+
+  private static getToneSpecificGreeting(tone: string): string {
+    const greetings: Record<ToneType, string> = {
+      professional: 'Dear Valued Partner',
+      friendly: 'Hi there!',
+      technical: 'Greetings',
+      casual: 'Hey!'
+    };
+    return greetings[tone as ToneType] || greetings.professional;
+  }
+
+  private static generateChannelCTA(channel: string, stage: string, profile: IndustryProfile): string {
+    const ctas: Record<string, string> = {
+      'Email': '\n\n[CTA Button: Learn More] [CTA Button: Schedule Demo]',
+      'Social Media': '\n\n👉 Learn more at [Link] #Innovation #Success',
+      'LinkedIn': '\n\nConnect with our team to explore opportunities. [Learn More]',
+      'SMS': '\n\nReply YES to learn more or STOP to opt out.',
+      'Webinars': '\n\n[Register Now] for our upcoming session on this topic.'
+    };
+    
+    return ctas[channel] || '\n\n[Learn More] [Contact Us]';
+  }
+
   /**
-   * Generates installation instructions for the new brand locale
+   * Generate installation instructions
    */
   static generateInstallationInstructions(brandName: string, brandCode: string): string {
     return `# ${brandName} Brand Setup Instructions
@@ -600,8 +1177,8 @@ export const languages: Record<LanguageCode, LanguagePack> = {
 };
 \`\`\`
 
-### 4. 📝 Add to Brand Dropdown (Semi-Automatic)
-The system will provide you with the exact code to add to \`src/components/layout/Header.tsx\`:
+### 4. Add to Brand Dropdown
+Update \`src/components/layout/Header.tsx\`:
 
 **A) Add to brandDisplayNames object:**
 \`\`\`typescript
@@ -616,338 +1193,27 @@ const brandDisplayNames: Record<string, string> = {
 <option value="${brandCode}">${brandName}</option>
 \`\`\`
 
-### 5. Brand Icon Setup
-- Save your brand icon as: \`public/assets/logos/${brandCode}-logo.png\` or \`.jpg\`
-- The system will automatically load this logo when the brand locale is selected
-
-### 6. Content Configuration
-The system has generated both:
-- **Site Copy**: UI text, navigation, page titles (\`${brandCode}.ts\`)
-- **Content Data**: Assets, messages, guides (\`config_${brandCode}.json\`)
-
-Both files work together to provide complete brand localization.
-
-### 7. Testing
+### 5. Complete Setup
 - Restart your development server
 - The new brand should appear in the brand selector dropdown
 - Test all sections to ensure proper adaptation
-- Both UI text and content should reflect your brand
-
-## File Structure
-\`\`\`
-src/locales/${brandCode}.ts          # UI/Site copy
-public/locales/config_${brandCode}.json  # Content data
-src/locales/index.ts                 # Updated with new locale
-src/components/layout/Header.tsx     # Updated with dropdown option
-\`\`\`
 
 ## Notes
-- All translations and adaptations can be further customized by editing the generated files
-- The config content includes adapted messages, assets, and guides specific to your brand
-- Consider adding brand-specific color themes or styling if needed
-- For production deployment, ensure all files are properly committed to version control
-
-⚠️  **Important**: The brand will NOT appear in the brand dropdown until you complete step 4 above!
-
-Your ${brandName} brand locale is ready to use!`;
+- All content has been tailored specifically for ${brandName}
+- Review and customize the generated content as needed
+- Consider adding brand-specific styling if required
+`;
   }
 
   /**
-   * Generates comprehensive messages across all channels and journey stages
+   * Generate the TypeScript file content
    */
-  private static generateComprehensiveMessages(options: BrandAdaptationOptions): any[] {
-    const { brandName, adaptationPrompt, tone = 'professional' } = options;
-    const messages: any[] = [];
-    
-    // Define journey stages and channels
-    const journeyStages = ['LAUNCH', 'GENERATE TEST RIDES', 'IN-STORE', 'FOLLOW-UP', 'WELCOME'];
-    const channels = ['Email', 'SMS', 'WhatsApp', 'Facebook', 'Instagram', 'LinkedIn', 'Phone', 'In-Store', 'Print'];
-    
-    // Generate messages for each stage and channel combination
-    journeyStages.forEach((stage, stageIndex) => {
-      channels.forEach((channel, channelIndex) => {
-        const messageId = `${options.brandCode.toUpperCase()}_${stage.replace(/\s+/g, '_')}_${channel.toUpperCase()}_${String(stageIndex * channels.length + channelIndex + 1).padStart(3, '0')}`;
-        
-        const message = {
-          id: messageId,
-          title: this.generateMessageTitle(stage, channel, brandName, adaptationPrompt),
-          content: this.generateMessageContent(stage, channel, brandName, adaptationPrompt, tone),
-          channel: channel,
-          type: stage,
-          model: this.getBrandProductName(adaptationPrompt, brandName),
-          date: new Date().toISOString().split('T')[0],
-          isDemo: false,
-          category: this.getMessageCategory(stage, channel)
-        };
-        
-        messages.push(message);
-      });
-    });
-    
-    return messages;
-  }
+  private static generateSiteCopyFile(siteCopy: SiteCopy, options: BrandAdaptationOptions): string {
+    return `import { SiteCopy } from '../types/siteCopy';
 
-  /**
-   * Generates comprehensive assets across different types and formats
-   */
-  private static generateComprehensiveAssets(options: BrandAdaptationOptions): any[] {
-    const { brandName, adaptationPrompt } = options;
-    const assets: any[] = [];
-    
-    const assetTypes = ['STATIC', 'VIDEO'];
-    const orientations = ['landscape', 'portrait', 'square'];
-    const descriptions = ['hero-shot', 'in-action', 'detail-view', 'lifestyle', 'team-photo', 'office-environment'];
-    
-    let assetId = 1;
-    
-    assetTypes.forEach(type => {
-      orientations.forEach(orientation => {
-        descriptions.forEach(description => {
-          const asset = {
-            id: `${type.toLowerCase()}_${assetId}`,
-            title: this.generateAssetTitle(description, brandName, adaptationPrompt),
-            phase: "PHASE 1",
-            type: type,
-            model: this.getBrandProductName(adaptationPrompt, brandName),
-            description: description,
-            textOverlay: "no-text",
-            orientation: orientation,
-            dimensions: orientation === 'square' ? "1080x1080" : orientation === 'portrait' ? "1080x1920" : "1920x1080",
-            fileExtension: type === 'VIDEO' ? ".mp4" : ".jpg",
-            originalFileName: `${options.brandCode}_${assetId}.${type === 'VIDEO' ? 'mp4' : 'jpg'}`,
-            newAssetName: `Phase1_${type}_${this.getBrandProductName(adaptationPrompt, brandName).replace(/\s+/g, '')}_${description}_no-text_${orientation}_${orientation === 'square' ? "1080x1080" : orientation === 'portrait' ? "1080x1920" : "1920x1080"}.${type === 'VIDEO' ? 'mp4' : 'jpg'}`,
-            thumbnail: `/assets/${type === 'VIDEO' ? 'videos' : 'images'}/${options.brandCode}_${assetId}.${type === 'VIDEO' ? 'mp4' : 'jpg'}`,
-            url: `/assets/${type === 'VIDEO' ? 'videos' : 'images'}/${options.brandCode}_${assetId}.${type === 'VIDEO' ? 'mp4' : 'jpg'}`,
-            isDemo: true
-          };
-          
-          assets.push(asset);
-          assetId++;
-        });
-      });
-    });
-    
-    return assets;
-  }
+// ${options.brandName} brand locale - Generated with enhanced content
+const ${options.brandCode}Strings: SiteCopy = ${JSON.stringify(siteCopy, null, 2)};
 
-  /**
-   * Generates comprehensive guides for all aspects of the brand journey
-   */
-  private static generateComprehensiveGuides(options: BrandAdaptationOptions): any[] {
-    const { brandName, adaptationPrompt } = options;
-    const guides: any[] = [];
-    
-    const guideTypes = [
-      { key: 'launch-strategy', title: 'Launch Communication Strategy', stage: 'LAUNCH' },
-      { key: 'engagement-tactics', title: 'Customer Engagement Tactics', stage: 'GENERATE TEST RIDES' },
-      { key: 'experience-optimization', title: 'Customer Experience Optimization', stage: 'IN-STORE' },
-      { key: 'follow-up-strategies', title: 'Effective Follow-Up Strategies', stage: 'FOLLOW-UP' },
-      { key: 'onboarding-process', title: 'Customer Onboarding Process', stage: 'WELCOME' },
-      { key: 'content-creation', title: 'Brand Content Creation Guide', stage: 'LAUNCH' },
-      { key: 'social-media', title: 'Social Media Marketing Guide', stage: 'GENERATE TEST RIDES' },
-      { key: 'customer-service', title: 'Customer Service Excellence Guide', stage: 'IN-STORE' }
-    ];
-    
-    guideTypes.forEach((guideType, index) => {
-      const guide = {
-        id: `${options.brandCode.toLowerCase()}_${guideType.key}_guide`,
-        title: this.adaptGuideTitle(guideType.title, brandName, adaptationPrompt),
-        description: this.generateGuideDescription(guideType.title, brandName, adaptationPrompt),
-        stage: guideType.stage,
-        model: this.getBrandProductName(adaptationPrompt, brandName),
-        category: this.getGuideCategory(adaptationPrompt),
-        lastUpdated: new Date().toISOString(),
-        isDemo: false
-      };
-      
-      guides.push(guide);
-    });
-    
-    return guides;
-  }
-
-  /**
-   * Generates relevant journey steps for the brand
-   */
-  private static generateRelevantJourneySteps(options: BrandAdaptationOptions): any[] {
-    const { brandName, adaptationPrompt } = options;
-    
-    if (adaptationPrompt.toLowerCase().includes('sustainability') || adaptationPrompt.toLowerCase().includes('energy')) {
-      return [
-        { id: "1", title: "Discovery", description: "Understanding sustainability needs and goals", icon: "Search" },
-        { id: "2", title: "Assessment", description: "Evaluating current practices and identifying opportunities", icon: "ClipboardList" },
-        { id: "3", title: "Implementation", description: "Deploying sustainable solutions and practices", icon: "Wrench" },
-        { id: "4", title: "Optimization", description: "Measuring impact and refining approaches", icon: "TrendingUp" },
-        { id: "5", title: "Advocacy", description: "Sharing success stories and inspiring others", icon: "Megaphone" }
-      ];
-    } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-      return [
-        { id: "1", title: "Exploration", description: "Discovering technology opportunities and needs", icon: "Compass" },
-        { id: "2", title: "Demonstration", description: "Testing and validating technology solutions", icon: "Play" },
-        { id: "3", title: "Integration", description: "Implementing technology into workflows", icon: "Cpu" },
-        { id: "4", title: "Optimization", description: "Fine-tuning and maximizing technology value", icon: "Settings" },
-        { id: "5", title: "Innovation", description: "Becoming a technology leader and innovator", icon: "Lightbulb" }
-      ];
-    } else if (adaptationPrompt.toLowerCase().includes('healthcare')) {
-      return [
-        { id: "1", title: "Consultation", description: "Initial health assessment and goal setting", icon: "Heart" },
-        { id: "2", title: "Planning", description: "Developing personalized health strategies", icon: "Calendar" },
-        { id: "3", title: "Treatment", description: "Implementing care plans and interventions", icon: "Activity" },
-        { id: "4", title: "Monitoring", description: "Tracking progress and adjusting treatments", icon: "Monitor" },
-        { id: "5", title: "Wellness", description: "Maintaining long-term health and wellbeing", icon: "Shield" }
-      ];
-    } else {
-      return [
-        { id: "1", title: "Awareness", description: `Introducing customers to ${brandName}`, icon: "Eye" },
-        { id: "2", title: "Interest", description: "Building engagement and generating leads", icon: "Heart" },
-        { id: "3", title: "Consideration", description: "Evaluating solutions and building trust", icon: "Search" },
-        { id: "4", title: "Decision", description: "Converting prospects into customers", icon: "CheckCircle" },
-        { id: "5", title: "Loyalty", description: "Building lasting relationships and advocacy", icon: "Users" }
-      ];
-    }
-  }
-
-  /**
-   * Generates filter options based on the brand context
-   */
-  private static generateFilterOptions(options: BrandAdaptationOptions): any {
-    const { brandName, adaptationPrompt } = options;
-    
-    return {
-      phases: ["ALL", "PHASE 1", "PHASE 2"],
-      types: ["ALL", "STATIC", "VIDEO"],
-      models: ["ALL", this.getBrandProductName(adaptationPrompt, brandName)],
-      channels: ["ALL", "Digital", "Email", "Facebook", "Instagram", "LinkedIn", "Phone", "Print", "SMS", "Social", "WhatsApp"],
-      actionTypes: ["ALL", "LAUNCH", "GENERATE TEST RIDES", "IN-STORE", "FOLLOW-UP", "WELCOME"]
-    };
-  }
-
-  /**
-   * Generates content outline for the brand
-   */
-  private static generateContentOutline(options: BrandAdaptationOptions): any {
-    const { brandName } = options;
-    
-    const phases = [
-      {
-        name: "Launch",
-        key: "LAUNCH",
-        messaging: ["Brand Introduction Email", "Social Media Launch Post", "Press Release"],
-        guides: ["Launch Communication Strategy"]
-      },
-      {
-        name: "Engagement",
-        key: "GENERATE TEST RIDES",
-        messaging: ["Invitation Email", "Follow-up SMS", "Social Media Campaign"],
-        guides: ["Customer Engagement Tactics", "Social Media Marketing Guide"]
-      },
-      {
-        name: "Experience",
-        key: "IN-STORE",
-        messaging: ["Welcome Message", "Feature Highlights", "Service Information"],
-        guides: ["Customer Experience Optimization", "Customer Service Excellence Guide"]
-      },
-      {
-        name: "Retention",
-        key: "FOLLOW-UP",
-        messaging: ["Thank You Email", "Feedback Request", "Special Offers"],
-        guides: ["Effective Follow-Up Strategies"]
-      },
-      {
-        name: "Advocacy",
-        key: "WELCOME",
-        messaging: ["Welcome Package", "Community Invitation", "Referral Program"],
-        guides: ["Customer Onboarding Process"]
-      }
-    ];
-    
-    return { phases };
-  }
-
-  // Helper methods for content generation
-  private static generateMessageTitle(stage: string, channel: string, brandName: string, adaptationPrompt: string): string {
-    const stageActions: Record<string, string[]> = {
-      'LAUNCH': ['Introduction', 'Announcement', 'Welcome'],
-      'GENERATE TEST RIDES': ['Invitation', 'Demo', 'Trial'],
-      'IN-STORE': ['Welcome', 'Feature', 'Service'],
-      'FOLLOW-UP': ['Thank You', 'Feedback', 'Follow-up'],
-      'WELCOME': ['Welcome', 'Onboarding', 'Getting Started']
-    };
-    
-    const actions = stageActions[stage] || ['Communication'];
-    const action = actions[Math.floor(Math.random() * actions.length)];
-    return `${brandName} ${action} ${channel}`;
-  }
-
-  private static generateMessageContent(stage: string, channel: string, brandName: string, adaptationPrompt: string, tone: string): string {
-    const toneStyles = {
-      'professional': 'formal and authoritative',
-      'friendly': 'warm and approachable',
-      'technical': 'detailed and precise',
-      'casual': 'relaxed and conversational'
-    };
-    
-    const baseContent = `Subject: ${brandName} - ${stage.toLowerCase().replace(/_/g, ' ')}\n\nDear Valued Customer,\n\nWe're excited to share news about ${brandName}. `;
-    
-    if (adaptationPrompt.toLowerCase().includes('sustainability')) {
-      return baseContent + `Our commitment to environmental responsibility drives everything we do. Join us in creating a more sustainable future.\n\nBest regards,\nThe ${brandName} Team`;
-    } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-      return baseContent + `Innovation and cutting-edge technology are at the heart of our solutions. Discover what's possible with ${brandName}.\n\nBest regards,\nThe ${brandName} Team`;
-    } else {
-      return baseContent + `We're dedicated to providing exceptional value and service. Experience the difference with ${brandName}.\n\nBest regards,\nThe ${brandName} Team`;
-    }
-  }
-
-  private static generateAssetTitle(description: string, brandName: string, adaptationPrompt: string): string {
-    const contextual = adaptationPrompt.toLowerCase().includes('sustainability') ? 'Sustainable' :
-                     adaptationPrompt.toLowerCase().includes('technology') ? 'Innovative' : 'Professional';
-    
-    return `${contextual} ${brandName} ${description.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}`;
-  }
-
-  private static adaptGuideTitle(originalTitle: string, brandName: string, adaptationPrompt: string): string {
-    return originalTitle.replace(/Brand/g, brandName);
-  }
-
-  private static generateGuideDescription(title: string, brandName: string, adaptationPrompt: string): string {
-    return `Comprehensive guide for ${title.toLowerCase()} specifically designed for ${brandName}.`;
-  }
-
-  private static getBrandProductName(adaptationPrompt: string, brandName: string): string {
-    if (adaptationPrompt.toLowerCase().includes('sustainability')) {
-      return `${brandName} Eco Solutions`;
-    } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-      return `${brandName} Tech Platform`;
-    } else if (adaptationPrompt.toLowerCase().includes('healthcare')) {
-      return `${brandName} Health Services`;
-    } else {
-      return `${brandName} Products`;
-    }
-  }
-
-  private static getMessageCategory(stage: string, channel: string): string {
-    const categories: Record<string, string> = {
-      'LAUNCH': 'Brand announcement',
-      'GENERATE TEST RIDES': 'Engagement invitation',
-      'IN-STORE': 'Experience enhancement',
-      'FOLLOW-UP': 'Relationship building',
-      'WELCOME': 'Customer onboarding'
-    };
-    
-    return categories[stage] || 'General communication';
-  }
-
-  private static getGuideCategory(adaptationPrompt: string): string {
-    if (adaptationPrompt.toLowerCase().includes('sustainability')) {
-      return 'Sustainability';
-    } else if (adaptationPrompt.toLowerCase().includes('technology')) {
-      return 'Technology';
-    } else if (adaptationPrompt.toLowerCase().includes('healthcare')) {
-      return 'Healthcare';
-    } else {
-      return 'General Business';
-    }
+export default ${options.brandCode}Strings;`;
   }
 }
-
-export default LocaleGenerator; 

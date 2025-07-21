@@ -23,15 +23,28 @@ const Messages: React.FC = () => {
   const { language } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const [modelFilter, setModelFilter] = useState<MotorcycleModel>(
-    (searchParams.get("model") as MotorcycleModel) || "ALL"
-  );
-  const [stageFilter, setStageFilter] = useState<ActionButtonType | "ALL">(
-    (searchParams.get("type") as ActionButtonType) || "ALL"
-  );
-  const [channelFilter, setChannelFilter] = useState<MessageChannel | "ALL">(
-    (searchParams.get("channel") as MessageChannel) || "ALL"
-  );
+  // Always initialize filter state from URL params
+  const getParam = (key: string, fallback: string) => searchParams.get(key) || fallback;
+  const [modelFilter, setModelFilter] = useState<MotorcycleModel>(getParam("model", "ALL") as MotorcycleModel);
+  const [stageFilter, setStageFilter] = useState<ActionButtonType | "ALL">(getParam("type", "ALL") as ActionButtonType | "ALL");
+  const [channelFilter, setChannelFilter] = useState<MessageChannel | "ALL">(getParam("channel", "ALL") as MessageChannel | "ALL");
+
+  // Sync filter state with URL params whenever they change
+  useEffect(() => {
+    const modelFromUrl = searchParams.get("model") as MotorcycleModel;
+    const typeFromUrl = searchParams.get("type") as ActionButtonType;
+    const channelFromUrl = searchParams.get("channel") as MessageChannel;
+
+    if (modelFromUrl !== null && modelFromUrl !== modelFilter) {
+      setModelFilter(modelFromUrl);
+    }
+    if (typeFromUrl !== null && typeFromUrl !== stageFilter) {
+      setStageFilter(typeFromUrl);
+    }
+    if (channelFromUrl !== null && channelFromUrl !== channelFilter) {
+      setChannelFilter(channelFromUrl);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     console.log('Language changed:', language);
@@ -48,31 +61,6 @@ const Messages: React.FC = () => {
 
     loadMessages();
   }, [language]);
-
-  console.log('Translations:', copy);
-
-  useEffect(() => {
-    const modelFromUrl = searchParams.get("model") as MotorcycleModel;
-    const typeFromUrl = searchParams.get("type") as ActionButtonType;
-    const channelFromUrl = searchParams.get("channel") as MessageChannel;
-
-    if (modelFromUrl && modelFromUrl !== modelFilter) {
-      setModelFilter(modelFromUrl);
-    }
-    if (typeFromUrl && typeFromUrl !== stageFilter) {
-      setStageFilter(typeFromUrl);
-    } else if (
-      !typeFromUrl &&
-      searchParams.has("type") &&
-      stageFilter !== "ALL"
-    ) {
-    } else if (!typeFromUrl && !searchParams.has("type")) {
-    }
-
-    if (channelFromUrl && channelFromUrl !== channelFilter) {
-      setChannelFilter(channelFromUrl);
-    }
-  }, [searchParams, modelFilter, stageFilter, channelFilter]);
 
   const modelOptions = useMemo(
     () =>
@@ -223,7 +211,6 @@ const Messages: React.FC = () => {
             <MessageCard
               key={message.id}
               message={message}
-              onUpdate={refetch}
             />
           ))}
         </div>

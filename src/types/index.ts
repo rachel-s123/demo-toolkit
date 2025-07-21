@@ -1,6 +1,6 @@
 export type TabType = 'HOME' | 'ASSETS' | 'MESSAGES' | 'GUIDES' | 'HELP' | 'BRAND_SETUP';
 
-export type ActionButtonType = 'LAUNCH' | 'GENERATE TEST RIDES' | 'IN-STORE' | 'FOLLOW-UP' | 'WELCOME';
+export type ActionButtonType = 'LAUNCH' | 'GENERATE TEST RIDES' | 'IN-STORE' | 'FOLLOW-UP' | 'WELCOME' | 'FOUNDATION' | 'EXPLORATION' | 'IMPLEMENTATION' | 'OPTIMIZATION' | 'MASTERY';
 
 export type AssetPhase = 'ALL' | 'PHASE 1' | 'PHASE 2';
 export type AssetType = 'ALL' | 'STATIC' | 'VIDEO';
@@ -102,4 +102,22 @@ export interface Config {
   guides: Guide[];
   journeySteps: JourneyStep[];
   filterOptions: FilterOptions;
+}
+export interface BrandAdaptationOptions {
+  // Required fields (existing)
+  brandName: string;
+  brandCode: string;
+  industry: string;
+  tone: 'professional' | 'friendly' | 'technical' | 'casual';
+  adaptationPrompt: string;
+  logoPath?: string;
+  
+  // New enhanced optional fields for richer content generation
+  targetAudience?: string;              // Description of ideal customers
+  keyBenefits?: string[];              // Main benefits of the solution
+  uniqueSellingPoints?: string[];       // What makes the brand unique
+  campaignGoals?: string[];            // Specific campaign objectives
+  competitorDifferentiators?: string[]; // How brand outperforms competitors
+  brandValues?: string[];              // Core values that guide the brand
+  productCategories?: string[];        // Main product/service categories
 }

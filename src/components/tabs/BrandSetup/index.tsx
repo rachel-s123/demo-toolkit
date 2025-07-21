@@ -53,11 +53,14 @@ const ArrayInput = ({
   onAddItem: (field: keyof BrandFormData) => void;
   onRemoveItem: (field: keyof BrandFormData, index: number) => void;
 }) => {
+  // Add null check for values
+  const safeValues = values || [""];
+  
   return (
     <div className="space-y-2">
       <label className="block text-sm font-medium text-gray-700">{label}</label>
       {helpText && <p className="text-xs text-gray-500">{helpText}</p>}
-      {values.map((value, index) => (
+      {safeValues.map((value, index) => (
         <div key={`${field}-${index}`} className="flex gap-2">
           <input
             type="text"
@@ -66,7 +69,7 @@ const ArrayInput = ({
             placeholder={placeholder}
             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
-          {values.length > 1 && (
+          {safeValues.length > 1 && (
             <button
               onClick={() => onRemoveItem(field, index)}
               className="p-2 text-red-500 hover:bg-red-50 rounded-lg"
@@ -181,7 +184,7 @@ export default function BrandSetup() {
   };
 
   const handleArrayInputChange = (field: keyof BrandFormData, index: number, value: string) => {
-    const array = formData[field] as string[];
+    const array = (formData[field] as string[]) || [""];
     const newArray = [...array];
     newArray[index] = value;
     setFormData((prev) => ({
@@ -191,7 +194,7 @@ export default function BrandSetup() {
   };
 
   const addArrayItem = (field: keyof BrandFormData) => {
-    const array = formData[field] as string[];
+    const array = (formData[field] as string[]) || [""];
     setFormData((prev) => ({
       ...prev,
       [field]: [...array, ""],
@@ -199,7 +202,7 @@ export default function BrandSetup() {
   };
 
   const removeArrayItem = (field: keyof BrandFormData, index: number) => {
-    const array = formData[field] as string[];
+    const array = (formData[field] as string[]) || [""];
     const newArray = array.filter((_, i) => i !== index);
     setFormData((prev) => ({
       ...prev,
