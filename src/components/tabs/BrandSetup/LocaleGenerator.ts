@@ -548,31 +548,76 @@ export default class LocaleGenerator {
   }
 
   /**
-   * Generate contextual messages based on industry and campaign goals
+   * Generate contextual messages based on campaign type and context
    */
   private static generateContextualMessages(
     options: BrandAdaptationOptions,
     profile: IndustryProfile
   ): any[] {
     const messages: any[] = [];
-    const { brandName, tone, campaignGoals = [] } = options;
+    const { brandName, tone, campaignGoals = [], campaignType, primaryGoal } = options;
     
-    // Generate messages for each journey stage
-    const stages = ['LAUNCH', 'GENERATE INTEREST', 'ENGAGEMENT', 'CONVERSION', 'RETENTION'];
+    // Get campaign template
+    const campaignTemplate = campaignTemplates[campaignType] || campaignTemplates['product-launch'];
     
-    stages.forEach(stage => {
-      // Generate multiple messages per stage across different channels
-      profile.channels.forEach(channel => {
+    // Generate messages based on campaign type
+    switch (campaignType) {
+      case 'product-launch':
+        return this.generateProductLaunchMessages(options, profile, campaignTemplate);
+      case 'internal-training':
+        return this.generateInternalTrainingMessages(options, profile, campaignTemplate);
+      case 'dealer-enablement':
+        return this.generateDealerEnablementMessages(options, profile, campaignTemplate);
+      case 'event-marketing':
+        return this.generateEventMarketingMessages(options, profile, campaignTemplate);
+      case 'compliance-training':
+        return this.generateComplianceTrainingMessages(options, profile, campaignTemplate);
+      case 'custom':
+        return this.generateCustomMessages(options, profile, campaignTemplate);
+      default:
+        return this.generateProductLaunchMessages(options, profile, campaignTemplate);
+    }
+  }
+
+  /**
+   * Generate product launch specific messages
+   */
+  private static generateProductLaunchMessages(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const messages: any[] = [];
+    const { brandName, tone, primaryGoal } = options;
+    
+    const stages = [
+      { key: 'LAUNCH', name: 'Launch', actions: ['Introducing', 'Announcing', 'Unveiling'] },
+      { key: 'AWARENESS', name: 'Awareness', actions: ['Discover', 'Learn About', 'Explore'] },
+      { key: 'INTEREST', name: 'Interest', actions: ['Engage With', 'Connect Through', 'Experience'] },
+      { key: 'CONSIDERATION', name: 'Consideration', actions: ['Evaluate', 'Compare', 'Assess'] },
+      { key: 'CONVERSION', name: 'Conversion', actions: ['Get Started', 'Choose', 'Purchase'] }
+    ];
+    
+    stages.forEach((stage, index) => {
+      campaignTemplate.messageTypes.forEach(messageType => {
         const message = {
-          id: `${options.brandCode}_${stage.toLowerCase().replace(' ', '_')}_${channel.toLowerCase()}`,
-          title: this.generateMessageTitle(stage, channel, brandName, profile),
-          content: this.generateMessageContent(stage, channel, brandName, profile, tone, campaignGoals),
-          channel: channel,
-          stage: stage,
+          id: `${options.brandCode}_${stage.key.toLowerCase()}_${messageType.toLowerCase().replace(/\s+/g, '_')}`,
+          title: `${stage.actions[0]} ${brandName}'s New Product - ${messageType}`,
+          content: this.generateProductLaunchContent(stage, messageType, brandName, tone, primaryGoal),
+          channel: this.mapMessageTypeToChannel(messageType),
+          stage: stage.key,
           model: brandName,
-          tags: this.generateMessageTags(stage, profile, campaignGoals),
-          personalization: this.generatePersonalizationOptions(stage, profile),
-          metrics: this.generateMessageMetrics(stage, profile),
+          tags: [stage.name.toLowerCase(), 'product-launch', primaryGoal.toLowerCase()],
+          personalization: {
+            audienceSegment: options.targetAudience,
+            contentTheme: 'product-launch',
+            primaryMetric: 'Sales Conversion'
+          },
+          metrics: {
+            expectedEngagement: 'high',
+            targetMetric: 'Sales Conversion',
+            channel: this.mapMessageTypeToChannel(messageType)
+          },
           isDemo: false
         };
         messages.push(message);
@@ -580,6 +625,410 @@ export default class LocaleGenerator {
     });
     
     return messages;
+  }
+
+  /**
+   * Generate internal training specific messages
+   */
+  private static generateInternalTrainingMessages(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const messages: any[] = [];
+    const { brandName, tone, primaryGoal } = options;
+    
+    const stages = [
+      { key: 'ASSESSMENT', name: 'Assessment', actions: ['Evaluate', 'Assess', 'Review'] },
+      { key: 'FOUNDATION', name: 'Foundation', actions: ['Build', 'Establish', 'Create'] },
+      { key: 'APPLICATION', name: 'Application', actions: ['Practice', 'Implement', 'Apply'] },
+      { key: 'MASTERY', name: 'Mastery', actions: ['Achieve', 'Master', 'Excel'] },
+      { key: 'LEADERSHIP', name: 'Leadership', actions: ['Share', 'Mentor', 'Guide'] }
+    ];
+    
+    stages.forEach((stage, index) => {
+      campaignTemplate.messageTypes.forEach(messageType => {
+        const message = {
+          id: `${options.brandCode}_${stage.key.toLowerCase()}_${messageType.toLowerCase().replace(/\s+/g, '_')}`,
+          title: `${stage.actions[0]} ${brandName} Training - ${messageType}`,
+          content: this.generateInternalTrainingContent(stage, messageType, brandName, tone, primaryGoal),
+          channel: this.mapMessageTypeToChannel(messageType),
+          stage: stage.key,
+          model: brandName,
+          tags: [stage.name.toLowerCase(), 'internal-training', primaryGoal.toLowerCase()],
+          personalization: {
+            audienceSegment: options.targetAudience,
+            contentTheme: 'skill-development',
+            primaryMetric: 'Skill Improvement'
+          },
+          metrics: {
+            expectedEngagement: 'medium',
+            targetMetric: 'Skill Improvement',
+            channel: this.mapMessageTypeToChannel(messageType)
+          },
+          isDemo: false
+        };
+        messages.push(message);
+      });
+    });
+    
+    return messages;
+  }
+
+  /**
+   * Generate dealer enablement specific messages
+   */
+  private static generateDealerEnablementMessages(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const messages: any[] = [];
+    const { brandName, tone, primaryGoal } = options;
+    
+    const stages = [
+      { key: 'ONBOARDING', name: 'Onboarding', actions: ['Welcome', 'Introduce', 'Familiarize'] },
+      { key: 'TRAINING', name: 'Training', actions: ['Train', 'Educate', 'Instruct'] },
+      { key: 'IMPLEMENTATION', name: 'Implementation', actions: ['Implement', 'Deploy', 'Execute'] },
+      { key: 'OPTIMIZATION', name: 'Optimization', actions: ['Optimize', 'Improve', 'Enhance'] },
+      { key: 'GROWTH', name: 'Growth', actions: ['Expand', 'Scale', 'Grow'] }
+    ];
+    
+    stages.forEach((stage, index) => {
+      campaignTemplate.messageTypes.forEach(messageType => {
+        const message = {
+          id: `${options.brandCode}_${stage.key.toLowerCase()}_${messageType.toLowerCase().replace(/\s+/g, '_')}`,
+          title: `${stage.actions[0]} ${brandName} Dealer Success - ${messageType}`,
+          content: this.generateDealerEnablementContent(stage, messageType, brandName, tone, primaryGoal),
+          channel: this.mapMessageTypeToChannel(messageType),
+          stage: stage.key,
+          model: brandName,
+          tags: [stage.name.toLowerCase(), 'dealer-enablement', primaryGoal.toLowerCase()],
+          personalization: {
+            audienceSegment: options.targetAudience,
+            contentTheme: 'dealer-success',
+            primaryMetric: 'Sales Performance'
+          },
+          metrics: {
+            expectedEngagement: 'high',
+            targetMetric: 'Sales Performance',
+            channel: this.mapMessageTypeToChannel(messageType)
+          },
+          isDemo: false
+        };
+        messages.push(message);
+      });
+    });
+    
+    return messages;
+  }
+
+  /**
+   * Generate event marketing specific messages
+   */
+  private static generateEventMarketingMessages(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const messages: any[] = [];
+    const { brandName, tone, primaryGoal } = options;
+    
+    const stages = [
+      { key: 'PROMOTION', name: 'Promotion', actions: ['Promote', 'Announce', 'Publicize'] },
+      { key: 'REGISTRATION', name: 'Registration', actions: ['Register', 'Sign Up', 'Join'] },
+      { key: 'PREPARATION', name: 'Preparation', actions: ['Prepare', 'Get Ready', 'Plan'] },
+      { key: 'EXECUTION', name: 'Execution', actions: ['Attend', 'Participate', 'Experience'] },
+      { key: 'FOLLOW_UP', name: 'Follow-up', actions: ['Follow Up', 'Continue', 'Maintain'] }
+    ];
+    
+    stages.forEach((stage, index) => {
+      campaignTemplate.messageTypes.forEach(messageType => {
+        const message = {
+          id: `${options.brandCode}_${stage.key.toLowerCase()}_${messageType.toLowerCase().replace(/\s+/g, '_')}`,
+          title: `${stage.actions[0]} ${brandName} Event - ${messageType}`,
+          content: this.generateEventMarketingContent(stage, messageType, brandName, tone, primaryGoal),
+          channel: this.mapMessageTypeToChannel(messageType),
+          stage: stage.key,
+          model: brandName,
+          tags: [stage.name.toLowerCase(), 'event-marketing', primaryGoal.toLowerCase()],
+          personalization: {
+            audienceSegment: options.targetAudience,
+            contentTheme: 'event-engagement',
+            primaryMetric: 'Event Attendance'
+          },
+          metrics: {
+            expectedEngagement: 'high',
+            targetMetric: 'Event Attendance',
+            channel: this.mapMessageTypeToChannel(messageType)
+          },
+          isDemo: false
+        };
+        messages.push(message);
+      });
+    });
+    
+    return messages;
+  }
+
+  /**
+   * Generate compliance training specific messages
+   */
+  private static generateComplianceTrainingMessages(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const messages: any[] = [];
+    const { brandName, tone, primaryGoal } = options;
+    
+    const stages = [
+      { key: 'ASSESSMENT', name: 'Assessment', actions: ['Assess', 'Evaluate', 'Review'] },
+      { key: 'EDUCATION', name: 'Education', actions: ['Educate', 'Train', 'Instruct'] },
+      { key: 'IMPLEMENTATION', name: 'Implementation', actions: ['Implement', 'Apply', 'Execute'] },
+      { key: 'MONITORING', name: 'Monitoring', actions: ['Monitor', 'Track', 'Oversee'] },
+      { key: 'CERTIFICATION', name: 'Certification', actions: ['Certify', 'Validate', 'Confirm'] }
+    ];
+    
+    stages.forEach((stage, index) => {
+      campaignTemplate.messageTypes.forEach(messageType => {
+        const message = {
+          id: `${options.brandCode}_${stage.key.toLowerCase()}_${messageType.toLowerCase().replace(/\s+/g, '_')}`,
+          title: `${stage.actions[0]} ${brandName} Compliance - ${messageType}`,
+          content: this.generateComplianceTrainingContent(stage, messageType, brandName, tone, primaryGoal),
+          channel: this.mapMessageTypeToChannel(messageType),
+          stage: stage.key,
+          model: brandName,
+          tags: [stage.name.toLowerCase(), 'compliance-training', primaryGoal.toLowerCase()],
+          personalization: {
+            audienceSegment: options.targetAudience,
+            contentTheme: 'compliance-education',
+            primaryMetric: 'Compliance Score'
+          },
+          metrics: {
+            expectedEngagement: 'medium',
+            targetMetric: 'Compliance Score',
+            channel: this.mapMessageTypeToChannel(messageType)
+          },
+          isDemo: false
+        };
+        messages.push(message);
+      });
+    });
+    
+    return messages;
+  }
+
+  /**
+   * Generate custom campaign messages
+   */
+  private static generateCustomMessages(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    // For custom campaigns, use a simplified approach with the primary goal
+    const messages: any[] = [];
+    const { brandName, tone, primaryGoal, customCampaignType } = options;
+    
+    const campaignType = customCampaignType || 'custom campaign';
+    
+    const message = {
+      id: `${options.brandCode}_custom_${campaignType.toLowerCase().replace(/\s+/g, '_')}`,
+      title: `${brandName} ${campaignType.charAt(0).toUpperCase() + campaignType.slice(1)} - Custom Message`,
+      content: `Subject: ${brandName} ${campaignType.charAt(0).toUpperCase() + campaignType.slice(1)}\n\nDear Valued Partner,\n\nWe're excited to share our ${campaignType} focused on ${primaryGoal.toLowerCase()}.\n\nThis initiative provides specialized tools and resources to help you achieve your objectives efficiently and effectively.\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe ${brandName} Team`,
+      channel: 'Email',
+      stage: 'CUSTOM',
+      model: brandName,
+      tags: [campaignType.toLowerCase(), 'custom', primaryGoal.toLowerCase()],
+      personalization: {
+        audienceSegment: options.targetAudience,
+        contentTheme: 'custom-initiative',
+        primaryMetric: 'Objective Achievement'
+      },
+      metrics: {
+        expectedEngagement: 'medium',
+        targetMetric: 'Objective Achievement',
+        channel: 'Email'
+      },
+      isDemo: false
+    };
+    
+    messages.push(message);
+    return messages;
+  }
+
+  /**
+   * Map message type to channel
+   */
+  private static mapMessageTypeToChannel(messageType: string): string {
+    const channelMap: Record<string, string> = {
+      'Social Posts': 'Social Media',
+      'Email Campaigns': 'Email',
+      'Landing Page Copy': 'Website',
+      'Press Releases': 'PR',
+      'Influencer Content': 'Social Media',
+      'Internal Emails': 'Email',
+      'Workshop Agendas': 'Internal',
+      'Progress Updates': 'Internal',
+      'Training Announcements': 'Email',
+      'Knowledge Sharing': 'Internal',
+      'Dealer Communications': 'Email',
+      'Sales Scripts': 'Sales',
+      'Marketing Campaigns': 'Marketing',
+      'Performance Reports': 'Internal',
+      'Best Practices': 'Internal',
+      'Event Promotions': 'Social Media',
+      'Registration Drives': 'Email',
+      'Pre-Event Communications': 'Email',
+      'Event Updates': 'Email',
+      'Post-Event Follow-up': 'Email',
+      'Policy Updates': 'Email',
+      'Compliance Reminders': 'Email',
+      'Certification Notifications': 'Email'
+    };
+    
+    return channelMap[messageType] || 'Email';
+  }
+
+  /**
+   * Generate product launch content
+   */
+  private static generateProductLaunchContent(
+    stage: any,
+    messageType: string,
+    brandName: string,
+    tone: string,
+    primaryGoal: string
+  ): string {
+    const greeting = this.getToneSpecificGreeting(tone);
+    
+    switch (stage.key) {
+      case 'LAUNCH':
+        return `Subject: ${brandName} Launches New Product\n\n${greeting}\n\nWe're excited to announce the launch of our new product! This ${messageType.toLowerCase()} will help you build awareness and generate excitement.\n\nOur goal: ${primaryGoal}\n\n[Learn More] [Get Started]\n\nBest regards,\nThe ${brandName} Team`;
+      case 'AWARENESS':
+        return `Subject: Discover ${brandName}'s New Product\n\n${greeting}\n\nLearn more about our innovative new product and how it can benefit you.\n\nOur goal: ${primaryGoal}\n\n[Discover More] [Request Demo]\n\nBest regards,\nThe ${brandName} Team`;
+      case 'INTEREST':
+        return `Subject: Experience ${brandName}'s New Product\n\n${greeting}\n\nReady to experience the benefits of our new product? This ${messageType.toLowerCase()} will help you engage with potential customers.\n\nOur goal: ${primaryGoal}\n\n[Experience Now] [Contact Sales]\n\nBest regards,\nThe ${brandName} Team`;
+      case 'CONSIDERATION':
+        return `Subject: Evaluate ${brandName}'s New Product\n\n${greeting}\n\nHelp prospects evaluate our new product with this comprehensive ${messageType.toLowerCase()}.\n\nOur goal: ${primaryGoal}\n\n[Compare Features] [Request Quote]\n\nBest regards,\nThe ${brandName} Team`;
+      case 'CONVERSION':
+        return `Subject: Get Started with ${brandName}'s New Product\n\n${greeting}\n\nReady to get started? This ${messageType.toLowerCase()} will help convert interest into sales.\n\nOur goal: ${primaryGoal}\n\n[Purchase Now] [Contact Sales]\n\nBest regards,\nThe ${brandName} Team`;
+      default:
+        return `Subject: ${brandName} Product Launch Update\n\n${greeting}\n\n${messageType} for our product launch campaign.\n\nOur goal: ${primaryGoal}\n\n[Learn More] [Contact Us]\n\nBest regards,\nThe ${brandName} Team`;
+    }
+  }
+
+  /**
+   * Generate internal training content
+   */
+  private static generateInternalTrainingContent(
+    stage: any,
+    messageType: string,
+    brandName: string,
+    tone: string,
+    primaryGoal: string
+  ): string {
+    const greeting = this.getToneSpecificGreeting(tone);
+    
+    switch (stage.key) {
+      case 'ASSESSMENT':
+        return `Subject: ${brandName} Training Assessment\n\n${greeting}\n\nLet's assess your current skill levels and identify areas for improvement.\n\nOur goal: ${primaryGoal}\n\n[Take Assessment] [View Results]\n\nBest regards,\nThe ${brandName} Training Team`;
+      case 'FOUNDATION':
+        return `Subject: ${brandName} Foundation Training\n\n${greeting}\n\nBuild your foundational knowledge with our comprehensive training program.\n\nOur goal: ${primaryGoal}\n\n[Start Training] [View Modules]\n\nBest regards,\nThe ${brandName} Training Team`;
+      case 'APPLICATION':
+        return `Subject: ${brandName} Practical Application\n\n${greeting}\n\nPractice and apply your new skills in real-world scenarios.\n\nOur goal: ${primaryGoal}\n\n[Practice Now] [Get Feedback]\n\nBest regards,\nThe ${brandName} Training Team`;
+      case 'MASTERY':
+        return `Subject: ${brandName} Skill Mastery\n\n${greeting}\n\nAchieve mastery and confidence in your new capabilities.\n\nOur goal: ${primaryGoal}\n\n[Test Skills] [Get Certified]\n\nBest regards,\nThe ${brandName} Training Team`;
+      case 'LEADERSHIP':
+        return `Subject: ${brandName} Knowledge Leadership\n\n${greeting}\n\nShare your knowledge and mentor others in the organization.\n\nOur goal: ${primaryGoal}\n\n[Share Knowledge] [Mentor Others]\n\nBest regards,\nThe ${brandName} Training Team`;
+      default:
+        return `Subject: ${brandName} Training Update\n\n${greeting}\n\n${messageType} for our training program.\n\nOur goal: ${primaryGoal}\n\n[Learn More] [Contact Training Team]\n\nBest regards,\nThe ${brandName} Training Team`;
+    }
+  }
+
+  /**
+   * Generate dealer enablement content
+   */
+  private static generateDealerEnablementContent(
+    stage: any,
+    messageType: string,
+    brandName: string,
+    tone: string,
+    primaryGoal: string
+  ): string {
+    const greeting = this.getToneSpecificGreeting(tone);
+    
+    switch (stage.key) {
+      case 'ONBOARDING':
+        return `Subject: Welcome to ${brandName} Dealer Network\n\n${greeting}\n\nWelcome to our dealer network! Let's get you started with everything you need to succeed.\n\nOur goal: ${primaryGoal}\n\n[Start Onboarding] [View Resources]\n\nBest regards,\nThe ${brandName} Dealer Team`;
+      case 'TRAINING':
+        return `Subject: ${brandName} Dealer Training\n\n${greeting}\n\nComprehensive training to help you effectively represent our brand and products.\n\nOur goal: ${primaryGoal}\n\n[Start Training] [Access Materials]\n\nBest regards,\nThe ${brandName} Dealer Team`;
+      case 'IMPLEMENTATION':
+        return `Subject: ${brandName} Implementation Support\n\n${greeting}\n\nGet the support you need to implement our strategies and processes.\n\nOur goal: ${primaryGoal}\n\n[Get Support] [View Guidelines]\n\nBest regards,\nThe ${brandName} Dealer Team`;
+      case 'OPTIMIZATION':
+        return `Subject: ${brandName} Performance Optimization\n\n${greeting}\n\nOptimize your performance and sales success with our proven strategies.\n\nOur goal: ${primaryGoal}\n\n[Optimize Performance] [View Analytics]\n\nBest regards,\nThe ${brandName} Dealer Team`;
+      case 'GROWTH':
+        return `Subject: ${brandName} Business Growth\n\n${greeting}\n\nScale and expand your business with our growth strategies and support.\n\nOur goal: ${primaryGoal}\n\n[Scale Business] [Growth Resources]\n\nBest regards,\nThe ${brandName} Dealer Team`;
+      default:
+        return `Subject: ${brandName} Dealer Update\n\n${greeting}\n\n${messageType} for our dealer enablement program.\n\nOur goal: ${primaryGoal}\n\n[Learn More] [Contact Dealer Team]\n\nBest regards,\nThe ${brandName} Dealer Team`;
+    }
+  }
+
+  /**
+   * Generate event marketing content
+   */
+  private static generateEventMarketingContent(
+    stage: any,
+    messageType: string,
+    brandName: string,
+    tone: string,
+    primaryGoal: string
+  ): string {
+    const greeting = this.getToneSpecificGreeting(tone);
+    
+    switch (stage.key) {
+      case 'PROMOTION':
+        return `Subject: ${brandName} Event Promotion\n\n${greeting}\n\nJoin us for an exciting event! Help us promote this special occasion.\n\nOur goal: ${primaryGoal}\n\n[Promote Event] [Share Details]\n\nBest regards,\nThe ${brandName} Events Team`;
+      case 'REGISTRATION':
+        return `Subject: Register for ${brandName} Event\n\n${greeting}\n\nSecure your spot at our upcoming event. Registration is now open!\n\nOur goal: ${primaryGoal}\n\n[Register Now] [View Agenda]\n\nBest regards,\nThe ${brandName} Events Team`;
+      case 'PREPARATION':
+        return `Subject: Prepare for ${brandName} Event\n\n${greeting}\n\nGet ready for our event! Here's everything you need to know.\n\nOur goal: ${primaryGoal}\n\n[View Details] [Download Materials]\n\nBest regards,\nThe ${brandName} Events Team`;
+      case 'EXECUTION':
+        return `Subject: ${brandName} Event is Here!\n\n${greeting}\n\nThe event is happening now! Join us for an amazing experience.\n\nOur goal: ${primaryGoal}\n\n[Join Event] [Live Stream]\n\nBest regards,\nThe ${brandName} Events Team`;
+      case 'FOLLOW_UP':
+        return `Subject: ${brandName} Event Follow-up\n\n${greeting}\n\nThank you for attending our event! Let's continue the conversation.\n\nOur goal: ${primaryGoal}\n\n[View Recap] [Stay Connected]\n\nBest regards,\nThe ${brandName} Events Team`;
+      default:
+        return `Subject: ${brandName} Event Update\n\n${greeting}\n\n${messageType} for our event marketing campaign.\n\nOur goal: ${primaryGoal}\n\n[Learn More] [Contact Events Team]\n\nBest regards,\nThe ${brandName} Events Team`;
+    }
+  }
+
+  /**
+   * Generate compliance training content
+   */
+  private static generateComplianceTrainingContent(
+    stage: any,
+    messageType: string,
+    brandName: string,
+    tone: string,
+    primaryGoal: string
+  ): string {
+    const greeting = this.getToneSpecificGreeting(tone);
+    
+    switch (stage.key) {
+      case 'ASSESSMENT':
+        return `Subject: ${brandName} Compliance Assessment\n\n${greeting}\n\nLet's assess your current compliance knowledge and identify gaps.\n\nOur goal: ${primaryGoal}\n\n[Take Assessment] [View Results]\n\nBest regards,\nThe ${brandName} Compliance Team`;
+      case 'EDUCATION':
+        return `Subject: ${brandName} Compliance Education\n\n${greeting}\n\nComprehensive training to ensure you understand all compliance requirements.\n\nOur goal: ${primaryGoal}\n\n[Start Training] [Access Materials]\n\nBest regards,\nThe ${brandName} Compliance Team`;
+      case 'IMPLEMENTATION':
+        return `Subject: ${brandName} Compliance Implementation\n\n${greeting}\n\nApply compliance requirements in your daily work and processes.\n\nOur goal: ${primaryGoal}\n\n[Implement Now] [Get Support]\n\nBest regards,\nThe ${brandName} Compliance Team`;
+      case 'MONITORING':
+        return `Subject: ${brandName} Compliance Monitoring\n\n${greeting}\n\nTrack your compliance progress and maintain standards.\n\nOur goal: ${primaryGoal}\n\n[View Progress] [Track Metrics]\n\nBest regards,\nThe ${brandName} Compliance Team`;
+      case 'CERTIFICATION':
+        return `Subject: ${brandName} Compliance Certification\n\n${greeting}\n\nValidate your compliance knowledge and maintain certification.\n\nOur goal: ${primaryGoal}\n\n[Get Certified] [Renew Certification]\n\nBest regards,\nThe ${brandName} Compliance Team`;
+      default:
+        return `Subject: ${brandName} Compliance Update\n\n${greeting}\n\n${messageType} for our compliance training program.\n\nOur goal: ${primaryGoal}\n\n[Learn More] [Contact Compliance Team]\n\nBest regards,\nThe ${brandName} Compliance Team`;
+    }
   }
 
   /**
@@ -889,46 +1338,124 @@ export default class LocaleGenerator {
     options: BrandAdaptationOptions,
     profile: IndustryProfile
   ): any[] {
-    const guides: any[] = [];
-    const { brandName, brandCode } = options;
+    const { brandName, brandCode, campaignType, primaryGoal } = options;
     
-    // Generate guides for each pain point
-    profile.painPoints.forEach((painPoint, index) => {
+    // Get campaign template
+    const campaignTemplate = campaignTemplates[campaignType] || campaignTemplates['product-launch'];
+    
+    // Generate guides based on campaign type
+    switch (campaignType) {
+      case 'product-launch':
+        return this.generateProductLaunchGuides(options, profile, campaignTemplate);
+      case 'internal-training':
+        return this.generateInternalTrainingGuides(options, profile, campaignTemplate);
+      case 'dealer-enablement':
+        return this.generateDealerEnablementGuides(options, profile, campaignTemplate);
+      case 'event-marketing':
+        return this.generateEventMarketingGuides(options, profile, campaignTemplate);
+      case 'compliance-training':
+        return this.generateComplianceTrainingGuides(options, profile, campaignTemplate);
+      case 'custom':
+        return this.generateCustomGuides(options, profile, campaignTemplate);
+      default:
+        return this.generateProductLaunchGuides(options, profile, campaignTemplate);
+    }
+  }
+
+  /**
+   * Generate product launch specific guides
+   */
+  private static generateProductLaunchGuides(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const guides: any[] = [];
+    const { brandName, brandCode, primaryGoal } = options;
+    
+    campaignTemplate.guideTypes.forEach((guideType, index) => {
       const guide = {
-        id: `${brandCode}_guide_${index + 1}`,
-        title: `${brandName}'s Guide to ${painPoint}`,
-        description: `Comprehensive strategies for addressing ${painPoint.toLowerCase()} in your ${profile.terminology.facility}`,
-        stage: this.mapPainPointToStage(painPoint),
+        id: `${brandCode}_product_launch_guide_${index + 1}`,
+        title: `${brandName} ${guideType}`,
+        description: `Comprehensive ${guideType.toLowerCase()} for successful product launch`,
+        stage: 'LAUNCH',
         model: brandName,
-        category: 'Strategic Guide',
-        sections: this.generateGuideSections(painPoint, profile),
-        estimatedReadTime: '10-15 minutes',
+        category: 'Product Launch Guide',
+        sections: [
+          {
+            title: 'Launch Strategy',
+            content: `Strategic approach to launching ${brandName}'s new product`
+          },
+          {
+            title: 'Market Preparation',
+            content: `Preparing the market for your product launch`
+          },
+          {
+            title: 'Execution Plan',
+            content: `Step-by-step execution plan for launch day`
+          },
+          {
+            title: 'Success Metrics',
+            content: `Key metrics to track launch success`
+          }
+        ],
+        estimatedReadTime: '15-20 minutes',
         downloadFormat: 'PDF',
         lastUpdated: new Date().toISOString(),
         metrics: {
           expectedImpact: 'high',
-          implementationTime: '30-60 days'
+          implementationTime: '30-45 days'
         },
         isDemo: false
       };
       guides.push(guide);
     });
     
-    // Add solution-specific guides
-    profile.solutions.slice(0, 3).forEach((solution, index) => {
+    return guides;
+  }
+
+  /**
+   * Generate internal training specific guides
+   */
+  private static generateInternalTrainingGuides(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const guides: any[] = [];
+    const { brandName, brandCode, primaryGoal } = options;
+    
+    campaignTemplate.guideTypes.forEach((guideType, index) => {
       const guide = {
-        id: `${brandCode}_solution_guide_${index + 1}`,
-        title: `Implementing ${solution} with ${brandName}`,
-        description: `Step-by-step guide to ${solution.toLowerCase()} implementation`,
-        stage: 'IMPLEMENTATION',
+        id: `${brandCode}_training_guide_${index + 1}`,
+        title: `${brandName} ${guideType}`,
+        description: `Comprehensive ${guideType.toLowerCase()} for effective team training`,
+        stage: 'FOUNDATION',
         model: brandName,
-        category: 'Implementation Guide',
-        sections: this.generateSolutionGuideSections(solution, profile),
-        estimatedReadTime: '20-30 minutes',
+        category: 'Training Guide',
+        sections: [
+          {
+            title: 'Training Assessment',
+            content: `Assessing current skill levels and training needs`
+          },
+          {
+            title: 'Curriculum Design',
+            content: `Designing effective training curriculum and materials`
+          },
+          {
+            title: 'Delivery Methods',
+            content: `Best practices for delivering training content`
+          },
+          {
+            title: 'Evaluation & Feedback',
+            content: `Measuring training effectiveness and gathering feedback`
+          }
+        ],
+        estimatedReadTime: '20-25 minutes',
         downloadFormat: 'PDF',
         lastUpdated: new Date().toISOString(),
         metrics: {
-          expectedImpact: 'very high',
+          expectedImpact: 'medium',
           implementationTime: '60-90 days'
         },
         isDemo: false
@@ -936,6 +1463,214 @@ export default class LocaleGenerator {
       guides.push(guide);
     });
     
+    return guides;
+  }
+
+  /**
+   * Generate dealer enablement specific guides
+   */
+  private static generateDealerEnablementGuides(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const guides: any[] = [];
+    const { brandName, brandCode, primaryGoal } = options;
+    
+    campaignTemplate.guideTypes.forEach((guideType, index) => {
+      const guide = {
+        id: `${brandCode}_dealer_guide_${index + 1}`,
+        title: `${brandName} ${guideType}`,
+        description: `Comprehensive ${guideType.toLowerCase()} for dealer success`,
+        stage: 'ONBOARDING',
+        model: brandName,
+        category: 'Dealer Guide',
+        sections: [
+          {
+            title: 'Dealer Onboarding',
+            content: `Comprehensive onboarding process for new dealers`
+          },
+          {
+            title: 'Product Knowledge',
+            content: `Essential product knowledge and training materials`
+          },
+          {
+            title: 'Sales Enablement',
+            content: `Tools and strategies for successful sales`
+          },
+          {
+            title: 'Performance Optimization',
+            content: `Optimizing dealer performance and success metrics`
+          }
+        ],
+        estimatedReadTime: '25-30 minutes',
+        downloadFormat: 'PDF',
+        lastUpdated: new Date().toISOString(),
+        metrics: {
+          expectedImpact: 'high',
+          implementationTime: '45-60 days'
+        },
+        isDemo: false
+      };
+      guides.push(guide);
+    });
+    
+    return guides;
+  }
+
+  /**
+   * Generate event marketing specific guides
+   */
+  private static generateEventMarketingGuides(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const guides: any[] = [];
+    const { brandName, brandCode, primaryGoal } = options;
+    
+    campaignTemplate.guideTypes.forEach((guideType, index) => {
+      const guide = {
+        id: `${brandCode}_event_guide_${index + 1}`,
+        title: `${brandName} ${guideType}`,
+        description: `Comprehensive ${guideType.toLowerCase()} for successful events`,
+        stage: 'PROMOTION',
+        model: brandName,
+        category: 'Event Guide',
+        sections: [
+          {
+            title: 'Event Planning',
+            content: `Strategic planning for successful event execution`
+          },
+          {
+            title: 'Promotion Strategy',
+            content: `Effective promotion and marketing strategies`
+          },
+          {
+            title: 'Attendee Engagement',
+            content: `Engaging attendees before, during, and after events`
+          },
+          {
+            title: 'Post-Event Marketing',
+            content: `Leveraging event success for continued engagement`
+          }
+        ],
+        estimatedReadTime: '15-20 minutes',
+        downloadFormat: 'PDF',
+        lastUpdated: new Date().toISOString(),
+        metrics: {
+          expectedImpact: 'high',
+          implementationTime: '30-45 days'
+        },
+        isDemo: false
+      };
+      guides.push(guide);
+    });
+    
+    return guides;
+  }
+
+  /**
+   * Generate compliance training specific guides
+   */
+  private static generateComplianceTrainingGuides(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const guides: any[] = [];
+    const { brandName, brandCode, primaryGoal } = options;
+    
+    campaignTemplate.guideTypes.forEach((guideType, index) => {
+      const guide = {
+        id: `${brandCode}_compliance_guide_${index + 1}`,
+        title: `${brandName} ${guideType}`,
+        description: `Comprehensive ${guideType.toLowerCase()} for compliance training`,
+        stage: 'ASSESSMENT',
+        model: brandName,
+        category: 'Compliance Guide',
+        sections: [
+          {
+            title: 'Compliance Assessment',
+            content: `Assessing current compliance knowledge and gaps`
+          },
+          {
+            title: 'Training Implementation',
+            content: `Implementing effective compliance training programs`
+          },
+          {
+            title: 'Policy Communication',
+            content: `Communicating policies and procedures effectively`
+          },
+          {
+            title: 'Audit Preparation',
+            content: `Preparing for compliance audits and assessments`
+          }
+        ],
+        estimatedReadTime: '20-25 minutes',
+        downloadFormat: 'PDF',
+        lastUpdated: new Date().toISOString(),
+        metrics: {
+          expectedImpact: 'medium',
+          implementationTime: '60-90 days'
+        },
+        isDemo: false
+      };
+      guides.push(guide);
+    });
+    
+    return guides;
+  }
+
+  /**
+   * Generate custom campaign guides
+   */
+  private static generateCustomGuides(
+    options: BrandAdaptationOptions,
+    profile: IndustryProfile,
+    campaignTemplate: CampaignTemplate
+  ): any[] {
+    const guides: any[] = [];
+    const { brandName, brandCode, primaryGoal, customCampaignType } = options;
+    
+    const campaignType = customCampaignType || 'custom campaign';
+    
+    const guide = {
+      id: `${brandCode}_custom_guide_1`,
+      title: `${brandName} ${campaignType.charAt(0).toUpperCase() + campaignType.slice(1)} Guide`,
+      description: `Comprehensive guide for ${campaignType} focused on ${primaryGoal.toLowerCase()}`,
+      stage: 'CUSTOM',
+      model: brandName,
+      category: 'Custom Guide',
+      sections: [
+        {
+          title: 'Campaign Overview',
+          content: `Overview of the ${campaignType} and its objectives`
+        },
+        {
+          title: 'Implementation Strategy',
+          content: `Strategic approach to implementing the campaign`
+        },
+        {
+          title: 'Success Metrics',
+          content: `Key metrics to track campaign success`
+        },
+        {
+          title: 'Best Practices',
+          content: `Best practices for campaign execution`
+        }
+      ],
+      estimatedReadTime: '15-20 minutes',
+      downloadFormat: 'PDF',
+      lastUpdated: new Date().toISOString(),
+      metrics: {
+        expectedImpact: 'medium',
+        implementationTime: '45-60 days'
+      },
+      isDemo: false
+    };
+    
+    guides.push(guide);
     return guides;
   }
 
