@@ -68,6 +68,9 @@ npm install
 Create a `.env` file in the root directory:
 
 ```env
+# OpenAI API Configuration (Required for LLM-powered content generation)
+VITE_OPENAI_API_KEY=your_openai_api_key_here
+
 # Upstash Redis Configuration
 KV_REST_API_URL=your_upstash_redis_url
 KV_REST_API_TOKEN=your_upstash_redis_token
@@ -81,6 +84,8 @@ VITE_API_URL=https://your-api-server.com
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_ANON_KEY=your_anon_key
 ```
+
+**Note**: Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
 ### Development
 

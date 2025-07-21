@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Button from "../../ui/Button";
 import Card from "../../ui/Card";
-import LocaleGenerator, { BrandAdaptationOptions } from "./LocaleGenerator";
+import { LLMGenerator, BrandFormData as LLMBrandFormData } from '../../../services/llmGenerator';
 import { useLanguage } from "../../../context/LanguageContext";
-import { useConfig } from "../../../hooks/useConfig";
-import { languages } from "../../../locales";
 import { Plus, X, ChevronDown, ChevronUp } from "lucide-react";
 
 export interface BrandFormData {
@@ -134,7 +132,6 @@ const CollapsibleSection = ({
 
 export default function BrandSetup() {
   const { language } = useLanguage();
-  const { config } = useConfig();
   const [formData, setFormData] = useState<BrandFormData>({
     brandName: "",
     brandCode: "",
@@ -246,8 +243,7 @@ export default function BrandSetup() {
 
     try {
       console.log("Getting base site copy...");
-      const baseSiteCopy = languages.en_template;
-      console.log("Base site copy loaded:", baseSiteCopy);
+
       
       console.log("Fetching config template...");
       const baseConfigResponse = await fetch("/locales/config_en_template.json");
@@ -258,8 +254,7 @@ export default function BrandSetup() {
       }
 
       console.log("Config template fetched successfully");
-      const baseConfigContent = await baseConfigResponse.json();
-      console.log("Base config content:", baseConfigContent);
+      
 
       let logoPath = formData.logoPath;
       if (formData.icon) {
@@ -270,45 +265,54 @@ export default function BrandSetup() {
       const cleanArrayField = (arr: string[]) => arr.filter(item => item.trim() !== "");
 
       console.log("Creating adaptation options...");
-      const adaptationOptions: BrandAdaptationOptions = {
-        brandName: formData.brandName,
-        brandCode: formData.brandCode,
-        adaptationPrompt: formData.adaptationPrompt,
-        industry: formData.industry,
-        tone: formData.tone,
-        logoPath,
-        
-        // Campaign Context (NEW)
-        campaignType: formData.campaignType,
-        targetAudience: formData.targetAudience,
-        primaryGoal: formData.primaryGoal,
-        keyDeliverables: cleanArrayField(formData.keyDeliverables),
-        customCampaignType: formData.customCampaignType,
-        customTargetAudience: formData.customTargetAudience,
-        
-        // Enhanced options
-        targetAudienceDescription: formData.targetAudienceDescription,
-        keyBenefits: cleanArrayField(formData.keyBenefits),
-        uniqueSellingPoints: cleanArrayField(formData.uniqueSellingPoints),
-        campaignGoals: cleanArrayField(formData.campaignGoals),
-        competitorDifferentiators: cleanArrayField(formData.competitorDifferentiators),
-        brandValues: cleanArrayField(formData.brandValues),
-        productCategories: cleanArrayField(formData.productCategories)
-      };
+                  const llmFormData: LLMBrandFormData = {
+              brandName: formData.brandName,
+              brandCode: formData.brandCode,
+              adaptationPrompt: formData.adaptationPrompt,
+              industry: formData.industry,
+              tone: formData.tone,
+              logoPath,
+              
+              // Campaign Context
+              campaignType: formData.campaignType,
+              targetAudience: formData.targetAudience,
+              primaryGoal: formData.primaryGoal,
+              keyDeliverables: cleanArrayField(formData.keyDeliverables),
+              customCampaignType: formData.customCampaignType,
+              customTargetAudience: formData.customTargetAudience,
+              
+              // Enhanced options
+              targetAudienceDescription: formData.targetAudienceDescription,
+              keyBenefits: cleanArrayField(formData.keyBenefits),
+              uniqueSellingPoints: cleanArrayField(formData.uniqueSellingPoints),
+              campaignGoals: cleanArrayField(formData.campaignGoals),
+              competitorDifferentiators: cleanArrayField(formData.competitorDifferentiators),
+              brandValues: cleanArrayField(formData.brandValues),
+              productCategories: cleanArrayField(formData.productCategories)
+            };
 
-      console.log("Calling LocaleGenerator.generateBrandFiles...");
-      const generatedFiles = await LocaleGenerator.generateBrandFiles(
-        baseSiteCopy,
-        baseConfigContent,
-        adaptationOptions
-      );
+      console.log("Calling LLMGenerator.generateBrandFiles...");
+      const generatedFiles = await LLMGenerator.generateBrandFiles(llmFormData);
       console.log("Generated files:", generatedFiles);
 
       console.log("Generating installation instructions...");
-      const installationInstructions = LocaleGenerator.generateInstallationInstructions(
-        formData.brandName,
-        formData.brandCode
-      );
+      const installationInstructions = `# ${formData.brandName} Setup Instructions
+
+## Files Generated
+1. \`${formData.brandCode}.ts\` - Brand locale file
+2. \`config_${formData.brandCode}.json\` - Brand configuration file
+
+## Installation Steps
+1. Copy \`${formData.brandCode}.ts\` to \`src/locales/\`
+2. Copy \`config_${formData.brandCode}.json\` to \`public/locales/\`
+3. Update \`src/locales/index.ts\` to include the new brand
+4. Update \`src/components/layout/Header.tsx\` to add the brand to the dropdown
+5. Add your logo to \`public/assets/logos/\`
+
+## Next Steps
+- Customize the generated content as needed
+- Test the brand configuration
+- Deploy your changes`;
 
       console.log("Setting generated content...");
       setGeneratedContent({
