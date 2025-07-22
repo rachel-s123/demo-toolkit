@@ -426,15 +426,38 @@ export default function BrandSetup() {
       const result = await response.json();
 
       if (response.ok && result.success) {
-        let message = `Successfully uploaded ${result.summary.successful} files to backend!`;
+        let message = `Successfully processed ${result.summary.successful} files!`;
         
         // Add brand setup information if available
         if (result.brandSetup) {
           if (result.brandSetup.success) {
             message += ` ${result.brandSetup.message}`;
           } else {
-            message += ` Files uploaded, but brand setup had issues: ${result.brandSetup.message}`;
+            message += ` Files processed, but brand setup had issues: ${result.brandSetup.message}`;
           }
+        }
+        
+        // In production, download the files since they can't be saved server-side
+        if (result.results && result.results.length > 0) {
+          result.results.forEach((fileResult: any) => {
+            if (fileResult.success && fileResult.content) {
+              // Create and download the file
+              const blob = fileResult.isBinary 
+                ? new Blob([Uint8Array.from(atob(fileResult.content), c => c.charCodeAt(0))], { type: fileResult.mimeType })
+                : new Blob([fileResult.content], { type: 'text/plain' });
+              
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = fileResult.filename;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }
+          });
+          
+          message += ` Files have been downloaded to your device.`;
         }
         
         setUploadResult({
