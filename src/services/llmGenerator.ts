@@ -296,6 +296,272 @@ CHANGE ONLY THE VALUES:
 - Analytics and measurement
 - Brand voice guidelines`;
 
+    const templateExamples = `**EXACT TEMPLATE STRUCTURE EXAMPLES**:
+
+**TYPESCRIPT TEMPLATE STRUCTURE**:
+\`\`\`typescript
+import { SiteCopy } from '../types/siteCopy';
+
+const brandStrings: SiteCopy = {
+  home: {
+    mainTitle: "BMW Motorrad R Series Dealership Toolkit",
+    welcomeLead: "Welcome to your digital toolkit for the successful launch and retail activation of the all-new BMW R Series.",
+    helpYouIntro: "This toolkit is here to help you:",
+    helpYouList: [
+      "Engage and nurture leads",
+      "Maximise test ride and sales conversions",
+      "Deliver consistent messaging across all marketing touchpoints",
+    ],
+    quickReferenceIntro: "You'll find quick-reference guides covering every key stage of the campaign:",
+    quickReferenceList: [
+      "Retail launch communication strategy",
+      "Filming and editing walkaround videos",
+      "Creating high-impact social clips",
+      "Generating and converting test rides",
+      "In-store customer communication tips",
+      "Post-visit follow-up tactics",
+      "New owner welcome steps",
+    ],
+    guidesDescription: "Each guide includes clear instructions, practical tips, and messaging templates you can use as-is or tailor to your dealership's needs.",
+    journeyTitle: "Customer Journey",
+    journeySubtitle: "Click any stage to view messages",
+    journeySteps: {
+      launch: {
+        title: "Launch",
+        description: "Initial campaign launch and awareness building"
+      },
+      generateTestRides: {
+        title: "Generate Test Rides",
+        description: "Convert interest into test ride bookings"
+      },
+      inStore: {
+        title: "In-Store",
+        description: "Dealership experience and product showcase"
+      },
+      followUp: {
+        title: "Follow-Up",
+        description: "Post-purchase communication and satisfaction"
+      },
+      welcome: {
+        title: "Welcome",
+        description: "Onboarding new owners to the BMW family"
+      }
+    }
+  },
+  assets: {
+    title: "Assets Bank",
+    introParagraph1: "Welcome to the central hub for all campaign photography and video assets for the BMW R 1300 RT, R 1300 R, and R 1300 RS launch.",
+    aboutContentHeading: "About the Content",
+    aboutContentP1: "You can browse and download visual assets by model, content type, and campaign phase.",
+    phase1LeadIn: "<strong>Phase 1 assets (available now):</strong>",
+    phase1Details: "Includes AI-generated background imagery and CGI video assets created to support your early launch communications.",
+    phase2LeadIn: "<strong>Phase 2 assets (coming soon):</strong>",
+    phase2Details: "High-quality photography and video from the official BMW Motorrad shoot will be available from 29 July 2025.",
+    filterHeading: "Filter Assets by:",
+  },
+  messages: {
+    title: "Messages",
+    introParagraph1: "All messaging here is designed as a starting point for you to communicate the unique features and key messages of these models consistently across your marketing touch points.",
+    introParagraph2: "It's all flexible, editable, and made to be tailored by your dealership. Use these templates as-is or tweak the tone, language, and details to suit your customers and your style.",
+    filterHeading: "Filter Messages by:",
+  },
+  guides: {
+    title: "Guides",
+    introParagraph1: "",
+    introParagraph2: "",
+    filterHeading: "Filter Guides by:",
+    availableGuidesTitle: "Available Guides",
+    guideContentTitle: "Guide Content",
+    selectGuideMessage: "Select a guide to view its content."
+  },
+  help: {
+    title: "Help & Support",
+    sections: [
+      {
+        heading: "How to Use This Toolkit",
+        content: [
+          "<strong>Browse by topic:</strong> Each guide is self-contained and accessible from the main menu.",
+          "<strong>Take action:</strong> Use the checklists and templates to start implementing activities immediately.",
+          "<strong>Share with your team:</strong> These resources are designed to be collaborative and can be used across sales, marketing, and service teams.",
+          "Whether you're preparing in-store materials, posting on social, or hosting test rides, this toolkit helps make every customer interaction count."
+        ]
+      },
+      {
+        heading: "Need Help?",
+        content: [
+          "If you have any questions or need support during the campaign, please get in touch with your BMW marketing contact.",
+          "We're here to support you every step of the way — now let's make this launch unforgettable."
+        ]
+      }
+    ],
+  },
+  navigation: {
+    homeTab: "Home",
+    assetsTab: "Assets",
+    messagesTab: "Messages",
+    guidesTab: "Guides",
+    helpTab: "Help",
+  },
+};
+
+export default brandStrings;
+\`\`\`
+
+**JSON CONFIG TEMPLATE STRUCTURE** (showing key sections):
+\`\`\`json
+{
+  "isDemo": true,
+  "demoNotice": "These are demo assets using placeholder images. Replace with actual BMW marketing materials.",
+  "lastUpdated": "2025-06-03T06:06:20.361Z",
+  "assets": [
+    {
+      "id": "phase1_10",
+      "title": "Side On",
+      "phase": "PHASE 1",
+      "type": "STATIC",
+      "model": "R1300 RS",
+      "description": "side-on",
+      "textOverlay": "no-text",
+      "orientation": "landscape",
+      "dimensions": "4096x2840",
+      "fileExtension": ".jpg",
+      "originalFileName": "DI25_000256951.tif",
+      "newAssetName": "Phase1_Static_R1300RS_side-on_no-text_landscape_4096x2840.jpg",
+      "thumbnail": "/assets/images/Phase1_Static_R1300RS_side-on_no-text_landscape_4096x2840.jpg",
+      "url": "/assets/images/Phase1_Static_R1300RS_side-on_no-text_landscape_4096x2840.jpg",
+      "isDemo": false
+    }
+  ],
+  "contentOutline": {
+    "phases": [
+      {
+        "name": "Launch",
+        "key": "LAUNCH",
+        "messaging": [
+          "Pre-Launch Teaser WhatsApp",
+          "Launch Announcement Email",
+          "Instagram & Facebook Launch Post",
+          "Social Media Ad Copy"
+        ],
+        "guides": [
+          "Launch Communication Strategy"
+        ]
+      },
+      {
+        "name": "Generate Test Rides",
+        "key": "GENERATE TEST RIDES",
+        "messaging": [
+          "Test Ride Invitation WhatsApp/SMS & Email",
+          "Test Ride Booking Confirmation SMS",
+          "Test Ride Event Invitation (Email)",
+          "Test Ride Reminder Email",
+          "Book a Test Ride Social Post (Instagram & Facebook)"
+        ],
+        "guides": [
+          "DIY Video Walkaround Filming Guide",
+          "Social Media Clip Editing Guide",
+          "Test Ride Generation Guide"
+        ]
+      },
+      {
+        "name": "In-Store",
+        "key": "IN-STORE",
+        "messaging": [
+          "In-Store Feature Poster Copy",
+          "Key Features Talking Points Script",
+          "Digital Screen Copy"
+        ],
+        "guides": [
+          "In-Store Comms Guide"
+        ]
+      },
+      {
+        "name": "Follow-Up",
+        "key": "FOLLOW-UP",
+        "messaging": [
+          "Financing Options Email",
+          "Post-Test Ride Follow-Up Email",
+          "Special Offer Follow-Up Email",
+          "Phone Follow-Up Script",
+          "Waitlist Update Communication"
+        ],
+        "guides": [
+          "Effective Follow-Up Strategies"
+        ]
+      },
+      {
+        "name": "Welcome",
+        "key": "WELCOME",
+        "messaging": [
+          "New Owner Welcome Email",
+          "New Owner Welcome SMS",
+          "Accessory Promotion Email",
+          "In-Store Delivery Email & SMS/WhatsApp"
+        ],
+        "guides": [
+          "New Owner Welcome Process"
+        ]
+      }
+    ]
+  },
+  "messages": [
+    {
+      "id": "R1300R_LAUNCH_EMAIL_001",
+      "title": "Launch Announcement Email",
+      "content": "Subject: The new BMW R 1300 R just landed\\n\\nDear [Name],\\n\\nThe genie is out of the bottle. The all-new BMW R 1300 R has arrived - a versatile naked bike that adapts to your every desire.\\n\\nWith its powerful 1300cc Boxer engine delivering 145hp of pure excitement, this isn't just another motorcycle. It's sexy versatility personified. Sharp design meets dynamic performance, creating a bike that's sportier than ever yet suitable for any occasion.\\n\\nKey highlights:\\n- Lighter than before at just 239kg\\n- Dynamic ESA suspension as standard\\n- Keyless Ride for ultimate convenience\\n- Sport-focused ergonomics with comfort options\\n\\nBe among the first to experience the R 1300 R. Book your exclusive preview today.\\n\\n**[Reserve Your Test Ride]**\\n\\nYour BMW Motorrad Team",
+      "channel": "Email",
+      "type": "LAUNCH",
+      "model": "R1300 R",
+      "date": "2025-05-27",
+      "isDemo": false,
+      "category": "Launch announcement"
+    }
+  ],
+  "guides": [
+    {
+      "id": "launch-communication-strategy",
+      "title": "🚀 Launch Communication Guide",
+      "type": "LAUNCH",
+      "model": "R1300 R",
+      "thumbnail": "/assets/images/guides/launch-strategy-thumb.jpg",
+      "url": "/guides/launch-communication-strategy.pdf",
+      "isDemo": false,
+      "category": "Launch Communication Strategy",
+      "contentLastModified": "2025-06-02T14:22:15.561Z",
+      "content": "# 🚀 Launch Communication Strategy Guide\\n\\n**For**: R 1300 RT (KA3), R 1300 R (KA4), R 1300 RS (KA5)\\n\\n---\\n\\n## 🎯 Purpose\\n\\nHelp your dealership turn warm leads into customers by building launch excitement, tailoring comms by model, and driving actions like test rides and showroom visits."
+    }
+  ],
+  "filterOptions": {
+    "phases": ["ALL", "LAUNCH", "GENERATE TEST RIDES", "IN-STORE", "FOLLOW-UP", "WELCOME"],
+    "types": ["ALL", "STATIC", "VIDEO", "INTERACTIVE"],
+    "models": ["ALL", "R1300 RT", "R1300 R", "R1300 RS"],
+    "channels": ["ALL", "Email", "WhatsApp", "SMS", "Facebook", "Instagram", "Social", "Print", "Digital", "In-Store", "Phone"],
+    "actionTypes": ["ALL", "LAUNCH", "GENERATE TEST RIDES", "IN-STORE", "FOLLOW-UP", "WELCOME"]
+  },
+  "metadata": {
+    "lastModified": "2025-06-03T06:06:20.361Z",
+    "modifiedBy": "BMW Motorrad",
+    "version": "1.0.0",
+    "source": "BMW Motorrad R Series Campaign"
+  },
+  "pathConfig": {
+    "environments": {
+      "development": "/locales/",
+      "staging": "/locales/",
+      "production": "/locales/",
+      "cdn": "https://cdn.example.com/locales/"
+    }
+  }
+}
+\`\`\`
+
+**CRITICAL STRUCTURE NOTES**:
+1. **TypeScript file**: Must follow the exact SiteCopy interface structure
+2. **JSON file**: Must include all top-level keys and maintain exact nested structure
+3. **ContentOutline.phases**: Must have exactly 5 phases with arrays of strings for messaging and guides
+4. **Messages/Guides arrays**: Must contain full objects, not references
+5. **All keys must be preserved**: Only change content values, never the structure`;
+
     const finalInstructions = `**CRITICAL WARNING - NO TEMPLATE CONTENT**:
 - NEVER use words like "retailer", "dealership", "test ride", "motorcycle", "BMW", "R Series", "Boxer engine", "naked bike", "touring", "sport bike" or any other template-specific terms
 - NEVER copy phrases, sentences, or concepts from the template files
@@ -343,6 +609,8 @@ ${creativeMandate}
 ${structureRequirements}
 
 ${contentRequirements}
+
+${templateExamples}
 
 ${finalInstructions}`;
   }
