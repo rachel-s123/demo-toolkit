@@ -47,16 +47,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (targetPath) {
           // Convert targetPath to storage path
           if (targetPath.startsWith('src/locales/')) {
-            storagePath = `locales/${filename}`;
+            storagePath = `brand-assets/locales/${filename}`;
           } else if (targetPath.startsWith('public/locales/')) {
-            storagePath = `configs/${filename}`;
+            storagePath = `brand-assets/configs/${filename}`;
           } else if (targetPath.startsWith('public/assets/logos/')) {
-            storagePath = `logos/${filename}`;
+            storagePath = `brand-assets/logos/${filename}`;
           } else {
-            storagePath = `uploads/${filename}`;
+            storagePath = `brand-assets/uploads/${filename}`;
           }
         } else {
-          storagePath = `uploads/${filename}`;
+          storagePath = `brand-assets/uploads/${filename}`;
         }
 
         // Upload to Vercel Blob Storage
