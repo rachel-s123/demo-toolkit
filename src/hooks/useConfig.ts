@@ -55,6 +55,25 @@ export const useConfig = (): UseConfigReturn => {
       setLoading(true);
       setError(null);
       
+      // Check if this is a dynamic brand (not a static locale)
+      const { BrandLoader } = await import('../services/brandLoader');
+      const brandConfig = BrandLoader.getBrandConfig(language);
+      
+      if (brandConfig) {
+        // This is a dynamic brand - load from blob storage
+        const configFile = brandConfig.files.find(file => file.type === 'config');
+        if (configFile) {
+          const response = await fetch(configFile.url);
+          if (!response.ok) {
+            throw new Error(`Failed to load brand config: ${response.statusText}`);
+          }
+          const data = await response.json();
+          setConfig(data);
+          return;
+        }
+      }
+      
+      // Fallback to static config for built-in locales
       const response = await fetch(`/locales/config_${language}.json`);
       if (!response.ok) {
         throw new Error(`Failed to load config: ${response.statusText}`);

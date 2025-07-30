@@ -152,6 +152,24 @@ class ConfigService {
 
   async loadMessageConfig(language: string): Promise<Message[]> {
     try {
+      // Check if this is a dynamic brand (not a static locale)
+      const { BrandLoader } = await import('./brandLoader');
+      const brandConfig = BrandLoader.getBrandConfig(language);
+      
+      if (brandConfig) {
+        // This is a dynamic brand - load from blob storage
+        const configFile = brandConfig.files.find(file => file.type === 'config');
+        if (configFile) {
+          const response = await fetch(configFile.url);
+          if (!response.ok) {
+            throw new Error(`Failed to load brand message config: ${response.statusText}`);
+          }
+          const data = await response.json();
+          return data.messages || [];
+        }
+      }
+      
+      // Fallback to static config for built-in locales
       const response = await fetch(`/locales/config_${language}.json`);
       if (!response.ok) {
         throw new Error(`Failed to load message config: ${response.statusText}`);
