@@ -441,27 +441,19 @@ export default function BrandSetup() {
           }
         }
         
-        // In production, download the files since they can't be saved server-side
+        // Handle Vercel Blob storage response
         if (result.results && result.results.length > 0) {
-          result.results.forEach((fileResult: any) => {
-            if (fileResult.success && fileResult.content) {
-              // Create and download the file
-              const blob = fileResult.isBinary 
-                ? new Blob([Uint8Array.from(atob(fileResult.content), c => c.charCodeAt(0))], { type: fileResult.mimeType })
-                : new Blob([fileResult.content], { type: 'text/plain' });
-              
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement('a');
-              a.href = url;
-              a.download = fileResult.filename;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-            }
-          });
-          
-          message += ` Files have been downloaded to your device.`;
+          const uploadedFiles = result.results.filter((fileResult: any) => fileResult.success);
+          if (uploadedFiles.length > 0) {
+            message += ` Files have been uploaded to Vercel Blob Storage.`;
+            
+            // Show public URLs for uploaded files
+            console.log('Uploaded files with public URLs:', uploadedFiles.map((f: any) => ({
+              filename: f.filename,
+              publicUrl: f.publicUrl,
+              storagePath: f.storagePath
+            })));
+          }
         }
         
         setUploadResult({

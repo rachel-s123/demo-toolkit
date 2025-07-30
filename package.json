@@ -20,12 +20,15 @@
     "rename-assets": "node scripts/rename-assets.js",
     "remove-duplicates": "node scripts/remove-duplicates.js",
     "fix-asset-urls": "node scripts/fix-asset-urls.js",
-    "download-redis-config": "node scripts/download-redis-config.js"
+    "download-redis-config": "node scripts/download-redis-config.js",
+    "setup-vercel-blob": "node scripts/setup-vercel-blob.js"
   },
   "dependencies": {
     "@modelcontextprotocol/server-gdrive": "^2025.1.14",
+    "@supabase/supabase-js": "^2.53.0",
     "@tailwindcss/typography": "^0.5.16",
     "@vercel/analytics": "^1.5.0",
+    "@vercel/blob": "^1.1.1",
     "@vercel/kv": "^3.0.0",
     "@vercel/node": "^5.3.6",
     "clsx": "^2.1.0",
