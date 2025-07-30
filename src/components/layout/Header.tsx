@@ -17,7 +17,7 @@ const brandDisplayNames: Record<string, string> = {en: "Brilliant Noise",
   edf_fr: "\uD83C\uDDEB\uD83C\uDDF7 EDF \u00C9nergie",
   bmw: "BMW Motorrad",
   hedosoph: "Hedosophia",
-  nestle: "Nestle",
+
 };
 
 const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
@@ -145,7 +145,6 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
                 <option value="bmw">{brandDisplayNames.bmw}</option>
                 <option value="hedosoph">Hedosophia</option>
-                <option value="nestle">Nestle</option>
               </select>
             </div>
           </div>
@@ -258,7 +257,6 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
                 <option value="bmw">{brandDisplayNames.bmw}</option>
                                   <option value="hedosoph">Hedosophia</option>
-                  <option value="nestle">Nestle</option>
     
                 </select>
               </div>
