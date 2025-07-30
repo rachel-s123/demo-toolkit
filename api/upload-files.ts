@@ -137,8 +137,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             };
           });
 
-        // Call sync endpoint - use relative URL to avoid internal Vercel URL issues
-        const syncResponse = await fetch('/api/sync-brand-to-backend', {
+        // Call sync endpoint - use absolute URL for server-side fetch
+        const baseUrl = process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}` 
+          : 'https://demo-toolkit.vercel.app';
+        
+        const syncResponse = await fetch(`${baseUrl}/api/sync-brand-to-backend`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -160,7 +164,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         // Trigger frontend refresh by calling the blob-based endpoint
         try {
           console.log('🔄 Triggering frontend refresh...');
-          await fetch('/api/get-brands-from-blob');
+          await fetch(`${baseUrl}/api/get-brands-from-blob`);
           console.log('✅ Frontend refresh triggered');
         } catch (refreshError) {
           console.warn('⚠️ Frontend refresh failed:', refreshError);
