@@ -1,0 +1,264 @@
+{
+  "isDemo": true,
+  "demoNotice": "These are demo assets using placeholder images. Replace with actual Nestle marketing materials.",
+  "lastUpdated": "2023-10-26T08:30:00.000Z",
+  "assets": [
+    {
+      "id": "launch_01",
+      "title": "Product Teaser Poster",
+      "phase": "LAUNCH",
+      "type": "PRINT",
+      "model": "Plant-Based Collection",
+      "description": "teaser-poster",
+      "textOverlay": "promotion",
+      "orientation": "portrait",
+      "dimensions": "1080x1920",
+      "fileExtension": ".jpg",
+      "originalFileName": "teaser_poster.jpg",
+      "newAssetName": "Launch_Print_PlantBased_teaser-poster_promotion_portrait_1080x1920.jpg",
+      "thumbnail": "/assets/images/Launch_Print_PlantBased_teaser-poster_promotion_portrait_1080x1920.jpg",
+      "url": "/assets/images/Launch_Print_PlantBased_teaser-poster_promotion_portrait_1080x1920.jpg",
+      "isDemo": false
+    },
+    {
+      "id": "launch_02",
+      "title": "Social Reveal Video",
+      "phase": "LAUNCH",
+      "type": "VIDEO",
+      "model": "Plant-Based Collection",
+      "description": "social-reveal",
+      "textOverlay": "no-text",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": ".mp4",
+      "originalFileName": "social_reveal.mp4",
+      "newAssetName": "Launch_Video_PlantBased_social-reveal_no-text_landscape_1920x1080.mp4",
+      "thumbnail": "/assets/thumbnails/social_reveal_thumb.jpg",
+      "url": "/assets/videos/social_reveal.mp4",
+      "isDemo": false
+    },
+    {
+      "id": "launch_03",
+      "title": "Email Header Graphic",
+      "phase": "LAUNCH",
+      "type": "STATIC",
+      "model": "Plant-Based Collection",
+      "description": "email-header",
+      "textOverlay": "no-text",
+      "orientation": "landscape",
+      "dimensions": "600x200",
+      "fileExtension": ".png",
+      "originalFileName": "email_header.png",
+      "newAssetName": "Launch_Static_PlantBased_email-header_no-text_landscape_600x200.png",
+      "thumbnail": "/assets/thumbnails/email_header_thumb.png",
+      "url": "/assets/images/email_header.png",
+      "isDemo": false
+    },
+    {
+      "id": "launch_04",
+      "title": "Digital Ad Banner",
+      "phase": "LAUNCH",
+      "type": "STATIC",
+      "model": "Plant-Based Collection",
+      "description": "digital-banner",
+      "textOverlay": "slogan-overlay",
+      "orientation": "landscape",
+      "dimensions": "728x90",
+      "fileExtension": ".gif",
+      "originalFileName": "digital_banner.gif",
+      "newAssetName": "Launch_Static_PlantBased_digital-banner_slogan-overlay_landscape_728x90.gif",
+      "thumbnail": "/assets/thumbnails/digital_banner_thumb.gif",
+      "url": "/assets/images/digital_banner.gif",
+      "isDemo": false
+    },
+    {
+      "id": "launch_05",
+      "title": "Event Promo Video",
+      "phase": "LAUNCH",
+      "type": "VIDEO",
+      "model": "Plant-Based Collection",
+      "description": "event-promo",
+      "textOverlay": "event-dates",
+      "orientation": "landscape",
+      "dimensions": "1280x720",
+      "fileExtension": ".mp4",
+      "originalFileName": "event_promo.mp4",
+      "newAssetName": "Launch_Video_PlantBased_event-promo_event-dates_landscape_1280x720.mp4",
+      "thumbnail": "/assets/thumbnails/event_promo_thumb.jpg",
+      "url": "/assets/videos/event_promo.mp4",
+      "isDemo": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "launch_email_001",
+      "title": "Launch Announcement Email",
+      "content": "Subject: Introducing Your New Go-To Plant-Based Delight\n\nHello Team,\n\nWe are thrilled to announce the launch of our latest innovation in the world of healthy living—Nestle's new Plant-Based Product line!\n\nThis unique range offers a delightful blend of taste and nutrition, promising an exciting experience for all food enthusiasts.\n\n**Key Features:**\n- 100% plant-based ingredients\n- Nutrient-rich and sustainably sourced\n- Versatile for various recipes\n\nStay tuned for more updates and promotional materials to support our marketing efforts.\n\nBest,\nNestle Marketing Team",
+      "channel": "Email",
+      "type": "ANNOUNCEMENT",
+      "model": "Plant-Based Collection",
+      "date": "2023-10-25",
+      "isDemo": false,
+      "category": "Product Launch"
+    },
+    {
+      "id": "launch_social_001",
+      "title": "Instagram Teaser Post",
+      "content": "Caption: 🌱 The future of food is here! Get ready to experience the deliciousness of plants reimagined. #NestlePlantBased #SustainableEating",
+      "channel": "Instagram",
+      "type": "SOCIAL",
+      "model": "Plant-Based Collection",
+      "date": "2023-10-25",
+      "isDemo": false,
+      "category": "Teaser"
+    },
+    {
+      "id": "launch_sms_001",
+      "title": "SMS Product Announcement",
+      "content": "Discover the taste of the future with Nestle's new Plant-Based line. Perfect for every meal! Visit our website to learn more.",
+      "channel": "SMS",
+      "type": "PROMOTIONAL",
+      "model": "Plant-Based Collection",
+      "date": "2023-10-26",
+      "isDemo": false,
+      "category": "Product Update"
+    },
+    {
+      "id": "launch_ad_001",
+      "title": "Google Ads Copy",
+      "content": "Transform your meals with Nestle's Plant-Based Products. Explore our range today and embrace sustainability and flavor!",
+      "channel": "Google Ads",
+      "type": "AD",
+      "model": "Plant-Based Collection",
+      "date": "2023-10-26",
+      "isDemo": false,
+      "category": "Digital Advertisement"
+    },
+    {
+      "id": "launch_landingpage_001",
+      "title": "Landing Page Headline",
+      "content": "Unveiling the Future of Flavor: Explore Nestle's Plant-Based Innovations",
+      "channel": "Web",
+      "type": "LANDING_PAGE",
+      "model": "Plant-Based Collection",
+      "date": "2023-10-26",
+      "isDemo": false,
+      "category": "Website Content"
+    }
+  ],
+  "guides": [
+    {
+      "id": "guide_strategy_001",
+      "title": "Launch Marketing Strategy Guide",
+      "type": "STRATEGY",
+      "model": "Plant-Based Collection",
+      "thumbnail": "/assets/images/guides/strategy_thumb.jpg",
+      "url": "/guides/marketing_strategy.pdf",
+      "isDemo": false,
+      "category": "Strategy",
+      "contentLastModified": "2023-10-24T12:00:00.000Z",
+      "content": "## Launch Marketing Strategy\n\n### Objective:\nTo establish Nestle's new plant-based product as a market leader by leveraging innovative marketing strategies and robust community engagement."
+    },
+    {
+      "id": "guide_social_001",
+      "title": "Social Media Best Practices",
+      "type": "SOCIAL",
+      "model": "Plant-Based Collection",
+      "thumbnail": "/assets/images/guides/social_thumb.jpg",
+      "url": "/guides/social_practices.pdf",
+      "isDemo": false,
+      "category": "Social Media",
+      "contentLastModified": "2023-10-24T12:30:00.000Z",
+      "content": "## Social Media Best Practices\n\n### Key Elements:\n- Dynamic Visuals: Use vibrant and appealing images.\n- Engaging Storytelling: Share compelling brand stories.\n- Consistent Branding: Maintain Nestle's brand voice across platforms."
+    },
+    {
+      "id": "guide_email_001",
+      "title": "Email Marketing Optimization Guide",
+      "type": "EMAIL",
+      "model": "Plant-Based Collection",
+      "thumbnail": "/assets/images/guides/email_thumb.jpg",
+      "url": "/guides/email_optimization.pdf",
+      "isDemo": false,
+      "category": "Email",
+      "contentLastModified": "2023-10-24T13:00:00.000Z",
+      "content": "## Email Marketing Optimization\n\n### Goals:\n- Improve open rates by crafting catchy subject lines.\n- Enhance click-through rates with clear call-to-actions.\n- Build strong customer relationships through personalized content."
+    },
+    {
+      "id": "guide_content_001",
+      "title": "Content Creation Guidelines",
+      "type": "CONTENT",
+      "model": "Plant-Based Collection",
+      "thumbnail": "/assets/images/guides/content_thumb.jpg",
+      "url": "/guides/content_guidelines.pdf",
+      "isDemo": false,
+      "category": "Content",
+      "contentLastModified": "2023-10-24T13:30:00.000Z",
+      "content": "## Content Creation Guidelines\n\n### Focus:\n- Align content with Nestle's sustainability mission.\n- Leverage storytelling to resonate with health-conscious audiences.\n- Utilize multi-channel strategies for widespread reach."
+    },
+    {
+      "id": "guide_analytics_001",
+      "title": "Analytics Setup Guide",
+      "type": "ANALYTICS",
+      "model": "Plant-Based Collection",
+      "thumbnail": "/assets/images/guides/analytics_thumb.jpg",
+      "url": "/guides/analytics_setup.pdf",
+      "isDemo": false,
+      "category": "Analytics",
+      "contentLastModified": "2023-10-24T14:00:00.000Z",
+      "content": "## Analytics Setup Guide\n\n### Essentials:\n- Install and configure analytics tools to track campaign performance.\n- Set KPIs aligned with marketing objectives.\n- Review data regularly to optimize strategies effectively."
+    }
+  ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Product Introduction",
+      "description": "Kick-off the campaign and build initial product awareness.",
+      "icon": "ProductLaunch"
+    },
+    {
+      "id": "2",
+      "title": "Engage Audience",
+      "description": "Utilize creative content to capture interest and drive curiosity.",
+      "icon": "AudienceEngagement"
+    },
+    {
+      "id": "3",
+      "title": "In-Market Execution",
+      "description": "Facilitate strategic product placements and in-store promotions.",
+      "icon": "MarketExecution"
+    },
+    {
+      "id": "4",
+      "title": "Customer Follow-Up",
+      "description": "Post-engagement communication to maintain interest.",
+      "icon": "FollowUp"
+    },
+    {
+      "id": "5",
+      "title": "Community Building",
+      "description": "Foster a supportive community around plant-based living.",
+      "icon": "CommunityBuilding"
+    }
+  ],
+  "filterOptions": {
+    "phases": ["ALL", "PRODUCT INTRODUCTION", "ENGAGE AUDIENCE", "IN-MARKET EXECUTION", "CUSTOMER FOLLOW-UP", "COMMUNITY BUILDING"],
+    "types": ["ALL", "STATIC", "VIDEO", "PRINT", "WEB"],
+    "models": ["ALL", "Plant-Based Collection"],
+    "channels": ["ALL", "Email", "SMS", "Instagram", "Facebook", "Google Ads", "Web"],
+    "actionTypes": ["ALL","PRODUCT INTRODUCTION","ENGAGE AUDIENCE","IN-MARKET EXECUTION","CUSTOMER FOLLOW-UP","COMMUNITY BUILDING"]
+  },
+  "metadata": {
+    "lastModified": "2023-10-26T08:30:00.000Z",
+    "modifiedBy": "Nestle Marketing Team",
+    "version": "1.0.0",
+    "source": "Nestle Plant-Based Launch Campaign"
+  },
+  "pathConfig": {
+    "environments": {
+      "development": "/locales/",
+      "staging": "/locales/",
+      "production": "/locales/",
+      "cdn": "https://cdn.example.com/locales/"
+    }
+  }
+}

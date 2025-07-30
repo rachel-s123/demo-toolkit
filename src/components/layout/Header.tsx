@@ -161,7 +161,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                     ${
                       activeTab === tab
                         ? "bg-primary-100 text-primary-700"
-                        : "text-secondary-700 hover:bg-secondary-100 hover:text-secondary-900"
+                        : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                     }`}
                 >
                   <span
@@ -253,11 +253,11 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   onChange={handleLanguageChange}
                   className="flex-1 rounded-md border-secondary-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                 >
-                                  <option value="en">{brandDisplayNames.en}</option>
-                <option value="edf">{brandDisplayNames.edf}</option>
-                <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
-                <option value="bmw">{brandDisplayNames.bmw}</option>
-                                  <option value="hedosoph">Hedosophia</option>
+                  <option value="en">{brandDisplayNames.en}</option>
+                  <option value="edf">{brandDisplayNames.edf}</option>
+                  <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
+                  <option value="bmw">{brandDisplayNames.bmw}</option>
+                  <option value="hedosoph">Hedosophia</option>
                   <option value="nestle">Nestle</option>
     
                 </select>

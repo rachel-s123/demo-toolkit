@@ -194,32 +194,29 @@ You MUST incorporate ALL of the above campaign information into your generated c
 - "navigation" object must include: homeTab, assetsTab, messagesTab, guidesTab, helpTab
 
 **JSON CONFIG FILE STRUCTURE**:
-- Keep ALL top-level keys: "isDemo", "demoNotice", "lastUpdated", "assets", "contentOutline", "messages", "guides", "filterOptions", "metadata", "lastModified", "pathConfig"
+- Keep ALL top-level keys: "isDemo", "demoNotice", "lastUpdated", "brand", "assets", "messages", "guides", "journeySteps", "filterOptions", "metadata"
 - Keep ALL nested structures exactly the same
 - Only change content values to be relevant to this campaign
 
 **CRITICAL CONFIG SECTIONS TO PRESERVE**:
+- "brand" object: Keep all brand object keys (name, logo, logoAlt)
 - "assets" array: Keep all asset object keys (id, title, phase, type, model, description, textOverlay, orientation, dimensions, fileExtension, originalFileName, newAssetName, thumbnail, url, isDemo)
-- "contentOutline.phases" array: Keep all phase object keys (name, key, messaging, guides)
 - "messages" array: Keep all message object keys (id, title, content, channel, type, model, date, isDemo, category)
 - "guides" array: Keep all guide object keys (id, title, type, model, thumbnail, url, isDemo, category, contentLastModified, content)
+- "journeySteps" array: Keep all journey step object keys (id, title, description, icon)
 - "filterOptions" object: Keep all filter arrays (phases, types, models, channels, actionTypes)
 - "metadata" object: Keep all keys (lastModified, modifiedBy, version, source)
-- "pathConfig" object: Keep all environment configurations
 
 **EXACT STRUCTURE REQUIREMENTS**:
-- "contentOutline.phases" must have exactly 5 phases: Launch, Generate Test Rides, In-Store, Follow-Up, Welcome
-- Each phase must have: name, key, messaging array, guides array
+- "journeySteps" array must have exactly 5 journey step objects, each with: id, title, description, icon
 - "filterOptions" must include: phases, types, models, channels, actionTypes arrays
 - "metadata" must include: lastModified, modifiedBy, version, source
-- "pathConfig" must include: environments object with development, staging, production, cdn
 
 **CRITICAL JSON STRUCTURE RULES**:
-- "contentOutline.phases[].messaging" must be an array of STRINGS (message titles), NOT objects
-- "contentOutline.phases[].guides" must be an array of STRINGS (guide titles), NOT objects
+- "journeySteps" array must contain full journey step objects with all required keys (id, title, description, icon)
 - "messages" array must contain full message objects with all required keys
 - "guides" array must contain full guide objects with all required keys
-- Do NOT put message/guide objects inside contentOutline.phases - only put them in the top-level "messages" and "guides" arrays
+- "filterOptions.actionTypes" must match journeySteps titles exactly (in UPPERCASE) plus "ALL"
 
 **CRITICAL TYPESCRIPT STRUCTURE**:
 The TypeScript file MUST follow this EXACT pattern:
@@ -268,30 +265,29 @@ First code block: typescript
 - Do NOT add or remove any properties from the interface
 
 **JSON CONFIG FILE**:
-KEEP THESE KEYS EXACTLY: "isDemo", "demoNotice", "lastUpdated", "assets", "contentOutline", "messages", "guides", "filterOptions", "metadata", "lastModified", "pathConfig"
+KEEP THESE KEYS EXACTLY: "isDemo", "demoNotice", "lastUpdated", "brand", "assets", "messages", "guides", "journeySteps", "filterOptions", "metadata"
 
 CHANGE ONLY THE VALUES:
 - "demoNotice": "These are demo assets using placeholder images. Replace with actual BMW marketing materials." → "These are demo assets using placeholder images. Replace with actual [Your Brand] marketing materials."
+- "brand.name": "BMW Motorrad" → "Your Brand Name"
 - "assets[].title": "Side On" → "Your Asset Title"
 - "assets[].model": "R1300 RS" → "Your Product/Model"
 - "messages[].title": "Launch Announcement Email" → "Your Message Title"
 - "messages[].content": "Subject: The new BMW R 1300 R..." → "Subject: Your message content..."
 - "guides[].title": "Launch Communication Guide" → "Your Guide Title"
-- "contentOutline.phases[].name": "Launch" → "Your Phase Name"
-- "contentOutline.phases[].key": "LAUNCH" → "YOUR_PHASE_KEY"
+- "journeySteps[].title": "Launch" → "Your Journey Step Title"
+- "journeySteps[].description": "Initial campaign launch..." → "Your journey step description"
 
 **CORRECT JSON STRUCTURE EXAMPLE**:
-- "contentOutline.phases[].messaging" must be an array of STRINGS (message titles), NOT objects
-- "contentOutline.phases[].guides" must be an array of STRINGS (guide titles), NOT objects
+- "journeySteps" array must contain full journey step objects with all required keys (id, title, description, icon)
 - "messages" array must contain full message objects with all required keys
 - "guides" array must contain full guide objects with all required keys
-- Do NOT put message/guide objects inside contentOutline.phases - only put them in the top-level "messages" and "guides" arrays
+- "filterOptions.actionTypes" must match journeySteps titles exactly (in UPPERCASE) plus "ALL"
 
 **WRONG STRUCTURE - DO NOT DO THIS**:
-- Do NOT put message objects inside contentOutline.phases[].messaging
-- Do NOT put guide objects inside contentOutline.phases[].guides
-- Do NOT leave "messages" and "guides" arrays empty
-- Do NOT create flat structures - use the exact nested structure from the template`;
+- Do NOT leave "journeySteps", "messages", and "guides" arrays empty
+- Do NOT create flat structures - use the exact nested structure from the template
+- Do NOT mismatch journeySteps titles with actionTypes - they must align exactly`;
 
     const contentRequirements = `**CRITICAL CONTENT QUANTITY REQUIREMENTS - MANDATORY**:
 
@@ -323,6 +319,26 @@ You MUST create AT LEAST 5 different guides in the "guides" array. Each guide mu
 - Guide 4: Content creation guidelines
 - Guide 5: Analytics setup guide
 - Guide 6+: Additional practical guides
+
+**JOURNEY STEPS SECTION - MANDATORY 5+ ITEMS**:
+You MUST create AT LEAST 5 different journey steps in the "journeySteps" array. Each journey step must be a complete object with all required fields (id, title, description, icon). 
+
+**CRITICAL ALIGNMENT REQUIREMENT**: The journey step titles MUST exactly match the actionTypes in filterOptions.actionTypes (excluding "ALL"). This ensures proper navigation and filtering.
+
+**MANDATORY**: You MUST update the actionTypes array to match your journey step titles exactly.
+
+**CRITICAL INSTRUCTION**: After creating your journeySteps array, you MUST immediately update the actionTypes array to contain the exact same titles (in UPPERCASE) plus "ALL".
+
+Examples (journeySteps titles must match actionTypes exactly):
+- If journeySteps has "Discovery" → actionTypes must include "DISCOVERY"
+- If journeySteps has "Assessment" → actionTypes must include "ASSESSMENT" 
+- If journeySteps has "Implementation" → actionTypes must include "IMPLEMENTATION"
+- If journeySteps has "Optimization" → actionTypes must include "OPTIMIZATION"
+- If journeySteps has "Mastery" → actionTypes must include "MASTERY"
+
+**DO NOT USE GENERIC BMW STEPS**: Replace the default BMW actionTypes with your specific journey step titles.
+
+**FINAL CHECK**: Before completing, verify that actionTypes contains exactly: ["ALL", "YOUR_JOURNEY_STEP_1", "YOUR_JOURNEY_STEP_2", etc.]
 
 **CRITICAL**: Do NOT create just one example of each type. You MUST populate the arrays with 5+ complete objects for each section.`;
 
@@ -561,12 +577,46 @@ export default brandStrings;
       "content": "# 🚀 Launch Communication Strategy Guide\\n\\n**For**: R 1300 RT (KA3), R 1300 R (KA4), R 1300 RS (KA5)\\n\\n---\\n\\n## 🎯 Purpose\\n\\nHelp your dealership turn warm leads into customers by building launch excitement, tailoring comms by model, and driving actions like test rides and showroom visits."
     }
   ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Launch",
+      "description": "Initial campaign launch and awareness building",
+      "icon": "Rocket"
+    },
+    {
+      "id": "2",
+      "title": "Generate Test Rides",
+      "description": "Convert interest into test ride bookings",
+      "icon": "Calendar"
+    },
+    {
+      "id": "3",
+      "title": "In-Store",
+      "description": "Dealership experience and product showcase",
+      "icon": "Store"
+    },
+    {
+      "id": "4",
+      "title": "Follow-Up",
+      "description": "Post-purchase communication and satisfaction",
+      "icon": "MessageSquare"
+    },
+    {
+      "id": "5",
+      "title": "Welcome",
+      "description": "Onboarding new owners to the BMW family",
+      "icon": "UserPlus"
+    }
+  ],
   "filterOptions": {
     "phases": ["ALL", "LAUNCH", "GENERATE TEST RIDES", "IN-STORE", "FOLLOW-UP", "WELCOME"],
     "types": ["ALL", "STATIC", "VIDEO", "INTERACTIVE"],
     "models": ["ALL", "R1300 RT", "R1300 R", "R1300 RS"],
     "channels": ["ALL", "Email", "WhatsApp", "SMS", "Facebook", "Instagram", "Social", "Print", "Digital", "In-Store", "Phone"],
     "actionTypes": ["ALL", "LAUNCH", "GENERATE TEST RIDES", "IN-STORE", "FOLLOW-UP", "WELCOME"]
+    // CRITICAL: You MUST replace these BMW actionTypes with your journey step titles in UPPERCASE
+    // Example: If journeySteps has ["Discovery", "Assessment"], then actionTypes should be ["ALL", "DISCOVERY", "ASSESSMENT"]
   },
   "metadata": {
     "lastModified": "2025-06-03T06:06:20.361Z",
@@ -607,14 +657,18 @@ export default brandStrings;
 - **CAMPAIGN PHASES**: Structure content around the 5 campaign phases (Launch, Generate Interest, In-Store/Engagement, Follow-Up, Welcome/Onboarding)
 - **BRAND TONE**: Maintain consistent ${formData.tone} tone across all content
 - **INDUSTRY SPECIFICITY**: Use terminology and concepts specific to ${formData.industry}
+- **JOURNEY-ACTION ALIGNMENT**: Journey step titles must exactly match actionTypes for proper navigation. You MUST update actionTypes array to match your journey step titles exactly.
 
 **CRITICAL ARRAY STRUCTURE REQUIREMENTS**:
 - **"assets" array**: MUST contain 5+ complete asset objects, each with all required fields (id, title, phase, type, model, description, etc.)
 - **"messages" array**: MUST contain 5+ complete message objects, each with all required fields (id, title, content, channel, type, model, etc.)
 - **"guides" array**: MUST contain 5+ complete guide objects, each with all required fields (id, title, type, model, content, etc.)
+- **"journeySteps" array**: MUST contain 5+ complete journey step objects, each with all required fields (id, title, description, icon)
+- **"filterOptions.actionTypes" array**: MUST contain action types that exactly match journey step titles (plus "ALL")
 - **"contentOutline.phases[].messaging"**: MUST be arrays of STRINGS (message titles), NOT objects
 - **"contentOutline.phases[].guides"**: MUST be arrays of STRINGS (guide titles), NOT objects
 - **DO NOT CREATE EMPTY ARRAYS**: Every array must be populated with the required number of items
+- **CRITICAL ALIGNMENT**: journeySteps titles must exactly match actionTypes (excluding "ALL")
 
 **CRITICAL STRUCTURE COMPLIANCE**:
 - You MUST follow the EXACT structure of both template files
@@ -661,12 +715,35 @@ ${finalInstructions}`;
 
   private static parseResponse(response: string): GeneratedFiles {
     try {
-      // Extract the TypeScript file
-      const tsMatch = response.match(/```typescript\n([\s\S]*?)\n```/);
+      // Debug: Log the raw response first
+      console.log('=== RAW LLM RESPONSE DEBUG ===');
+      console.log('Response length:', response.length);
+      console.log('Response preview (first 500 chars):', response.substring(0, 500));
+      console.log('Response preview (last 500 chars):', response.substring(response.length - 500));
+      console.log('=== END RAW RESPONSE DEBUG ===');
+
+      // Extract the TypeScript file - try multiple patterns
+      let tsMatch = response.match(/```typescript\n([\s\S]*?)\n```/);
+      if (!tsMatch) {
+        tsMatch = response.match(/```ts\n([\s\S]*?)\n```/);
+      }
+      if (!tsMatch) {
+        tsMatch = response.match(/```\n([\s\S]*?)\n```/);
+      }
       const siteCopy = tsMatch ? tsMatch[1].trim() : '';
 
-      // Extract the JSON file
-      const jsonMatch = response.match(/```json\n([\s\S]*?)\n```/);
+      // Extract the JSON file - try multiple patterns
+      let jsonMatch = response.match(/```json\n([\s\S]*?)\n```/);
+      if (!jsonMatch) {
+        jsonMatch = response.match(/```\n([\s\S]*?)\n```/);
+      }
+      if (!jsonMatch) {
+        // Try to find JSON object in the response
+        const jsonObjectMatch = response.match(/\{[\s\S]*\}/);
+        if (jsonObjectMatch) {
+          jsonMatch = [jsonObjectMatch[0], jsonObjectMatch[0]];
+        }
+      }
       const configContent = jsonMatch ? jsonMatch[1].trim() : '';
 
       // Debug: Log what we extracted
@@ -678,6 +755,7 @@ ${finalInstructions}`;
       const assetsMatch = configContent.match(/"assets":\s*\[([\s\S]*?)\]/);
       const messagesMatch = configContent.match(/"messages":\s*\[([\s\S]*?)\]/);
       const guidesMatch = configContent.match(/"guides":\s*\[([\s\S]*?)\]/);
+      const journeyStepsMatch = configContent.match(/"journeySteps":\s*\[([\s\S]*?)\]/);
       
       if (assetsMatch) {
         const assetsContent = assetsMatch[1];
@@ -696,16 +774,97 @@ ${finalInstructions}`;
         const guideCount = (guidesContent.match(/\{[^}]*\}/g) || []).length;
         console.log('Guides found:', guideCount);
       }
+      
+                if (journeyStepsMatch) {
+            const journeyStepsContent = journeyStepsMatch[1];
+            const journeyStepCount = (journeyStepsContent.match(/\{[^}]*\}/g) || []).length;
+            console.log('Journey Steps found:', journeyStepCount);
+            
+            // Extract journey step titles
+            const titleMatches = journeyStepsContent.match(/"title":\s*"([^"]+)"/g);
+            if (titleMatches) {
+              const titles = titleMatches.map(match => match.match(/"title":\s*"([^"]+)"/)?.[1]).filter(Boolean);
+              console.log('Journey Step Titles:', titles);
+            }
+          } else {
+            console.log('No journeySteps array found in JSON');
+          }
+          
+          // Check actionTypes alignment
+          const actionTypesMatch = configContent.match(/"actionTypes":\s*\[([\s\S]*?)\]/);
+          if (actionTypesMatch) {
+            const actionTypesContent = actionTypesMatch[1];
+            const actionTypes = actionTypesContent.match(/"([^"]+)"/g)?.map(match => match.replace(/"/g, '')) || [];
+            console.log('Action Types found:', actionTypes);
+            
+            // Check if they align with journey steps
+            const journeyStepsMatch = configContent.match(/"journeySteps":\s*\[([\s\S]*?)\]/);
+            if (journeyStepsMatch) {
+              const journeyStepsContent = journeyStepsMatch[1];
+              const titleMatches = journeyStepsContent.match(/"title":\s*"([^"]+)"/g);
+              if (titleMatches) {
+                const journeyTitles = titleMatches.map(match => match.match(/"title":\s*"([^"]+)"/)?.[1]).filter(Boolean);
+                const actionTypesWithoutAll = actionTypes.filter(type => type !== 'ALL');
+                console.log('Journey Titles:', journeyTitles);
+                console.log('Action Types (without ALL):', actionTypesWithoutAll);
+                console.log('Alignment check:', journeyTitles.length === actionTypesWithoutAll.length && 
+                  journeyTitles.every((title, index) => title && actionTypesWithoutAll[index] === title.toUpperCase()));
+              }
+            }
+          }
       console.log('=== END PARSING DEBUG ===');
 
       if (!siteCopy || !configContent) {
+        console.error('Failed to parse LLM response properly');
+        console.log('SiteCopy found:', !!siteCopy);
+        console.log('ConfigContent found:', !!configContent);
         throw new Error('Could not parse response into separate files');
       }
 
-      return { siteCopy, configContent };
+      // Post-process to fix actionTypes alignment if needed
+      const fixedConfigContent = this.fixActionTypesAlignment(configContent);
+
+      return { siteCopy, configContent: fixedConfigContent };
     } catch (error) {
       console.error('Error parsing LLM response:', error);
       throw new Error('Failed to parse generated files from LLM response');
+    }
+  }
+
+  private static fixActionTypesAlignment(configContent: string): string {
+    try {
+      // Extract journey step titles
+      const journeyStepsMatch = configContent.match(/"journeySteps":\s*\[([\s\S]*?)\]/);
+      if (!journeyStepsMatch) {
+        console.log('No journeySteps found, cannot fix actionTypes');
+        return configContent;
+      }
+
+      const journeyStepsContent = journeyStepsMatch[1];
+      const titleMatches = journeyStepsContent.match(/"title":\s*"([^"]+)"/g);
+      if (!titleMatches) {
+        console.log('No journey step titles found');
+        return configContent;
+      }
+
+      const journeyTitles = titleMatches.map(match => match.match(/"title":\s*"([^"]+)"/)?.[1]).filter(Boolean);
+      console.log('Fixing actionTypes alignment for journey titles:', journeyTitles);
+
+      // Create new actionTypes array
+      const newActionTypes = ['ALL', ...journeyTitles.map(title => title?.toUpperCase())];
+      const newActionTypesJson = JSON.stringify(newActionTypes);
+
+      // Replace the actionTypes in the config
+      const updatedConfig = configContent.replace(
+        /"actionTypes":\s*\[[^\]]*\]/,
+        `"actionTypes": ${newActionTypesJson}`
+      );
+
+      console.log('Fixed actionTypes to:', newActionTypes);
+      return updatedConfig;
+    } catch (error) {
+      console.error('Error fixing actionTypes alignment:', error);
+      return configContent;
     }
   }
 

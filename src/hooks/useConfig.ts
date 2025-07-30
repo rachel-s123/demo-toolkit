@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Asset, Guide, Message, Brand } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -36,10 +36,12 @@ export const useConfig = (): UseConfigReturn => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-  // Add safety check for context availability
+  // Get language context with proper error handling
   let language: string = 'en'; // Default fallback
+  let languageContext: any = null;
+  
   try {
-    const languageContext = useLanguage();
+    languageContext = useLanguage();
     if (languageContext && languageContext.language) {
       language = languageContext.language;
     }
@@ -67,14 +69,23 @@ export const useConfig = (): UseConfigReturn => {
     }
   };
 
+  // Memoize fetchConfig to avoid dependency issues
+  const memoizedFetchConfig = useCallback(fetchConfig, [language]);
+
   useEffect(() => {
-    fetchConfig();
-  }, [language]);
+    // Only fetch config if language context is available and ready
+    if (languageContext && languageContext.translations) {
+      memoizedFetchConfig();
+    } else {
+      // If language context is not ready, set loading to false to prevent infinite loading
+      setLoading(false);
+    }
+  }, [language, languageContext, memoizedFetchConfig]);
 
   return {
     config,
     loading,
     error,
-    refetch: fetchConfig,
+    refetch: memoizedFetchConfig,
   };
 }; 
