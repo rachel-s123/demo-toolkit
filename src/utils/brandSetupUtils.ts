@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { exec } from 'child_process';
 
 export interface BrandSetupResult {
   success: boolean;
@@ -109,41 +110,84 @@ export function updateHeaderComponent(brandCode: string, brandName: string): { s
     }
 
     // Update desktop dropdown options
-    const desktopOptionsRegex = /<option value="([^"]+)">([^<]+)<\/option>/g;
-    const desktopOptions = content.match(desktopOptionsRegex) || [];
+    // First, find the desktop select element
+    const desktopSelectStart = content.indexOf('id="language-select"');
+    console.log(`Desktop select start position: ${desktopSelectStart}`);
     
-    // Check if brand option already exists in desktop dropdown
-    const desktopOptionExists = desktopOptions.some(option => option.includes(`value="${brandCode}"`));
-    
-    if (!desktopOptionExists) {
-      // Find the last option and add after it
-      const lastOptionIndex = content.lastIndexOf('</option>');
-      const insertIndex = lastOptionIndex + 9; // length of '</option>'
-      const newOption = `\n                <option value="${brandCode}">${brandName}</option>`;
-      content = content.slice(0, insertIndex) + newOption + content.slice(insertIndex);
+    if (desktopSelectStart !== -1) {
+      // Find the opening select tag
+      const selectTagStart = content.lastIndexOf('<select', desktopSelectStart);
+      console.log(`Select tag start position: ${selectTagStart}`);
+      
+      if (selectTagStart !== -1) {
+        // Find the closing select tag
+        const selectTagEnd = content.indexOf('</select>', desktopSelectStart);
+        console.log(`Select tag end position: ${selectTagEnd}`);
+        
+        if (selectTagEnd !== -1) {
+          // Extract the content between select tags
+          const selectContent = content.substring(selectTagStart, selectTagEnd);
+          console.log(`Select content length: ${selectContent.length}`);
+          console.log(`Select content preview: ${selectContent.substring(0, 200)}...`);
+          
+          // Check if brand option already exists in desktop dropdown
+          const desktopOptionExists = selectContent.includes(`value="${brandCode}"`);
+          console.log(`Brand option exists: ${desktopOptionExists}`);
+          
+          if (!desktopOptionExists) {
+            // Find the last option in desktop dropdown and add after it
+            const lastOptionIndex = selectContent.lastIndexOf('</option>');
+            console.log(`Last option index: ${lastOptionIndex}`);
+            
+            if (lastOptionIndex !== -1) {
+              const insertIndex = selectTagStart + lastOptionIndex + 9; // length of '</option>'
+              console.log(`Insert index: ${insertIndex}`);
+              const newOption = `\n                <option value="${brandCode}">${brandName}</option>`;
+              console.log(`New option: ${newOption}`);
+              content = content.slice(0, insertIndex) + newOption + content.slice(insertIndex);
+              console.log('✅ Desktop dropdown updated successfully');
+            } else {
+              console.log('❌ Could not find last option tag in desktop dropdown');
+            }
+          } else {
+            console.log('✅ Brand already exists in desktop dropdown');
+          }
+        } else {
+          console.log('❌ Could not find closing select tag');
+        }
+      } else {
+        console.log('❌ Could not find opening select tag');
+      }
+    } else {
+      console.log('❌ Could not find desktop select element');
     }
 
     // Update mobile dropdown options
-    const mobileOptionsRegex = /<option value="([^"]+)">([^<]+)<\/option>/g;
-    const mobileOptions = content.match(mobileOptionsRegex) || [];
-    
-    // Check if brand option already exists in mobile dropdown
-    const mobileOptionExists = mobileOptions.some(option => option.includes(`value="${brandCode}"`));
-    
-    if (!mobileOptionExists) {
-      // Find the last mobile option and add after it
-      // We need to be more specific for mobile dropdown
-      const mobileSelectRegex = /id="mobile-language-select"[^>]*>([^<]*(?:<option[^>]*>[^<]*<\/option>[^<]*)*)/;
-      const mobileSelectMatch = content.match(mobileSelectRegex);
-      
-      if (mobileSelectMatch) {
-        const mobileSelectContent = mobileSelectMatch[1];
-        const lastMobileOptionIndex = mobileSelectContent.lastIndexOf('</option>');
-        
-        if (lastMobileOptionIndex !== -1) {
-          const insertIndex = mobileSelectMatch.index! + mobileSelectMatch[0].indexOf(mobileSelectContent) + lastMobileOptionIndex + 9;
-          const newOption = `\n                  <option value="${brandCode}">${brandName}</option>`;
-          content = content.slice(0, insertIndex) + newOption + content.slice(insertIndex);
+    // First, find the mobile select element
+    const mobileSelectStart = content.indexOf('id="mobile-language-select"');
+    if (mobileSelectStart !== -1) {
+      // Find the opening select tag
+      const mobileSelectTagStart = content.lastIndexOf('<select', mobileSelectStart);
+      if (mobileSelectTagStart !== -1) {
+        // Find the closing select tag
+        const mobileSelectTagEnd = content.indexOf('</select>', mobileSelectStart);
+        if (mobileSelectTagEnd !== -1) {
+          // Extract the content between select tags
+          const mobileSelectContent = content.substring(mobileSelectTagStart, mobileSelectTagEnd);
+          
+          // Check if brand option already exists in mobile dropdown
+          const mobileOptionExists = mobileSelectContent.includes(`value="${brandCode}"`);
+          
+          if (!mobileOptionExists) {
+            // Find the last option in mobile dropdown and add after it
+            const lastMobileOptionIndex = mobileSelectContent.lastIndexOf('</option>');
+            
+            if (lastMobileOptionIndex !== -1) {
+              const insertIndex = mobileSelectTagStart + lastMobileOptionIndex + 9; // length of '</option>'
+              const newOption = `\n                  <option value="${brandCode}">${brandName}</option>`;
+              content = content.slice(0, insertIndex) + newOption + content.slice(insertIndex);
+            }
+          }
         }
       }
     }
@@ -152,6 +196,23 @@ export function updateHeaderComponent(brandCode: string, brandName: string): { s
     return { success: true };
   } catch (error) {
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+}
+
+/**
+ * Trigger frontend reload by touching a file to cause HMR
+ */
+function triggerFrontendReload(): void {
+  try {
+    // Touch the main App.tsx file to trigger a hot reload
+    const appPath = path.join(process.cwd(), 'src', 'App.tsx');
+    if (fs.existsSync(appPath)) {
+      const stats = fs.statSync(appPath);
+      fs.utimesSync(appPath, stats.atime, new Date());
+      console.log('✅ Triggered frontend reload');
+    }
+  } catch (error) {
+    console.warn('Could not trigger frontend reload:', error);
   }
 }
 
@@ -181,10 +242,15 @@ export function completeBrandSetup(brandCode: string, brandName: string): BrandS
 
   const success = localeIndexUpdated && headerUpdated;
   
+  // Trigger frontend reload if setup was successful
+  if (success) {
+    triggerFrontendReload();
+  }
+  
   return {
     success,
     message: success 
-      ? `Brand setup completed successfully! ${brandName} has been added to the frontend.`
+      ? `Brand setup completed successfully! ${brandName} has been added to the frontend. The page should automatically reload to show the new brand.`
       : `Brand setup partially completed. ${errors.length} error(s) occurred.`,
     details: {
       localeIndexUpdated,
