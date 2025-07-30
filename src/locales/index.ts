@@ -7,6 +7,7 @@ import enTemplateStrings from './en_template';
 import hedosophStrings from './hedosoph';
 
 
+
 export type LanguageCode = 'en' | 'edf' | 'edf_fr' | 'bmw' | 'en_template' | 'hedosoph';
 
 export const languages: Record<LanguageCode, SiteCopy> = {en: enStrings,
@@ -15,6 +16,7 @@ export const languages: Record<LanguageCode, SiteCopy> = {en: enStrings,
   bmw: bmwStrings,
   en_template: enTemplateStrings,
   hedosoph: hedosophStrings,
+
 };
 
 export const defaultLang: LanguageCode = 'en'; 
