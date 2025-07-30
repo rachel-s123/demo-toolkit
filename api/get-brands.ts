@@ -7,6 +7,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    // Check if Vercel KV is configured
+    if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+      console.warn('⚠️ Vercel KV not configured, returning empty brands list');
+      return res.status(200).json({
+        success: true,
+        brands: [],
+        total: 0,
+        note: "Vercel KV not configured. To enable brand storage, configure KV_REST_API_URL and KV_REST_API_TOKEN in Vercel environment variables."
+      });
+    }
+
     const { brandCode } = req.query;
 
     if (brandCode) {

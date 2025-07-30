@@ -137,8 +137,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             };
           });
 
-        // Call sync endpoint
-        const syncResponse = await fetch(`${process.env.VERCEL_URL || 'https://demo-toolkit.vercel.app'}/api/sync-brand-to-backend`, {
+        // Call sync endpoint - use relative URL to avoid internal Vercel URL issues
+        const syncResponse = await fetch('/api/sync-brand-to-backend', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
