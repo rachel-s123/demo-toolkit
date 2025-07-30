@@ -455,6 +455,12 @@ export default function BrandSetup() {
             })));
           }
         }
+
+        // Handle backend sync response
+        if (result.backendSync) {
+          message += ` Backend sync: ${result.backendSync.message}`;
+          console.log('Backend sync result:', result.backendSync);
+        }
         
         setUploadResult({
           success: true,

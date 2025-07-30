@@ -110,6 +110,55 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log(`✅ Upload Files Handler: Processed ${results.length} files. ${successCount} successful, ${failureCount} failed`);
 
+    // Auto-sync to backend if files were uploaded successfully
+    let syncResult: any = null;
+    if (brandCode && brandName && successCount > 0) {
+      try {
+        console.log(`🔄 Auto-syncing brand ${brandName} to backend...`);
+        
+        // Prepare files for sync
+        const filesForSync = results
+          .filter(r => r.success)
+          .map(file => {
+            let type: 'locale' | 'config' | 'logo' = 'logo';
+            if (file.targetPath?.includes('locales/')) {
+              type = 'locale';
+            } else if (file.targetPath?.includes('configs/')) {
+              type = 'config';
+            }
+            
+            return {
+              filename: file.filename,
+              publicUrl: file.publicUrl,
+              storagePath: file.storagePath,
+              type
+            };
+          });
+
+        // Call sync endpoint
+        const syncResponse = await fetch(`${process.env.VERCEL_URL || 'https://demo-toolkit.vercel.app'}/api/sync-brand-to-backend`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            brandCode,
+            brandName,
+            files: filesForSync
+          })
+        });
+
+        if (syncResponse.ok) {
+          syncResult = await syncResponse.json();
+          console.log(`✅ Auto-sync successful:`, syncResult.message);
+        } else {
+          console.warn(`⚠️ Auto-sync failed:`, await syncResponse.text());
+        }
+      } catch (syncError: any) {
+        console.warn(`⚠️ Auto-sync error:`, syncError.message);
+      }
+    }
+
     // If brand setup information is provided, complete the brand setup
     let brandSetupResult: any = null;
     if (brandCode && brandName && successCount > 0) {
@@ -161,7 +210,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     return res.status(200).json({
       success: true,
-      message: `Processed ${results.length} files successfully. Files have been uploaded to Vercel Blob Storage.`,
+      message: `Processed ${results.length} files successfully. Files have been uploaded to Vercel Blob Storage and synced to backend.`,
       results,
       summary: {
         total: results.length,
@@ -169,7 +218,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         failed: failureCount
       },
       brandSetup: brandSetupResult,
-      note: "Files are now stored in Vercel Blob Storage and accessible via public URLs."
+      backendSync: syncResult,
+      note: "Files are now stored in Vercel Blob Storage and automatically synced to backend configuration."
     });
 
   } catch (error: any) {
