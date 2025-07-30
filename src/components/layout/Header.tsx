@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { TabType } from "../../types";
 import { LanguageCode } from "../../locales";
 import { useLanguage } from "../../context/LanguageContext";
 import { useHighlight } from "../../context/HighlightContext";
 import { useConfig } from "../../hooks/useConfig";
+import { BrandLoader, BrandConfig } from "../../services/brandLoader";
 import { Menu, X, LogOut } from "lucide-react";
 
 interface HeaderProps {
@@ -38,6 +39,26 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   const { isHighlightEnabled } = useHighlight();
   const { config } = useConfig();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [dynamicBrands, setDynamicBrands] = useState<BrandConfig[]>([]);
+  const [isLoadingBrands, setIsLoadingBrands] = useState(true);
+
+  // Load dynamic brands from backend
+  useEffect(() => {
+    const loadDynamicBrands = async () => {
+      try {
+        setIsLoadingBrands(true);
+        const brands = await BrandLoader.loadBrandsConfig();
+        setDynamicBrands(brands);
+        console.log(`📦 Header loaded ${brands.length} dynamic brands`);
+      } catch (error) {
+        console.error('Failed to load dynamic brands in Header:', error);
+      } finally {
+        setIsLoadingBrands(false);
+      }
+    };
+
+    loadDynamicBrands();
+  }, []);
 
   const tabPaths: Record<TabType, string> = {
     HOME: "/",
@@ -139,12 +160,26 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 value={language}
                 onChange={handleLanguageChange}
                 className="rounded-md border-secondary-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 h-[38px] min-w-[160px]"
+                disabled={isLoadingBrands}
               >
+                {/* Static brands */}
                 <option value="en">{brandDisplayNames.en}</option>
                 <option value="edf">{brandDisplayNames.edf}</option>
                 <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
                 <option value="bmw">{brandDisplayNames.bmw}</option>
                 <option value="hedosoph">Hedosophia</option>
+                
+                {/* Dynamic brands from backend */}
+                {dynamicBrands.length > 0 && (
+                  <>
+                    <option disabled>──────────</option>
+                    {dynamicBrands.map((brand) => (
+                      <option key={brand.brandCode} value={brand.brandCode}>
+                        {brand.brandName}
+                      </option>
+                    ))}
+                  </>
+                )}
               </select>
             </div>
           </div>
@@ -251,13 +286,26 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   value={language}
                   onChange={handleLanguageChange}
                   className="flex-1 rounded-md border-secondary-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  disabled={isLoadingBrands}
                 >
+                  {/* Static brands */}
                   <option value="en">{brandDisplayNames.en}</option>
                   <option value="edf">{brandDisplayNames.edf}</option>
                   <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
                   <option value="bmw">{brandDisplayNames.bmw}</option>
                   <option value="hedosoph">Hedosophia</option>
-    
+                  
+                  {/* Dynamic brands from backend */}
+                  {dynamicBrands.length > 0 && (
+                    <>
+                      <option disabled>──────────</option>
+                      {dynamicBrands.map((brand) => (
+                        <option key={brand.brandCode} value={brand.brandCode}>
+                          {brand.brandName}
+                        </option>
+                      ))}
+                    </>
+                  )}
                 </select>
               </div>
 
