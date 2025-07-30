@@ -17,7 +17,7 @@ const brandDisplayNames: Record<string, string> = {en: "Brilliant Noise",
   edf_fr: "\uD83C\uDDEB\uD83C\uDDF7 EDF \u00C9nergie",
   bmw: "BMW Motorrad",
   hedosoph: "Hedosophia",
-
+  nestle: "Nestle",
 };
 
 const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
@@ -145,6 +145,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
                 <option value="bmw">{brandDisplayNames.bmw}</option>
                 <option value="hedosoph">Hedosophia</option>
+                <option value="nestle">Nestle</option>
               </select>
             </div>
           </div>
@@ -252,11 +253,12 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   onChange={handleLanguageChange}
                   className="flex-1 rounded-md border-secondary-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                 >
-                                  <option value="en">{brandDisplayNames.en}</option>
-                <option value="edf">{brandDisplayNames.edf}</option>
-                <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
-                <option value="bmw">{brandDisplayNames.bmw}</option>
-                                  <option value="hedosoph">Hedosophia</option>
+                  <option value="en">{brandDisplayNames.en}</option>
+                  <option value="edf">{brandDisplayNames.edf}</option>
+                  <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
+                  <option value="bmw">{brandDisplayNames.bmw}</option>
+                  <option value="hedosoph">Hedosophia</option>
+                  <option value="nestle">Nestle</option>
     
                 </select>
               </div>

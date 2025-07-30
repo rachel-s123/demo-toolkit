@@ -211,6 +211,14 @@ function triggerFrontendReload(): void {
       fs.utimesSync(appPath, stats.atime, new Date());
       console.log('✅ Triggered frontend reload');
     }
+    
+    // Also touch the locales index to ensure it's reloaded
+    const localesPath = path.join(process.cwd(), 'src', 'locales', 'index.ts');
+    if (fs.existsSync(localesPath)) {
+      const stats = fs.statSync(localesPath);
+      fs.utimesSync(localesPath, stats.atime, new Date());
+      console.log('✅ Triggered locales reload');
+    }
   } catch (error) {
     console.warn('Could not trigger frontend reload:', error);
   }
