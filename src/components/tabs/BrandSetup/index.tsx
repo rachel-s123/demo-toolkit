@@ -151,6 +151,8 @@ export default function BrandSetup() {
   const [hasGeneratedOnce, setHasGeneratedOnce] = useState(false);
   const [lastGeneratedFormData, setLastGeneratedFormData] = useState<string>("");
   const [previewType, setPreviewType] = useState<"siteCopy" | "configContent" | "instructions">("siteCopy");
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editedContent, setEditedContent] = useState<GeneratedContent | null>(null);
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     basic: true,
     "campaign-context": true
@@ -354,10 +356,11 @@ export default function BrandSetup() {
   };
 
   const downloadAll = () => {
-    if (generatedContent) {
-      downloadFile(generatedContent.siteCopyFile, `${formData.brandCode}.ts`, "text/typescript");
-      setTimeout(() => downloadFile(generatedContent.configContentFile, `config_${formData.brandCode}.json`, "application/json"), 500);
-      setTimeout(() => downloadFile(generatedContent.installationInstructions, `${formData.brandCode}-setup-instructions.md`, "text/markdown"), 1000);
+    const content = getCurrentContent();
+    if (content) {
+      downloadFile(content.siteCopyFile, `${formData.brandCode}.ts`, "text/typescript");
+      setTimeout(() => downloadFile(content.configContentFile, `config_${formData.brandCode}.json`, "application/json"), 500);
+      setTimeout(() => downloadFile(content.installationInstructions, `${formData.brandCode}-setup-instructions.md`, "text/markdown"), 1000);
     }
   };
 
@@ -365,7 +368,8 @@ export default function BrandSetup() {
   const [uploadResult, setUploadResult] = useState<{ success: boolean; message: string } | null>(null);
 
   const uploadToBackend = async () => {
-    if (!generatedContent) return;
+    const content = getCurrentContent();
+    if (!content) return;
 
     setIsUploading(true);
     setUploadResult(null);
@@ -380,12 +384,12 @@ export default function BrandSetup() {
       }> = [
         {
           filename: `${formData.brandCode}.ts`,
-          content: generatedContent.siteCopyFile,
+          content: content.siteCopyFile,
           targetPath: `src/locales/${formData.brandCode}.ts`
         },
         {
           filename: `config_${formData.brandCode}.json`,
-          content: generatedContent.configContentFile,
+          content: content.configContentFile,
           targetPath: `public/locales/config_${formData.brandCode}.json`
         }
       ];
@@ -469,6 +473,47 @@ export default function BrandSetup() {
     if (!hasGeneratedOnce) return "Generate Enhanced Brand Locale";
     if (hasFormChanged()) return "Regenerate with Changes";
     return "Regenerate";
+  };
+
+  const handleEditMode = () => {
+    if (!isEditMode) {
+      // Entering edit mode - initialize edited content
+      setEditedContent({
+        siteCopyFile: generatedContent!.siteCopyFile,
+        configContentFile: generatedContent!.configContentFile,
+        installationInstructions: generatedContent!.installationInstructions,
+      });
+    }
+    setIsEditMode(!isEditMode);
+  };
+
+  const handleContentChange = (field: keyof GeneratedContent, value: string) => {
+    if (editedContent) {
+      setEditedContent({
+        ...editedContent,
+        [field]: value,
+      });
+    }
+  };
+
+  const handleSaveChanges = () => {
+    if (editedContent) {
+      setGeneratedContent(editedContent);
+      setIsEditMode(false);
+      setEditedContent(null);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditMode(false);
+    setEditedContent(null);
+  };
+
+  const getCurrentContent = () => {
+    if (isEditMode && editedContent) {
+      return editedContent;
+    }
+    return generatedContent;
   };
 
 
@@ -731,36 +776,98 @@ export default function BrandSetup() {
               Generated Brand Files
             </h3>
 
-            <div className="mb-4 flex flex-wrap gap-2">
-              <Button
-                onClick={() => setPreviewType("siteCopy")}
-                variant={previewType === "siteCopy" ? "primary" : "secondary"}
-                size="sm"
-              >
-                Site Copy ({formData.brandCode}.ts)
-              </Button>
-              <Button
-                onClick={() => setPreviewType("configContent")}
-                variant={previewType === "configContent" ? "primary" : "secondary"}
-                size="sm"
-              >
-                Config Content (config_{formData.brandCode}.json)
-              </Button>
-              <Button
-                onClick={() => setPreviewType("instructions")}
-                variant={previewType === "instructions" ? "primary" : "secondary"}
-                size="sm"
-              >
-                Installation Instructions
-              </Button>
+            <div className="mb-4 flex flex-wrap gap-2 items-center">
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setPreviewType("siteCopy")}
+                  variant={previewType === "siteCopy" ? "primary" : "secondary"}
+                  size="sm"
+                >
+                  Site Copy ({formData.brandCode}.ts)
+                </Button>
+                <Button
+                  onClick={() => setPreviewType("configContent")}
+                  variant={previewType === "configContent" ? "primary" : "secondary"}
+                  size="sm"
+                >
+                  Config Content (config_{formData.brandCode}.json)
+                </Button>
+                <Button
+                  onClick={() => setPreviewType("instructions")}
+                  variant={previewType === "instructions" ? "primary" : "secondary"}
+                  size="sm"
+                >
+                  Installation Instructions
+                </Button>
+              </div>
+              
+              <div className="flex gap-2 ml-auto">
+                {!isEditMode ? (
+                  <Button
+                    onClick={handleEditMode}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    Edit
+                  </Button>
+                ) : (
+                  <>
+                    <Button
+                      onClick={handleSaveChanges}
+                      variant="primary"
+                      size="sm"
+                      className="flex items-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Save
+                    </Button>
+                    <Button
+                      onClick={handleCancelEdit}
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      Cancel
+                    </Button>
+                  </>
+                )}
+              </div>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-lg mb-4 max-h-96 overflow-y-auto">
-              <pre className="text-xs text-gray-700 whitespace-pre-wrap">
-                {previewType === "siteCopy" && generatedContent.siteCopyFile}
-                {previewType === "configContent" && generatedContent.configContentFile}
-                {previewType === "instructions" && generatedContent.installationInstructions}
-              </pre>
+              {isEditMode ? (
+                <textarea
+                  value={
+                    previewType === "siteCopy" && getCurrentContent()?.siteCopyFile ||
+                    previewType === "configContent" && getCurrentContent()?.configContentFile ||
+                    previewType === "instructions" && getCurrentContent()?.installationInstructions ||
+                    ""
+                  }
+                  onChange={(e) => {
+                    const field = previewType === "siteCopy" ? "siteCopyFile" : 
+                                 previewType === "configContent" ? "configContentFile" : 
+                                 "installationInstructions";
+                    handleContentChange(field as keyof GeneratedContent, e.target.value);
+                  }}
+                  className="w-full h-80 p-3 text-xs font-mono text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                  placeholder="Edit content here..."
+                />
+              ) : (
+                <pre className="text-xs text-gray-700 whitespace-pre-wrap">
+                  {previewType === "siteCopy" && getCurrentContent()?.siteCopyFile}
+                  {previewType === "configContent" && getCurrentContent()?.configContentFile}
+                  {previewType === "instructions" && getCurrentContent()?.installationInstructions}
+                </pre>
+              )}
             </div>
 
             <div className="flex justify-center gap-3">

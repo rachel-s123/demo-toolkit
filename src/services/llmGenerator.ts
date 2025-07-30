@@ -51,16 +51,23 @@ export class LLMGenerator {
       const prompt = this.buildPrompt(formData, exampleFiles);
       
       const completion = await openai.chat.completions.create({
-        model: "gpt-4-turbo-preview",
+        model: "gpt-4o",
         messages: [
           {
             role: "system",
             content: `You are a creative marketing strategist with deep expertise in campaign development. Your role is to CREATE COMPLETELY ORIGINAL, INNOVATIVE CONTENT for real marketing campaigns.
 
 CRITICAL QUANTITY REQUIREMENT:
-- GENERATE 6-8 EXAMPLES FOR EACH CONTENT TYPE: You MUST create 6-8 assets, 6-8 messages, and 6-8 guides
+- GENERATE AT LEAST 5 EXAMPLES FOR EACH CONTENT TYPE: You MUST create at least 5 assets, 5 messages, and 5 guides
 - COMPREHENSIVE COVERAGE: Each section should demonstrate different formats, channels, and approaches
 - VARIETY IS ESSENTIAL: Include diverse content types, platforms, and campaign phases
+- CHANNEL DIVERSITY: Cover email, WhatsApp/SMS, social media, digital ads, landing pages, events, etc.
+
+CRITICAL CAMPAIGN CONTEXT REQUIREMENTS:
+- USE ALL FORM INFORMATION: Incorporate brand name, industry, campaign type, target audience, primary goal, and key deliverables
+- CAMPAIGN-SPECIFIC CONTENT: Tailor all content to the specific campaign objectives and target audience
+- INDUSTRY-SPECIFIC TERMINOLOGY: Use language and concepts relevant to the specified industry
+- BRAND TONE CONSISTENCY: Maintain the specified brand tone throughout all content
 
 CRITICAL TEMPLATE REQUIREMENTS:
 - FOLLOW TEMPLATE STRUCTURE EXACTLY: Use en_template.ts and config_en_template.json as the EXACT structure
@@ -91,6 +98,12 @@ You must generate exactly two files: a TypeScript site copy file and a JSON conf
       if (!response) {
         throw new Error('No response from OpenAI');
       }
+
+      // Debug: Log the response to see what's being generated
+      console.log('=== LLM RESPONSE DEBUG ===');
+      console.log('Response length:', response.length);
+      console.log('Response preview:', response.substring(0, 500));
+      console.log('=== END DEBUG ===');
 
       return this.parseResponse(response);
     } catch (error) {
@@ -130,16 +143,28 @@ You must generate exactly two files: a TypeScript site copy file and a JSON conf
 - Primary Goal: ${formData.primaryGoal}
 - Key Deliverables: ${formData.keyDeliverables.join(', ')}
 - Brand Tone: ${formData.tone}
-- Context: ${formData.adaptationPrompt}`;
+- Context: ${formData.adaptationPrompt}
+
+**CRITICAL CAMPAIGN CONTEXT INTEGRATION**:
+You MUST incorporate ALL of the above campaign information into your generated content:
+- Use the specific campaign type to determine messaging strategy and content focus
+- Tailor all content to the exact target audience specified
+- Align with the primary goal and key deliverables
+- Match the brand tone consistently across all content
+- Reference the adaptation prompt context throughout
+- Create content that directly supports the campaign objectives`;
 
     const creativeMandate = `CREATIVE MANDATE:
 1. **CREATE COMPLETELY ORIGINAL CONTENT**: Do NOT copy, adapt, or reference ANY content from the template files
-2. **BE SPECIFIC TO THE INDUSTRY**: Use industry-specific terminology and concepts
-3. **BE CREATIVE**: Think of unique, innovative approaches that would actually work for this campaign
-4. **BE PRACTICAL**: Create content that real marketing teams would find genuinely useful
-5. **MARKETING CAMPAIGN FOCUS**: All assets and messages should be for EXTERNAL marketing campaigns, not internal communications
+2. **BE SPECIFIC TO THE INDUSTRY**: Use industry-specific terminology and concepts relevant to ${formData.industry}
+3. **BE CREATIVE**: Think of unique, innovative approaches that would actually work for this ${formData.campaignType} campaign
+4. **BE PRACTICAL**: Create content that real marketing teams would find genuinely useful for ${formData.targetAudience}
+5. **MARKETING CAMPAIGN FOCUS**: All assets and messages should be for EXTERNAL marketing campaigns targeting ${formData.targetAudience}
 6. **CUSTOMER-FACING CONTENT**: Create content that marketing teams will use to reach customers, prospects, and the public
-7. **NO TEMPLATE CONTENT**: Never use words like "retailer", "dealership", "test ride", "motorcycle", "BMW", "R Series" or any other template-specific terms`;
+7. **CAMPAIGN-SPECIFIC**: Tailor all content to support the primary goal: "${formData.primaryGoal}"
+8. **CHANNEL DIVERSITY**: Include content for multiple channels: email, social media, WhatsApp/SMS, digital ads, landing pages, events, etc.
+9. **NO TEMPLATE CONTENT**: Never use words like "retailer", "dealership", "test ride", "motorcycle", "BMW", "R Series" or any other template-specific terms
+10. **BRAND TONE CONSISTENCY**: Maintain the ${formData.tone} tone throughout all content`;
 
     const structureRequirements = `CRITICAL TEMPLATE STRUCTURE REQUIREMENTS:
 
@@ -268,33 +293,38 @@ CHANGE ONLY THE VALUES:
 - Do NOT leave "messages" and "guides" arrays empty
 - Do NOT create flat structures - use the exact nested structure from the template`;
 
-    const contentRequirements = `**CONTENT QUANTITY REQUIREMENTS**:
+    const contentRequirements = `**CRITICAL CONTENT QUANTITY REQUIREMENTS - MANDATORY**:
 
-**CRITICAL**: You MUST generate 6-8 examples for EACH content type to showcase variety:
+**YOU MUST GENERATE EXACTLY 5+ ITEMS FOR EACH SECTION**:
 
-**ASSETS SECTION**: Create 6-8 diverse marketing assets:
-- Social media graphics (Instagram, Facebook, LinkedIn)
-- Digital ads (banner, display, social)
-- Email visuals (headers, CTAs)
-- Print materials (brochures, flyers)
-- Video content (short-form, testimonials)
-- Infographics and data visuals
+**ASSETS SECTION - MANDATORY 5+ ITEMS**:
+You MUST create AT LEAST 5 different assets in the "assets" array. Each asset must be a complete object with all required fields. Examples:
+- Asset 1: Social media graphic for Instagram
+- Asset 2: Digital banner ad for Facebook
+- Asset 3: Email header visual
+- Asset 4: Print brochure design
+- Asset 5: Video thumbnail
+- Asset 6+: Additional diverse assets
 
-**MESSAGES SECTION**: Create 6-8 marketing copy pieces:
-- Social media posts (different platforms)
-- Email campaigns (welcome, promotional, newsletter)
-- Digital ad copy (search, display, social)
-- Website content (landing pages, descriptions)
-- Press releases and announcements
-- Sales enablement materials
+**MESSAGES SECTION - MANDATORY 5+ ITEMS**:
+You MUST create AT LEAST 5 different messages in the "messages" array. Each message must be a complete object with all required fields. Examples:
+- Message 1: Launch announcement email
+- Message 2: Social media post for Instagram
+- Message 3: WhatsApp promotional message
+- Message 4: Digital ad copy for Google Ads
+- Message 5: Landing page headline
+- Message 6+: Additional diverse messages
 
-**GUIDES SECTION**: Create 6-8 practical guides:
-- Getting started and setup guides
-- Campaign strategy and planning
-- Content creation best practices
-- Social media management
-- Analytics and measurement
-- Brand voice guidelines`;
+**GUIDES SECTION - MANDATORY 5+ ITEMS**:
+You MUST create AT LEAST 5 different guides in the "guides" array. Each guide must be a complete object with all required fields. Examples:
+- Guide 1: Campaign strategy guide
+- Guide 2: Social media best practices
+- Guide 3: Email marketing optimization
+- Guide 4: Content creation guidelines
+- Guide 5: Analytics setup guide
+- Guide 6+: Additional practical guides
+
+**CRITICAL**: Do NOT create just one example of each type. You MUST populate the arrays with 5+ complete objects for each section.`;
 
     const templateExamples = `**EXACT TEMPLATE STRUCTURE EXAMPLES**:
 
@@ -570,7 +600,21 @@ export default brandStrings;
 
 **CRITICAL**: Follow the template files EXACTLY. Do not add, remove, or modify any keys. Only change the content values to be relevant to this specific campaign.
 
-**EFFICIENCY NOTE**: Be concise but comprehensive. Focus on quality over quantity while still providing 6-8 diverse examples for each content type.
+**CAMPAIGN CONTEXT INTEGRATION REQUIREMENTS**:
+- **USE ALL FORM DATA**: Incorporate brand name, industry, campaign type, target audience, primary goal, and key deliverables throughout
+- **CHANNEL DIVERSITY**: Ensure messages cover email, WhatsApp/SMS, social media (Instagram, Facebook, LinkedIn, TikTok), digital ads, landing pages, events, etc.
+- **MINIMUM QUANTITY**: Generate AT LEAST 5 assets, 5 messages, and 5 guides to ensure comprehensive coverage
+- **CAMPAIGN PHASES**: Structure content around the 5 campaign phases (Launch, Generate Interest, In-Store/Engagement, Follow-Up, Welcome/Onboarding)
+- **BRAND TONE**: Maintain consistent ${formData.tone} tone across all content
+- **INDUSTRY SPECIFICITY**: Use terminology and concepts specific to ${formData.industry}
+
+**CRITICAL ARRAY STRUCTURE REQUIREMENTS**:
+- **"assets" array**: MUST contain 5+ complete asset objects, each with all required fields (id, title, phase, type, model, description, etc.)
+- **"messages" array**: MUST contain 5+ complete message objects, each with all required fields (id, title, content, channel, type, model, etc.)
+- **"guides" array**: MUST contain 5+ complete guide objects, each with all required fields (id, title, type, model, content, etc.)
+- **"contentOutline.phases[].messaging"**: MUST be arrays of STRINGS (message titles), NOT objects
+- **"contentOutline.phases[].guides"**: MUST be arrays of STRINGS (guide titles), NOT objects
+- **DO NOT CREATE EMPTY ARRAYS**: Every array must be populated with the required number of items
 
 **CRITICAL STRUCTURE COMPLIANCE**:
 - You MUST follow the EXACT structure of both template files
@@ -624,6 +668,35 @@ ${finalInstructions}`;
       // Extract the JSON file
       const jsonMatch = response.match(/```json\n([\s\S]*?)\n```/);
       const configContent = jsonMatch ? jsonMatch[1].trim() : '';
+
+      // Debug: Log what we extracted
+      console.log('=== PARSING DEBUG ===');
+      console.log('TypeScript file length:', siteCopy.length);
+      console.log('JSON file length:', configContent.length);
+      
+      // Check for arrays in JSON
+      const assetsMatch = configContent.match(/"assets":\s*\[([\s\S]*?)\]/);
+      const messagesMatch = configContent.match(/"messages":\s*\[([\s\S]*?)\]/);
+      const guidesMatch = configContent.match(/"guides":\s*\[([\s\S]*?)\]/);
+      
+      if (assetsMatch) {
+        const assetsContent = assetsMatch[1];
+        const assetCount = (assetsContent.match(/\{[^}]*\}/g) || []).length;
+        console.log('Assets found:', assetCount);
+      }
+      
+      if (messagesMatch) {
+        const messagesContent = messagesMatch[1];
+        const messageCount = (messagesContent.match(/\{[^}]*\}/g) || []).length;
+        console.log('Messages found:', messageCount);
+      }
+      
+      if (guidesMatch) {
+        const guidesContent = guidesMatch[1];
+        const guideCount = (guidesContent.match(/\{[^}]*\}/g) || []).length;
+        console.log('Guides found:', guideCount);
+      }
+      console.log('=== END PARSING DEBUG ===');
 
       if (!siteCopy || !configContent) {
         throw new Error('Could not parse response into separate files');
