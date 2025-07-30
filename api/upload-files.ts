@@ -112,65 +112,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log(`✅ Upload Files Handler: Processed ${results.length} files. ${successCount} successful, ${failureCount} failed`);
 
-    // Auto-sync to backend if files were uploaded successfully
-    let syncResult: any = null;
+    // Note: Auto-sync to KV backend is disabled since we're using blob storage as the backend
+    // Files are automatically available through the blob scanner
     if (brandCode && brandName && successCount > 0) {
+      console.log(`✅ Brand ${brandName} uploaded to Vercel Blob Storage - automatically available in frontend`);
+      
+      // Trigger frontend refresh by calling the blob-based endpoint
       try {
-        console.log(`🔄 Auto-syncing brand ${brandName} to backend...`);
-        
-        // Prepare files for sync
-        const filesForSync = results
-          .filter(r => r.success)
-          .map(file => {
-            let type: 'locale' | 'config' | 'logo' = 'logo';
-            if (file.targetPath?.includes('locales/')) {
-              type = 'locale';
-            } else if (file.targetPath?.includes('configs/')) {
-              type = 'config';
-            }
-            
-            return {
-              filename: file.filename,
-              publicUrl: file.publicUrl,
-              storagePath: file.storagePath,
-              type
-            };
-          });
-
-        // Call sync endpoint - use absolute URL for server-side fetch
+        console.log('🔄 Triggering frontend refresh...');
         const baseUrl = process.env.VERCEL_URL 
           ? `https://${process.env.VERCEL_URL}` 
           : 'https://demo-toolkit.vercel.app';
-        
-        const syncResponse = await fetch(`${baseUrl}/api/sync-brand-to-backend`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            brandCode,
-            brandName,
-            files: filesForSync
-          })
-        });
-
-        if (syncResponse.ok) {
-          syncResult = await syncResponse.json();
-          console.log(`✅ Auto-sync successful:`, syncResult.message);
-        } else {
-          console.warn(`⚠️ Auto-sync failed:`, await syncResponse.text());
-        }
-
-        // Trigger frontend refresh by calling the blob-based endpoint
-        try {
-          console.log('🔄 Triggering frontend refresh...');
-          await fetch(`${baseUrl}/api/get-brands-from-blob`);
-          console.log('✅ Frontend refresh triggered');
-        } catch (refreshError) {
-          console.warn('⚠️ Frontend refresh failed:', refreshError);
-        }
-      } catch (syncError: any) {
-        console.warn(`⚠️ Auto-sync error:`, syncError.message);
+        await fetch(`${baseUrl}/api/get-brands-from-blob`);
+        console.log('✅ Frontend refresh triggered');
+      } catch (refreshError) {
+        console.warn('⚠️ Frontend refresh failed:', refreshError);
       }
     }
 
@@ -233,7 +189,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         failed: failureCount
       },
       brandSetup: brandSetupResult,
-      backendSync: syncResult,
+      backendSync: { success: true, message: "Using blob storage as backend - no KV sync needed" },
       note: "Files are now stored in Vercel Blob Storage and automatically synced to backend configuration."
     });
 
