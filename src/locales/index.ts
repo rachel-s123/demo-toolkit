@@ -6,16 +6,15 @@ import bmwStrings from './bmw';
 import enTemplateStrings from './en_template';
 import hedosophStrings from './hedosoph';
 
-import nestleStrings from './nestle';
-export type LanguageCode = 'en' | 'edf' | 'edf_fr' | 'bmw' | 'en_template' | 'hedosoph' | 'nestle';
+export type LanguageCode = 'en' | 'edf' | 'edf_fr' | 'bmw' | 'en_template' | 'hedosoph';
 
-export const languages: Record<LanguageCode, SiteCopy> = {en: enStrings,
+export const languages: Record<LanguageCode, SiteCopy> = {
+  en: enStrings,
   edf: edfStrings,
   edf_fr: edfFrStrings,
   bmw: bmwStrings,
   en_template: enTemplateStrings,
   hedosoph: hedosophStrings,
-  nestle: nestleStrings,
 };
 
 export const defaultLang: LanguageCode = 'en'; 
