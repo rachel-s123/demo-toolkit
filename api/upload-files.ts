@@ -156,6 +156,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         } else {
           console.warn(`⚠️ Auto-sync failed:`, await syncResponse.text());
         }
+
+        // Trigger frontend refresh by calling the blob-based endpoint
+        try {
+          console.log('🔄 Triggering frontend refresh...');
+          await fetch('/api/get-brands-from-blob');
+          console.log('✅ Frontend refresh triggered');
+        } catch (refreshError) {
+          console.warn('⚠️ Frontend refresh failed:', refreshError);
+        }
       } catch (syncError: any) {
         console.warn(`⚠️ Auto-sync error:`, syncError.message);
       }

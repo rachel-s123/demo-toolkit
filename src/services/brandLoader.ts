@@ -22,12 +22,24 @@ export class BrandLoader {
    */
   static async loadBrandsConfig(): Promise<BrandConfig[]> {
     try {
-      const response = await fetch('/api/get-brands');
+      // Try the blob-based endpoint first
+      const response = await fetch('/api/get-brands-from-blob');
       const data = await response.json();
       
       if (data.success && data.brands) {
         this.brandsConfig = data.brands;
+        console.log(`📦 Loaded ${data.brands.length} brands from blob storage`);
         return data.brands;
+      }
+      
+      // Fallback to KV-based endpoint if blob endpoint fails
+      console.log('🔄 Falling back to KV-based endpoint...');
+      const kvResponse = await fetch('/api/get-brands');
+      const kvData = await kvResponse.json();
+      
+      if (kvData.success && kvData.brands) {
+        this.brandsConfig = kvData.brands;
+        return kvData.brands;
       }
       
       return [];

@@ -80,20 +80,31 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({
     initializeLanguages();
   }, []);
 
-  // Poll for language updates (for development)
+  // Poll for language updates (for development and production)
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      const interval = setInterval(async () => {
+    const interval = setInterval(async () => {
+      try {
         const currentLanguages = await loadLanguages();
+        const currentBrandCount = Object.keys(currentLanguages).length;
+        
         // Check if current language still exists
         if (language && !currentLanguages[language]) {
           console.log('Current language no longer exists, reloading...');
           await reloadLanguages();
         }
-      }, 2000); // Check every 2 seconds
+        
+        // Check for new brands (if we have more brands than before)
+        const previousBrandCount = Object.keys(languages).length;
+        if (currentBrandCount > previousBrandCount) {
+          console.log(`🆕 New brands detected! Reloading languages...`);
+          await reloadLanguages();
+        }
+      } catch (error) {
+        console.warn('Error during language polling:', error);
+      }
+    }, 3000); // Check every 3 seconds
 
-      return () => clearInterval(interval);
-    }
+    return () => clearInterval(interval);
   }, [language]);
 
   useEffect(() => {
