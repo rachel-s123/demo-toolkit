@@ -324,6 +324,22 @@ You MUST create AT LEAST 5 different guides in the "guides" array. Each guide mu
 - Guide 5: Analytics setup guide
 - Guide 6+: Additional practical guides
 
+**JOURNEY STEPS SECTION - MANDATORY 5+ ITEMS**:
+You MUST create AT LEAST 5 different journey steps in the "journeySteps" array. Each journey step must be a complete object with all required fields (id, title, description, icon). 
+
+**CRITICAL ALIGNMENT REQUIREMENT**: The journey step titles MUST exactly match the actionTypes in filterOptions.actionTypes (excluding "ALL"). This ensures proper navigation and filtering.
+
+**MANDATORY**: You MUST update the actionTypes array to match your journey step titles exactly.
+
+Examples (journeySteps titles must match actionTypes exactly):
+- If journeySteps has "Discovery" → actionTypes must include "DISCOVERY"
+- If journeySteps has "Assessment" → actionTypes must include "ASSESSMENT" 
+- If journeySteps has "Implementation" → actionTypes must include "IMPLEMENTATION"
+- If journeySteps has "Optimization" → actionTypes must include "OPTIMIZATION"
+- If journeySteps has "Mastery" → actionTypes must include "MASTERY"
+
+**DO NOT USE GENERIC BMW STEPS**: Replace the default BMW actionTypes with your specific journey step titles.
+
 **CRITICAL**: Do NOT create just one example of each type. You MUST populate the arrays with 5+ complete objects for each section.`;
 
     const templateExamples = `**EXACT TEMPLATE STRUCTURE EXAMPLES**:
@@ -561,12 +577,46 @@ export default brandStrings;
       "content": "# 🚀 Launch Communication Strategy Guide\\n\\n**For**: R 1300 RT (KA3), R 1300 R (KA4), R 1300 RS (KA5)\\n\\n---\\n\\n## 🎯 Purpose\\n\\nHelp your dealership turn warm leads into customers by building launch excitement, tailoring comms by model, and driving actions like test rides and showroom visits."
     }
   ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Launch",
+      "description": "Initial campaign launch and awareness building",
+      "icon": "Rocket"
+    },
+    {
+      "id": "2",
+      "title": "Generate Test Rides",
+      "description": "Convert interest into test ride bookings",
+      "icon": "Calendar"
+    },
+    {
+      "id": "3",
+      "title": "In-Store",
+      "description": "Dealership experience and product showcase",
+      "icon": "Store"
+    },
+    {
+      "id": "4",
+      "title": "Follow-Up",
+      "description": "Post-purchase communication and satisfaction",
+      "icon": "MessageSquare"
+    },
+    {
+      "id": "5",
+      "title": "Welcome",
+      "description": "Onboarding new owners to the BMW family",
+      "icon": "UserPlus"
+    }
+  ],
   "filterOptions": {
     "phases": ["ALL", "LAUNCH", "GENERATE TEST RIDES", "IN-STORE", "FOLLOW-UP", "WELCOME"],
     "types": ["ALL", "STATIC", "VIDEO", "INTERACTIVE"],
     "models": ["ALL", "R1300 RT", "R1300 R", "R1300 RS"],
     "channels": ["ALL", "Email", "WhatsApp", "SMS", "Facebook", "Instagram", "Social", "Print", "Digital", "In-Store", "Phone"],
     "actionTypes": ["ALL", "LAUNCH", "GENERATE TEST RIDES", "IN-STORE", "FOLLOW-UP", "WELCOME"]
+    // NOTE: actionTypes must exactly match journeySteps titles (excluding "ALL")
+    // IMPORTANT: Replace these BMW-specific actionTypes with your own journey step titles
   },
   "metadata": {
     "lastModified": "2025-06-03T06:06:20.361Z",
@@ -607,14 +657,18 @@ export default brandStrings;
 - **CAMPAIGN PHASES**: Structure content around the 5 campaign phases (Launch, Generate Interest, In-Store/Engagement, Follow-Up, Welcome/Onboarding)
 - **BRAND TONE**: Maintain consistent ${formData.tone} tone across all content
 - **INDUSTRY SPECIFICITY**: Use terminology and concepts specific to ${formData.industry}
+- **JOURNEY-ACTION ALIGNMENT**: Journey step titles must exactly match actionTypes for proper navigation. You MUST update actionTypes array to match your journey step titles exactly.
 
 **CRITICAL ARRAY STRUCTURE REQUIREMENTS**:
 - **"assets" array**: MUST contain 5+ complete asset objects, each with all required fields (id, title, phase, type, model, description, etc.)
 - **"messages" array**: MUST contain 5+ complete message objects, each with all required fields (id, title, content, channel, type, model, etc.)
 - **"guides" array**: MUST contain 5+ complete guide objects, each with all required fields (id, title, type, model, content, etc.)
+- **"journeySteps" array**: MUST contain 5+ complete journey step objects, each with all required fields (id, title, description, icon)
+- **"filterOptions.actionTypes" array**: MUST contain action types that exactly match journey step titles (plus "ALL")
 - **"contentOutline.phases[].messaging"**: MUST be arrays of STRINGS (message titles), NOT objects
 - **"contentOutline.phases[].guides"**: MUST be arrays of STRINGS (guide titles), NOT objects
 - **DO NOT CREATE EMPTY ARRAYS**: Every array must be populated with the required number of items
+- **CRITICAL ALIGNMENT**: journeySteps titles must exactly match actionTypes (excluding "ALL")
 
 **CRITICAL STRUCTURE COMPLIANCE**:
 - You MUST follow the EXACT structure of both template files
@@ -678,6 +732,7 @@ ${finalInstructions}`;
       const assetsMatch = configContent.match(/"assets":\s*\[([\s\S]*?)\]/);
       const messagesMatch = configContent.match(/"messages":\s*\[([\s\S]*?)\]/);
       const guidesMatch = configContent.match(/"guides":\s*\[([\s\S]*?)\]/);
+      const journeyStepsMatch = configContent.match(/"journeySteps":\s*\[([\s\S]*?)\]/);
       
       if (assetsMatch) {
         const assetsContent = assetsMatch[1];
@@ -696,6 +751,44 @@ ${finalInstructions}`;
         const guideCount = (guidesContent.match(/\{[^}]*\}/g) || []).length;
         console.log('Guides found:', guideCount);
       }
+      
+                if (journeyStepsMatch) {
+            const journeyStepsContent = journeyStepsMatch[1];
+            const journeyStepCount = (journeyStepsContent.match(/\{[^}]*\}/g) || []).length;
+            console.log('Journey Steps found:', journeyStepCount);
+            
+            // Extract journey step titles
+            const titleMatches = journeyStepsContent.match(/"title":\s*"([^"]+)"/g);
+            if (titleMatches) {
+              const titles = titleMatches.map(match => match.match(/"title":\s*"([^"]+)"/)?.[1]).filter(Boolean);
+              console.log('Journey Step Titles:', titles);
+            }
+          } else {
+            console.log('No journeySteps array found in JSON');
+          }
+          
+          // Check actionTypes alignment
+          const actionTypesMatch = configContent.match(/"actionTypes":\s*\[([\s\S]*?)\]/);
+          if (actionTypesMatch) {
+            const actionTypesContent = actionTypesMatch[1];
+            const actionTypes = actionTypesContent.match(/"([^"]+)"/g)?.map(match => match.replace(/"/g, '')) || [];
+            console.log('Action Types found:', actionTypes);
+            
+            // Check if they align with journey steps
+            const journeyStepsMatch = configContent.match(/"journeySteps":\s*\[([\s\S]*?)\]/);
+            if (journeyStepsMatch) {
+              const journeyStepsContent = journeyStepsMatch[1];
+              const titleMatches = journeyStepsContent.match(/"title":\s*"([^"]+)"/g);
+              if (titleMatches) {
+                const journeyTitles = titleMatches.map(match => match.match(/"title":\s*"([^"]+)"/)?.[1]).filter(Boolean);
+                const actionTypesWithoutAll = actionTypes.filter(type => type !== 'ALL');
+                console.log('Journey Titles:', journeyTitles);
+                console.log('Action Types (without ALL):', actionTypesWithoutAll);
+                console.log('Alignment check:', journeyTitles.length === actionTypesWithoutAll.length && 
+                  journeyTitles.every((title, index) => title && actionTypesWithoutAll[index] === title.toUpperCase()));
+              }
+            }
+          }
       console.log('=== END PARSING DEBUG ===');
 
       if (!siteCopy || !configContent) {

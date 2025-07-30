@@ -161,7 +161,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                     ${
                       activeTab === tab
                         ? "bg-primary-100 text-primary-700"
-                        : "text-secondary-700 hover:bg-secondary-100 hover:text-secondary-900"
+                        : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                     }`}
                 >
                   <span

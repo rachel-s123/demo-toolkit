@@ -1,0 +1,446 @@
+{
+  "isDemo": true,
+  "demoNotice": "These are demo assets for AI literacy education. Replace with your organization's specific training materials.",
+  "lastUpdated": "2025-07-09T18:30:00.000Z",
+  "brand": {
+    "name": "Nestle",
+    "logo": "/assets/logos/nestle.png",
+    "logoAlt": "Nestle Logo"
+  },
+  "assets": [
+    {
+      "id": "nestle_logo",
+      "title": "Nestle Logo",
+      "description": "Official brand logo",
+      "model": "Nestle",
+      "category": "Brand Assets",
+      "type": "IMAGE",
+      "tags": [
+        "logo",
+        "brand"
+      ],
+      "channel": "All",
+      "dateCreated": "2025-07-30T12:34:09.889Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "png",
+      "thumbnail": "/assets/logos/nestle_thumb.jpg",
+      "url": "/assets/logos/nestle.png",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_social_banner",
+      "title": "Nestle Social Media Banner",
+      "description": "Social media header banner",
+      "model": "Nestle",
+      "category": "Social Media",
+      "type": "IMAGE",
+      "tags": [
+        "banner",
+        "social",
+        "header"
+      ],
+      "channel": "Social Media",
+      "dateCreated": "2025-07-30T12:34:09.889Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1200x630",
+      "fileExtension": "png",
+      "thumbnail": "/assets/social/nestle_banner_thumb.jpg",
+      "url": "/assets/social/nestle_banner.png",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_email_header",
+      "title": "Nestle Email Header",
+      "description": "Email marketing header image",
+      "model": "Nestle",
+      "category": "Email Marketing",
+      "type": "IMAGE",
+      "tags": [
+        "email",
+        "header",
+        "marketing"
+      ],
+      "channel": "Email",
+      "dateCreated": "2025-07-30T12:34:09.889Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "600x200",
+      "fileExtension": "png",
+      "thumbnail": "/assets/email/nestle_header_thumb.jpg",
+      "url": "/assets/email/nestle_header.png",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_infographic",
+      "title": "Nestle Infographic",
+      "description": "Educational infographic",
+      "model": "Nestle",
+      "category": "Educational",
+      "type": "IMAGE",
+      "tags": [
+        "infographic",
+        "educational",
+        "visual"
+      ],
+      "channel": "All",
+      "dateCreated": "2025-07-30T12:34:09.889Z",
+      "phase": "FOLLOW-UP",
+      "orientation": "portrait",
+      "dimensions": "1080x1920",
+      "fileExtension": "png",
+      "thumbnail": "/assets/infographics/nestle_infographic_thumb.jpg",
+      "url": "/assets/infographics/nestle_infographic.png",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_brochure",
+      "title": "Nestle Brochure",
+      "description": "Print-ready brochure",
+      "model": "Nestle",
+      "category": "Print Materials",
+      "type": "PDF",
+      "tags": [
+        "brochure",
+        "print",
+        "marketing"
+      ],
+      "channel": "Print",
+      "dateCreated": "2025-07-30T12:34:09.889Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "8.5x11",
+      "fileExtension": "pdf",
+      "thumbnail": "/assets/print/nestle_brochure_thumb.jpg",
+      "url": "/assets/print/nestle_brochure.pdf",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_video_intro",
+      "title": "Nestle Introduction Video",
+      "description": "Brand introduction video",
+      "model": "Nestle",
+      "category": "Video Content",
+      "type": "VIDEO",
+      "tags": [
+        "video",
+        "introduction",
+        "brand"
+      ],
+      "channel": "All",
+      "dateCreated": "2025-07-30T12:34:09.889Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "mp4",
+      "thumbnail": "/assets/videos/nestle_intro_thumb.jpg",
+      "url": "/assets/videos/nestle_intro.mp4",
+      "isDemo": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "nestle_launch_email",
+      "title": "Nestle Launch - Email Campaign",
+      "content": "Subject: Welcome to Nestle\n\nDear Valued Partner,\n\nWelcome to Nestle! We're excited to help you achieve launch new product.\n\n[Learn More] [Get Started]\n\nBest regards,\nThe Nestle Team",
+      "channel": "Email",
+      "stage": "LAUNCH",
+      "model": "Nestle",
+      "tags": [
+        "launch",
+        "email",
+        "welcome"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "nestle_social_post",
+      "title": "Nestle Social Media Post",
+      "content": "🚀 Exciting news! Nestle is here to help you achieve launch new product.\n\nDiscover how we can transform your business:\n\n✅ Streamlined processes\n✅ Improved performance\n✅ Measurable results\n\n[Learn More] #Nestle #Innovation",
+      "channel": "Social Media",
+      "stage": "LAUNCH",
+      "model": "Nestle",
+      "tags": [
+        "launch",
+        "social",
+        "announcement"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "nestle_newsletter",
+      "title": "Nestle Newsletter",
+      "content": "📧 Nestle Monthly Newsletter\n\nStay updated with the latest insights and strategies to achieve launch new product.\n\nThis month's highlights:\n• Industry trends and insights\n• Success stories and case studies\n• Tips and best practices\n• Upcoming events and webinars\n\n[Read More] [Subscribe]",
+      "channel": "Email",
+      "stage": "FOLLOW-UP",
+      "model": "Nestle",
+      "tags": [
+        "newsletter",
+        "email",
+        "engagement"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "nestle_web_content",
+      "title": "Nestle Website Content",
+      "content": "Transform Your Business with Nestle\n\nDiscover how Nestle can help you achieve launch new product through innovative solutions and proven strategies.\n\nOur comprehensive approach includes:\n• Strategic planning and implementation\n• Performance optimization\n• Continuous improvement\n• Measurable results\n\n[Get Started Today] [Learn More]",
+      "channel": "Website",
+      "stage": "LAUNCH",
+      "model": "Nestle",
+      "tags": [
+        "website",
+        "content",
+        "conversion"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "nestle_press_release",
+      "title": "Nestle Press Release",
+      "content": "FOR IMMEDIATE RELEASE\n\nNestle Launches Revolutionary Solution to Help Businesses Achieve launch new product\n\n[City, Date] - Nestle today announced the launch of its comprehensive toolkit designed to help organizations achieve launch new product.\n\n\"Our solution addresses the critical needs of modern businesses,\" said a company spokesperson. \"We're excited to help our clients transform their operations and achieve measurable success.\"\n\n[Contact Information]",
+      "channel": "Press",
+      "stage": "LAUNCH",
+      "model": "Nestle",
+      "tags": [
+        "press",
+        "announcement",
+        "launch"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "nestle_sales_enablement",
+      "title": "Nestle Sales Enablement",
+      "content": "Empower Your Sales Team with Nestle\n\nKey talking points for your sales conversations:\n\n🎯 Problem: Organizations struggle to achieve launch new product\n💡 Solution: Nestle provides comprehensive tools and strategies\n✅ Benefits: Streamlined processes, improved efficiency, measurable results\n📊 Proof: Industry-leading success rates and customer satisfaction\n\n[Download Sales Kit] [Schedule Demo]",
+      "channel": "Sales",
+      "stage": "IN-STORE",
+      "model": "Nestle",
+      "tags": [
+        "sales",
+        "enablement",
+        "conversion"
+      ],
+      "isDemo": false
+    }
+  ],
+  "guides": [
+    {
+      "id": "nestle_getting_started",
+      "title": "Nestle Getting Started Guide",
+      "description": "Complete guide to getting started with Nestle",
+      "stage": "LAUNCH",
+      "model": "Nestle",
+      "category": "Getting Started",
+      "sections": [
+        {
+          "title": "Introduction",
+          "content": "Welcome to Nestle! This guide will help you get started."
+        },
+        {
+          "title": "Setup Process",
+          "content": "Step-by-step setup instructions"
+        },
+        {
+          "title": "First Steps",
+          "content": "Essential first steps to achieve success"
+        }
+      ],
+      "estimatedReadTime": "10-15 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-30T12:34:09.889Z",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_best_practices",
+      "title": "Nestle Best Practices Guide",
+      "description": "Industry best practices and optimization strategies",
+      "stage": "FOLLOW-UP",
+      "model": "Nestle",
+      "category": "Best Practices",
+      "sections": [
+        {
+          "title": "Optimization Strategies",
+          "content": "Learn how to optimize your performance and achieve better results."
+        },
+        {
+          "title": "Common Pitfalls",
+          "content": "Avoid common mistakes and challenges."
+        },
+        {
+          "title": "Success Metrics",
+          "content": "Key metrics to track and measure success."
+        }
+      ],
+      "estimatedReadTime": "20-25 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-30T12:34:09.889Z",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_campaign_strategy",
+      "title": "Nestle Campaign Strategy Guide",
+      "description": "Comprehensive campaign planning and execution",
+      "stage": "LAUNCH",
+      "model": "Nestle",
+      "category": "Strategy",
+      "sections": [
+        {
+          "title": "Campaign Planning",
+          "content": "Strategic approach to campaign development and execution."
+        },
+        {
+          "title": "Target Audience",
+          "content": "How to identify and reach your target audience effectively."
+        },
+        {
+          "title": "Measurement & Analytics",
+          "content": "Track and measure campaign performance and ROI."
+        }
+      ],
+      "estimatedReadTime": "30-35 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-30T12:34:09.889Z",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_content_creation",
+      "title": "Nestle Content Creation Guide",
+      "description": "Guidelines for creating effective marketing content",
+      "stage": "IN-STORE",
+      "model": "Nestle",
+      "category": "Content Creation",
+      "sections": [
+        {
+          "title": "Content Strategy",
+          "content": "Develop a comprehensive content strategy that resonates with your audience."
+        },
+        {
+          "title": "Content Types",
+          "content": "Different types of content and when to use each."
+        },
+        {
+          "title": "Brand Voice",
+          "content": "Maintain consistent brand voice across all content."
+        }
+      ],
+      "estimatedReadTime": "25-30 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-30T12:34:09.889Z",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_social_media",
+      "title": "Nestle Social Media Guide",
+      "description": "Social media marketing strategies and best practices",
+      "stage": "FOLLOW-UP",
+      "model": "Nestle",
+      "category": "Social Media",
+      "sections": [
+        {
+          "title": "Platform Strategy",
+          "content": "Choose the right platforms for your target audience."
+        },
+        {
+          "title": "Content Calendar",
+          "content": "Plan and schedule your social media content effectively."
+        },
+        {
+          "title": "Engagement Tactics",
+          "content": "Build meaningful relationships with your audience."
+        }
+      ],
+      "estimatedReadTime": "20-25 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-30T12:34:09.889Z",
+      "isDemo": false
+    },
+    {
+      "id": "nestle_analytics_guide",
+      "title": "Nestle Analytics & Reporting Guide",
+      "description": "How to measure and report on campaign performance",
+      "stage": "FOLLOW-UP",
+      "model": "Nestle",
+      "category": "Analytics",
+      "sections": [
+        {
+          "title": "Key Metrics",
+          "content": "Identify and track the most important performance indicators."
+        },
+        {
+          "title": "Reporting Tools",
+          "content": "Tools and platforms for effective reporting and analysis."
+        },
+        {
+          "title": "Data Interpretation",
+          "content": "How to interpret data and make informed decisions."
+        }
+      ],
+      "estimatedReadTime": "15-20 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-07-30T12:34:09.889Z",
+      "isDemo": false
+    }
+  ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Discovery",
+      "description": "Explore Nestle's capabilities and solutions",
+      "icon": "Rocket"
+    },
+    {
+      "id": "2",
+      "title": "Assessment",
+      "description": "Evaluate your needs and requirements",
+      "icon": "Calendar"
+    },
+    {
+      "id": "3",
+      "title": "Implementation",
+      "description": "Deploy and implement solutions",
+      "icon": "Store"
+    },
+    {
+      "id": "4",
+      "title": "Optimization",
+      "description": "Optimize and improve performance",
+      "icon": "MessageSquare"
+    },
+    {
+      "id": "5",
+      "title": "Mastery",
+      "description": "Achieve success and mastery",
+      "icon": "UserPlus"
+    }
+  ],
+  "filterOptions": {
+    "actionTypes": [
+      "ALL",
+      "LAUNCH",
+      "GENERATE TEST RIDES",
+      "IN-STORE",
+      "FOLLOW-UP",
+      "WELCOME"
+    ],
+    "channels": [
+      "ALL",
+      "Email",
+      "Social Media",
+      "SMS",
+      "Website"
+    ],
+    "models": [
+      "ALL",
+      "Nestle"
+    ]
+  },
+  "metadata": {
+    "lastModified": "2025-07-09T18:30:00.000Z",
+    "modifiedBy": "brilliant-noise-ai-toolkit",
+    "version": 1,
+    "source": "ai-literacy-campaign"
+  }
+}
