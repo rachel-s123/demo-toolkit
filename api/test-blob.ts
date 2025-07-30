@@ -23,10 +23,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log(`📤 Testing upload to: ${testPath}`);
 
-    const blobData = await put(testPath, testContent, {
-      contentType: 'text/plain',
-      access: 'public'
-    });
+          const blobData = await put(testPath, testContent, { 
+        contentType: 'text/plain', 
+        access: 'public',
+        allowOverwrite: true
+      });
 
     console.log('✅ Test upload successful:', blobData.url);
 

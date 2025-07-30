@@ -68,14 +68,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             console.log(`📤 Uploading binary file: ${storagePath} (${mimeType})`);
             blobData = await put(storagePath, buffer, {
               contentType: mimeType,
-              access: 'public'
+              access: 'public',
+              allowOverwrite: true
             });
           } else {
             // Handle text files
             console.log(`📤 Uploading text file: ${storagePath}`);
             blobData = await put(storagePath, content, {
               contentType: 'text/plain',
-              access: 'public'
+              access: 'public',
+              allowOverwrite: true
             });
           }
         } catch (blobError: any) {
