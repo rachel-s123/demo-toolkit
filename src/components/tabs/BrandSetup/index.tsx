@@ -344,6 +344,8 @@ export default function BrandSetup() {
       try {
         await uploadToBackend();
         console.log("Auto-upload completed successfully!");
+        
+        // Set success message - the upload function will handle the actual success/failure
         setAutoUploadSuccess("✅ Content generated and automatically uploaded to backend successfully!");
         // Clear the success message after 5 seconds
         setTimeout(() => setAutoUploadSuccess(null), 5000);
@@ -392,8 +394,19 @@ export default function BrandSetup() {
     const content = getCurrentContent();
     if (!content) return;
 
+    console.log('🔄 Starting upload to backend...');
     setIsUploading(true);
     setUploadResult(null);
+
+    // Add timeout to prevent hanging
+    const uploadTimeout = setTimeout(() => {
+      console.error('❌ Upload timeout - taking too long');
+      setIsUploading(false);
+      setUploadResult({
+        success: false,
+        message: 'Upload timed out. Please try again.'
+      });
+    }, 30000); // 30 second timeout
 
     try {
       const files: Array<{
@@ -436,6 +449,7 @@ export default function BrandSetup() {
         }
       }
 
+      console.log('📤 Sending files to upload API...');
       const response = await fetch('/api/upload-files', {
         method: 'POST',
         headers: {
@@ -448,7 +462,9 @@ export default function BrandSetup() {
         })
       });
 
+      console.log('📥 Received response from upload API:', response.status);
       const result = await response.json();
+      console.log('📋 Upload API result:', result);
 
       if (response.ok && result.success) {
         let message = `Successfully processed ${result.summary.successful} files!`;
@@ -476,7 +492,15 @@ export default function BrandSetup() {
               // Update the generated content with the correct logo URL
               try {
                 const updatedConfigContent = JSON.parse(content.configContentFile);
+                
+                // Ensure brand object exists
+                if (!updatedConfigContent.brand) {
+                  updatedConfigContent.brand = {};
+                }
+                
+                // Update logo URL
                 updatedConfigContent.brand.logo = logoFile.publicUrl;
+                updatedConfigContent.brand.logoAlt = `${formData.brandName} Logo`;
                 
                 // Update the generated content state
                 setGeneratedContent(prev => prev ? {
@@ -484,11 +508,17 @@ export default function BrandSetup() {
                   configContentFile: JSON.stringify(updatedConfigContent, null, 2)
                 } : prev);
                 
-                console.log('Updated config with logo URL:', logoFile.publicUrl);
-                message += ` Logo URL updated in config.`;
+                console.log('✅ Updated config with logo URL:', logoFile.publicUrl);
+                message += ` Logo URL updated in config: ${logoFile.publicUrl}`;
+                
+                // Also update the uploaded logo URL state
+                setUploadedLogoUrl(logoFile.publicUrl);
               } catch (configError) {
-                console.error('Error updating config with logo URL:', configError);
+                console.error('❌ Error updating config with logo URL:', configError);
+                message += ` Warning: Could not update config with logo URL.`;
               }
+            } else {
+              console.log('No logo file found in uploaded files');
             }
             
             // Show public URLs for uploaded files
@@ -532,24 +562,40 @@ export default function BrandSetup() {
           }
         }
         
+        console.log('✅ Upload completed successfully');
         setUploadResult({
           success: true,
           message
         });
+        
+        // Also update auto-upload success message if this was an auto-upload
+        setAutoUploadSuccess(`✅ ${message}`);
+        setTimeout(() => setAutoUploadSuccess(null), 5000);
       } else {
+        console.error('❌ Upload failed:', result.error);
+        const errorMessage = `Upload failed: ${result.error || 'Unknown error'}`;
         setUploadResult({
           success: false,
-          message: `Upload failed: ${result.error || 'Unknown error'}`
+          message: errorMessage
         });
+        
+        // Clear any auto-upload success message on error
+        setAutoUploadSuccess(null);
       }
     } catch (error) {
-      console.error('Error uploading files:', error);
+      console.error('❌ Error uploading files:', error);
+      const errorMessage = `Upload failed: ${error instanceof Error ? error.message : 'Network error'}`;
       setUploadResult({
         success: false,
-        message: `Upload failed: ${error instanceof Error ? error.message : 'Network error'}`
+        message: errorMessage
       });
+      
+      // Clear any auto-upload success message on error
+      setAutoUploadSuccess(null);
     } finally {
+      clearTimeout(uploadTimeout);
       setIsUploading(false);
+      console.log('🏁 Upload process finished');
     }
   };
 

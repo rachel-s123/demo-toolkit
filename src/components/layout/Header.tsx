@@ -6,7 +6,7 @@ import { useLanguage } from "../../context/LanguageContext";
 import { useHighlight } from "../../context/HighlightContext";
 import { useConfig } from "../../hooks/useConfig";
 import { BrandLoader, BrandConfig } from "../../services/brandLoader";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X, LogOut, RefreshCw } from "lucide-react";
 
 interface HeaderProps {
   activeTab: TabType;
@@ -43,22 +43,27 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   const [isLoadingBrands, setIsLoadingBrands] = useState(true);
 
   // Load dynamic brands from backend
-  useEffect(() => {
-    const loadDynamicBrands = async () => {
-      try {
-        setIsLoadingBrands(true);
-        const brands = await BrandLoader.loadBrandsConfig();
-        setDynamicBrands(brands);
-        console.log(`📦 Header loaded ${brands.length} dynamic brands`);
-      } catch (error) {
-        console.error('Failed to load dynamic brands in Header:', error);
-      } finally {
-        setIsLoadingBrands(false);
-      }
-    };
+  const loadDynamicBrands = async () => {
+    try {
+      setIsLoadingBrands(true);
+      const brands = await BrandLoader.loadBrandsConfig();
+      setDynamicBrands(brands);
+      console.log(`📦 Header loaded ${brands.length} dynamic brands`);
+    } catch (error) {
+      console.error('Failed to load dynamic brands in Header:', error);
+    } finally {
+      setIsLoadingBrands(false);
+    }
+  };
 
+  useEffect(() => {
     loadDynamicBrands();
   }, []);
+
+  const handleRefreshBrands = async () => {
+    console.log('🔄 Refreshing brands...');
+    await loadDynamicBrands();
+  };
 
   const tabPaths: Record<TabType, string> = {
     HOME: "/",
@@ -181,6 +186,16 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   </>
                 )}
               </select>
+              
+              {/* Refresh brands button */}
+              <button
+                onClick={handleRefreshBrands}
+                disabled={isLoadingBrands}
+                className="p-2 rounded-md hover:bg-secondary-100 transition-colors disabled:opacity-50"
+                title="Refresh brands"
+              >
+                <RefreshCw className={`h-4 w-4 text-secondary-700 ${isLoadingBrands ? 'animate-spin' : ''}`} />
+              </button>
             </div>
           </div>
 
@@ -307,6 +322,16 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                     </>
                   )}
                 </select>
+                
+                {/* Refresh brands button - Mobile */}
+                <button
+                  onClick={handleRefreshBrands}
+                  disabled={isLoadingBrands}
+                  className="p-2 rounded-md hover:bg-secondary-100 transition-colors disabled:opacity-50"
+                  title="Refresh brands"
+                >
+                  <RefreshCw className={`h-5 w-5 text-secondary-700 ${isLoadingBrands ? 'animate-spin' : ''}`} />
+                </button>
               </div>
 
               {/* Mobile Logout Button */}
