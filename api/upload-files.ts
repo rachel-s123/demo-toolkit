@@ -174,40 +174,75 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           }))
           .filter(f => f.type !== 'other'); // Only sync relevant files
         
-        // Call the sync API
-        const baseUrl = process.env.VERCEL_URL 
-          ? `https://${process.env.VERCEL_URL}` 
-          : 'https://demo-toolkit.vercel.app';
-        
-        const syncResponse = await fetch(`${baseUrl}/api/sync-brand-to-backend`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            brandCode,
-            brandName,
-            files: syncFiles
-          })
-        });
-        
-        const syncResult = await syncResponse.json();
-        
-        if (syncResponse.ok && syncResult.success) {
+        // Skip backend sync in development or if Redis is not configured
+        if (!process.env.REDIS_URL) {
+          console.log('⚠️ Redis not configured, skipping backend sync');
           backendSyncResult = {
             success: true,
-            message: syncResult.message,
-            brandConfig: syncResult.brandConfig,
-            frontendConfig: syncResult.frontendConfig
+            message: `Brand ${brandName} uploaded to Vercel Blob Storage successfully. Backend sync skipped (Redis not configured).`,
+            note: "To enable backend sync, configure REDIS_URL in Vercel environment variables."
           };
-          console.log('✅ Backend sync successful:', syncResult);
         } else {
-          backendSyncResult = {
-            success: false,
-            message: syncResult.error || 'Backend sync failed',
-            details: syncResult
-          };
-          console.error('❌ Backend sync failed:', syncResult);
+          // Call the sync API
+          const baseUrl = process.env.VERCEL_URL 
+            ? `https://${process.env.VERCEL_URL}` 
+            : 'https://demo-toolkit.vercel.app';
+          
+          const syncUrl = `${baseUrl}/api/sync-brand-to-backend`;
+          console.log('🔍 Calling sync API at:', syncUrl);
+          
+          const syncResponse = await fetch(syncUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              brandCode,
+              brandName,
+              files: syncFiles
+            })
+          });
+          
+          let syncResult;
+          try {
+            const responseText = await syncResponse.text();
+            console.log('🔍 Sync response status:', syncResponse.status);
+            console.log('🔍 Sync response text:', responseText.substring(0, 500));
+            
+            if (responseText.trim().startsWith('<')) {
+              // Response is HTML (likely an error page)
+              throw new Error(`API returned HTML instead of JSON. Status: ${syncResponse.status}. Response: ${responseText.substring(0, 200)}`);
+            }
+            
+            syncResult = JSON.parse(responseText);
+          } catch (parseError) {
+            console.error('❌ Failed to parse sync response:', parseError);
+            backendSyncResult = {
+              success: false,
+              message: 'Backend sync failed - invalid response format',
+              error: parseError instanceof Error ? parseError.message : 'Unknown parsing error',
+              status: syncResponse.status
+            };
+            return;
+          }
+          
+          if (syncResponse.ok && syncResult.success) {
+            backendSyncResult = {
+              success: true,
+              message: syncResult.message,
+              brandConfig: syncResult.brandConfig,
+              frontendConfig: syncResult.frontendConfig
+            };
+            console.log('✅ Backend sync successful:', syncResult);
+          } else {
+            backendSyncResult = {
+              success: false,
+              message: syncResult.error || 'Backend sync failed',
+              details: syncResult,
+              status: syncResponse.status
+            };
+            console.error('❌ Backend sync failed:', syncResult);
+          }
         }
       } catch (syncError) {
         console.error('❌ Error during backend sync:', syncError);
