@@ -36,62 +36,18 @@ const JourneyDiagram: React.FC<JourneyDiagramProps> = ({
   const copy = t.home;
   const { isHighlightEnabled } = useHighlight();
 
-  // Map journey step titles to action types for navigation
-  const getActionFromTitle = (title: string): ActionButtonType => {
-    // Get available action types from current config
-    const availableActionTypes = config?.filterOptions?.actionTypes || [];
+  // Map journey step titles to action types for navigation based on position
+  const getActionFromTitle = (title: string, stepIndex: number): ActionButtonType => {
+    // Get available action types from current config (excluding "ALL")
+    const availableActionTypes = config?.filterOptions?.actionTypes?.filter(type => type !== "ALL") || [];
     
-    // Create a mapping based on available action types
-    const titleToAction: Record<string, ActionButtonType> = {};
-    
-    // BMW-style mappings
-    if (availableActionTypes.includes("LAUNCH")) {
-      titleToAction["Launch"] = "LAUNCH";
-      titleToAction["Discovery"] = "LAUNCH";
-    }
-    if (availableActionTypes.includes("GENERATE TEST RIDES")) {
-      titleToAction["Generate Test Rides"] = "GENERATE TEST RIDES";
-      titleToAction["Assessment"] = "GENERATE TEST RIDES";
-      titleToAction["Planning"] = "GENERATE TEST RIDES";
-    }
-    if (availableActionTypes.includes("IN-STORE")) {
-      titleToAction["In-Store"] = "IN-STORE";
-      titleToAction["Implementation"] = "IN-STORE";
-    }
-    if (availableActionTypes.includes("FOLLOW-UP")) {
-      titleToAction["Follow-Up"] = "FOLLOW-UP";
-      titleToAction["Optimization"] = "FOLLOW-UP";
-    }
-    if (availableActionTypes.includes("WELCOME")) {
-      titleToAction["Welcome"] = "WELCOME";
+    // Map step index to action type index (0-based)
+    if (stepIndex >= 0 && stepIndex < availableActionTypes.length) {
+      return availableActionTypes[stepIndex] as ActionButtonType;
     }
     
-    // Hedosophia-style mappings
-    if (availableActionTypes.includes("FOUNDATION")) {
-      titleToAction["Foundation"] = "FOUNDATION";
-    }
-    if (availableActionTypes.includes("EXPLORATION")) {
-      titleToAction["Exploration"] = "EXPLORATION";
-    }
-    if (availableActionTypes.includes("IMPLEMENTATION")) {
-      titleToAction["Implementation"] = "IMPLEMENTATION";
-    }
-    if (availableActionTypes.includes("OPTIMIZATION")) {
-      titleToAction["Optimization"] = "OPTIMIZATION";
-    }
-    if (availableActionTypes.includes("MASTERY")) {
-      titleToAction["Mastery"] = "MASTERY";
-    }
-    
-    // Return the mapped action or the first available action type (excluding "ALL")
-    const mappedAction = titleToAction[title];
-    if (mappedAction) {
-      return mappedAction;
-    }
-    
-    // Fallback to first non-"ALL" action type
-    const firstActionType = availableActionTypes.find(type => type !== "ALL");
-    return (firstActionType as ActionButtonType) || "LAUNCH";
+    // Fallback to first available action type
+    return (availableActionTypes[0] as ActionButtonType) || "GETTING STARTED";
   };
 
   if (loading) {
@@ -144,7 +100,7 @@ const JourneyDiagram: React.FC<JourneyDiagramProps> = ({
             const IconComponent =
               iconMap[step.icon as keyof typeof iconMap] || Rocket;
 
-            const action = getActionFromTitle(step.title);
+            const action = getActionFromTitle(step.title, index);
             const isSelected = selectedAction === action;
 
             return (

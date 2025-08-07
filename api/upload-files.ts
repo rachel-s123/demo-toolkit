@@ -112,6 +112,113 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log(`✅ Upload Files Handler: Processed ${results.length} files. ${successCount} successful, ${failureCount} failed`);
 
+    // Update config file with correct logo URL if logo was uploaded
+    let updatedConfigResult: any = null;
+    if (successCount > 0) {
+      const logoFile = results.find(r => r.success && r.targetPath?.includes('public/assets/logos/'));
+      const configFile = results.find(r => r.success && r.targetPath?.includes('public/locales/config_'));
+      
+      if (logoFile && configFile && logoFile.publicUrl) {
+        try {
+          console.log('🔄 Updating config file with logo URL...');
+          
+          // Fetch the uploaded config file
+          const configResponse = await fetch(configFile.publicUrl);
+          const configContent = await configResponse.json();
+          
+          // Update the logo URL
+          configContent.brand.logo = logoFile.publicUrl;
+          
+          // Re-upload the updated config file
+          const updatedConfigBlob = await put(configFile.storagePath, JSON.stringify(configContent, null, 2), {
+            contentType: 'application/json',
+            access: 'public',
+            allowOverwrite: true
+          });
+          
+          updatedConfigResult = {
+            success: true,
+            originalConfigUrl: configFile.publicUrl,
+            updatedConfigUrl: updatedConfigBlob.url,
+            logoUrl: logoFile.publicUrl,
+            message: 'Config file updated with correct logo URL'
+          };
+          
+          console.log('✅ Config file updated with logo URL:', logoFile.publicUrl);
+        } catch (configUpdateError) {
+          console.error('❌ Failed to update config with logo URL:', configUpdateError);
+          updatedConfigResult = {
+            success: false,
+            error: configUpdateError instanceof Error ? configUpdateError.message : 'Unknown error'
+          };
+        }
+      }
+    }
+
+    // Sync brand information to backend (including logo)
+    let backendSyncResult: any = null;
+    if (brandCode && brandName && successCount > 0) {
+      try {
+        console.log('🔄 Syncing brand information to backend...');
+        
+        // Prepare files for backend sync
+        const syncFiles = results
+          .filter(r => r.success)
+          .map(r => ({
+            filename: r.filename,
+            publicUrl: r.publicUrl,
+            storagePath: r.storagePath,
+            type: r.targetPath?.includes('public/assets/logos/') ? 'logo' :
+                  r.targetPath?.includes('public/locales/') ? 'config' :
+                  r.targetPath?.includes('src/locales/') ? 'locale' : 'other'
+          }))
+          .filter(f => f.type !== 'other'); // Only sync relevant files
+        
+        // Call the sync API
+        const baseUrl = process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}` 
+          : 'https://demo-toolkit.vercel.app';
+        
+        const syncResponse = await fetch(`${baseUrl}/api/sync-brand-to-backend`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            brandCode,
+            brandName,
+            files: syncFiles
+          })
+        });
+        
+        const syncResult = await syncResponse.json();
+        
+        if (syncResponse.ok && syncResult.success) {
+          backendSyncResult = {
+            success: true,
+            message: syncResult.message,
+            brandConfig: syncResult.brandConfig,
+            frontendConfig: syncResult.frontendConfig
+          };
+          console.log('✅ Backend sync successful:', syncResult);
+        } else {
+          backendSyncResult = {
+            success: false,
+            message: syncResult.error || 'Backend sync failed',
+            details: syncResult
+          };
+          console.error('❌ Backend sync failed:', syncResult);
+        }
+      } catch (syncError) {
+        console.error('❌ Error during backend sync:', syncError);
+        backendSyncResult = {
+          success: false,
+          message: 'Backend sync error',
+          error: syncError instanceof Error ? syncError.message : 'Unknown error'
+        };
+      }
+    }
+
     // Note: Auto-sync to KV backend is disabled since we're using blob storage as the backend
     // Files are automatically available through the blob scanner
     if (brandCode && brandName && successCount > 0) {
@@ -188,8 +295,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         successful: successCount,
         failed: failureCount
       },
+      configUpdate: updatedConfigResult,
       brandSetup: brandSetupResult,
-      backendSync: { success: true, message: "Using blob storage as backend - no KV sync needed" },
+      backendSync: backendSyncResult,
       note: "Files are now stored in Vercel Blob Storage and automatically synced to backend configuration."
     });
 

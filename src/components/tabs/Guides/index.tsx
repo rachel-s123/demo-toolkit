@@ -120,7 +120,7 @@ const Guides: React.FC = () => {
             onFilterChange={(filter) =>
               setModelFilter(filter as MotorcycleModel | "ALL")
             }
-            label="Model"
+            label="Category"
           />
         </div>
       </div>

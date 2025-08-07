@@ -13,6 +13,7 @@
       "title": "AI in Investment: Fundamentals",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "Investment Analysis AI",
       "description": "foundational-ai-concepts-for-investment",
       "textOverlay": "text-included",
       "orientation": "landscape",
@@ -20,15 +21,15 @@
       "fileExtension": ".jpg",
       "originalFileName": "ai-investment-fundamentals.jpg",
       "newAssetName": "Phase1_Static_InvestmentAnalysisAI_foundational-ai-concepts-for-investment_text-included_landscape_4096x2840.jpg",
-      "thumbnail": "https://picsum.photos/400/280?random=6",
-      "url": "https://picsum.photos/4096/2840?random=6",
-      "category": "Investment Analysis AI"
+      "thumbnail": "https://via.placeholder.com/400x280/4A90E2/FFFFFF?text=AI+Investment+Basics",
+      "url": "https://via.placeholder.com/4096x2840/4A90E2/FFFFFF?text=AI+Investment+Fundamentals"
     },
     {
       "id": "operational_ai_overview_2",
       "title": "Operational AI: Efficiency Map",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "Operational AI",
       "description": "operational-efficiency-with-ai",
       "textOverlay": "text-included",
       "orientation": "landscape",
@@ -36,15 +37,15 @@
       "fileExtension": ".jpg",
       "originalFileName": "operational-ai-efficiency.jpg",
       "newAssetName": "Phase1_Static_OperationalAI_operational-efficiency-with-ai_text-included_landscape_4096x2840.jpg",
-      "thumbnail": "https://picsum.photos/400/280?random=7",
-      "url": "https://picsum.photos/4096/2840?random=7",
-      "category": "Operational AI"
+      "thumbnail": "https://via.placeholder.com/400x280/7B68EE/FFFFFF?text=Operational+AI+Map",
+      "url": "https://via.placeholder.com/4096x2840/7B68EE/FFFFFF?text=Operational+AI+Efficiency"
     },
     {
       "id": "ai_strategy_framework_1",
       "title": "AI Investment Strategy Framework",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "AI Strategy & Governance",
       "description": "investment-strategy-framework-ai",
       "textOverlay": "text-included",
       "orientation": "landscape",
@@ -52,15 +53,15 @@
       "fileExtension": ".jpg",
       "originalFileName": "ai-investment-strategy-guide.jpg",
       "newAssetName": "Phase1_Static_AIStrategyGovernance_investment-strategy-framework-ai_text-included_landscape_4096x2840.jpg",
-      "thumbnail": "https://picsum.photos/400/280?random=8",
-      "url": "https://picsum.photos/4096/2840?random=8",
-      "category": "AI Strategy & Governance"
+      "thumbnail": "https://via.placeholder.com/400x280/50C878/FFFFFF?text=AI+Investment+Strategy",
+      "url": "https://via.placeholder.com/4096x2840/50C878/FFFFFF?text=AI+Investment+Strategy+Guide"
     },
     {
       "id": "ai_ethics_investment_1",
       "title": "Ethical AI in Finance Guidelines",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "AI Strategy & Governance",
       "description": "ethical-considerations-finance-ai",
       "textOverlay": "text-included",
       "orientation": "square",
@@ -68,15 +69,15 @@
       "fileExtension": ".jpg",
       "originalFileName": "ai-ethics-finance-framework.jpg",
       "newAssetName": "Phase1_Static_AIStrategyGovernance_ethical-considerations-finance-ai_text-included_square_4096x4096.jpg",
-      "thumbnail": "https://picsum.photos/400/400?random=9",
-      "url": "https://picsum.photos/4096/4096?random=9",
-      "category": "AI Strategy & Governance"
+      "thumbnail": "https://via.placeholder.com/400x400/FF6347/FFFFFF?text=Ethical+AI+Finance",
+      "url": "https://via.placeholder.com/4096x4096/FF6347/FFFFFF?text=Ethical+AI+Finance+Framework"
     },
     {
       "id": "investment_decision_workflow_1",
       "title": "AI-Enhanced Decision Workflow",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "Investment Analysis AI",
       "description": "ai-enhanced-decision-making-workflow",
       "textOverlay": "text-included",
       "orientation": "landscape",
@@ -84,9 +85,8 @@
       "fileExtension": ".jpg",
       "originalFileName": "ai-decision-workflow.jpg",
       "newAssetName": "Phase1_Static_InvestmentAnalysisAI_ai-enhanced-decision-making-workflow_text-included_landscape_4096x2840.jpg",
-      "thumbnail": "https://picsum.photos/400/280?random=10",
-      "url": "https://picsum.photos/4096/2840?random=10",
-      "category": "Investment Analysis AI"
+      "thumbnail": "https://via.placeholder.com/400x280/20B2AA/FFFFFF?text=AI+Decision+Workflow",
+      "url": "https://via.placeholder.com/4096x2840/20B2AA/FFFFFF?text=AI+Decision+Workflow"
     }
   ],
   "messages": [
@@ -96,8 +96,8 @@
       "content": "Subject: Announcing the Hedosophia AI Decision Intelligence Toolkit\n\nDear Team,\n\nWe are thrilled to launch the Hedosophia AI Decision Intelligence Toolkit, a vital resource designed to empower each of you in leveraging AI to enhance our investment decision-making and operational efficiency.\n\nAt Hedosophia, we are committed to pioneering smart, data-driven strategies. This toolkit will enable us to:\n\n- Integrate AI for superior investment analysis\n- Streamline repetitive tasks and boost productivity\n- Cultivate self-sufficient AI capabilities internally\n- Maintain our leadership in innovative investment approaches\n\nKey highlights of the toolkit:\n- Best-in-class workflows for high-level decision-making\n- Expert guides and methods for advanced analysis\n- Resources to develop proprietary AI solutions\n- Reducing dependency on external consultants\n\nExplore the toolkit today and discover how AI can transform your approach to investment and operations.\n\n**[Access the Toolkit Here]**\n\nLet's continue to innovate and lead,\nThe Hedosophia AI Task Force",
       "channel": "Email",
       "type": "FOUNDATION",
-      "date": "2025-07-16",
-      "category": "AI Strategy & Governance"
+      "model": "AI Strategy & Governance",
+      "date": "2025-07-16"
     },
     {
       "id": "AI_WORKFLOW_WORKSHOP_WA_001",
@@ -105,8 +105,8 @@
       "content": "📈 Ready to master AI-enhanced decision-making?\n\nOur AI Workflow Best Practices Workshop is this week! Discover how AI can refine your investment analysis and streamline operations.\n\n- ✅ Learn AI's role in high-level decisions\n- ✅ Explore practical AI tools for analysis\n- ✅ Collaborate on optimizing workflows\n- ✅ Ask your specific AI implementation questions\n\nReply YES for workshop details and times!",
       "channel": "WhatsApp",
       "type": "EXPLORATION",
-      "date": "2025-07-16",
-      "category": "Investment Analysis AI"
+      "model": "Investment Analysis AI",
+      "date": "2025-07-16"
     },
     {
       "id": "AI_STRATEGY_SOCIAL_POST_001",
@@ -114,8 +114,8 @@
       "content": "🚀 REVOLUTIONIZING INVESTMENT WITH AI\n\nExcited to announce Hedosophia's new AI Decision Intelligence Toolkit, empowering our team to leverage artificial intelligence for superior investment analysis and operational efficiency.\n\nAs pioneers in tech investments and SPACs, we're doubling down on AI to drive smarter, faster decisions and build self-sufficient capabilities. This initiative will reduce external dependency and enhance our competitive edge.\n\n#Hedosophia #AIInvestment #VentureCapital #DecisionIntelligence #OperationalEfficiency #FutureOfFinance #Innovation\n\n[Link to toolkit overview]",
       "channel": "LinkedIn",
       "type": "FOUNDATION",
-      "date": "2025-07-16",
-      "category": "AI Strategy & Governance"
+      "model": "AI Strategy & Governance",
+      "date": "2025-07-16"
     },
     {
       "id": "AI_GOVERNANCE_WORKSHOP_EMAIL_001",
@@ -123,8 +123,8 @@
       "content": "Subject: Ensuring Responsible AI: Governance & Ethics Workshop\n\nDear [Name],\n\nAs we integrate advanced AI into our investment and operational frameworks, it's paramount that we do so responsibly and ethically. Join us for a focused workshop on AI governance and ethical considerations in finance.\n\nThis session will cover:\n- Mitigating bias in AI-driven insights\n- Data privacy and security in AI applications\n- Ensuring transparency and explainability of AI models\n- Our firm's AI governance framework and best practices\n\nYour insights will be crucial in shaping Hedosophia's responsible AI approach.\n\n**Workshop Details:**\nDate: [Date]\nTime: [Time]\nLocation: [Location/Virtual link]\n\n**[Confirm Attendance]**\n\nTogether, we'll ensure our AI journey is both innovative and robustly governed.",
       "channel": "Email",
       "type": "IMPLEMENTATION",
-      "date": "2025-07-16",
-      "category": "AI Strategy & Governance"
+      "model": "AI Strategy & Governance",
+      "date": "2025-07-16"
     },
     {
       "id": "AI_CAPABILITY_BUILDING_GUIDE_001",
@@ -132,8 +132,8 @@
       "content": "Your Roadmap to Self-Sufficient AI\n\nDeveloping robust internal AI capabilities is key to Hedosophia's long-term strategy. Here's a roadmap to guide our collective efforts:\n\nPhase 1: Foundational Understanding\n- Complete core AI investment modules\n- Identify internal AI champions\n- Map current data assets and infrastructure\n\nPhase 2: Pilot AI Solutions\n- Select 1-2 high-impact, low-risk AI projects\n- Develop and test internal AI prototypes (e.g., automated data ingestion, preliminary market analysis tools)\n- Document learnings and refine processes\n\nPhase 3: Scale & Integrate Proprietary AI\n- Expand successful internal AI tools across departments\n- Integrate AI solutions into core investment and operational workflows\n- Continuously train and upskill internal teams\n- Establish a dedicated AI innovation lab\n\nRemember: Start with a clear problem, iterate quickly, and prioritize building scalable, secure solutions.\n\nNeed support? The AI Task Force is here to assist at every stage.",
       "channel": "Digital",
       "type": "OPTIMIZATION",
-      "date": "2025-07-16",
-      "category": "AI Capability Building"
+      "model": "AI Capability Building",
+      "date": "2025-07-16"
     },
     {
       "id": "AI_MASTERY_COMMUNITY_001",
@@ -141,8 +141,8 @@
       "content": "Subject: Welcome to Hedosophia's AI Mastery Community\n\nCongratulations, [Name]!\n\nYou've demonstrated exceptional leadership and expertise in our AI Decision Intelligence initiative, earning your place in the Hedosophia AI Mastery Community.\n\nAs a member of this elite group, you'll have access to:\n- Cutting-edge AI research and advanced model insights\n- Exclusive monthly strategy sessions with firm leadership\n- Opportunities to lead internal AI development projects\n- Mentorship roles for emerging AI talent within Hedosophia\n- Direct influence on our firm's future AI roadmap\n\nYour journey from AI enthusiast to AI master has been instrumental in shaping our firm's capabilities. You are now positioned to drive the next wave of innovation at Hedosophia.\n\nYour first Mastery session is scheduled for [Date]. We will discuss emerging AI trends impacting venture capital and our strategic response.\n\n**[Access Mastery Portal]**\n\nWelcome to the forefront of AI-driven finance,\nThe Hedosophia AI Task Force",
       "channel": "Email",
       "type": "MASTERY",
-      "date": "2025-07-16",
-      "category": "Advanced AI Applications"
+      "model": "Advanced AI Applications",
+      "date": "2025-07-16"
     }
   ],
   "guides": [
@@ -150,51 +150,51 @@
       "id": "ai-investment-fundamentals-guide",
       "title": "📈 AI Fundamentals for Investment Professionals",
       "type": "FOUNDATION",
+      "model": "Investment Analysis AI",
       "thumbnail": "https://via.placeholder.com/300x200/4A90E2/FFFFFF?text=AI+Investment+Guide",
       "url": "https://hedosophia.com/resources/ai-investment-fundamentals-guide",
       "contentLastModified": "2025-07-16T12:38:00.000Z",
-      "content": "# 📈 AI Fundamentals for Investment Professionals\n\n**Building Your Foundation in AI-Enhanced Investment**\n\n---\n\n## 🎯 Purpose\n\nThis guide provides a clear, finance-centric introduction to artificial intelligence, tailored for investment professionals. You'll learn essential AI concepts, relevant terminology, and practical applications that directly enhance investment analysis and decision-making.\n\n---\n\n## 🧠 What is Artificial Intelligence in Finance?\n\n### Simple Definition\nAI in finance refers to technologies that can perform tasks typically requiring human intelligence in investment contexts—like analyzing market data, predicting trends, or automating due diligence processes.\n\n### Key AI Concepts for Investment\n\n**Machine Learning (ML) for Predictive Analytics**\n- AI systems that improve through experience, learning from vast datasets.\n- Used for identifying patterns in market data, predicting asset performance, or assessing risk.\n- Example: Algorithmic trading systems that adapt to market conditions.\n\n**Natural Language Processing (NLP) for Market Sentiment**\n- AI that understands and generates human language from financial texts.\n- Powers analysis of news articles, analyst reports, and social media for sentiment.\n- Example: Tools that summarize earnings call transcripts or identify key themes in economic reports.\n\n**Computer Vision for Alternative Data**\n- AI that can \"see\" and interpret images and videos, often from non-traditional sources.\n- Used in analyzing satellite imagery for economic activity, or recognizing patterns in corporate logos.\n- Example: Monitoring retail traffic via satellite images to inform investment decisions.\n\n**Generative AI for Scenario Planning & Content Creation**\n- AI that creates new content (e.g., simulated market scenarios, draft investment memos, code).\n- Trained on existing financial data to produce original, insightful outputs.\n- Example: AI generating hypothetical market conditions or drafting initial research summaries.\n\n---\n\n## ✅ Key Takeaways\n\n- [ ] AI is a powerful tool to augment human investment capabilities, not replace them.\n- [ ] Understanding AI basics helps identify opportunities for enhanced analysis and efficiency.\n- [ ] Experimentation with AI tools is crucial for developing practical expertise.\n- [ ] Ethical considerations and human oversight are paramount in AI-driven finance.\n- [ ] Every investment professional can benefit from AI literacy to stay competitive.\n",
-      "category": "Investment Analysis AI"
+      "content": "# 📈 AI Fundamentals for Investment Professionals\n\n**Building Your Foundation in AI-Enhanced Investment**\n\n---\n\n## 🎯 Purpose\n\nThis guide provides a clear, finance-centric introduction to artificial intelligence, tailored for investment professionals. You'll learn essential AI concepts, relevant terminology, and practical applications that directly enhance investment analysis and decision-making.\n\n---\n\n## 🧠 What is Artificial Intelligence in Finance?\n\n### Simple Definition\nAI in finance refers to technologies that can perform tasks typically requiring human intelligence in investment contexts—like analyzing market data, predicting trends, or automating due diligence processes.\n\n### Key AI Concepts for Investment\n\n**Machine Learning (ML) for Predictive Analytics**\n- AI systems that improve through experience, learning from vast datasets.\n- Used for identifying patterns in market data, predicting asset performance, or assessing risk.\n- Example: Algorithmic trading systems that adapt to market conditions.\n\n**Natural Language Processing (NLP) for Market Sentiment**\n- AI that understands and generates human language from financial texts.\n- Powers analysis of news articles, analyst reports, and social media for sentiment.\n- Example: Tools that summarize earnings call transcripts or identify key themes in economic reports.\n\n**Computer Vision for Alternative Data**\n- AI that can \"see\" and interpret images and videos, often from non-traditional sources.\n- Used in analyzing satellite imagery for economic activity, or recognizing patterns in corporate logos.\n- Example: Monitoring retail traffic via satellite images to inform investment decisions.\n\n**Generative AI for Scenario Planning & Content Creation**\n- AI that creates new content (e.g., simulated market scenarios, draft investment memos, code).\n- Trained on existing financial data to produce original, insightful outputs.\n- Example: AI generating hypothetical market conditions or drafting initial research summaries.\n\n---\n\n## ✅ Key Takeaways\n\n- [ ] AI is a powerful tool to augment human investment capabilities, not replace them.\n- [ ] Understanding AI basics helps identify opportunities for enhanced analysis and efficiency.\n- [ ] Experimentation with AI tools is crucial for developing practical expertise.\n- [ ] Ethical considerations and human oversight are paramount in AI-driven finance.\n- [ ] Every investment professional can benefit from AI literacy to stay competitive.\n"
     },
     {
       "id": "ai-workflow-optimization-guide",
       "title": "🛠️ AI Workflow Optimization for Operations",
       "type": "EXPLORATION",
+      "model": "Operational AI",
       "thumbnail": "https://via.placeholder.com/300x200/7B68EE/FFFFFF?text=AI+Workflow+Guide",
       "url": "https://hedosophia.com/resources/ai-workflow-optimization-guide",
       "contentLastModified": "2025-07-16T12:38:00.000Z",
-      "content": "# 🛠️ AI Workflow Optimization for Operations\n\n**Streamlining Processes with Artificial Intelligence**\n\n---\n\n## 🎯 Purpose\n\nThis guide focuses on leveraging AI to streamline repetitive operational tasks, enhance data processing, and improve overall efficiency across Hedosophia's back-office functions. It provides practical methods for identifying automation opportunities and implementing AI solutions.\n\n---\n\n## 🏗️ Workflow Optimization Steps\n\n### Step 1: Identify Repetitive Tasks (1-2 weeks)\n- **Objective**: Pinpoint manual, time-consuming tasks suitable for AI automation.\n- **Method**: Conduct a process audit, interview team members, and document current workflows.\n- **Example**: Data entry, report generation, initial document review, compliance checks.\n\n### Step 2: Select AI Tools & Solutions (2-3 weeks)\n- **Objective**: Choose appropriate AI technologies for identified tasks.\n- **Method**: Research available AI/ML platforms, consider custom development for unique needs, evaluate integration complexity.\n- **Example**: Robotic Process Automation (RPA) for data transfer, NLP for document classification, ML for anomaly detection.\n\n### Step 3: Pilot & Iterate (4-6 weeks)\n- **Objective**: Implement AI solutions on a small scale and gather feedback.\n- **Method**: Run pilot programs, measure efficiency gains, collect user feedback, and make necessary adjustments.\n- **Example**: Automating a specific part of the onboarding process for new investments, or using AI to pre-screen initial legal documents.\n\n### Step 4: Scale & Monitor (Ongoing)\n- **Objective**: Deploy successful AI solutions across relevant operations and continuously monitor performance.\n- **Method**: Roll out AI tools firm-wide, establish performance metrics, set up monitoring for AI outputs, and ensure ongoing maintenance.\n- **Example**: Fully automating routine financial reporting, or implementing AI for real-time portfolio data updates.\n",
-      "category": "Operational AI"
+      "content": "# 🛠️ AI Workflow Optimization for Operations\n\n**Streamlining Processes with Artificial Intelligence**\n\n---\n\n## 🎯 Purpose\n\nThis guide focuses on leveraging AI to streamline repetitive operational tasks, enhance data processing, and improve overall efficiency across Hedosophia's back-office functions. It provides practical methods for identifying automation opportunities and implementing AI solutions.\n\n---\n\n## 🏗️ Workflow Optimization Steps\n\n### Step 1: Identify Repetitive Tasks (1-2 weeks)\n- **Objective**: Pinpoint manual, time-consuming tasks suitable for AI automation.\n- **Method**: Conduct a process audit, interview team members, and document current workflows.\n- **Example**: Data entry, report generation, initial document review, compliance checks.\n\n### Step 2: Select AI Tools & Solutions (2-3 weeks)\n- **Objective**: Choose appropriate AI technologies for identified tasks.\n- **Method**: Research available AI/ML platforms, consider custom development for unique needs, evaluate integration complexity.\n- **Example**: Robotic Process Automation (RPA) for data transfer, NLP for document classification, ML for anomaly detection.\n\n### Step 3: Pilot & Iterate (4-6 weeks)\n- **Objective**: Implement AI solutions on a small scale and gather feedback.\n- **Method**: Run pilot programs, measure efficiency gains, collect user feedback, and make necessary adjustments.\n- **Example**: Automating a specific part of the onboarding process for new investments, or using AI to pre-screen initial legal documents.\n\n### Step 4: Scale & Monitor (Ongoing)\n- **Objective**: Deploy successful AI solutions across relevant operations and continuously monitor performance.\n- **Method**: Roll out AI tools firm-wide, establish performance metrics, set up monitoring for AI outputs, and ensure ongoing maintenance.\n- **Example**: Fully automating routine financial reporting, or implementing AI for real-time portfolio data updates.\n"
     },
     {
       "id": "ai-investment-strategy-guide",
       "title": "🚀 Hedosophia's AI Investment Strategy",
       "type": "IMPLEMENTATION",
+      "model": "AI Strategy & Governance",
       "thumbnail": "https://via.placeholder.com/300x200/50C878/FFFFFF?text=AI+Investment+Strategy",
       "url": "https://hedosophia.com/resources/ai-investment-strategy-guide",
       "contentLastModified": "2025-07-16T12:38:00.000Z",
-      "content": "# 🚀 Hedosophia's AI Investment Strategy Guide\n\n**Integrating AI for Enhanced Decision-Making and Competitive Advantage**\n\n---\n\n## 🎯 Strategic Approach\n\nAt Hedosophia, our AI investment strategy is centered on augmenting human expertise with advanced analytical capabilities, streamlining operations, and fostering internal AI self-sufficiency. This guide outlines our structured approach to maximize value and maintain our pioneering edge.\n\n---\n\n## 🏗️ Strategic Implementation Phases\n\n### Phase 1: Foundation & Opportunity Mapping (Months 1-3)\n**Objectives**\n- Establish firm-wide AI literacy and awareness.\n- Identify high-impact use cases for AI in investment analysis and operations.\n- Assess current data infrastructure and identify gaps for AI integration.\n- Formulate initial AI project proposals and success metrics.\n\n### Phase 2: Pilot & Proof-of-Concept (Months 4-6)\n**Objectives**\n- Develop and test AI prototypes for specific investment or operational challenges.\n- Validate AI models and their impact on decision quality or efficiency.\n- Gather internal feedback and iterate on solutions.\n- Build initial internal expertise and demonstrate ROI.\n\n### Phase 3: Scale, Integrate & Self-Sustain (Months 7-12+)\n**Objectives**\n- Deploy successful AI solutions across relevant departments.\n- Integrate AI tools into core investment workflows and operational systems.\n- Continuously train and upskill internal teams to manage and develop AI.\n- Establish a framework for ongoing AI innovation and governance, reducing external dependency.\n- Measure and report on the firm-wide impact of AI integration.\n",
-      "category": "AI Strategy & Governance"
+      "content": "# 🚀 Hedosophia's AI Investment Strategy Guide\n\n**Integrating AI for Enhanced Decision-Making and Competitive Advantage**\n\n---\n\n## 🎯 Strategic Approach\n\nAt Hedosophia, our AI investment strategy is centered on augmenting human expertise with advanced analytical capabilities, streamlining operations, and fostering internal AI self-sufficiency. This guide outlines our structured approach to maximize value and maintain our pioneering edge.\n\n---\n\n## 🏗️ Strategic Implementation Phases\n\n### Phase 1: Foundation & Opportunity Mapping (Months 1-3)\n**Objectives**\n- Establish firm-wide AI literacy and awareness.\n- Identify high-impact use cases for AI in investment analysis and operations.\n- Assess current data infrastructure and identify gaps for AI integration.\n- Formulate initial AI project proposals and success metrics.\n\n### Phase 2: Pilot & Proof-of-Concept (Months 4-6)\n**Objectives**\n- Develop and test AI prototypes for specific investment or operational challenges.\n- Validate AI models and their impact on decision quality or efficiency.\n- Gather internal feedback and iterate on solutions.\n- Build initial internal expertise and demonstrate ROI.\n\n### Phase 3: Scale, Integrate & Self-Sustain (Months 7-12+)\n**Objectives**\n- Deploy successful AI solutions across relevant departments.\n- Integrate AI tools into core investment workflows and operational systems.\n- Continuously train and upskill internal teams to manage and develop AI.\n- Establish a framework for ongoing AI innovation and governance, reducing external dependency.\n- Measure and report on the firm-wide impact of AI integration.\n"
     },
     {
       "id": "ai-governance-risk-guide",
       "title": "⚖️ AI Governance & Risk Management in VC",
       "type": "OPTIMIZATION",
+      "model": "AI Strategy & Governance",
       "thumbnail": "https://via.placeholder.com/300x200/FF6347/FFFFFF?text=AI+Governance+VC",
       "url": "https://hedosophia.com/resources/ai-governance-risk-guide",
       "contentLastModified": "2025-07-16T12:38:00.000Z",
-      "content": "# ⚖️ AI Governance & Risk Management in VC\n\n**Ensuring Responsible and Compliant AI Practices at Hedosophia**\n\n---\n\n## 🎯 Purpose\n\nThis framework guides Hedosophia in developing robust AI governance practices, managing associated risks, and ensuring responsible AI implementation that aligns with our values, regulatory requirements, and investor trust. It's crucial for maintaining our reputation and operational integrity.\n\n---\n\n## 🧭 Core Governance Principles\n\n### 1. Data Integrity & Bias Mitigation\n**Principle**: Ensure AI models are trained on high-quality, unbiased data to prevent discriminatory outcomes in investment analysis or operational decisions.\n\n### 2. Transparency & Explainability in Decisions\n**Principle**: Strive for clear understanding of how AI models arrive at their recommendations, especially for high-stakes investment decisions, to enable human oversight and accountability.\n\n### 3. Privacy & Confidentiality\n**Principle**: Implement stringent data protection measures for all data processed by AI systems, adhering to regulatory standards and client confidentiality.\n\n### 4. Human Oversight & Intervention\n**Principle**: Maintain meaningful human control over AI systems, ensuring that AI acts as an augmentation tool and that critical decisions always involve human judgment.\n\n### 5. Accountability & Auditability\n**Principle**: Establish clear lines of responsibility for AI system development, deployment, and outcomes, enabling full audit trails for compliance and performance review.\n\n### 6. Security & Resilience\n**Principle**: Protect AI systems from cyber threats, data breaches, and malicious manipulation, ensuring their continuous and reliable operation.\n",
-      "category": "AI Strategy & Governance"
+      "content": "# ⚖️ AI Governance & Risk Management in VC\n\n**Ensuring Responsible and Compliant AI Practices at Hedosophia**\n\n---\n\n## 🎯 Purpose\n\nThis framework guides Hedosophia in developing robust AI governance practices, managing associated risks, and ensuring responsible AI implementation that aligns with our values, regulatory requirements, and investor trust. It's crucial for maintaining our reputation and operational integrity.\n\n---\n\n## 🧭 Core Governance Principles\n\n### 1. Data Integrity & Bias Mitigation\n**Principle**: Ensure AI models are trained on high-quality, unbiased data to prevent discriminatory outcomes in investment analysis or operational decisions.\n\n### 2. Transparency & Explainability in Decisions\n**Principle**: Strive for clear understanding of how AI models arrive at their recommendations, especially for high-stakes investment decisions, to enable human oversight and accountability.\n\n### 3. Privacy & Confidentiality\n**Principle**: Implement stringent data protection measures for all data processed by AI systems, adhering to regulatory standards and client confidentiality.\n\n### 4. Human Oversight & Intervention\n**Principle**: Maintain meaningful human control over AI systems, ensuring that AI acts as an augmentation tool and that critical decisions always involve human judgment.\n\n### 5. Accountability & Auditability\n**Principle**: Establish clear lines of responsibility for AI system development, deployment, and outcomes, enabling full audit trails for compliance and performance review.\n\n### 6. Security & Resilience\n**Principle**: Protect AI systems from cyber threats, data breaches, and malicious manipulation, ensuring their continuous and reliable operation.\n"
     },
     {
       "id": "advanced-ai-investment-applications",
       "title": "🔬 Advanced AI Applications in VC",
       "type": "MASTERY",
+      "model": "Advanced AI Applications",
       "thumbnail": "https://via.placeholder.com/300x200/8A2BE2/FFFFFF?text=Advanced+AI+VC",
       "url": "https://hedosophia.com/resources/advanced-ai-investment-applications",
       "contentLastModified": "2025-07-16T12:38:00.000Z",
-      "content": "# 🔬 Advanced AI Applications in VC\n\n**Exploring Cutting-Edge AI Capabilities for Venture Capital**\n\n---\n\n## 🎯 Purpose\n\nThis guide is designed for Hedosophia's AI practitioners who have mastered foundational concepts and are ready to explore advanced AI applications, emerging technologies, and strategic implementations that can drive significant competitive advantage in venture capital.\n\n---\n\n## 🚀 Emerging AI Technologies for VC\n\n### Large Language Models (LLMs) for Deal Sourcing & Due Diligence\n**Capabilities**\n- Automated analysis of pitch decks, legal documents, and market research reports.\n- Generating initial investment memos or executive summaries from diverse data sources.\n- Identifying key trends and anomalies in vast unstructured text data.\n- Simulating investor Q&A sessions for portfolio companies.\n\n### Multimodal AI Systems for Comprehensive Company Analysis\n**Capabilities**\n- Combining text (financial reports), image (product designs, facility layouts), and video (founder pitches) analysis.\n- Cross-modal understanding to build holistic company profiles and risk assessments.\n- Unified interfaces for complex data ingestion and insight generation.\n- Rich context awareness for evaluating startup potential beyond traditional metrics.\n\n### AI Agents & Autonomous Systems for Portfolio Management\n**Capabilities**\n- Goal-oriented task execution for monitoring portfolio company performance.\n- Dynamic planning and adaptation for market shifts or strategic adjustments.\n- Multi-step reasoning for identifying potential follow-on investment opportunities or exit strategies.\n- Integration with external data APIs for real-time market and company intelligence.\n",
-      "category": "Advanced AI Applications"
+      "content": "# 🔬 Advanced AI Applications in VC\n\n**Exploring Cutting-Edge AI Capabilities for Venture Capital**\n\n---\n\n## 🎯 Purpose\n\nThis guide is designed for Hedosophia's AI practitioners who have mastered foundational concepts and are ready to explore advanced AI applications, emerging technologies, and strategic implementations that can drive significant competitive advantage in venture capital.\n\n---\n\n## 🚀 Emerging AI Technologies for VC\n\n### Large Language Models (LLMs) for Deal Sourcing & Due Diligence\n**Capabilities**\n- Automated analysis of pitch decks, legal documents, and market research reports.\n- Generating initial investment memos or executive summaries from diverse data sources.\n- Identifying key trends and anomalies in vast unstructured text data.\n- Simulating investor Q&A sessions for portfolio companies.\n\n### Multimodal AI Systems for Comprehensive Company Analysis\n**Capabilities**\n- Combining text (financial reports), image (product designs, facility layouts), and video (founder pitches) analysis.\n- Cross-modal understanding to build holistic company profiles and risk assessments.\n- Unified interfaces for complex data ingestion and insight generation.\n- Rich context awareness for evaluating startup potential beyond traditional metrics.\n\n### AI Agents & Autonomous Systems for Portfolio Management\n**Capabilities**\n- Goal-oriented task execution for monitoring portfolio company performance.\n- Dynamic planning and adaptation for market shifts or strategic adjustments.\n- Multi-step reasoning for identifying potential follow-on investment opportunities or exit strategies.\n- Integration with external data APIs for real-time market and company intelligence.\n"
     }
   ],
   "journeySteps": [
@@ -240,6 +240,14 @@
       "STATIC",
       "VIDEO"
     ],
+    "models": [
+      "ALL",
+      "Investment Analysis AI",
+      "Operational AI",
+      "AI Strategy & Governance",
+      "AI Capability Building",
+      "Advanced AI Applications"
+    ],
     "channels": [
       "ALL",
       "Digital",
@@ -260,20 +268,12 @@
       "IMPLEMENTATION",
       "OPTIMIZATION",
       "MASTERY"
-    ],
-    "categories": [
-      "ALL",
-      "Investment Analysis AI",
-      "Operational AI",
-      "AI Strategy & Governance",
-      "AI Capability Building",
-      "Advanced AI Applications"
     ]
   },
   "metadata": {
-    "lastModified": "2025-08-07T11:04:38.531Z",
-    "modifiedBy": "model-to-category-migration",
-    "version": 2,
+    "lastModified": "2025-07-16T12:38:00.000Z",
+    "modifiedBy": "hedosophia-ai-toolkit",
+    "version": 1,
     "source": "ai-decision-intelligence-toolkit"
   }
 }

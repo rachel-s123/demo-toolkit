@@ -4,9 +4,6 @@ export type ActionButtonType = 'LAUNCH' | 'GENERATE TEST RIDES' | 'IN-STORE' | '
 
 export type AssetPhase = 'ALL' | 'PHASE 1' | 'PHASE 2';
 export type AssetType = 'ALL' | 'STATIC' | 'VIDEO';
-// New generalized category type for different industries
-export type ProductCategory = 'ALL' | string;
-
 // TODO: Consider renaming this type to ProductCategory or AssetCategory for better generalization
 export type MotorcycleModel = 'ALL' | 'R1300 R' | 'R1300 RS' | 'R1300 RT';
 export type TextOverlay = 'text' | 'no-text';
@@ -79,7 +76,6 @@ export interface FilterOptions {
   phases: string[];
   types: string[];
   models: string[];
-  categories?: string[]; // New categories field for generalization
   channels: string[];
   actionTypes: string[];
 }

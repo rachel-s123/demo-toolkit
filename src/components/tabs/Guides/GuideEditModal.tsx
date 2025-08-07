@@ -148,10 +148,10 @@ const GuideEditModal: React.FC<GuideEditModalProps> = ({
               </select>
             </div>
 
-            {/* Model */}
+            {/* Category */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Model
+                Category
               </label>
               <select
                 value={editedGuide.model}

@@ -1,253 +1,163 @@
-# Asset Management Scripts
+# Migration Scripts: Model → Category
 
-## Complete Asset Workflow: From Upload to Download
-
-This section describes the full process for adding new assets to the platform, ensuring they are correctly named, analyzed, and downloadable in all formats.
-
-### 1. **Upload New Assets**
-- Place all new image and video files in the `source-assets/` directory with original filename.
-
-### 2. **Analyze and Add to Naming CSV**
-- Run the script:
-  ```bash
-  node scripts/add_new_assets_to_naming_convention.cjs
-  ```
-- This will:
-  - Scan `source-assets/` for new files not in `data/All_R-Series_Assets_Naming_Convention.csv`.
-  - Use OpenAI Vision to generate a short, unique description and fill out all required columns.
-  - Add a new row for each asset in the CSV.
-
-### 3. **(Optional) Fix/Update CSV Fields**
-- If needed, use helper scripts (e.g., `fix_bike_model_phase2.cjs`, `fix_recent_video_dimensions.cjs`) to update fields like Bike Model or Dimensions in the CSV.
-
-### 4. **Rename and Copy Assets**
-- Run:
-  ```bash
-  npm run rename-assets
-  ```
-- This copies and renames files from `source-assets/` to `public/assets/` using the naming convention in the CSV.
-
-### 5. **Import CSV to Config**
-- Run:
-  ```bash
-  npm run csv-to-config
-  ```
-- This updates `public/config.json` with all asset metadata from the CSV.
-
-### 6. **Add/Update Download URLs and Sizes**
-- Run:
-  ```bash
-  node scripts/update_asset_download_urls.cjs
-  ```
-- This script:
-  - Reads `data/drive_files.csv` (exported from Google Drive API for your public folder)
-  - Updates each asset's `downloadUrls` array in `public/config.json` with all available formats and file sizes, ensuring only correct files are matched.
-
-### 7. **Sync to Redis (Production Only)**
-- If deploying to production, run:
-  ```bash
-  node scripts/force-update-redis.js
-  ```
-- This ensures the latest config is used by the live site.
-
-### 8. **Verify in the UI**
-- Check the grid and modal views:
-  - Download buttons should appear for all available formats (largest file per type).
-  - Thumbnails load from `/assets/` (low-res for speed).
-  - Download links point to Google Drive with correct file size labels.
-
----
-
-This directory contains scripts for managing BMW R-Series marketing assets.
+This directory contains scripts to migrate the demo toolkit from BMW-specific "Model" terminology to more generalized "Category" terminology.
 
 ## Scripts Overview
 
-### 1. `csv-to-config.js` - Import CSV Data to Config
-
-Imports asset data from the CSV file into the config.json structure.
-
-**Usage:**
+### 1. `migrate-model-to-category.cjs` (Recommended)
+**Comprehensive migration script with backup and rollback capabilities**
 
 ```bash
-npm run csv-to-config
+# Dry run (preview changes without applying them)
+node scripts/migrate-model-to-category.cjs --dry-run
+
+# Apply the migration
+node scripts/migrate-model-to-category.cjs
+
+# Rollback to previous backup
+node scripts/migrate-model-to-category.cjs --rollback
+```
+
+**Features:**
+- ✅ Automatic backup creation
+- ✅ Rollback capability
+- ✅ Dry run mode for testing
+- ✅ Comprehensive reporting
+- ✅ Safe error handling
+
+### 2. `update-model-to-category.cjs`
+**Simple config file updater**
+
+```bash
+node scripts/update-model-to-category.cjs
 ```
 
 **What it does:**
+- Updates all config files in `public/locales/`
+- Changes `filterOptions.models` → `filterOptions.categories`
+- Changes asset/message/guide `model` → `category`
+- Updates metadata
 
-- Reads `data/All_R-Series_Assets_Naming_Convention.csv`
-- Converts CSV rows to Asset objects matching the TypeScript interface
-- Adds new assets to `public/config.json`
-- Preserves existing real assets, replaces demo assets
-- Maps CSV columns to Asset properties:
-  - `Original File Name` → `originalFileName`
-  - `Phase` → `phase` (formatted as "PHASE 1")
-  - `Asset Type` → `type` ("Video" → "VIDEO", "Static" → "STATIC")
-  - `Bike Model` → `model` ("R1300RS" → "R1300 RS")
-  - `Description` → `description` + `title` (formatted)
-  - `Text Overlay` → `textOverlay`
-  - `Orientation` → `orientation`
-  - `Dimensions` → `dimensions`
-  - `File Extension` → `fileExtension`
-  - `New Asset Name` → `newAssetName` + `url`
-
-### 2. `rename-assets.js` - Rename Asset Files
-
-Renames asset files from original names to standardized naming convention.
-
-**Usage:**
+### 3. `update-types-for-category.cjs`
+**TypeScript type updater**
 
 ```bash
-npm run rename-assets
+node scripts/update-types-for-category.cjs
 ```
 
-**Setup Required:**
-
-1. Create `source-assets/` directory in project root
-2. Place all original asset files there (names from CSV Column A)
-3. Run the script
-
 **What it does:**
+- Adds new `ProductCategory` type
+- Maintains backward compatibility with `MotorcycleModel`
+- Adds optional `category` fields to interfaces
+- Creates migration guide
 
-- Reads the CSV for filename mappings
-- Copies files from `source-assets/` to `public/assets/`
-- Renames them using the standardized convention (CSV Column J)
-- Provides detailed progress and summary
+## Migration Process
 
-### 3. `force-update-redis.js` - Force Redis Sync ⚡
-
-**CRITICAL SCRIPT** - Forces Redis to use your local config.json file, overriding any cached data.
-
-**Usage:**
-
+### Step 1: Preview Changes
 ```bash
-node scripts/force-update-redis.js
+node scripts/migrate-model-to-category.cjs --dry-run
 ```
 
-**When to use:**
-
-- 🚨 **Videos not showing on Vercel** (Redis has old config)
-- 📝 Local changes aren't reflected in production
-- 🔄 Need to sync local file changes to Redis
-- 🎬 After updating video configurations (.mov files)
-
-**What it does:**
-
-- Reads your local `public/config.json`
-- Updates metadata with current timestamp (ensures it wins)
-- Forces Redis to accept the local version
-- Provides detailed asset breakdown
-- Shows video format analysis (.mov vs .mp4)
-- Updates both Redis and local file with new metadata
-
-**Environment Variables Required:**
-
-```env
-KV_REST_API_URL=your_upstash_redis_url
-KV_REST_API_TOKEN=your_upstash_redis_token
+### Step 2: Apply Migration
+```bash
+node scripts/migrate-model-to-category.cjs
 ```
 
-**Example Output:**
+### Step 3: Test Application
+- Start the development server
+- Verify filter labels show "Category" instead of "Model"
+- Test filtering functionality
+- Check different brand configurations
 
-```
-🔄 Force updating Redis with local config.json...
-📁 Loaded local config with 71 assets
-📊 Asset breakdown:
-   - Total assets: 71
-   - Static assets: 46
-   - Video assets: 25
-   - .mov videos: 25
-   - .mp4 videos: 0
-✅ Successfully force updated Redis!
-🚀 Redis update complete! Your Vercel deployment should now use the updated config.
+### Step 4: Rollback if Needed
+```bash
+node scripts/migrate-model-to-category.cjs --rollback
 ```
 
-## Workflow
+## What Gets Changed
 
-### Complete Asset Setup Process:
+### Configuration Files
+- `public/locales/config_bmw.json`
+- `public/locales/config_edf.json`
+- `public/locales/config_edf_fr.json`
+- `public/locales/config_en.json`
+- `public/locales/config_en_template.json`
+- `public/locales/config_hedosoph.json`
+- `public/config.json`
 
-1. **Prepare Assets:**
+### TypeScript Files
+- `src/types/index.ts`
 
-   ```bash
-   mkdir source-assets
-   # Copy all original asset files to source-assets/
-   ```
+### Changes Made
+1. **Filter Options**: `models` → `categories`
+2. **Asset Fields**: `model` → `category`
+3. **Message Fields**: `model` → `category`
+4. **Guide Fields**: `model` → `category`
+5. **Type Definitions**: Added `ProductCategory` type
+6. **UI Labels**: "Model" → "Category" (already done manually)
 
-2. **Rename Assets:**
+## Backward Compatibility
 
-   ```bash
-   npm run rename-assets
-   ```
+The migration maintains backward compatibility:
+- Existing `MotorcycleModel` type is preserved
+- Components can handle both `model` and `category` fields
+- URL parameters still use "model" for compatibility
+- Existing functionality continues to work
 
-3. **Update Config:**
+## Benefits
 
-   ```bash
-   npm run csv-to-config
-   ```
-
-4. **Verify:**
-   - Check `public/assets/` for renamed files
-   - Check `public/config.json` for new asset entries
-   - Test the UI to ensure assets load correctly
-
-## File Structure
-
-```
-project-root/
-├── data/
-│   └── All_R-Series_Assets_Naming_Convention.csv
-├── source-assets/                    # You create this
-│   ├── DF25_000257027_1.mp4         # Original files
-│   ├── DF25_000257027_2.mp4
-│   └── ...
-├── public/
-│   ├── assets/                       # Renamed files go here
-│   │   ├── Phase1_Video_R1300RS_sunset-riding_no-text_landscape_3840x2160.mp4
-│   │   └── ...
-│   └── config.json                   # Updated with asset data
-└── scripts/
-    ├── csv-to-config.js
-    ├── rename-assets.js
-    ├── force-update-redis.js
-    └── README.md
-```
-
-## Asset Interface
-
-The scripts generate assets matching this TypeScript interface:
-
-```typescript
-interface Asset {
-  id: string; // Generated: "phase1_1", "phase1_2", etc.
-  title: string; // From description: "Sunset Riding"
-  phase: "PHASE 1" | "PHASE 2"; // From CSV: "Phase1" → "PHASE 1"
-  type: "STATIC" | "VIDEO"; // From CSV: "Video" → "VIDEO"
-  model: "R1300 R" | "R1300 RS" | "R1300 RT"; // From CSV: "R1300RS" → "R1300 RS"
-  description: string; // From CSV: "sunset-riding"
-  textOverlay: "text" | "no-text"; // From CSV
-  orientation: "landscape" | "portrait" | "square"; // From CSV
-  dimensions: string; // From CSV: "3840x2160"
-  fileExtension: string; // From CSV: ".mp4"
-  originalFileName: string; // From CSV: "DF25_000257027_1.mp4"
-  newAssetName: string; // From CSV: standardized name
-  thumbnail: string; // Generated: "/assets/[newAssetName]"
-  url: string; // Generated: "/assets/[newAssetName]"
-  isDemo: boolean; // Default: false (real assets)
+### Before (BMW-specific)
+```json
+{
+  "filterOptions": {
+    "models": ["ALL", "R1300 R", "R1300 RS", "R1300 RT"]
+  }
 }
 ```
 
-## Error Handling
+### After (Generalized)
+```json
+{
+  "filterOptions": {
+    "categories": ["ALL", "R1300 R", "R1300 RS", "R1300 RT"]
+  }
+}
+```
 
-Both scripts include comprehensive error handling:
+### Works Across Industries
+- **BMW**: Categories like "R1300 R", "R1300 RS", "R1300 RT"
+- **EDF Energy**: Categories like "Small Business"
+- **AI Company**: Categories like "Core Concepts", "Implementation"
+- **VC Firm**: Categories like "Investment Analysis AI", "Operational AI"
 
-- File not found errors
-- CSV parsing errors
-- Permission errors
-- Detailed logging and progress reporting
+## Safety Features
 
-## Notes
+- **Automatic Backups**: All files are backed up before changes
+- **Dry Run Mode**: Preview changes without applying them
+- **Rollback Capability**: Restore from backup if needed
+- **Error Handling**: Graceful error handling with detailed logging
+- **Progress Reporting**: Clear feedback on what's being changed
 
-- Scripts use ES modules (import/export)
-- All assets from CSV are marked as `isDemo: false` (real content)
-- Existing demo assets are preserved unless replaced
-- Files are copied (not moved) from source-assets to public/assets
-- Both scripts can be run multiple times safely
+## Generated Files
+
+After running the migration, you'll get:
+- `MIGRATION_REPORT.md` - Detailed report of changes made
+- `MIGRATION_GUIDE.md` - Guide for future reference
+- `backups/model-to-category-migration/` - Backup directory with timestamped backups
+
+## Troubleshooting
+
+### Script Fails to Run
+- Ensure you're using Node.js 16+ 
+- Check file permissions: `chmod +x scripts/*.cjs`
+- Verify you're in the project root directory
+
+### Rollback Issues
+- Check that backup directory exists: `ls backups/model-to-category-migration/`
+- Verify backup files are present
+- Run rollback with latest backup timestamp
+
+### TypeScript Errors
+- Run `npm run build` to check for type errors
+- Update any custom code that references the old structure
+- Consider gradually migrating from `model` to `category` in your codebase

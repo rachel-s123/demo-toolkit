@@ -178,6 +178,8 @@ export default function BrandSetup() {
         icon: value,
         logoPath,
       }));
+      // Clear the uploaded logo URL when a new logo is selected
+      setUploadedLogoUrl(null);
     } else {
       setFormData((prev) => ({
         ...prev,
@@ -231,6 +233,7 @@ export default function BrandSetup() {
 
     console.log("Validation passed, starting generation...");
     setIsGenerating(true);
+    setUploadedLogoUrl(null); // Reset uploaded logo URL when starting new generation
 
     try {
       console.log("Getting base site copy...");
@@ -365,7 +368,11 @@ export default function BrandSetup() {
   };
 
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadResult, setUploadResult] = useState<{ success: boolean; message: string } | null>(null);
+  const [uploadResult, setUploadResult] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
+  const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
 
   const uploadToBackend = async () => {
     const content = getCurrentContent();
@@ -441,11 +448,34 @@ export default function BrandSetup() {
           }
         }
         
-        // Handle Vercel Blob storage response
+        // Handle Vercel Blob storage response and update config with logo URL
         if (result.results && result.results.length > 0) {
           const uploadedFiles = result.results.filter((fileResult: any) => fileResult.success);
           if (uploadedFiles.length > 0) {
             message += ` Files have been uploaded to Vercel Blob Storage.`;
+            
+            // Find the logo file and update the config
+            const logoFile = uploadedFiles.find((f: any) => f.targetPath?.includes('public/assets/logos/'));
+            if (logoFile && logoFile.publicUrl) {
+              console.log('Found uploaded logo:', logoFile);
+              
+              // Update the generated content with the correct logo URL
+              try {
+                const updatedConfigContent = JSON.parse(content.configContentFile);
+                updatedConfigContent.brand.logo = logoFile.publicUrl;
+                
+                // Update the generated content state
+                setGeneratedContent(prev => prev ? {
+                  ...prev,
+                  configContentFile: JSON.stringify(updatedConfigContent, null, 2)
+                } : prev);
+                
+                console.log('Updated config with logo URL:', logoFile.publicUrl);
+                message += ` Logo URL updated in config.`;
+              } catch (configError) {
+                console.error('Error updating config with logo URL:', configError);
+              }
+            }
             
             // Show public URLs for uploaded files
             console.log('Uploaded files with public URLs:', uploadedFiles.map((f: any) => ({
@@ -456,10 +486,36 @@ export default function BrandSetup() {
           }
         }
 
+        // Handle config update response
+        if (result.configUpdate) {
+          if (result.configUpdate.success) {
+            message += ` Config updated with logo URL: ${result.configUpdate.logoUrl}`;
+            console.log('Config update result:', result.configUpdate);
+            setUploadedLogoUrl(result.configUpdate.logoUrl);
+          } else {
+            message += ` Config update failed: ${result.configUpdate.error}`;
+            console.error('Config update failed:', result.configUpdate.error);
+          }
+        }
+
         // Handle backend sync response
         if (result.backendSync) {
-          message += ` Backend sync: ${result.backendSync.message}`;
-          console.log('Backend sync result:', result.backendSync);
+          if (result.backendSync.success) {
+            message += ` Backend sync: ${result.backendSync.message}`;
+            console.log('Backend sync result:', result.backendSync);
+            
+            // Show logo information if available
+            if (result.backendSync.brandConfig?.files) {
+              const logoFile = result.backendSync.brandConfig.files.find((f: any) => f.type === 'logo');
+              if (logoFile) {
+                message += ` Logo saved to backend: ${logoFile.filename}`;
+                console.log('Logo saved to backend:', logoFile);
+              }
+            }
+          } else {
+            message += ` Backend sync failed: ${result.backendSync.message}`;
+            console.error('Backend sync failed:', result.backendSync);
+          }
         }
         
         setUploadResult({
@@ -632,6 +688,59 @@ export default function BrandSetup() {
                 <p className="text-xs text-gray-500 mt-1">
                   Upload your brand icon (recommended: PNG, 256x256px)
                 </p>
+                
+                {/* Logo Preview */}
+                {formData.icon && (
+                  <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                    <p className="text-sm font-medium text-gray-700 mb-2">Logo Preview:</p>
+                    <div className="flex items-center space-x-3">
+                      <img
+                        src={URL.createObjectURL(formData.icon)}
+                        alt="Logo preview"
+                        className="h-12 w-12 object-contain border border-gray-300 rounded"
+                      />
+                      <div className="text-sm text-gray-600">
+                        <p><strong>File:</strong> {formData.icon.name}</p>
+                        <p><strong>Size:</strong> {(formData.icon.size / 1024).toFixed(1)} KB</p>
+                        <p><strong>Type:</strong> {formData.icon.type}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Uploaded Logo URL Display */}
+                {uploadResult?.success && uploadResult.message.includes('Logo URL updated') && (
+                  <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-sm font-medium text-green-800 mb-2">✅ Logo Successfully Uploaded!</p>
+                    <p className="text-xs text-green-700">
+                      Your logo has been uploaded to Vercel Blob Storage and is now available in your brand configuration.
+                    </p>
+                    {uploadedLogoUrl && (
+                      <div className="mt-2">
+                        <p className="text-xs text-green-700 mb-1"><strong>Logo URL:</strong></p>
+                        <div className="flex items-center space-x-2">
+                          <img
+                            src={uploadedLogoUrl}
+                            alt="Uploaded logo"
+                            className="h-8 w-8 object-contain border border-gray-300 rounded"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                            }}
+                          />
+                          <a
+                            href={uploadedLogoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-blue-600 hover:text-blue-800 underline truncate"
+                          >
+                            {uploadedLogoUrl}
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div>

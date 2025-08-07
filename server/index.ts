@@ -275,6 +275,48 @@ app.post('/api/upload-files', verifyToken, (req, res) => {
   }
 });
 
+// GET /api/get-brands-from-blob - Mock endpoint for local development
+app.get('/api/get-brands-from-blob', (req, res) => {
+  try {
+    console.log('🔍 Local development: Mocking get-brands-from-blob endpoint');
+    
+    // Return empty brands array for local development
+    res.status(200).json({
+      success: true,
+      brands: [],
+      total: 0,
+      note: "Local development mode - no blob storage available"
+    });
+  } catch (error) {
+    console.error('Error in get-brands-from-blob:', error);
+    res.status(500).json({
+      error: 'Failed to retrieve brands',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+// GET /api/get-brands - Mock endpoint for local development
+app.get('/api/get-brands', (req, res) => {
+  try {
+    console.log('🔍 Local development: Mocking get-brands endpoint');
+    
+    // Return empty brands array for local development
+    res.status(200).json({
+      success: true,
+      brands: [],
+      message: 'Local development mode - no backend storage available'
+    });
+  } catch (error) {
+    console.error('Error retrieving brands:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to retrieve brands',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });

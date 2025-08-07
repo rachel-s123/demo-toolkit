@@ -202,7 +202,7 @@ const GuideContent: React.FC<GuideContentProps> = ({ guide }) => {
         
         <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center; color: #6b7280; font-size: 12px;">
           <p>Generated on ${new Date().toLocaleDateString()} | BMW Motorrad Marketing Platform</p>
-          <p style="margin-top: 8px; font-style: italic;">Model: ${
+          <p style="margin-top: 8px; font-style: italic;">Category: ${
             guide.model
           } | Type: ${guide.type}</p>
         </div>

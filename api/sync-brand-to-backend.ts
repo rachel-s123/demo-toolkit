@@ -30,13 +30,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     console.log(`🔄 Syncing brand ${brandName} (${brandCode}) to backend...`);
 
-    // Check if Vercel KV is configured
-    if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-      console.warn('⚠️ Vercel KV not configured, skipping backend sync');
+    // Check if Redis is configured
+    if (!process.env.REDIS_URL) {
+      console.warn('⚠️ Redis not configured, skipping backend sync');
       return res.status(200).json({
         success: true,
-        message: `Brand ${brandName} uploaded to Vercel Blob Storage successfully. Backend sync skipped (KV not configured).`,
-        note: "To enable backend sync, configure KV_REST_API_URL and KV_REST_API_TOKEN in Vercel environment variables."
+        message: `Brand ${brandName} uploaded to Vercel Blob Storage successfully. Backend sync skipped (Redis not configured).`,
+        note: "To enable backend sync, configure REDIS_URL in Vercel environment variables."
       });
     }
 

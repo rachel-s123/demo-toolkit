@@ -7,18 +7,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    // Check if Vercel KV is configured
-    if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-      console.warn('⚠️ Vercel KV not configured, returning empty brands list');
+    const { brandCode } = req.query;
+
+    // Check if Redis is configured
+    if (!process.env.REDIS_URL) {
+      console.warn('⚠️ Redis not configured, returning empty response');
       return res.status(200).json({
         success: true,
         brands: [],
-        total: 0,
-        note: "Vercel KV not configured. To enable brand storage, configure KV_REST_API_URL and KV_REST_API_TOKEN in Vercel environment variables."
+        message: 'No backend storage configured'
       });
     }
-
-    const { brandCode } = req.query;
 
     if (brandCode) {
       // Get specific brand
@@ -26,44 +25,48 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const brand = await kv.get(brandKey);
       
       if (!brand) {
-        return res.status(404).json({ 
-          error: `Brand with code '${brandCode}' not found` 
+        return res.status(404).json({
+          success: false,
+          error: `Brand ${brandCode} not found`
         });
       }
 
       return res.status(200).json({
         success: true,
-        brand
+        brand,
+        message: `Brand ${brandCode} retrieved successfully`
       });
     } else {
       // Get all brands
       const mainConfig = await kv.get('bmw:config');
-      const brands = mainConfig?.brands || [];
+      
+      if (!mainConfig || !mainConfig.brands) {
+        return res.status(200).json({
+          success: true,
+          brands: [],
+          message: 'No brands found'
+        });
+      }
 
-      // Also get individual brand configs for more details
-      const allBrandKeys = await kv.keys('brand:*');
-      const brandDetails = await Promise.all(
-        allBrandKeys.map(async (key) => {
-          const brand = await kv.get(key);
-          return brand;
+      // Get detailed information for each brand
+      const detailedBrands = await Promise.all(
+        mainConfig.brands.map(async (brandSummary: any) => {
+          const brandKey = `brand:${brandSummary.brandCode}`;
+          const detailedBrand = await kv.get(brandKey);
+          return detailedBrand || brandSummary;
         })
       );
 
       return res.status(200).json({
         success: true,
-        brands: brandDetails.filter(Boolean),
-        total: brandDetails.length,
-        mainConfig: mainConfig ? {
-          lastModified: mainConfig.metadata?.lastModified,
-          version: mainConfig.metadata?.version,
-          totalBrands: mainConfig.brands?.length || 0
-        } : null
+        brands: detailedBrands,
+        message: `Retrieved ${detailedBrands.length} brands successfully`
       });
     }
-
   } catch (error: any) {
-    console.error('❌ Error retrieving brands:', error);
+    console.error('Error retrieving brands:', error);
     return res.status(500).json({
+      success: false,
       error: 'Failed to retrieve brands',
       details: error.message
     });

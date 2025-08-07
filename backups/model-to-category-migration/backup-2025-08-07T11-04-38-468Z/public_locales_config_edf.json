@@ -80,9 +80,10 @@
       "content": "Subject: Start your sustainable journey with EDF Business\n\nDear [Business Name],\n\nAt EDF, we believe every small business can make a big difference. We're excited to invite you to our 'Sustainability in Business' campaign, launching September 1st, 2025.\n\nThis initiative is designed to empower businesses like yours to reduce your carbon footprint, save on energy costs, and attract eco-conscious customers.\n\nWhy go green with EDF?\n- Expert guidance on energy-efficient solutions\n- Access to renewable energy options\n- Tools to measure and showcase your impact\n\nJoin us in building a brighter, greener future for your business and our planet. Click below to explore our new digital toolkit and discover how easy it is to get started.\n\n**[Discover Your Sustainability Toolkit]**\n\nSincerely,\nThe EDF Small Business Team",
       "channel": "Email",
       "type": "GETTING STARTED",
+      "model": "Small Business",
       "date": "2025-09-01",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Launch announcement"
     },
     {
       "id": "EDF_START_FB_001",
@@ -90,9 +91,10 @@
       "content": "🌱 Powering a greener future for UK small businesses! 🌱\n\nEDF is launching our 'Sustainability in Business' campaign on Sept 1st, 2025! We're here to help your business embrace eco-friendly practices, save energy, and boost your green credentials. \n\nReady to make a positive impact? Visit our new toolkit (link in bio) to learn more!\n\n#EDFSustainableBusiness #GoGreenWithEDF #SmallBizSustainability #NetZero",
       "channel": "Facebook",
       "type": "GETTING STARTED",
+      "model": "Small Business",
       "date": "2025-09-01",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Social launch"
     },
     {
       "id": "EDF_START_CALL_001",
@@ -100,9 +102,10 @@
       "content": "EDF Sales Team: Sustainability Campaign Kick-off Call Script\n\nOpening: \"\"Hi [Contact Name], this is [Your Name] from EDF. We recently launched our 'Sustainability in Business' campaign for small businesses, and I wanted to see if exploring greener operations is something your business is interested in.\"\"\n\nKey Points:\n1. Benefits: \"\"Many businesses are finding that going green not only helps the environment but also reduces costs and appeals to a growing number of eco-conscious customers.\"\"\n\n2. Our Support: \"\"Our new toolkit and expert advisors can guide you through everything from understanding your energy usage to implementing renewable solutions. It's designed to be straightforward and tailored to your needs.\"\"\n\n3. Next Step: \"\"Would you be open to a brief chat to discuss your current energy usage and see where sustainability could benefit your business? We could also schedule a free energy assessment.\"\"\n\n4. Toolkit: \"\"I can also send you a link to our digital toolkit, which has guides and resources to help you get started.\"\"\n\nClosing: \"\"Thanks for your time today, [Contact Name]. I'll send over that link now. Let me know if you have any questions.\"\"",
       "channel": "Phone",
       "type": "GETTING STARTED",
+      "model": "Small Business",
       "date": "2025-09-01",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Sales outreach"
     },
     {
       "id": "EDF_EFFICIENCY_EMAIL_001",
@@ -110,9 +113,10 @@
       "content": "Subject: Unlock savings with a free EDF energy audit\n\nDear [Business Name],\n\nAre you looking to reduce your operational costs and environmental impact? As part of our 'Sustainability in Business' campaign, EDF is offering free energy audits for small businesses.\n\nOur experts will assess your current energy consumption, identify areas for improvement, and recommend tailored solutions to enhance efficiency and save you money.\n\nBenefits of an EDF Energy Audit:\n- Pinpoint energy waste\n- Receive tailored recommendations\n- Discover potential cost savings\n- Improve your business's green footprint\n\nSpaces are limited. Book your complimentary energy audit today and take a significant step towards a more sustainable and cost-effective future.\n\n**[Book Your Free Energy Audit]**\n\nBest regards,\nThe EDF Small Business Team",
       "channel": "Email",
       "type": "ENERGY EFFICIENCY",
+      "model": "Small Business",
       "date": "2025-09-15",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Service offer"
     },
     {
       "id": "EDF_EFFICIENCY_SMART_METER_001",
@@ -120,9 +124,10 @@
       "content": "Title: Unlock Your Energy Savings with a Smart Meter\n\nSmart meters are a key tool in managing your business's energy consumption. They provide accurate, real-time data on your electricity and gas usage, empowering you to make informed decisions and identify potential savings.\n\nHow a Smart Meter Benefits Your Business:\n- **Accurate Billing:** Say goodbye to estimated bills with precise readings.\n- **Real-Time Data:** See exactly how much energy you're using and when.\n- **Identify Savings:** Spot energy-hungry appliances and processes.\n- **Reduce Waste:** Make conscious choices to lower your consumption.\n- **Future-Ready:** Lay the groundwork for future smart energy solutions.\n\nContact EDF today to learn more about getting a smart meter installed for your business. It's a simple step with big potential for savings and sustainability.",
       "channel": "Print",
       "type": "ENERGY EFFICIENCY",
+      "model": "Small Business",
       "date": "2025-09-20",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Informational material"
     },
     {
       "id": "EDF_EFFICIENCY_SOCIAL_001",
@@ -130,9 +135,10 @@
       "content": "⚡️ Quick Energy Saving Tips for Your Small Business! ⚡️\n\nLooking to cut costs and boost your sustainability? Here are 3 simple tips from EDF:\n\n1. **Switch to LED lighting:** Reduces energy consumption by up to 80%!\n2. **Unplug electronics:** 'Phantom load' adds up – unplug when not in use.\n3. **Optimise heating/cooling:** Small temperature adjustments make a big difference.\n\nWhat are your top energy-saving hacks? Share in the comments! 👇\n\n#EnergySaving #SmallBusinessTips #Sustainability #EDFBusiness #GreenBiz",
       "channel": "Instagram",
       "type": "ENERGY EFFICIENCY",
+      "model": "Small Business",
       "date": "2025-09-25",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Informational social"
     },
     {
       "id": "EDF_RENEWABLE_EMAIL_001",
@@ -140,9 +146,10 @@
       "content": "Subject: Power your business with 100% renewable energy\n\nDear [Business Name],\n\nAs you progress on your sustainability journey, consider the powerful impact of switching to renewable energy sources. EDF offers tailored solutions to help your business embrace a truly green future.\n\nFrom **green tariffs** powered by wind and solar to exploring **on-site renewable generation** like solar panels, we can help you significantly reduce your carbon emissions.\n\nOur Renewable Solutions Include:\n- **100% Renewable Electricity Tariffs:** Simple switch, big impact.\n- **Solar PV Installation:** Generate your own clean energy.\n- **Battery Storage Solutions:** Optimise your energy use and resilience.\n\nTake the next step towards energy independence and environmental leadership. Our experts are ready to guide you.\n\n**[Explore Renewable Energy Options]**\n\nTogether for a sustainable tomorrow,\nThe EDF Small Business Team",
       "channel": "Email",
       "type": "RENEWABLE ENERGY",
+      "model": "Small Business",
       "date": "2025-10-05",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Solution promotion"
     },
     {
       "id": "EDF_RENEWABLE_SOLAR_001",
@@ -150,9 +157,10 @@
       "content": "Title: Solar Power for Your Small Business: A Bright Investment\n\nGenerating your own electricity with solar panels is one of the most effective ways to reduce your carbon footprint and energy bills. It's a long-term investment that offers significant environmental and financial returns.\n\nBenefits of Solar PV for Businesses:\n- **Reduce Electricity Bills:** Generate your own power and lessen reliance on the grid.\n- **Lower Carbon Emissions:** Directly contribute to fighting climate change.\n- **Enhance Brand Image:** Showcase your commitment to sustainability.\n- **Potential for Exporting Energy:** Sell surplus electricity back to the grid.\n- **Increase Property Value:** Add a valuable asset to your business premises.\n\nEDF can provide a full assessment, installation, and ongoing support for your solar PV system. Let's discuss if solar is right for your business.",
       "channel": "Print",
       "type": "RENEWABLE ENERGY",
+      "model": "Small Business",
       "date": "2025-10-10",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Informational material"
     },
     {
       "id": "EDF_RENEWABLE_GREEN_TARIFF_001",
@@ -160,9 +168,10 @@
       "content": "Headline: Switch to a 100% Renewable Electricity Tariff from EDF\n\nBody: Make an immediate impact on your business's carbon footprint without needing new equipment. Our green electricity tariffs are backed by Renewable Energy Guarantees of Origin (REGOs), ensuring that for every unit of electricity your business uses, the equivalent amount from renewable sources is put into the grid.\n\nWhy choose an EDF Green Tariff?\n- Simple switch, no disruption\n- Supports clean energy generation\n- Enhance your business's environmental credentials\n- Competitive pricing\n\nCTA: Get a Green Tariff Quote Today",
       "channel": "Digital",
       "type": "RENEWABLE ENERGY",
+      "model": "Small Business",
       "date": "2025-10-15",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Product promotion"
     },
     {
       "id": "EDF_COMMUNICATE_EMAIL_001",
@@ -170,9 +179,10 @@
       "content": "Subject: Celebrate your green achievements with EDF!\n\nDear [Business Name],\n\nCongratulations on the progress you've made towards a more sustainable business! We're thrilled to see your commitment to reducing your environmental impact.\n\nNow is the perfect time to share your achievements with your customers, partners, and community. Highlighting your green initiatives can strengthen your brand, attract new customers, and inspire others to follow suit.\n\nHere's how EDF can help you amplify your message:\n- **Ready-to-use social media templates** to announce your efforts.\n- **Tips for website content** to showcase your sustainability journey.\n- **Case study opportunities** to be featured by EDF.\n\nLet's work together to tell your sustainability story effectively. Your efforts inspire us all!\n\n**[Access Communication Resources]**\n\nWarmly,\nThe EDF Small Business Team",
       "channel": "Email",
       "type": "COMMUNICATING YOUR IMPACT",
+      "model": "Small Business",
       "date": "2025-11-01",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Engagement"
     },
     {
       "id": "EDF_COMMUNICATE_SOCIAL_001",
@@ -180,9 +190,10 @@
       "content": "✨ Sustainable Spotlight: [Business Name]! ✨\n\nWe're so proud to celebrate [Business Name]'s commitment to a greener future! They've recently [mention achievement, e.g., 'switched to 100% renewable electricity with EDF' or 'reduced energy consumption by X%'].\n\nTheir dedication proves that small businesses can make a HUGE impact. What green steps are you taking in your business? Share with us! 👇\n\n#EDFSustainableBusiness #GreenSuccess #SmallBizUK #InspiringChange #SustainableBusiness",
       "channel": "Instagram",
       "type": "COMMUNICATING YOUR IMPACT",
+      "model": "Small Business",
       "date": "2025-11-05",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Customer spotlight"
     },
     {
       "id": "EDF_COMMUNICATE_WEBSITE_001",
@@ -190,9 +201,10 @@
       "content": "Page Title: Our Commitment to Sustainability\n\nHeading: Building a Greener [Your Business Name]\n\nParagraph 1: At [Your Business Name], we're passionate about [your core business] and committed to operating in a way that protects our planet for future generations. Our journey towards sustainability is a continuous one, and we're proud to partner with EDF to power our operations more responsibly.\n\nHeading: Our Green Initiatives with EDF\n\nBullet Points:\n- **Renewable Energy:** We've switched to a 100% renewable electricity tariff with EDF, ensuring our power comes from clean sources like wind and solar.\n- **Energy Efficiency:** Through [specific actions, e.g., 'smart metering' and 'LED lighting upgrades'], we've significantly reduced our energy consumption and waste.\n- [Optional: Add other green initiatives, e.g., 'sustainable sourcing,' 'waste reduction efforts']\n\nHeading: Why This Matters to You\n\nParagraph 2: By choosing [Your Business Name], you're supporting a business that actively invests in a sustainable future. This commitment not only benefits the environment but also reflects our dedication to responsible and forward-thinking practices.\n\nCall to Action: Learn more about our sustainability efforts or explore our [product/service] today!",
       "channel": "Digital",
       "type": "COMMUNICATING YOUR IMPACT",
+      "model": "Small Business",
       "date": "2025-11-10",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Website content"
     },
     {
       "id": "EDF_IMPROVE_EMAIL_001",
@@ -200,9 +212,10 @@
       "content": "Subject: Your Annual EDF Sustainability Review & Future Goals\n\nDear [Business Name],\n\nAs we approach [e.g., end of year/anniversary of partnership], we'd love to invite you to your annual EDF Sustainability Review. This is an opportunity to look back at your achievements and plan for even greater impact.\n\nDuring this review, we can discuss:\n- Your current energy performance data.\n- New technologies or solutions to further enhance efficiency.\n- Potential funding and incentives for future green projects.\n- How your sustainability story can attract more customers.\n\nThis complimentary session ensures your business continues to lead the way in sustainable practices. Let's keep the momentum going!\n\n**[Schedule Your Annual Review]**\n\nCommitted to your success,\nThe EDF Small Business Team",
       "channel": "Email",
       "type": "CONTINUOUS IMPROVEMENT",
+      "model": "Small Business",
       "date": "2026-01-15",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Review & planning"
     },
     {
       "id": "EDF_IMPROVE_NEW_INITIATIVE_001",
@@ -210,9 +223,10 @@
       "content": "Subject: Exciting New Green Initiative from EDF for Small Businesses\n\nDear [Business Name],\n\nAt EDF, we're constantly innovating to help small businesses become even more sustainable. We're thrilled to announce our latest initiative: **[Name of New Initiative/Service, e.g., 'Electric Vehicle Charging Solutions for Workplaces']**.\n\nThis new program is designed to help you [explain benefit 1] and [explain benefit 2], further strengthening your commitment to a greener future.\n\nKey features of [New Initiative Name]:\n- [Feature 1, e.g., 'Subsidised EV charger installation']\n- [Feature 2, e.g., 'Access to smart charging platforms']\n- [Feature 3, e.g., 'Guidance on fleet electrification']\n\nWe believe this new offering can significantly contribute to your environmental goals. Visit our website for more details and to see if this initiative is right for your business.\n\n**[Learn More About Our New Initiative]**\n\nInnovating for a sustainable future,\nThe EDF Small Business Team",
       "channel": "Email",
       "type": "CONTINUOUS IMPROVEMENT",
+      "model": "Small Business",
       "date": "2026-03-01",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "New offering"
     },
     {
       "id": "EDF_IMPROVE_FEEDBACK_001",
@@ -220,9 +234,10 @@
       "content": "Subject: Help us improve our sustainability support for your business!\n\nDear [Business Name],\n\nYour feedback is incredibly valuable to us. As part of our commitment to continuously improve our 'Sustainability in Business' campaign, we'd love to hear about your experience.\n\nThis short survey will help us understand what's working well, where we can improve, and what additional resources or support your business might need on its green journey.\n\nIt should take no more than 5-7 minutes to complete.\n\n**[Take Our Sustainability Survey]**\n\nThank you for your time and for being a valued EDF partner in building a sustainable future.\n\nBest regards,\nThe EDF Small Business Team",
       "channel": "Email",
       "type": "CONTINUOUS IMPROVEMENT",
+      "model": "Small Business",
       "date": "2026-04-10",
       "isDemo": false,
-      "category": "Small Business"
+      "category": "Customer feedback"
     }
   ],
   "guides": [
@@ -230,10 +245,11 @@
       "id": "getting-started-sustainability",
       "title": "🌱 Getting Started with Business Sustainability",
       "type": "GETTING STARTED",
+      "model": "Small Business",
       "thumbnail": "/assets/images/guides/sustainability-start-thumb.jpg",
       "url": "/guides/getting-started-sustainability.pdf",
       "isDemo": false,
-      "category": "Small Business",
+      "category": "Getting Started with Business Sustainability",
       "contentLastModified": "2025-09-01T09:00:00.000Z",
       "content": "# 🌱 Getting Started with Business Sustainability\n\n**For UK Small Businesses | Launching September 1st, 2025**\n\n---\n\n## 🎯 Purpose\n\nThis guide provides a clear, actionable roadmap for small businesses taking their first steps towards sustainability. It covers fundamental concepts, benefits, and initial actions to build a greener operation.\n\n---\n\n## 💡 Why Embrace Sustainability?\n\nGoing green isn't just good for the planet; it's smart business. Benefits include:\n- **Cost Savings:** Reduced energy consumption leads to lower bills.\n- **Enhanced Reputation:** Attract and retain eco-conscious customers and talent.\n- **Competitive Advantage:** Differentiate your business in the market.\n- **Future-Proofing:** Adapt to evolving regulations and consumer expectations.\n- **Positive Impact:** Contribute to a healthier planet and community.\n\n---\n\n## 🚀 Your First Steps to Sustainability\n\n### 1. **Understand Your Current Impact**\n- **Energy Audit:** Schedule a free energy audit with EDF to identify your business's current energy consumption patterns and areas for improvement. (See 'Understanding Your Energy Consumption' guide).\n- **Resource Usage:** Assess your water, waste, and material consumption. Where can you reduce, reuse, or recycle more?\n\n### 2. **Set Clear Goals**\n- **Start Small:** Focus on achievable targets, e.g., 'reduce electricity consumption by 10% in 6 months,' or 'switch to 100% renewable electricity.'\n- **Align with Values:** Ensure your sustainability goals align with your business's core values.\n\n### 3. **Engage Your Team**\n- **Educate:** Share the 'why' behind your sustainability efforts. Educated employees are more likely to participate.\n- **Incentivise:** Encourage green behaviours, from turning off lights to carpooling.\n\n### 4. **Review Your Energy Supply**\n- **Renewable Tariffs:** Explore switching to a 100% renewable electricity tariff with EDF. It's a simple change with immediate impact. (See 'Implementing Renewable Energy Solutions' guide).\n\n### 5. **Implement Quick Wins**\n- **Lighting:** Replace old bulbs with energy-efficient LEDs.\n- **Unplugging:** Encourage unplugging electronics when not in use.\n- **Thermostat Settings:** Optimise heating and cooling to save energy.\n- **Waste Management:** Set up clear recycling stations and reduce single-use items.\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Book your free EDF energy audit\n- [ ] Set 1-2 initial, measurable sustainability goals\n- [ ] Inform and involve your employees\n- [ ] Review your current energy tariff; consider a renewable option\n- [ ] Implement at least one 'quick win' energy-saving measure\n- [ ] Start tracking simple metrics (e.g., monthly electricity bill trends)\n\n-----",
       "guides": []
@@ -242,10 +258,11 @@
       "id": "understanding-your-energy-consumption",
       "title": "📊 Understanding Your Energy Consumption",
       "type": "ENERGY EFFICIENCY",
+      "model": "Small Business",
       "thumbnail": "/assets/images/guides/energy-consumption-thumb.jpg",
       "url": "/guides/understanding-your-energy-consumption.pdf",
       "isDemo": false,
-      "category": "Small Business",
+      "category": "Understanding Your Energy Consumption",
       "contentLastModified": "2025-09-15T09:30:00.000Z",
       "content": "# 📊 Understanding Your Energy Consumption: A Deeper Dive\n\n**For UK Small Businesses | Part of the EDF 'Sustainability in Business' Campaign**\n\n---\n\n## 🎯 Purpose\n\nThis guide explains how to effectively measure and understand your business's energy consumption. By knowing *when* and *where* you use energy, you can identify inefficiencies and make informed decisions to reduce waste and costs.\n\n---\n\n## 📈 Why Track Your Energy?\n\n- **Identify Energy Hogs:** Pinpoint appliances or processes consuming the most energy.\n- **Spot Trends:** Understand daily, weekly, or seasonal consumption patterns.\n- **Measure Impact:** Quantify the effectiveness of energy-saving initiatives.\n- **Optimise Operations:** Adjust schedules or equipment use for peak efficiency.\n- **Save Money:** Direct insights lead to targeted cost reductions.\n\n---\n\n## 🔍 How to Monitor Your Energy Consumption\n\n### 1. **Install a Smart Meter (If You Don't Have One)**\n- **Benefit:** Provides accurate, real-time data directly to EDF and your online account.\n- **Action:** Contact EDF to arrange a smart meter installation. It's usually free for businesses.\n- **Outcome:** Access to hourly, daily, and monthly consumption breakdowns.\n\n### 2. **Leverage Your EDF Online Account/App**\n- **Benefit:** Visualise your energy data easily, track usage against previous periods, and set budgets.\n- **Action:** Log in regularly to review your consumption. Look for spikes or consistent high usage outside of operating hours.\n- **Outcome:** Clear graphs and reports show you exactly where your energy (and money) is going.\n\n### 3. **Conduct a Manual Audit (For Specific Equipment)**\n- **Benefit:** Detailed understanding of individual appliance energy use.\n- **Action:** For key equipment, record wattage and hours of operation. Consider using plug-in energy monitors for high-usage devices.\n- **Formula:** Watts (W) × Hours Used (H) ÷ 1,000 = Kilowatt-hours (kWh)\n  - *Example: A 200W fridge running 10 hours a day: (200W * 10H) / 1000 = 2 kWh per day.*\n\n### 4. **Review Your Bills**\n- **Benefit:** See your overall consumption over billing periods and track your costs.\n- **Action:** Compare bills month-on-month and year-on-year. Look for unexplained increases.\n- **Outcome:** Macro view of your energy spend and progress.\n\n---\n\n## 📉 Identifying Areas for Improvement\n\nOnce you have data, look for:\n- **Off-Peak Usage:** Are lights or equipment left on overnight or during weekends?\n- **High-Usage Periods:** Can certain tasks be shifted to off-peak hours?\n- **Inefficient Equipment:** Are older appliances consuming disproportionately more energy?\n- **Temperature Control:** Is your HVAC system running inefficiently or at extreme settings?\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Confirm you have a smart meter installed.\n- [ ] Regularly check your EDF online account/app for consumption data.\n- [ ] Identify top 3-5 energy-consuming areas/appliances in your business.\n- [ ] Compare current energy bills with previous periods.\n- [ ] Based on data, list 1-2 potential areas for immediate efficiency improvements.\n\n---\n\n## 📚 Resources\n\n- **EDF Smart Meter Support:** [Link to EDF Smart Meter info page]\n- **'Maximising Energy Efficiency' Guide:** [Link to related guide in toolkit]\n"
     },
@@ -253,10 +270,11 @@
       "id": "implementing-renewable-energy-solutions",
       "title": "☀️ Implementing Renewable Energy Solutions",
       "type": "RENEWABLE ENERGY",
+      "model": "Small Business",
       "thumbnail": "/assets/images/guides/renewable-energy-thumb.jpg",
       "url": "/guides/implementing-renewable-energy-solutions.pdf",
       "isDemo": false,
-      "category": "Small Business",
+      "category": "Implementing Renewable Energy Solutions",
       "contentLastModified": "2025-10-05T10:00:00.000Z",
       "content": "# ☀️ Implementing Renewable Energy Solutions\n\n**For UK Small Businesses | Part of the EDF 'Sustainability in Business' Campaign**\n\n---\n\n## 🎯 Purpose\n\nThis guide outlines various renewable energy options available to small businesses, from simply switching tariffs to on-site generation. It helps you understand the benefits and steps to integrate clean energy into your operations.\n\n---\n\n## 🌿 The Power of Green Energy\n\nRenewable energy sources significantly reduce your business's carbon footprint, contribute to national grid decarbonisation, and can offer long-term cost stability. They also boost your green credentials, appealing to environmentally conscious customers and partners.\n\n---\n\n## 📊 Your Renewable Energy Options\n\n### 1. **Switch to a 100% Renewable Electricity Tariff**\n- **Concept:** Your energy supplier matches your consumption with renewable electricity generated from sources like wind, solar, or hydro, verified by Renewable Energy Guarantees of Origin (REGOs).\n- **Benefits:** Immediate and significant reduction in reported Scope 2 emissions; no upfront investment or physical changes required.\n- **Action:** Contact EDF to discuss our 100% renewable electricity tariffs for businesses. It's often a seamless transition.\n\n### 2. **Install On-Site Solar Photovoltaic (PV) Panels**\n- **Concept:** Solar panels convert sunlight directly into electricity for your business premises.\n- **Benefits:** Generate your own clean electricity, potentially reducing or eliminating your reliance on grid electricity during daylight hours. Long-term energy bill savings, potential for Feed-in Tariff (FIT) payments (if applicable) or Smart Export Guarantee (SEG) payments for surplus energy exported to the grid.\n- **Considerations:** Requires suitable roof space (or ground space), initial investment, and professional installation. EDF can assess your site's suitability and provide installation services.\n- **Action:** Request a solar suitability assessment from EDF.\n\n### 3. **Explore Battery Storage Solutions**\n- **Concept:** Store excess solar energy generated during the day for use at night or during peak demand, or store cheap off-peak grid electricity for use during expensive peak hours.\n- **Benefits:** Maximise self-consumption of solar energy, further reduce reliance on grid, potentially save more on electricity bills, and provide energy resilience.\n- **Considerations:** Additional upfront investment. Often paired with solar PV.\n\n### 4. **Consider Heat Pumps (For Heating & Cooling)**\n- **Concept:** Air source or ground source heat pumps efficiently transfer heat, using a small amount of electricity to move heat from one place to another, rather than generating it from scratch.\n- **Benefits:** Significantly reduce heating/cooling costs and carbon emissions compared to traditional fossil fuel systems.\n- **Considerations:** Higher upfront cost than conventional boilers, requires professional assessment and installation. More relevant for businesses with significant heating/cooling needs.\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Research EDF's 100% renewable electricity tariffs.\n- [ ] If interested in on-site generation, request a solar PV or heat pump assessment from EDF.\n- [ ] Understand potential financial incentives or grants available for renewable energy installations.\n- [ ] Plan how to communicate your commitment to renewable energy to your customers.\n\n---\n\n## 📚 Resources\n\n- **EDF Green Tariffs:** [Link to EDF Green Tariff info page]\n- **EDF Solar Solutions:** [Link to EDF Solar for Business page]\n- **'Accessing Funding and Incentives for Green Initiatives' Guide:** [Link to related guide in toolkit]\n"
     },
@@ -264,10 +282,11 @@
       "id": "maximising-energy-efficiency",
       "title": "💡 Maximising Energy Efficiency",
       "type": "ENERGY EFFICIENCY",
+      "model": "Small Business",
       "thumbnail": "/assets/images/guides/energy-efficiency-thumb.jpg",
       "url": "/guides/maximising-energy-efficiency.pdf",
       "isDemo": false,
-      "category": "Small Business",
+      "category": "Maximising Energy Efficiency",
       "contentLastModified": "2025-09-28T10:30:00.000Z",
       "content": "# 💡 Maximising Energy Efficiency: Smart Practices for Your Business\n\n**For UK Small Businesses | Part of the EDF 'Sustainability in Business' Campaign**\n\n---\n\n## 🎯 Purpose\n\nThis guide provides practical strategies and actionable tips for small businesses to significantly reduce energy consumption, lower operational costs, and enhance environmental performance through improved efficiency.\n\n---\n\n## 💰 The Value of Efficiency\n\nEnergy efficiency is often the quickest and most cost-effective way to save money and cut carbon emissions. It's about getting more done with less energy, directly impacting your bottom line and sustainability goals.\n\n---\n\n## 📋 Practical Energy Efficiency Strategies\n\n### 1. **Lighting Upgrades**\n- **Action:** Replace outdated incandescent or fluorescent lights with **LEDs (Light Emitting Diodes)**.\n- **Benefit:** LEDs consume up to 80% less energy, last significantly longer, and often provide better light quality.\n- **Tip:** Consider installing motion sensors or timers in low-traffic areas (e.g., restrooms, storage rooms) to ensure lights are only on when needed.\n\n### 2. **Optimise Heating, Ventilation, and Air Conditioning (HVAC)**\n- **Action:** Maintain your HVAC system regularly (at least annually). Install programmable thermostats or smart controls.\n- **Benefit:** Well-maintained systems run more efficiently. Programmable thermostats allow you to set temperatures to automatically adjust outside of business hours.\n- **Tip:** Ensure windows and doors are properly sealed to prevent heat loss/gain. Use blinds or curtains to manage solar heat.\n\n### 3. **Manage Equipment & Appliances**\n- **Action:** Develop a 'switch-off' culture. Encourage employees to turn off lights and unplug non-essential electronics at the end of the day.\n- **Benefit:** Eliminates 'phantom load' (energy consumed by devices in standby mode).\n- **Tip:** When purchasing new equipment, prioritise **energy-efficient models** (look for A-rated or Energy Star certified products). Consider smart plugs for easy scheduling of power-hungry devices.\n\n### 4. **Improve Building Insulation**\n- **Action:** Assess your insulation in walls, roofs, and around pipes. Seal gaps and cracks around windows and doors.\n- **Benefit:** Prevents heat from escaping in winter and entering in summer, reducing the load on your HVAC system.\n- **Tip:** Even small drafts can lead to significant heat loss. Use weatherstripping and caulk for quick fixes.\n\n### 5. **Engage Your Employees**\n- **Action:** Run internal campaigns or create visual reminders about energy-saving habits.\n- **Benefit:** Creates a collective responsibility and increases the overall impact of efficiency efforts.\n- **Tip:** Recognise and reward employees who champion energy-saving practices.\n\n### 6. **Utilise Natural Light**\n- **Action:** Maximise daylight by keeping windows clean and clear. Arrange workspaces to benefit from natural light.\n- **Benefit:** Reduces reliance on artificial lighting during the day.\n- **Tip:** Consider light shelves or reflective surfaces to bounce natural light deeper into your space.\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Audit your lighting and plan LED upgrades.\n- [ ] Check HVAC maintenance schedule and thermostat settings.\n- [ ] Implement a 'switch-off' policy for all non-essential electronics.\n- [ ] Inspect building for drafts and insulation gaps.\n- [ ] Encourage employee participation in energy-saving initiatives.\n- [ ] Maximise natural light where possible.\n\n---\n\n## 📚 Resources\n\n- **'Understanding Your Energy Consumption' Guide:** [Link to related guide in toolkit]\n- **Government Grants & Schemes:** [Link to 'Accessing Funding and Incentives' guide]\n"
     },
@@ -275,10 +294,11 @@
       "id": "showcasing-sustainable-business-customers",
       "title": "📣 Showcasing Your Sustainable Business to Customers",
       "type": "COMMUNICATING YOUR IMPACT",
+      "model": "Small Business",
       "thumbnail": "/assets/images/guides/customer-showcase-thumb.jpg",
       "url": "/guides/showcasing-your-sustainable-business-to-customers.pdf",
       "isDemo": false,
-      "category": "Small Business",
+      "category": "Showcasing Your Sustainable Business to Customers",
       "contentLastModified": "2025-11-01T11:00:00.000Z",
       "content": "# 📣 Showcasing Your Sustainable Business to Customers\n\n**For UK Small Businesses | Part of the EDF 'Sustainability in Business' Campaign**\n\n---\n\n## 🎯 Purpose\n\nThis guide provides strategies for effectively communicating your business's sustainability efforts to your customers. Highlighting your green initiatives can attract new clientele, build brand loyalty, and differentiate you in the market.\n\n---\n\n## 💚 Why Share Your Green Story?\n\nConsumers are increasingly seeking out sustainable businesses. Transparently sharing your environmental commitment can:\n- **Build Trust:** Show you're a responsible, forward-thinking brand.\n- **Attract New Customers:** Appeal to the growing segment of eco-conscious consumers.\n- **Enhance Brand Loyalty:** Give customers a compelling reason to choose you repeatedly.\n- **Inspire Others:** Encourage other businesses and individuals to adopt sustainable practices.\n- **Boost Sales:** Green credentials can be a powerful differentiator.\n\n---\n\n## 📢 Effective Communication Channels & Strategies\n\n### 1. **Your Website & Online Presence**\n- **Dedicated Page:** Create a 'Sustainability' or 'Our Green Commitment' page outlining your initiatives (e.g., switching to EDF renewable energy, energy efficiency upgrades, waste reduction).\n- **Blog Posts:** Share updates on your journey, new certifications, or partnerships (like with EDF).\n- **Visuals:** Use infographics or simple charts to illustrate your impact (e.g., 'X tonnes of CO2 saved').\n- **Action:** Use our provided 'Website Content Template' for a head start.\n\n### 2. **Social Media**\n- **Regular Updates:** Share short, engaging posts about your green actions. Use photos or short videos.\n- **Behind-the-Scenes:** Show your team participating in recycling, energy-saving, or other initiatives.\n- **Interactive Content:** Ask questions, run polls, and invite customers to share their own sustainability tips.\n- **Hashtags:** Use relevant hashtags like #SustainableBusiness #GoGreen #[YourCity]Biz #EDFSustainableBusiness.\n- **Action:** Refer to our 'Customer Story Social Post' template and 'Social Media Clip Editing Guide'.\n\n### 3. **In-Store / On-Premises**\n- **Signage:** Use clear, concise posters or digital displays to highlight key green facts (e.g., 'Powered by 100% Renewable Energy from EDF').\n- **Staff Training:** Ensure your employees can confidently and accurately answer customer questions about your sustainability efforts.\n- **Physical Demonstrations:** If applicable, showcase energy-efficient equipment or recycled materials.\n- **Action:** Utilise our 'In-Store Communication Guide' for messaging tips.\n\n### 4. **Email Marketing**\n- **Dedicated Newsletters:** Send out updates specifically focused on your environmental progress.\n- **Integrate Messages:** Add a small 'green footer' to all your emails (e.g., 'Proudly powered by EDF 100% Renewable Electricity').\n- **Personal Stories:** Share the journey of specific initiatives or employee contributions.\n- **Action:** Adapt our 'Sustainability Achievement Email' for your updates.\n\n### 5. **Press & PR (If Applicable)**\n- **Local Media:** Inform local newspapers or online publications about significant milestones.\n- **Case Studies:** Collaborate with EDF on a case study to gain wider exposure. (See 'Measuring and Reporting Your Environmental Impact' for data-backed stories).\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Update your website with a clear sustainability statement/page.\n- [ ] Plan regular social media content showcasing your green actions.\n- [ ] Display clear signage in your premises about your sustainable practices.\n- [ ] Train your team to communicate your green story effectively.\n- [ ] Consider adding a 'green' line to your email signatures.\n\n---\n\n## 📚 Resources\n\n- **'Website Content Template':** [Link to template in toolkit]\n- **'Customer Story Social Post':** [Link to template in toolkit]\n- **'Social Media Clip Editing Guide':** [Link to guide in toolkit]\n- **'In-Store Communication Guide':** [Link to guide in toolkit]\n"
     },
@@ -286,10 +306,11 @@
       "id": "measuring-reporting-environmental-impact",
       "title": "📈 Measuring and Reporting Your Environmental Impact",
       "type": "COMMUNICATING YOUR IMPACT",
+      "model": "Small Business",
       "thumbnail": "/assets/images/guides/impact-report-thumb.jpg",
       "url": "/guides/measuring-reporting-environmental-impact.pdf",
       "isDemo": false,
-      "category": "Small Business",
+      "category": "Measuring and Reporting Your Environmental Impact",
       "contentLastModified": "2025-11-15T12:00:00.000Z",
       "content": "# 📈 Measuring and Reporting Your Environmental Impact\n\n**For UK Small Businesses | Part of the EDF 'Sustainability in Business' Campaign**\n\n---\n\n## 🎯 Purpose\n\nThis guide helps small businesses measure their environmental impact and report on their progress. Quantifying your efforts provides credibility, highlights areas for further improvement, and effectively communicates your green achievements to stakeholders.\n\n---\n\n## 📊 Why Measure & Report?\n\n- **Credibility:** Back up your sustainability claims with data.\n- **Goal Tracking:** See if you're meeting your environmental targets.\n- **Decision Making:** Identify the most impactful areas for future investment.\n- **Stakeholder Engagement:** Communicate progress to customers, investors, and employees.\n- **Compliance:** Prepare for potential future reporting requirements.\n\n---\n\n## 📏 Key Metrics to Track\n\n### 1. **Energy Consumption (kWh)**\n- **Data Source:** Your EDF energy bills and smart meter data (via your online account).\n- **What to Track:** Total electricity and gas consumption (kWh) monthly/annually. Note down peak vs. off-peak usage.\n- **Impact:** Direct measure of energy efficiency and emissions from purchased electricity/gas (Scope 2).\n\n### 2. **Carbon Emissions (tCO2e)**\n- **Data Source:** EDF can provide estimated carbon emissions linked to your energy consumption. Alternatively, use online carbon calculators.\n- **What to Track:** Tonnes of CO2 equivalent (tCO2e) emissions from your energy use. Note reductions over time.\n- **Impact:** The most common metric for overall climate impact. Reductions directly contribute to Net Zero goals.\n\n### 3. **Waste Generation (kg/tonnes)**\n- **Data Source:** Waste disposal invoices, internal weighing, or estimates based on bin sizes and frequency.\n- **What to Track:** Total waste generated (by type: general, recycling, food waste), and diversion rate (percentage recycled/composted).\n- **Impact:** Reduces landfill waste, conserves resources, and can lower disposal costs.\n\n### 4. **Water Consumption (litres/m³)**\n- **Data Source:** Water bills, smart water meters.\n- **What to Track:** Total water usage by volume monthly/annually.\n- **Impact:** Conserves a vital resource and reduces utility costs.\n\n---\n\n## 📝 Simple Reporting Framework\n\nFor small businesses, a formal sustainability report isn't always necessary. A simple, transparent approach is often more effective:\n\n### 1. **Internal Review (Quarterly/Annually)**\n- **Purpose:** Assess progress against your goals, identify new opportunities.\n- **Content:** Review energy bills, waste data. Discuss with team members. (See 'Annual Review Invitation' message).\n\n### 2. **Public Communication (Annually)**\n- **Purpose:** Share achievements with customers and community.\n- **Format:** Dedicated page on your website, annual blog post, social media campaign, or a simple one-page summary.\n- **Content:**\n  - **Introduction:** Your commitment to sustainability.\n  - **Key Achievements (with numbers!):**\n    - \"Reduced electricity usage by X% this year, saving Y tonnes of CO2.\"\n    - \"Switched to 100% renewable electricity with EDF, offsetting Z tonnes of carbon.\"\n    - \"Increased recycling rate to X%.\"\n  - **Future Goals:** What's next on your sustainability journey?\n  - **Call to Action:** How customers can support your efforts.\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Identify key metrics to track (energy consumption and carbon emissions are a great start).\n- [ ] Utilise EDF online account for energy data.\n- [ ] Establish a simple system for tracking other metrics (e.g., a spreadsheet).\n- [ ] Plan annual internal review meetings for sustainability progress.\n- [ ] Prepare public-facing content to share your environmental achievements.\n\n---\n\n## 📚 Resources\n\n- **'Showcasing Your Sustainable Business to Customers' Guide:** [Link to related guide in toolkit]\n- **EDF Carbon Footprint Tools:** [Link to EDF's tools/calculators]\n"
     },
@@ -297,10 +318,11 @@
       "id": "accessing-funding-incentives-green-initiatives",
       "title": "💸 Accessing Funding & Incentives for Green Initiatives",
       "type": "CONTINUOUS IMPROVEMENT",
+      "model": "Small Business",
       "thumbnail": "/assets/images/guides/funding-incentives-thumb.jpg",
       "url": "/guides/accessing-funding-incentives-green-initiatives.pdf",
       "isDemo": false,
-      "category": "Small Business",
+      "category": "Accessing Funding and Incentives for Green Initiatives",
       "contentLastModified": "2026-01-20T14:00:00.000Z",
       "content": "# 💸 Accessing Funding & Incentives for Green Initiatives\n\n**For UK Small Businesses | Part of the EDF 'Sustainability in Business' Campaign**\n\n---\n\n## 🎯 Purpose\n\nThis guide helps small businesses identify and access various funding, grants, and incentives available for implementing green initiatives. Financial support can significantly reduce the cost of becoming more sustainable.\n\n---\n\n## 💰 Why Look for Funding?\n\nInvesting in sustainability can have upfront costs, from installing solar panels to upgrading to energy-efficient machinery. Government schemes, local grants, and tax incentives are designed to make these investments more affordable, accelerating your transition to a greener business.\n\n---\n\n## 🏛️ Key Sources of Funding & Incentives\n\n### 1. **Government Grants & Loan Schemes (National)**\n- **Overview:** The UK government frequently offers grants and loan schemes for businesses investing in energy efficiency, renewable energy, and other low-carbon technologies.\n- **Examples (Check for current availability):**\n  - **Salix Finance:** Public sector loans for energy-efficiency projects.\n  - **Net Zero Innovation Fund:** For innovative low-carbon technologies.\n  - **Green Finance Guarantee:** Government-backed guarantees for green loans from private lenders.\n- **Action:** Regularly check the GOV.UK website for 'business finance support' and 'green grants for businesses'.\n\n### 2. **Local Authority & Regional Grants**\n- **Overview:** Many local councils and regional development agencies offer specific grants or business support programs for sustainability initiatives.\n- **Examples:** These vary widely by region, but often target specific local environmental goals or industries.\n- **Action:** Contact your local council's business support department or your Local Enterprise Partnership (LEP) for information on regional funding opportunities.\n\n### 3. **Tax Reliefs & Allowances**\n- **Overview:** The government offers tax incentives for businesses investing in energy-saving plant and machinery.\n- **Examples:**\n  - **Enhanced Capital Allowances (ECAs):** Allow businesses to claim 100% first-year capital allowances on qualifying energy-saving and water-efficient technologies.\n  - **Business Rates Relief:** Some local authorities offer relief for businesses investing in renewable energy generation.\n- **Action:** Consult with your accountant or a tax advisor to understand how these apply to your planned investments.\n\n### 4. **Energy Supplier Programs (Like EDF's)**\n- **Overview:** Energy suppliers may offer incentives, expertise, or financing options for energy efficiency and renewable energy solutions as part of their commitment to sustainability.\n- **Examples:** EDF offers various solutions, from smart meter installations to solar PV assessments and flexible payment plans for green technologies.\n- **Action:** Discuss available programs and support with your EDF account manager or our small business energy experts.\n\n### 5. **Private Sector & Green Loans**\n- **Overview:** Many banks and financial institutions now offer 'green loans' or 'sustainability-linked loans' with preferential terms for businesses with environmental goals.\n- **Examples:** Loans specifically for purchasing electric vehicles, installing solar panels, or improving building energy efficiency.\n- **Action:** Research banks offering green finance products and compare their terms.\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Research current national government grants and schemes on GOV.UK.\n- [ ] Contact your local council/LEP for regional funding opportunities.\n- [ ] Discuss potential tax reliefs with your accountant for planned green investments.\n- [ ] Speak to your EDF account manager about any available supplier-specific programs.\n- [ ] Explore green loan options from financial institutions.\n- [ ] Prepare a clear business case for your green initiative, including expected savings and environmental benefits.\n\n---\n\n## 📚 Resources\n\n- **GOV.UK Business Finance Support:** [Link to relevant GOV.UK page]\n- **The Carbon Trust:** Provides advice and support on carbon reduction and green finance. [Link to Carbon Trust website]\n- **'Implementing Renewable Energy Solutions' Guide:** [Link to related guide in toolkit]\n"
     }
@@ -348,6 +370,10 @@
       "STATIC",
       "VIDEO"
     ],
+    "models": [
+      "ALL",
+      "Small Business"
+    ],
     "channels": [
       "ALL",
       "Digital",
@@ -365,16 +391,12 @@
       "RENEWABLE ENERGY",
       "COMMUNICATING YOUR IMPACT",
       "CONTINUOUS IMPROVEMENT"
-    ],
-    "categories": [
-      "ALL",
-      "Small Business"
     ]
   },
   "metadata": {
-    "lastModified": "2025-08-07T11:04:38.511Z",
-    "modifiedBy": "model-to-category-migration",
-    "version": 2,
+    "lastModified": "2025-07-08T14:37:43.000Z",
+    "modifiedBy": "system-update",
+    "version": 1,
     "source": "api"
   },
   "lastModified": "2025-07-08T14:37:43.000Z",
@@ -439,6 +461,7 @@
       "title": "Solar Panels on Rooftop",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "Small Business",
       "description": "Solar panels on a commercial building rooftop, representing renewable energy.",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -449,14 +472,14 @@
       "thumbnail": "/assets/images/Phase1_Static_SmallBusiness_solar-panels_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_SmallBusiness_solar-panels_no-text_landscape_4096x2840.jpg",
       "isDemo": false,
-      "downloadUrls": [],
-      "category": "Small Business"
+      "downloadUrls": []
     },
     {
       "id": "sustainability_image_002",
       "title": "LED Lighting in Office",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "Small Business",
       "description": "Modern office space with bright, energy-efficient LED lighting.",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -467,14 +490,14 @@
       "thumbnail": "/assets/images/Phase1_Static_SmallBusiness_led-office_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_SmallBusiness_led-office_no-text_landscape_4096x2840.jpg",
       "isDemo": false,
-      "downloadUrls": [],
-      "category": "Small Business"
+      "downloadUrls": []
     },
     {
       "id": "sustainability_image_003",
       "title": "Recycling Bins",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "Small Business",
       "description": "Clearly labelled recycling bins in a business environment.",
       "textOverlay": "no-text",
       "orientation": "portrait",
@@ -485,14 +508,14 @@
       "thumbnail": "/assets/images/Phase1_Static_SmallBusiness_recycling-bins_no-text_portrait_1080x1920.jpg",
       "url": "/assets/images/Phase1_Static_SmallBusiness_recycling-bins_no-text_portrait_1080x1920.jpg",
       "isDemo": false,
-      "downloadUrls": [],
-      "category": "Small Business"
+      "downloadUrls": []
     },
     {
       "id": "sustainability_image_004",
       "title": "Smart Meter Display",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "Small Business",
       "description": "Close-up of a smart meter display showing energy consumption data.",
       "textOverlay": "no-text",
       "orientation": "square",
@@ -503,14 +526,14 @@
       "thumbnail": "/assets/images/Phase1_Static_SmallBusiness_smart-meter_no-text_square_4096x4096.jpg",
       "url": "/assets/images/Phase1_Static_SmallBusiness_smart-meter_no-text_square_4096x4096.jpg",
       "isDemo": false,
-      "downloadUrls": [],
-      "category": "Small Business"
+      "downloadUrls": []
     },
     {
       "id": "sustainability_image_005",
       "title": "Business Owner with Tablet",
       "phase": "PHASE 2",
       "type": "STATIC",
+      "model": "Small Business",
       "description": "Small business owner reviewing energy data on a tablet, happy and confident.",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -521,8 +544,7 @@
       "thumbnail": "assets/images/Phase2_Static_SmallBusiness_owner-tablet_no-text_landscape_7087x4724.jpg",
       "url": "assets/images/Phase2_Static_SmallBusiness_owner-tablet_no-text_landscape_7087x4724.jpg",
       "isDemo": false,
-      "downloadUrls": [],
-      "category": "Small Business"
+      "downloadUrls": []
     }
   ]
 }

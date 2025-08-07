@@ -21,7 +21,8 @@
     "remove-duplicates": "node scripts/remove-duplicates.js",
     "fix-asset-urls": "node scripts/fix-asset-urls.js",
     "download-redis-config": "node scripts/download-redis-config.js",
-    "setup-vercel-blob": "node scripts/setup-vercel-blob.js"
+    "setup-vercel-blob": "node scripts/setup-vercel-blob.js",
+    "view-logos": "node scripts/view-backend-logos.js"
   },
   "dependencies": {
     "@modelcontextprotocol/server-gdrive": "^2025.1.14",

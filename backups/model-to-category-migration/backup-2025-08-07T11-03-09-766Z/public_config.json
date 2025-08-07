@@ -13,6 +13,7 @@
       "title": "Side On",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "side-on",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -22,14 +23,14 @@
       "newAssetName": "Phase1_Static_R1300RS_side-on_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_side-on_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_side-on_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_11",
       "title": "Riding Multiple",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "riding-multiple",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -39,14 +40,14 @@
       "newAssetName": "Phase1_Static_R1300RS_riding-multiple_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_riding-multiple_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_riding-multiple_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_12",
       "title": "Riding Front",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "riding-front",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -56,14 +57,14 @@
       "newAssetName": "Phase1_Static_R1300RS_riding-front_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_riding-front_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_riding-front_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_13",
       "title": "Riding Side",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "riding-side",
       "textOverlay": "no-text",
       "orientation": "square",
@@ -73,14 +74,14 @@
       "newAssetName": "Phase1_Static_R1300RS_riding-side_no-text_square_4096x4096.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_riding-side_no-text_square_4096x4096.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_riding-side_no-text_square_4096x4096.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_14",
       "title": "Riding Away",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "riding-away",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -90,14 +91,14 @@
       "newAssetName": "Phase1_Static_R1300RS_riding-away_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_riding-away_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_riding-away_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_16",
       "title": "Riding Through Arch",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "riding-through-arch",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -107,14 +108,14 @@
       "newAssetName": "Phase1_Static_R1300RS_riding-through-arch_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_riding-through-arch_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_riding-through-arch_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_17",
       "title": "Riding Curve",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "riding-curve",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -124,14 +125,14 @@
       "newAssetName": "Phase1_Static_R1300RS_riding-curve_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_riding-curve_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_riding-curve_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_18",
       "title": "Riding Twist",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "riding-twist",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -141,14 +142,14 @@
       "newAssetName": "Phase1_Static_R1300RS_riding-twist_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_riding-twist_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_riding-twist_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_19",
       "title": "Static Bike",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "static-bike",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -158,14 +159,14 @@
       "newAssetName": "Phase1_Static_R1300RS_static-bike_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_static-bike_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_static-bike_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_21",
       "title": "With Rider",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "with-rider",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -175,14 +176,14 @@
       "newAssetName": "Phase1_Static_R1300RS_with-rider_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_with-rider_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_with-rider_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_22",
       "title": "Static Side",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "static-side",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -192,14 +193,14 @@
       "newAssetName": "Phase1_Static_R1300RS_static-side_no-text_landscape_4097x2841.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_static-side_no-text_landscape_4097x2841.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_static-side_no-text_landscape_4097x2841.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_23",
       "title": "Riding Rocky Road",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "riding-rocky-road",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -209,14 +210,14 @@
       "newAssetName": "Phase1_Static_R1300RS_riding-rocky-road_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_riding-rocky-road_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_riding-rocky-road_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_24",
       "title": "Tunnel Rear",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "tunnel-rear",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -226,14 +227,14 @@
       "newAssetName": "Phase1_Static_R1300RS_tunnel-rear_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_tunnel-rear_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_tunnel-rear_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_25",
       "title": "Tunnel Front",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "tunnel-front",
       "textOverlay": "no-text",
       "orientation": "portrait",
@@ -243,14 +244,14 @@
       "newAssetName": "Phase1_Static_R1300RS_tunnel-front_no-text_portrait_1080x1920.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_tunnel-front_no-text_portrait_1080x1920.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_tunnel-front_no-text_portrait_1080x1920.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_26",
       "title": "Headlight Close Up",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "headlight-close-up",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -260,14 +261,14 @@
       "newAssetName": "Phase1_Static_R1300RS_headlight-close-up_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_headlight-close-up_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_headlight-close-up_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_27",
       "title": "Curve Exit",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RS",
       "description": "curve-exit",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -277,14 +278,14 @@
       "newAssetName": "Phase1_Static_R1300RS_curve-exit_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RS_curve-exit_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RS_curve-exit_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RS"
+      "isDemo": false
     },
     {
       "id": "phase1_38",
       "title": "Static Overlook",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "static-overlook",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -294,14 +295,14 @@
       "newAssetName": "Phase1_Static_R1300RT_static-overlook_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_static-overlook_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_static-overlook_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_39",
       "title": "Static Driveway",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "static-driveway",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -311,14 +312,14 @@
       "newAssetName": "Phase1_Static_R1300RT_static-driveway_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_static-driveway_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_static-driveway_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_40",
       "title": "Riding Action",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-action",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -328,14 +329,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-action_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-action_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-action_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_41",
       "title": "Riding Hillside",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-hillside",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -345,14 +346,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-hillside_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-hillside_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-hillside_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_42",
       "title": "Riding Side",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-side",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -362,14 +363,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-side_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-side_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-side_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_43",
       "title": "Riding Shaded",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-shaded",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -379,14 +380,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-shaded_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-shaded_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-shaded_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_44",
       "title": "Static Cliffside",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "static-cliffside",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -396,14 +397,14 @@
       "newAssetName": "Phase1_Static_R1300RT_static-cliffside_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_static-cliffside_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_static-cliffside_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_45",
       "title": "Static Dusk",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "static-dusk",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -413,14 +414,14 @@
       "newAssetName": "Phase1_Static_R1300RT_static-dusk_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_static-dusk_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_static-dusk_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_46",
       "title": "Riding Curve",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-curve",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -430,14 +431,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-curve_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-curve_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-curve_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_47",
       "title": "Riding Sunset",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-sunset",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -447,14 +448,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-sunset_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-sunset_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-sunset_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_48",
       "title": "Sunset Detail",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "sunset-detail",
       "textOverlay": "no-text",
       "orientation": "portrait",
@@ -464,14 +465,14 @@
       "newAssetName": "Phase1_Static_R1300RT_sunset-detail_no-text_portrait_1598x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_sunset-detail_no-text_portrait_1598x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_sunset-detail_no-text_portrait_1598x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_49",
       "title": "Riding Road",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-road",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -481,14 +482,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-road_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-road_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-road_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_50",
       "title": "Garage Scene",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "garage-scene",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -498,14 +499,14 @@
       "newAssetName": "Phase1_Static_R1300RT_garage-scene_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_garage-scene_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_garage-scene_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_51",
       "title": "Riding Trees",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-trees",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -515,14 +516,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-trees_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-trees_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-trees_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_52",
       "title": "Riding Double",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "riding-double",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -532,14 +533,14 @@
       "newAssetName": "Phase1_Static_R1300RT_riding-double_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_riding-double_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_riding-double_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_53",
       "title": "Static Backview",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 RT",
       "description": "static-backview",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -549,14 +550,14 @@
       "newAssetName": "Phase1_Static_R1300RT_static-backview_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300RT_static-backview_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300RT_static-backview_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 RT"
+      "isDemo": false
     },
     {
       "id": "phase1_62",
       "title": "Riding Urban",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "riding-urban",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -566,14 +567,14 @@
       "newAssetName": "Phase1_Static_R1300R_riding-urban_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_riding-urban_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_riding-urban_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_66",
       "title": "Riding Bridge",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "riding-bridge",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -583,14 +584,14 @@
       "newAssetName": "Phase1_Static_R1300R_riding-bridge_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_riding-bridge_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_riding-bridge_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_67",
       "title": "Mountain Two Bikes",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "mountain-two-bikes",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -600,14 +601,14 @@
       "newAssetName": "Phase1_Static_R1300R_mountain-two-bikes_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_mountain-two-bikes_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_mountain-two-bikes_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_69",
       "title": "Badge Close Up",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "badge-close-up",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -617,14 +618,14 @@
       "newAssetName": "Phase1_Static_R1300R_badge-close-up_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_badge-close-up_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_badge-close-up_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_71",
       "title": "Sunset Helmet",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "sunset-helmet",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -634,14 +635,14 @@
       "newAssetName": "Phase1_Static_R1300R_sunset-helmet_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_sunset-helmet_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_sunset-helmet_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_72",
       "title": "Sunset Close",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "sunset-close",
       "textOverlay": "no-text",
       "orientation": "portrait",
@@ -651,14 +652,14 @@
       "newAssetName": "Phase1_Static_R1300R_sunset-close_no-text_portrait_1080x1920.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_sunset-close_no-text_portrait_1080x1920.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_sunset-close_no-text_portrait_1080x1920.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_73",
       "title": "Night Riding",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "night-riding",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -668,14 +669,14 @@
       "newAssetName": "Phase1_Static_R1300R_night-riding_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_night-riding_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_night-riding_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_74",
       "title": "Riding Two Bikes",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "riding-two-bikes",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -685,14 +686,14 @@
       "newAssetName": "Phase1_Static_R1300R_riding-two-bikes_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_riding-two-bikes_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_riding-two-bikes_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_75",
       "title": "Riding Dynamic",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "riding-dynamic",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -702,14 +703,14 @@
       "newAssetName": "Phase1_Static_R1300R_riding-dynamic_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_riding-dynamic_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_riding-dynamic_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_76",
       "title": "Riding Openroad",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "riding-openroad",
       "textOverlay": "no-text",
       "orientation": "square",
@@ -719,14 +720,14 @@
       "newAssetName": "Phase1_Static_R1300R_riding-openroad_no-text_square_4096x4096.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_riding-openroad_no-text_square_4096x4096.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_riding-openroad_no-text_square_4096x4096.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_77",
       "title": "Riding Openroad",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "riding-openroad",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -736,14 +737,14 @@
       "newAssetName": "Phase1_Static_R1300R_riding-openroad_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_riding-openroad_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_riding-openroad_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_78",
       "title": "Curve Lean",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "curve-lean",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -753,14 +754,14 @@
       "newAssetName": "Phase1_Static_R1300R_curve-lean_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_curve-lean_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_curve-lean_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_79",
       "title": "Static Drive",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "static-drive",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -770,14 +771,14 @@
       "newAssetName": "Phase1_Static_R1300R_static-drive_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_static-drive_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_static-drive_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     },
     {
       "id": "phase1_81",
       "title": "Mountain Chase",
       "phase": "PHASE 1",
       "type": "STATIC",
+      "model": "R1300 R",
       "description": "mountain-chase",
       "textOverlay": "no-text",
       "orientation": "landscape",
@@ -787,8 +788,7 @@
       "newAssetName": "Phase1_Static_R1300R_mountain-chase_no-text_landscape_4096x2840.jpg",
       "thumbnail": "/assets/images/Phase1_Static_R1300R_mountain-chase_no-text_landscape_4096x2840.jpg",
       "url": "/assets/images/Phase1_Static_R1300R_mountain-chase_no-text_landscape_4096x2840.jpg",
-      "isDemo": false,
-      "category": "R1300 R"
+      "isDemo": false
     }
   ],
   "contentOutline": {
@@ -870,9 +870,10 @@
       "content": "Subject: The new BMW R 1300 R just landed\n\nDear [Name],\n\nThe genie is out of the bottle. The all-new BMW R 1300 R has arrived - a versatile naked bike that adapts to your every desire.\n\nWith its powerful 1300cc Boxer engine delivering 145hp of pure excitement, this isn't just another motorcycle. It's sexy versatility personified. Sharp design meets dynamic performance, creating a bike that's sportier than ever yet suitable for any occasion.\n\nKey highlights:\n- Lighter than before at just 239kg\n- Dynamic ESA suspension as standard\n- Keyless Ride for ultimate convenience\n- Sport-focused ergonomics with comfort options\n\nBe among the first to experience the R 1300 R. Book your exclusive preview today.\n\n**[Reserve Your Test Ride]**\n\nYour BMW Motorrad Team",
       "channel": "Email",
       "type": "LAUNCH",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Launch announcement"
     },
     {
       "id": "R1300R_LAUNCH_WA_001",
@@ -880,9 +881,10 @@
       "content": "🏍️ The new R 1300 R is here!\n\nThe genie has been unleashed - sexy versatility meets Boxer punch. Ready to experience exactly what you want from a motorcycle?\n\n- ✅ 145hp of pure performance\n- ✅ Sportier than ever\n- ✅ Your style, your way\n\nReply YES for exclusive first-look details!",
       "channel": "WhatsApp",
       "type": "LAUNCH",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Pre-launch teaser"
     },
     {
       "id": "R1300R_LAUNCH_FB_001",
@@ -890,9 +892,10 @@
       "content": "🔥 INTRODUCING THE NEW BMW R 1300 R 🔥\n\nThe Genie is out! Our most versatile naked bike just got even better. \n\nWith 145hp of Boxer power, Dynamic ESA suspension, and a sharp new design that turns heads, the R 1300 R delivers exactly what you want - whether that's carving corners or cruising boulevards.\n\n#BMW #R1300R #BMWMotorrad #SexyVersatility #BornForTheCurve\n\n[Link to website]",
       "channel": "Facebook",
       "type": "LAUNCH",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Social launch"
     },
     {
       "id": "R1300R_LAUNCH_IG_001",
@@ -900,9 +903,10 @@
       "content": "The wait is over. Meet the R 1300 R - where sexy versatility meets pure performance. 🏍️⚡\n\nSwipe to discover why this 145hp naked bike is exactly what you've been waiting for.\n\n#BMWR1300R #TheGenie #BMWMotorrad #NakedBike #BoxerEngine #BornForTheCurve #SexyVersatility #NewBike #MotorcycleLife",
       "channel": "Instagram",
       "type": "LAUNCH",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Social launch"
     },
     {
       "id": "R1300R_LAUNCH_AD_001",
@@ -910,9 +914,10 @@
       "content": "Headline: New BMW R 1300 R - Exactly What You Want\n\nPrimary text: The most versatile naked bike just got sportier. 145hp Boxer engine. Dynamic suspension. Sharp design. Book your test ride today.\n\nCTA: Book Test Ride",
       "channel": "Social",
       "type": "LAUNCH",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Paid social"
     },
     {
       "id": "R1300RT_LAUNCH_EMAIL_001",
@@ -920,9 +925,10 @@
       "content": "Subject: The new BMW R 1300 RT just landed\n\nDear [Name],\n\nBe in full command. The all-new BMW R 1300 RT is here - the hidden champion that delivers ultimate expertise for the most discerning riders.\n\nWith 145hp from the legendary 1300cc Boxer engine, advanced technology including Riding Assistant with front and rear radar, and the revolutionary DCA suspension, this is touring supremacy redefined. Despite its comprehensive capabilities, the RT appears lighter and more dynamic than ever.\n\nKey highlights:\n- 145hp Boxer power with refined delivery\n- Riding Assistant as standard with ACC\n- Audio System 2.0 included\n- Variable luggage system available\n- Revolutionary DCA suspension option\n\nCommand your journey. Book your exclusive preview today.\n\n**[Reserve Your Test Ride]**\n\nYour BMW Motorrad Team",
       "channel": "Email",
       "type": "LAUNCH",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Launch announcement"
     },
     {
       "id": "R1300RT_LAUNCH_WA_001",
@@ -930,9 +936,10 @@
       "content": "🏍️ The new R 1300 RT is here!\n\nThe Commander has arrived - ultimate touring expertise with hidden performance. Ready to be in full command?\n\n- ✅ 145hp refined power\n- ✅ Advanced rider assistance\n- ✅ Supreme comfort & protection\n- ✅ Audio system included\n\nReply YES for exclusive first-look details!",
       "channel": "WhatsApp",
       "type": "LAUNCH",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Pre-launch teaser"
     },
     {
       "id": "R1300RT_LAUNCH_FB_001",
@@ -940,9 +947,10 @@
       "content": "🔥 INTRODUCING THE NEW BMW R 1300 RT 🔥\n\nThe Commander is here! Be in full command with our ultimate touring expertise.\n\nWith 145hp Boxer power, comprehensive rider assistance technology, and unmatched comfort, the R 1300 RT is the hidden champion for riders who demand supremacy on every journey.\n\n#BMW #R1300RT #BMWMotorrad #TheCommander #UltimateTouring #BeInCommand\n\n[Link to website]",
       "channel": "Facebook",
       "type": "LAUNCH",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Social launch"
     },
     {
       "id": "R1300RT_LAUNCH_IG_001",
@@ -950,9 +958,10 @@
       "content": "The Commander has arrived. Meet the R 1300 RT - where ultimate expertise meets supreme touring capability. 🏍️👑\n\nBe in full command. Swipe to discover the hidden champion of touring motorcycles.\n\n#BMWR1300RT #TheCommander #BMWMotorrad #UltimateTouring #BoxerEngine #BeInFullCommand #HiddenChampion #NewBike",
       "channel": "Instagram",
       "type": "LAUNCH",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Social launch"
     },
     {
       "id": "R1300RT_LAUNCH_AD_001",
@@ -960,9 +969,10 @@
       "content": "Headline: New BMW R 1300 RT - Be In Full Command\n\nPrimary text: The ultimate touring expertise. 145hp Boxer engine. Advanced rider assistance. Supreme comfort. Book your test ride today.\n\nCTA: Book Test Ride",
       "channel": "Social",
       "type": "LAUNCH",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Paid social"
     },
     {
       "id": "R1300RS_LAUNCH_EMAIL_001",
@@ -970,9 +980,10 @@
       "content": "Subject: The new BMW R 1300 RS just landed\n\nDear [Name],\n\nTurn your tour into a sports event. The all-new BMW R 1300 RS is here - a refined race tourer that brings persistent excitement to every mile.\n\nWith 145hp from the legendary 1300cc Boxer engine and a weight reduction to just 245kg, this is the sportiest RS we've ever created. Every second becomes a celebration of joy when you're carving through corners or conquering continents.\n\nKey highlights:\n- Lighter and more agile than ever at 245kg\n- Dynamic ESA suspension as standard\n- Riding Assistant with rear radar\n- Sporty ergonomics with touring capability\n- Iconic BMW split face design\n\nBe among the first to experience the thrill. Book your exclusive preview today.\n\n**[Reserve Your Test Ride]**\n\nYour BMW Motorrad Team",
       "channel": "Email",
       "type": "LAUNCH",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Launch announcement"
     },
     {
       "id": "R1300RS_LAUNCH_WA_001",
@@ -980,9 +991,10 @@
       "content": "🏍️ The new R 1300 RS is here!\n\nThe Marathon Racer has arrived - where touring meets pure sporting passion. Ready to turn every journey into a celebration?\n\n- ✅ 145hp Boxer power\n- ✅ Lighter, sportier, faster\n- ✅ Race-bred touring excellence\n\nReply YES for exclusive first-look details!",
       "channel": "WhatsApp",
       "type": "LAUNCH",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Pre-launch teaser"
     },
     {
       "id": "R1300RS_LAUNCH_FB_001",
@@ -990,9 +1002,10 @@
       "content": "🔥 INTRODUCING THE NEW BMW R 1300 RS 🔥\n\nThe Marathon Racer is here! Turn your tour into a sports event with our most refined race tourer ever.\n\nWith 145hp of Boxer power, weight-saving design, and race-inspired ergonomics, the R 1300 RS delivers persistent excitement whether you're attacking alpine passes or crossing continents.\n\n#BMW #R1300RS #BMWMotorrad #MarathonRacer #RaceTourer #PersistentExcitement\n\n[Link to website]",
       "channel": "Facebook",
       "type": "LAUNCH",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Social launch"
     },
     {
       "id": "R1300RS_LAUNCH_IG_001",
@@ -1000,9 +1013,10 @@
       "content": "The Marathon Racer has arrived. Meet the R 1300 RS - where refined touring meets race-bred performance. 🏍️🏁\n\nEvery second a celebration of joy. Swipe to discover the sportiest RS ever built.\n\n#BMWR1300RS #MarathonRacer #BMWMotorrad #RaceTourer #BoxerEngine #SportTouring #PersistentExcitement #NewBike",
       "channel": "Instagram",
       "type": "LAUNCH",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Social launch"
     },
     {
       "id": "R1300RS_LAUNCH_AD_001",
@@ -1010,9 +1024,10 @@
       "content": "Headline: New BMW R 1300 RS - Turn Your Tour Into A Sports Event\n\nPrimary text: The sportiest RS ever built. 145hp Boxer engine. Race-inspired ergonomics. Touring capability. Book your test ride today.\n\nCTA: Book Test Ride",
       "channel": "Social",
       "type": "LAUNCH",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Paid social"
     },
     {
       "id": "R1300R_TESTRIDE_EMAIL_001",
@@ -1020,9 +1035,10 @@
       "content": "Subject: Your exclusive R 1300 R test ride awaits\n\nDear [Name],\n\nYou showed interest in the new R 1300 R - now it's time to experience the genie firsthand.\n\nWe're offering exclusive test rides to our valued customers. Feel the 145hp Boxer punch, experience the sporty ergonomics, and discover why this naked bike delivers exactly what you want.\n\nAvailable test ride slots:\n[Date/Time slots]\n\nWhat to expect:\n- 30-minute guided ride\n- Full safety briefing\n- Refreshments and R 1300 R presentation\n- Special pre-order pricing discussion\n\n**[Book Your Slot]**\n\nLimited slots available - reserve yours today!",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Test ride invitation"
     },
     {
       "id": "R1300R_TESTRIDE_WA_001",
@@ -1030,9 +1046,10 @@
       "content": "Hi [Name]! 🏍️\n\nThe R 1300 R is ready for test rides! Want to feel 145hp of Boxer power for yourself?\n\nWe have slots available:\n📅 [Dates]\n⏰ Morning & afternoon\n\nReply with your preferred time and we'll confirm! First come, first served 🔥",
       "channel": "WhatsApp",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Test ride booking"
     },
     {
       "id": "R1300R_TESTRIDE_SMS_001",
@@ -1040,9 +1057,10 @@
       "content": "BMW: R 1300 R test rides now available! Experience 145hp of naked bike excellence. Limited slots. Reply YES to book or call [number]",
       "channel": "SMS",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Test ride invitation"
     },
     {
       "id": "R1300R_TESTRIDE_SMS_002",
@@ -1050,9 +1068,10 @@
       "content": "BMW: Confirmed! Your R 1300 R test ride is booked for [date] at [time]. Please bring your license. Reply CANCEL if needed. See you soon!",
       "channel": "SMS",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Booking confirmation"
     },
     {
       "id": "R1300R_TESTRIDE_EMAIL_002",
@@ -1060,9 +1079,10 @@
       "content": "Subject: You're invited: R 1300 R Exclusive Ride Day\n\nDear [Name],\n\nJoin us for an exclusive R 1300 R ride event!\n\nDate: [Date]\nTime: 10am - 4pm\nLocation: [Dealership]\n\nExperience:\n- Multiple test rides throughout the day\n- Meet our BMW experts\n- Refreshments and lunch provided\n- Exclusive event-only offers\n- R 1300 R accessories showcase\n\nSpaces limited to 20 riders.\n\n**[Reserve Your Spot]**\n\nYour BMW Motorrad Team",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Event invitation"
     },
     {
       "id": "R1300R_TESTRIDE_EMAIL_003",
@@ -1070,9 +1090,10 @@
       "content": "Subject: Tomorrow: Your R 1300 R test ride\n\nHi [Name],\n\nJust a reminder - your R 1300 R test ride is tomorrow at [time]!\n\nWhat to bring:\n- Valid motorcycle license\n- Riding gear (helmet, gloves, jacket)\n- Your excitement!\n\nCan't wait to show you what 145hp of sexy versatility feels like.\n\nSee you tomorrow!\n\n**[Get Directions]**",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Reminder"
     },
     {
       "id": "R1300R_TESTRIDE_IG_001",
@@ -1080,9 +1101,10 @@
       "content": "Ready to unleash the genie? 🧞‍♂️\n\nR 1300 R test rides now available! Feel the Boxer punch, experience the sporty ergonomics, discover your perfect ride.\n\nDM us or click the link in bio to book your slot!\n\n#BMWR1300R #TestRide #BMWMotorrad #NakedBike #BookNow",
       "channel": "Instagram",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Social booking"
     },
     {
       "id": "R1300R_TESTRIDE_FB_001",
@@ -1090,9 +1112,10 @@
       "content": "🏍️ R 1300 R TEST RIDES NOW OPEN! 🏍️\n\nWant to experience 145hp of pure versatility? Book your exclusive test ride today!\n\n- ✅ 30-minute guided rides\n- ✅ Professional instruction\n- ✅ Special test ride offers\n\nLimited slots available this week. Don't miss out!\n\n[Book Now Button]",
       "channel": "Facebook",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Social booking"
     },
     {
       "id": "R1300RT_TESTRIDE_EMAIL_001",
@@ -1100,9 +1123,10 @@
       "content": "Subject: Your exclusive R 1300 RT command experience awaits\n\nDear [Name],\n\nYou showed interest in the new R 1300 RT - now it's time to experience The Commander firsthand.\n\nWe're offering exclusive test rides to our valued customers. Feel the refined 145hp Boxer power, experience the advanced rider assistance systems, and discover why this hidden champion delivers ultimate touring expertise.\n\nAvailable test ride slots:\n[Date/Time slots]\n\nWhat to expect:\n- 60-minute comprehensive test experience\n- Full technology demonstration\n- Refreshments and R 1300 RT presentation\n- Audio system and comfort features showcase\n- Special pre-order pricing discussion\n\n**[Book Your Slot]**\n\nLimited command positions available - reserve yours today!",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Test ride invitation"
     },
     {
       "id": "R1300RT_TESTRIDE_WA_001",
@@ -1110,9 +1134,10 @@
       "content": "Hi [Name]! 🏍️\n\nThe R 1300 RT Commander is ready for test rides! Want to experience ultimate touring expertise?\n\nWe have slots available:\n📅 [Dates]\n⏰ Extended test experiences\n\nReply with your preferred time and we'll confirm! Take command today 👑",
       "channel": "WhatsApp",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Test ride booking"
     },
     {
       "id": "R1300RT_TESTRIDE_SMS_001",
@@ -1120,9 +1145,10 @@
       "content": "BMW: R 1300 RT test rides available! Experience The Commander - ultimate touring expertise. Reply YES to book or call [number]",
       "channel": "SMS",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Test ride invitation"
     },
     {
       "id": "R1300RT_TESTRIDE_SMS_002",
@@ -1130,9 +1156,10 @@
       "content": "BMW: Confirmed! Your R 1300 RT command experience booked for [date] at [time]. Please bring your license. See you soon!",
       "channel": "SMS",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Booking confirmation"
     },
     {
       "id": "R1300RT_TESTRIDE_EMAIL_002",
@@ -1140,9 +1167,10 @@
       "content": "Subject: You're invited: R 1300 RT Ultimate Touring Experience\n\nDear [Name],\n\nJoin us for an exclusive R 1300 RT touring excellence event!\n\nDate: [Date]\nTime: 9am - 6pm\nLocation: [Dealership]\n\nExperience:\n- Extended touring demonstration rides\n- Technology masterclass (DCA, Riding Assistant, Audio Pro)\n- Comfort features workshop\n- Gourmet lunch stop\n- Exclusive event-only offers\n- Complete touring accessories showcase\n\nSpaces limited to 12 commanders.\n\n**[Reserve Your Position]**\n\nYour BMW Motorrad Team",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Event invitation"
     },
     {
       "id": "R1300RT_TESTRIDE_EMAIL_003",
@@ -1150,9 +1178,10 @@
       "content": "Subject: Tomorrow: Take command with the R 1300 RT\n\nHi [Name],\n\nJust a reminder - your R 1300 RT command experience is tomorrow at [time]!\n\nWhat to bring:\n- Valid motorcycle license\n- Your preferred touring gear\n- Questions about features and technology\n- Your sense of adventure!\n\nWe'll demonstrate the full suite of technology including the Audio System 2.0 and Riding Assistant.\n\nSee you tomorrow, Commander!\n\n**[Get Directions]**",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Reminder"
     },
     {
       "id": "R1300RT_TESTRIDE_IG_001",
@@ -1160,9 +1189,10 @@
       "content": "Ready to be in full command? 👑\n\nR 1300 RT test rides now available! Experience the hidden champion's ultimate touring expertise.\n\nDM us or click the link in bio to book your command position!\n\n#BMWR1300RT #TestRide #BMWMotorrad #TheCommander #BookNow",
       "channel": "Instagram",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Social booking"
     },
     {
       "id": "R1300RT_TESTRIDE_FB_001",
@@ -1170,9 +1200,10 @@
       "content": "🏍️ R 1300 RT TEST RIDES NOW OPEN! 🏍️\n\nExperience The Commander - where ultimate expertise meets supreme comfort!\n\n- ✅ Extended test experiences\n- ✅ Full technology demonstration\n- ✅ Special test ride offers\n\nLimited command positions available. Book your ultimate touring experience!\n\n[Book Now Button]",
       "channel": "Facebook",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Social booking"
     },
     {
       "id": "R1300RS_TESTRIDE_EMAIL_001",
@@ -1180,9 +1211,10 @@
       "content": "Subject: Your exclusive R 1300 RS test ride awaits\n\nDear [Name],\n\nYou showed interest in the new R 1300 RS - now it's time to experience the Marathon Racer firsthand.\n\nWe're offering exclusive test rides to our valued customers. Feel the 145hp Boxer power, experience the race-inspired ergonomics, and discover why every second on this refined tourer is a celebration of joy.\n\nAvailable test ride slots:\n[Date/Time slots]\n\nWhat to expect:\n- 45-minute guided tour ride\n- Full safety briefing\n- Refreshments and R 1300 RS presentation\n- Special pre-order pricing discussion\n\n**[Book Your Slot]**\n\nLimited slots available - reserve yours today!",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Test ride invitation"
     },
     {
       "id": "R1300RS_TESTRIDE_WA_001",
@@ -1190,9 +1222,10 @@
       "content": "Hi [Name]! 🏍️\n\nThe R 1300 RS Marathon Racer is ready for test rides! Want to feel what persistent excitement really means?\n\nWe have slots available:\n📅 [Dates]\n⏰ Morning & afternoon tours\n\nReply with your preferred time and we'll confirm! First come, first served 🏁",
       "channel": "WhatsApp",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Test ride booking"
     },
     {
       "id": "R1300RS_TESTRIDE_SMS_001",
@@ -1200,9 +1233,10 @@
       "content": "BMW: R 1300 RS test rides now available! Experience the Marathon Racer - 145hp of refined touring excellence. Reply YES to book or call [number]",
       "channel": "SMS",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Test ride invitation"
     },
     {
       "id": "R1300RS_TESTRIDE_SMS_002",
@@ -1210,9 +1244,10 @@
       "content": "BMW: Confirmed! Your R 1300 RS test ride is booked for [date] at [time]. Please bring your license. Reply CANCEL if needed. See you soon!",
       "channel": "SMS",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Booking confirmation"
     },
     {
       "id": "R1300RS_TESTRIDE_EMAIL_002",
@@ -1220,9 +1255,10 @@
       "content": "Subject: You're invited: R 1300 RS Marathon Ride Event\n\nDear [Name],\n\nJoin us for an exclusive R 1300 RS touring event!\n\nDate: [Date]\nTime: 9am - 5pm\nLocation: [Dealership]\n\nExperience:\n- Extended test rides on scenic routes\n- Professional ride leaders\n- Lunch stop at [scenic location]\n- Exclusive event-only offers\n- R 1300 RS touring accessories showcase\n\nSpaces limited to 15 riders.\n\n**[Reserve Your Spot]**\n\nYour BMW Motorrad Team",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Event invitation"
     },
     {
       "id": "R1300RS_TESTRIDE_EMAIL_003",
@@ -1230,9 +1266,10 @@
       "content": "Subject: Tomorrow: Your R 1300 RS marathon begins\n\nHi [Name],\n\nJust a reminder - your R 1300 RS test ride is tomorrow at [time]!\n\nWhat to bring:\n- Valid motorcycle license\n- Full riding gear for touring comfort\n- Your spirit of adventure!\n\nCan't wait to show you why every second on the RS is a celebration of joy.\n\nSee you tomorrow!\n\n**[Get Directions]**",
       "channel": "Email",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Reminder"
     },
     {
       "id": "R1300RS_TESTRIDE_IG_001",
@@ -1240,9 +1277,10 @@
       "content": "Ready to turn your tour into a sports event? 🏁\n\nR 1300 RS test rides now available! Experience the Marathon Racer's perfect blend of sport and touring.\n\nDM us or click the link in bio to book your ride!\n\n#BMWR1300RS #TestRide #BMWMotorrad #MarathonRacer #BookNow",
       "channel": "Instagram",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Social booking"
     },
     {
       "id": "R1300RS_TESTRIDE_FB_001",
@@ -1250,9 +1288,10 @@
       "content": "🏍️ R 1300 RS TEST RIDES NOW OPEN! 🏍️\n\nExperience the Marathon Racer - where refined touring meets race-bred performance!\n\n- ✅ Extended test routes available\n- ✅ Professional instruction\n- ✅ Special test ride offers\n\nLimited slots available this week. Book your sports touring adventure!\n\n[Book Now Button]",
       "channel": "Facebook",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Social booking"
     },
     {
       "id": "R1300R_INSTORE_POSTER_001",
@@ -1260,9 +1299,10 @@
       "content": "THE GENIE IS HERE\n\nR 1300 R\n\nSEXY VERSATILITY UNLEASHED\n- 145hp Boxer Engine\n- 239kg Lightweight Design\n- Dynamic ESA Suspension\n- Keyless Ride Standard\n\nBORN FOR THE CURVE\n\nTest Ride Today",
       "channel": "Print",
       "type": "IN-STORE",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Feature showcase"
     },
     {
       "id": "R1300R_INSTORE_SCRIPT_001",
@@ -1270,9 +1310,10 @@
       "content": "R 1300 R Customer Conversation Guide\n\nOpening: \"\"The R 1300 R is our most versatile naked bike - we call it 'The Genie' because it delivers exactly what you want.\"\"\n\nKey Points:\n1. Performance: \"\"145hp from the 1300cc Boxer engine gives you instant torque and that unique BMW character. It's sportier than ever but still comfortable for longer rides.\"\"\n\n2. Weight: \"\"At just 239kg, it's lighter and more agile - perfect for both city riding and weekend canyon carving.\"\"\n\n3. Technology: \"\"Dynamic ESA suspension adapts to your riding in real-time. Keyless Ride means you never fumble for keys.\"\"\n\n4. Versatility: \"\"Sport suspension and ergonomics when you want them, comfort options when you need them. It's your bike, your way.\"\"\n\n5. Design: \"\"That sharp, modern design isn't just for looks - every angle serves the riding experience.\"\"\n\nClosing: \"\"Would you like to experience this versatility yourself? I can arrange a test ride.\"\"",
       "channel": "In-Store",
       "type": "IN-STORE",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Sales guide"
     },
     {
       "id": "R1300R_INSTORE_SCREEN_001",
@@ -1280,9 +1321,10 @@
       "content": "[Rotating Display]\n\nSlide 1: R 1300 R - THE GENIE\n\"\"Sexy Versatility Unleashed\"\"\n\nSlide 2: PURE PERFORMANCE\n145hp",
       "channel": "Digital",
       "type": "IN-STORE",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "149Nm"
     },
     {
       "id": "R1300R_INSTORE_FINANCE_001",
@@ -1290,9 +1332,10 @@
       "content": "MAKE THE R 1300 R YOURS\n\nFrom £[XXX] per month*\n\nExample Finance:\n- £[X,XXX] deposit\n- [X]% APR\n- [48] monthly payments\n- Optional final payment\n\nPlus:\n- ✓ 3-year warranty\n- ✓ BMW Motorrad Service Inclusive options\n- ✓ Trade-in welcome\n\n*Subject to status. T&Cs apply.\n\nSpeak to our team today",
       "channel": "Print",
       "type": "IN-STORE",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Finance promotion"
     },
     {
       "id": "R1300RT_INSTORE_POSTER_001",
@@ -1300,9 +1343,10 @@
       "content": "THE COMMANDER\n\nR 1300 RT\n\nBE IN FULL COMMAND\n- 145hp Boxer Engine\n- Riding Assistant with ACC\n- Audio System 2.0 Standard\n- DCA Suspension Available\n- Variable Electronic Luggage\n\nULTIMATE EXPERTISE\n\nTest Ride Today",
       "channel": "Print",
       "type": "IN-STORE",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Feature showcase"
     },
     {
       "id": "R1300RT_INSTORE_SCRIPT_001",
@@ -1310,9 +1354,10 @@
       "content": "R 1300 RT Customer Conversation Guide\n\nOpening: \"\"The R 1300 RT is The Commander - it puts you in full command with ultimate touring expertise. It's the hidden champion for discerning riders.\"\"\n\nKey Points:\n1. Technology Leadership: \"\"Standard Riding Assistant with front and rear radar, ACC, and lane warnings. It's like having a co-pilot watching everything.\"\"\n\n2. Comfort Supremacy: \"\"Audio System 2.0 comes standard. Heated seats and grips warm in seconds. The optional DCA suspension adapts to any load or road automatically.\"\"\n\n3. Protection: \"\"Supreme wind and weather protection with adaptive deflectors. You arrive fresh after 500 miles.\"\"\n\n4. Practicality: \"\"24L tank, variable electronic luggage, smartphone charging - everything for commanding long distances.\"\"\n\n5. Hidden Performance: \"\"Don't let the comfort fool you - with 145hp and dynamic riding modes, this RT is sportier than ever.\"\"\n\nClosing: \"\"Would you like to experience what full command feels like? I can arrange a comprehensive test ride.\"\"",
       "channel": "In-Store",
       "type": "IN-STORE",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Sales guide"
     },
     {
       "id": "R1300RT_INSTORE_SCREEN_001",
@@ -1320,9 +1365,10 @@
       "content": "[Rotating Display]\n\nSlide 1: R 1300 RT - THE COMMANDER\n\"\"Be In Full Command\"\"\n\nSlide 2: REFINED POWER\n145hp | 149Nm | Supreme Comfort\n\nSlide 3: TECHNOLOGY\nRiding Assistant | ACC | Audio 2.0\n\nSlide 4: ULTIMATE EXPERTISE\nThe Hidden Champion\n\nSlide 5: COMMAND YOUR TEST RIDE\nAsk Our Team",
       "channel": "Digital",
       "type": "IN-STORE",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Digital display"
     },
     {
       "id": "R1300RT_INSTORE_FINANCE_001",
@@ -1330,9 +1376,10 @@
       "content": "COMMAND THE R 1300 RT\n\nFrom £[XXX] per month*\n\nExample Finance:\n- £[X,XXX] deposit\n- [X]% APR\n- [48] monthly payments\n- Optional final payment\n\nPlus:\n- ✓ 3-year warranty\n- ✓ Audio System 2.0 included\n- ✓ BMW Service Inclusive\n- ✓ Premium trade-in values\n\n*Subject to status. T&Cs apply.\n\nTake command today",
       "channel": "Print",
       "type": "IN-STORE",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Finance promotion"
     },
     {
       "id": "R1300RS_INSTORE_POSTER_001",
@@ -1340,9 +1387,10 @@
       "content": "THE MARATHON RACER\n\nR 1300 RS\n\nTURN YOUR TOUR INTO A SPORTS EVENT\n- 145hp Boxer Engine\n- 245kg Lightweight Design\n- Dynamic ESA Suspension\n- Riding Assistant with Radar\n- Race-Inspired Ergonomics\n\nPERSISTENT EXCITEMENT\n\nTest Ride Today",
       "channel": "Print",
       "type": "IN-STORE",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Feature showcase"
     },
     {
       "id": "R1300RS_INSTORE_SCRIPT_001",
@@ -1350,9 +1398,10 @@
       "content": "R 1300 RS Customer Conversation Guide\n\nOpening: \"\"The R 1300 RS is the Marathon Racer - it turns every tour into a sports event with persistent excitement mile after mile.\"\"\n\nKey Points:\n1. Performance: \"\"145hp from the 1300cc Boxer engine in our lightest RS ever at 245kg. It's the sportiest, most agile RS we've built.\"\"\n\n2. Design: \"\"That iconic BMW split face and dynamic flyline aren't just beautiful - they're functional, improving aerodynamics for high-speed touring.\"\"\n\n3. Technology: \"\"Riding Assistant with rear radar keeps you safe. Dynamic ESA adapts to any road. It's race technology for the real world.\"\"\n\n4. Ergonomics: \"\"Sportier riding position than ever before, but still comfortable for crossing continents. Lower, wider bars give you control and confidence.\"\"\n\n5. Versatility: \"\"From attacking mountain passes to eating up motorway miles - this bike makes every second a celebration of joy.\"\"\n\nClosing: \"\"Would you like to experience this persistent excitement yourself? I can arrange an extended test ride.\"\"",
       "channel": "In-Store",
       "type": "IN-STORE",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Sales guide"
     },
     {
       "id": "R1300RS_INSTORE_SCREEN_001",
@@ -1360,9 +1409,10 @@
       "content": "[Rotating Display]\n\nSlide 1: R 1300 RS - THE MARATHON RACER\n\"\"Turn Your Tour Into A Sports Event\"\"\n\nSlide 2: PURE PERFORMANCE\n145hp | 149Nm | 245kg\n\nSlide 3: TECHNOLOGY\nDynamic ESA | Riding Assistant | Radar Safety\n\nSlide 4: PERSISTENT EXCITEMENT\nRace-Bred Touring Excellence\n\nSlide 5: TEST RIDE TODAY\nAsk Our Team",
       "channel": "Digital",
       "type": "IN-STORE",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Digital display"
     },
     {
       "id": "R1300RS_INSTORE_FINANCE_001",
@@ -1370,9 +1420,10 @@
       "content": "MAKE THE R 1300 RS YOURS\n\nFrom £[XXX] per month*\n\nExample Finance:\n- £[X,XXX] deposit\n- [X]% APR\n- [48] monthly payments\n- Optional final payment\n\nPlus:\n- ✓ 3-year warranty\n- ✓ Touring package available\n- ✓ BMW Motorrad Service Inclusive\n- ✓ Trade-in welcome\n\n*Subject to status. T&Cs apply.\n\nStart your marathon today",
       "channel": "Print",
       "type": "IN-STORE",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Finance promotion"
     },
     {
       "id": "R1300R_FOLLOWUP_EMAIL_001",
@@ -1380,9 +1431,10 @@
       "content": "Subject: Making your R 1300 R dream a reality\n\nHi [Name],\n\nThank you for your interest in the R 1300 R. I wanted to share some flexible ways to make this incredible machine yours:\n\nFinance Options:\n- HP: From £[XXX]/month with competitive rates\n- PCP: Lower monthly payments with flexibility\n- Personal loan: We work with multiple lenders\n\nCurrent Offers:\n- [£XXX] deposit contribution\n- Complimentary first service\n- Trade-in bonus evaluation\n\nI can create a personalized quote based on your preferences. What works best for your budget?\n\n**[Get My Quote]**\n\nBest regards,\n[Dealer name]",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Finance follow-up"
     },
     {
       "id": "R1300R_FOLLOWUP_EMAIL_002",
@@ -1390,9 +1442,10 @@
       "content": "Subject: How was your R 1300 R experience?\n\nHi [Name],\n\nI hope you enjoyed unleashing the genie yesterday! The R 1300 R certainly shows what 145hp of versatility feels like.\n\nI'm curious - what impressed you most? The sporty handling? The comfortable ergonomics? The instant Boxer torque?\n\nIf you're ready to make it yours:\n- We have [color] available for immediate delivery\n- Special test ride discount of £[XXX] this week only\n- Finance from £[XXX]/month\n\nAny questions about specs, accessories, or options? I'm here to help make this exactly the bike you want.\n\n**[Configure My R 1300 R]**\n\nLooking forward to hearing from you!\n\n[Dealer name]",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Test ride follow-up"
     },
     {
       "id": "R1300R_FOLLOWUP_EMAIL_003",
@@ -1400,9 +1453,10 @@
       "content": "Subject: Exclusive R 1300 R offer ending soon\n\nDear [Name],\n\nI wanted to make sure you didn't miss this - your exclusive R 1300 R offer expires in 48 hours:\n\n🏍️ £[XXX] off RRP\n🏍️ Complimentary Dynamic Package upgrade\n🏍️ 0% finance available*\n🏍️ Enhanced trade-in value\n\nThe R 1300 R is selling fast, and this sexy versatility won't wait around. We currently have:\n- [Color 1] - In stock\n- [Color 2] - 2 weeks delivery\n\nShall we secure yours today?\n\n**[Claim My Offer]**\n\n*T&Cs apply",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Limited offer"
     },
     {
       "id": "R1300R_FOLLOWUP_PHONE_001",
@@ -1410,9 +1464,10 @@
       "content": "R 1300 R Phone Follow-Up Script\n\nOpening: \"\"Hi [Name], it's [Your name] from [Dealership]. I wanted to follow up on your interest in the R 1300 R - do you have a couple of minutes?\"\"\n\nKey Points:\n1. Check interest: \"\"You were looking at the R 1300 R - what particularly caught your attention about it?\"\"\n\n2. Address concerns: \"\"Was there anything specific you wanted to know more about?\"\"\n\n3. Create urgency: \"\"I mention it because we have some great offers this month, including [specific offer].\"\"\n\n4. Test ride: \"\"Have you had a chance to test ride it yet? The 145hp really comes alive on the road.\"\"\n\n5. Next steps: \"\"I'd love to help you experience what this bike can do. Can we book you in for [test ride/another look/finance discussion]?\"\"\n\nClosing: \"\"I'll send you those details by email. Looking forward to seeing you soon!\"\"",
       "channel": "Phone",
       "type": "FOLLOW-UP",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Phone script"
     },
     {
       "id": "R1300R_FOLLOWUP_EMAIL_004",
@@ -1420,9 +1475,10 @@
       "content": "Subject: Good news about your R 1300 R\n\nDear [Name],\n\nGreat news! A [color] R 1300 R has become available ahead of schedule.\n\nAs you're on our priority list, you have first opportunity to secure this bike:\n- Immediate delivery available\n- Full spec includes [options]\n- Your quoted price of £[XXXX] still valid\n\nThis opportunity won't last long - shall I reserve it for you?\n\n**[Reserve This Bike]**\n\nPlease let me know within 24 hours.\n\nBest regards,\n[Dealer name]",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Waitlist update"
     },
     {
       "id": "R1300R_FOLLOWUP_WA_001",
@@ -1430,9 +1486,10 @@
       "content": "Hey [Name]! 👋\n\nHow was the R 1300 R test ride earlier? That Boxer engine is something special, right?\n\nJust so you know:\n- ✅ Test ride discount (£XXX off) valid this week\n- ✅ [Color] available now\n- ✅ Finance from £[XXX]/month\n\nAny questions? Happy to chat! 🏍️",
       "channel": "WhatsApp",
       "type": "FOLLOW-UP",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "WhatsApp follow-up"
     },
     {
       "id": "R1300R_FOLLOWUP_SMS_001",
@@ -1440,9 +1497,10 @@
       "content": "BMW: Thanks for test riding the R 1300 R today! Your exclusive £[XXX] discount expires [date]. Questions? Call [name] on [number]",
       "channel": "SMS",
       "type": "FOLLOW-UP",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "SMS follow-up"
     },
     {
       "id": "R1300RT_FOLLOWUP_EMAIL_001",
@@ -1450,9 +1508,10 @@
       "content": "Subject: Your path to R 1300 RT command\n\nHi [Name],\n\nThank you for your interest in the R 1300 RT Commander. Let me show you how to make this ultimate touring machine yours:\n\nFinance Options:\n- HP: From £[XXX]/month with competitive rates\n- PCP: Lower monthly payments with end flexibility\n- Personal loan: Premium rates for premium riders\n\nCurrent Commander Package:\n- [£XXX] deposit contribution\n- Complimentary DCA suspension upgrade\n- 3-year Service Inclusive package\n- Premium trade-in valuation\n\nReady to take command? I'll create your personalized finance solution.\n\n**[Get My Quote]**\n\nBest regards,\n[Dealer name]",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Finance follow-up"
     },
     {
       "id": "R1300RT_FOLLOWUP_EMAIL_002",
@@ -1460,9 +1519,10 @@
       "content": "Subject: How was your R 1300 RT command experience?\n\nHi [Name],\n\nI hope you enjoyed commanding the R 1300 RT yesterday! The ultimate expertise certainly makes itself known.\n\nWhat impressed you most? The serene comfort? The advanced technology? The way it handles despite being so comprehensively equipped?\n\nIf you're ready to take permanent command:\n- We have [color] available with your preferred options\n- Commander discount of £[XXX] this week only\n- Finance from £[XXX]/month\n- Complimentary Audio Pro upgrade\n\nAny questions about the technology, comfort options, or specifications? I'm here to ensure your RT is configured perfectly.\n\n**[Configure My R 1300 RT]**\n\nLooking forward to welcoming you to the command position!\n\n[Dealer name]",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Test ride follow-up"
     },
     {
       "id": "R1300RT_FOLLOWUP_EMAIL_003",
@@ -1470,9 +1530,10 @@
       "content": "Subject: Your R 1300 RT command awaits - exclusive offer ending\n\nDear [Name],\n\nDon't let this command position slip away - your exclusive R 1300 RT offer expires in 48 hours:\n\n🏍️ £[XXX] off RRP\n🏍️ Complimentary DCA suspension (worth £[XXX])\n🏍️ Audio Pro upgrade included\n🏍️ 0% finance available*\n🏍️ Priority delivery position\n\nThe Commander is our most sophisticated RT ever. We currently have:\n- [Color 1] - Ready for immediate command\n- [Color 2] - 4 weeks delivery\n\nReady to take your position?\n\n**[Secure My RT]**\n\n*T&Cs apply",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Limited offer"
     },
     {
       "id": "R1300RT_FOLLOWUP_PHONE_001",
@@ -1480,9 +1541,10 @@
       "content": "R 1300 RT Phone Follow-Up Script\n\nOpening: \"\"Hi [Name], it's [Your name] from [Dealership]. I wanted to follow up on your interest in the R 1300 RT Commander - do you have a moment?\"\"\n\nKey Points:\n1. Check needs: \"\"You were looking at the RT - are you planning long-distance touring or looking for ultimate daily comfort?\"\"\n\n2. Address technology: \"\"Did you have any questions about the Riding Assistant or other technology features?\"\"\n\n3. Create urgency: \"\"We have an exceptional offer this month including complimentary DCA suspension worth £[XXX].\"\"\n\n4. Test ride: \"\"Have you experienced the RT's full command capabilities yet? The technology really needs to be experienced.\"\"\n\n5. Next steps: \"\"I'd love to help you configure your perfect touring command center. Can we schedule [extended test/specification session]?\"\"\n\nClosing: \"\"I'll send you the full technology guide by email. Looking forward to putting you in command!\"\"",
       "channel": "Phone",
       "type": "FOLLOW-UP",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Phone script"
     },
     {
       "id": "R1300RT_FOLLOWUP_EMAIL_004",
@@ -1490,9 +1552,10 @@
       "content": "Subject: Your R 1300 RT command position is ready!\n\nDear [Name],\n\nOutstanding news! A fully-specified [color] R 1300 RT has become available - your command position awaits.\n\nAs you're on our priority list, you have first opportunity:\n- Immediate delivery available\n- Includes DCA suspension and Audio Pro\n- Your quoted price of £[XXXX] secured\n- Full warranty from today\n\nThis Commander won't wait - shall I prepare your throne?\n\n**[Claim My RT]**\n\nPlease confirm within 24 hours.\n\nBest regards,\n[Dealer name]",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Waitlist update"
     },
     {
       "id": "R1300RT_FOLLOWUP_WA_001",
@@ -1500,9 +1563,10 @@
       "content": "Hey [Name]! 👋\n\nHow was commanding the R 1300 RT? That supreme comfort and technology is impressive, right?\n\nQuick reminder:\n- ✅ Test ride discount (£XXX off) valid this week\n- ✅ [Color] with DCA available now\n- ✅ Finance from £[XXX]/month\n- ✅ Free Audio Pro upgrade!\n\nReady to take command? 👑",
       "channel": "WhatsApp",
       "type": "FOLLOW-UP",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "WhatsApp follow-up"
     },
     {
       "id": "R1300RT_FOLLOWUP_SMS_001",
@@ -1510,9 +1574,10 @@
       "content": "BMW: Thanks for test riding the R 1300 RT! Your £[XXX] discount + free DCA suspension expires [date]. Call [name] on [number]",
       "channel": "SMS",
       "type": "FOLLOW-UP",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "SMS follow-up"
     },
     {
       "id": "R1300RS_FOLLOWUP_EMAIL_001",
@@ -1520,9 +1585,10 @@
       "content": "Subject: Making your R 1300 RS marathon a reality\n\nHi [Name],\n\nThank you for your interest in the R 1300 RS Marathon Racer. I wanted to share flexible ways to start your sporting tour adventure:\n\nFinance Options:\n- HP: From £[XXX]/month with competitive rates\n- PCP: Lower monthly payments with flexibility\n- Personal loan: We work with touring-friendly lenders\n\nCurrent Offers:\n- [£XXX] deposit contribution\n- Complimentary Touring Package upgrade\n- Enhanced trade-in valuation\n\nReady to turn your touring dreams into reality? I can create a personalized quote.\n\n**[Get My Quote]**\n\nBest regards,\n[Dealer name]",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Finance follow-up"
     },
     {
       "id": "R1300RS_FOLLOWUP_EMAIL_003",
@@ -1530,9 +1596,10 @@
       "content": "Subject: Your R 1300 RS adventure awaits - offer ending soon\n\nDear [Name],\n\nDon't let this opportunity race away - your exclusive R 1300 RS offer expires in 48 hours:\n\n🏍️ £[XXX] off RRP\n🏍️ Complimentary Touring Package (worth £[XXX])\n🏍️ 0% finance available*\n🏍️ Priority delivery slot\n\nThe Marathon Racer is in high demand. We currently have:\n- [Color 1] - Ready for delivery\n- [Color 2] - 3 weeks wait\n\nReady to start your sporting tour adventure?\n\n**[Claim My Offer]**\n\n*T&Cs apply",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Limited offer"
     },
     {
       "id": "R1300RS_FOLLOWUP_PHONE_001",
@@ -1540,9 +1607,10 @@
       "content": "R 1300 RS Phone Follow-Up Script\n\nOpening: \"\"Hi [Name], it's [Your name] from [Dealership]. I wanted to follow up on your interest in the R 1300 RS Marathon Racer - do you have a couple of minutes?\"\"\n\nKey Points:\n1. Check interest: \"\"You were looking at the R 1300 RS - what kind of riding adventures are you planning?\"\"\n\n2. Address needs: \"\"Are you looking for more sporty performance or touring capability? The RS delivers both brilliantly.\"\"\n\n3. Create urgency: \"\"We have some excellent offers this month, including a complimentary Touring Package worth £[XXX].\"\"\n\n4. Test ride: \"\"Have you experienced the RS yet? An extended test ride really shows its marathon capabilities.\"\"\n\n5. Next steps: \"\"I'd love to help you configure your perfect touring sports bike. Can we book you in for [extended test/specification discussion]?\"\"\n\nClosing: \"\"I'll send you those details by email. Looking forward to starting your marathon journey!\"\"",
       "channel": "Phone",
       "type": "FOLLOW-UP",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Phone script"
     },
     {
       "id": "R1300RS_FOLLOWUP_EMAIL_004",
@@ -1550,9 +1618,10 @@
       "content": "Subject: Your R 1300 RS has arrived early!\n\nDear [Name],\n\nFantastic news! A [color] R 1300 RS has arrived ahead of schedule - your marathon can begin sooner than expected.\n\nAs you're on our priority list, you have first opportunity:\n- Immediate delivery available\n- Full Touring Package included\n- Your quoted price of £[XXXX] honored\n\nThis Marathon Racer won't wait long - shall I prepare it for you?\n\n**[Reserve This Bike]**\n\nPlease confirm within 24 hours.\n\nBest regards,\n[Dealer name]",
       "channel": "Email",
       "type": "FOLLOW-UP",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Waitlist update"
     },
     {
       "id": "R1300RS_FOLLOWUP_WA_001",
@@ -1560,9 +1629,10 @@
       "content": "Hey [Name]! 👋\n\nHow was the R 1300 RS test ride? That persistent excitement is addictive, right?\n\nJust so you know:\n- ✅ Test ride discount (£XXX off) valid this week\n- ✅ [Color] in stock now\n- ✅ Finance from £[XXX]/month\n- ✅ Free Touring Package this month!\n\nReady to start your marathon? 🏁",
       "channel": "WhatsApp",
       "type": "FOLLOW-UP",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "WhatsApp follow-up"
     },
     {
       "id": "R1300RS_FOLLOWUP_SMS_001",
@@ -1570,9 +1640,10 @@
       "content": "BMW: Thanks for test riding the R 1300 RS! Your £[XXX] discount + free Touring Package expires [date]. Call [name] on [number]",
       "channel": "SMS",
       "type": "FOLLOW-UP",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "SMS follow-up"
     },
     {
       "id": "R1300R_WELCOME_EMAIL_001",
@@ -1580,9 +1651,10 @@
       "content": "Subject: Welcome to the R 1300 R family!\n\nDear [Name],\n\nCongratulations on your new R 1300 R! The genie is now yours to command.\n\nWhat's next:\n- Delivery scheduled for [date] at [time]\n- Pre-delivery inspection underway\n- Your bike is being detailed to perfection\n\nIncluded with your R 1300 R:\n- 3-year manufacturer warranty\n- 24/7 BMW Motorrad breakdown assistance\n- Owner's handbook and service records\n- BMW Motorrad app access\n\nWe'll call you 24 hours before delivery to confirm everything.\n\nWelcome to the family!\n\n[Dealer name]\n[Contact details]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "New owner welcome"
     },
     {
       "id": "R1300R_WELCOME_SMS_001",
@@ -1590,9 +1662,10 @@
       "content": "BMW: Congratulations on your R 1300 R purchase! Delivery confirmed for [date]. We'll call tomorrow to finalize details. Welcome to BMW Motorrad!",
       "channel": "SMS",
       "type": "WELCOME",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Welcome confirmation"
     },
     {
       "id": "R1300R_WELCOME_EMAIL_002",
@@ -1600,9 +1673,10 @@
       "content": "Subject: Complete your R 1300 R experience\n\nHi [Name],\n\nYour R 1300 R is almost ready! While we prepare your bike, here are the most popular accessories other R 1300 R owners love:\n\nTop Picks:\n- Sport Screen - Enhanced wind protection (£[XXX])\n- Tank Bag (Strapless) - 17L extra storage (£[XXX])\n- Heated Grips - Year-round comfort (£[XXX])\n- Frame Sliders - Protection meets style (£[XXX])\n\nExclusive Offer: Order before delivery and save 15% plus free fitting!\n\n**[Browse All Accessories]**\n\nWant to discuss options? Call me on [number].\n\n[Dealer name]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Accessory upsell"
     },
     {
       "id": "R1300R_WELCOME_EMAIL_003",
@@ -1610,9 +1684,10 @@
       "content": "Subject: Your R 1300 R is ready!\n\nDear [Name],\n\nThe moment has arrived - your R 1300 R is ready for collection!\n\nDelivery Details:\n📅 Date: [Date]\n⏰ Time: [Time]\n📍 Location: [Dealership address]\n\nWhat to bring:\n- Driving license\n- Insurance documents\n- Payment balance (if applicable)\n- Your camera - you'll want photos!\n\nWhat we'll cover:\n- Full bike walkthrough\n- Technology demonstration\n- First service scheduling\n- BMW Motorrad app setup\n- Your first ride!\n\nCan't wait to see your face when you fire up that Boxer engine!\n\n[Dealer name]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Delivery notification"
     },
     {
       "id": "R1300R_WELCOME_WA_001",
@@ -1620,9 +1695,10 @@
       "content": "🎉 IT'S HERE! Your R 1300 R is ready!\n\n📅 Collection: [Date] at [Time]\n📍 Location: [Dealership]\n\nBring:\n- ✓ License\n- ✓ Insurance docs\n- ✓ Big smile 😄\n\nCan't wait to hand over the keys! Any questions before the big day?",
       "channel": "WhatsApp",
       "type": "WELCOME",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Delivery alert"
     },
     {
       "id": "R1300R_WELCOME_SMS_001_1",
@@ -1630,9 +1706,10 @@
       "content": "BMW: Your R 1300 R is ready! Collection scheduled [date] at [time]. Please bring license & insurance. Reply to confirm. See you soon!",
       "channel": "SMS",
       "type": "WELCOME",
+      "model": "R1300 R",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 R"
+      "category": "Delivery confirmation"
     },
     {
       "id": "R1300RT_WELCOME_EMAIL_001",
@@ -1640,9 +1717,10 @@
       "content": "Subject: Welcome to R 1300 RT command!\n\nDear [Name],\n\nCongratulations on your new R 1300 RT! You've joined an exclusive group of riders who command the ultimate in touring expertise.\n\nWhat's next:\n- Delivery scheduled for [date] at [time]\n- Pre-delivery inspection underway\n- Your Commander is being prepared to perfection\n\nIncluded with your R 1300 RT:\n- 3-year manufacturer warranty\n- 24/7 BMW Motorrad worldwide assistance\n- Audio System 2.0 fully configured\n- Owner's handbook and technology guide\n- BMW Motorrad Connected app premium\n- Complimentary first-year map updates\n\nWe'll call 24 hours before delivery to confirm everything.\n\nWelcome to the command position!\n\n[Dealer name]\n[Contact details]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "New owner welcome"
     },
     {
       "id": "R1300RT_WELCOME_SMS_001",
@@ -1650,9 +1728,10 @@
       "content": "BMW: Congratulations on your R 1300 RT purchase! Your Commander delivery confirmed for [date]. Welcome to ultimate expertise!",
       "channel": "SMS",
       "type": "WELCOME",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Welcome confirmation"
     },
     {
       "id": "R1300RT_WELCOME_EMAIL_002",
@@ -1660,9 +1739,10 @@
       "content": "Subject: Complete your R 1300 RT command center\n\nHi [Name],\n\nYour Commander is almost ready! While we prepare your RT, here are the accessories that perfect the command experience:\n\nCommand Essentials:\n- Variable Electronic Luggage - Ultimate capacity (£[XXX])\n- Comfort Passenger Package - Royal treatment (£[XXX])\n- Audio Pro Speakers - Concert quality (£[XXX])\n- Additional Wind Deflectors - Perfect climate (£[XXX])\n- Chrome Package - Distinguished presence (£[XXX])\n\nExclusive Offer: Order before delivery for 20% off plus free expert fitting!\n\n**[Browse RT Accessories]**\n\nLet's perfect your command center together.\n\n[Dealer name]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Accessory upsell"
     },
     {
       "id": "R1300RT_WELCOME_EMAIL_003",
@@ -1670,9 +1750,10 @@
       "content": "Subject: Your R 1300 RT Commander awaits!\n\nDear [Name],\n\nThe moment of command has arrived - your R 1300 RT is ready for collection!\n\nDelivery Details:\n📅 Date: [Date]\n⏰ Time: [Time]\n📍 Location: [Dealership address]\n\nWhat to bring:\n- Driving license\n- Insurance documents\n- Payment balance (if applicable)\n- Your touring plans - we'd love to hear them!\n\nWhat we'll cover:\n- Complete technology walkthrough\n- Audio system personalization\n- Riding Assistant configuration\n- First service scheduling\n- BMW Connected app setup\n- Your maiden voyage!\n\nCan't wait to hand over command of this ultimate machine!\n\n[Dealer name]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Delivery notification"
     },
     {
       "id": "R1300RT_WELCOME_WA_001",
@@ -1680,9 +1761,10 @@
       "content": "🎉 YOUR COMMANDER IS READY! 👑\n\n📅 Collection: [Date] at [Time]\n📍 Location: [Dealership]\n\nBring:\n- ✓ License\n- ✓ Insurance docs\n- ✓ Ready to command! 🏍️\n\nWe'll set up all your tech and audio. See you soon, Commander!",
       "channel": "WhatsApp",
       "type": "WELCOME",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": "Delivery alert"
     },
     {
       "id": "R1300RT_WELCOME_SMS_001_1",
@@ -1690,9 +1772,10 @@
       "content": "BMW: Your R 1300 RT Commander ready! Collection [date] at [time]. Bring license & insurance. Reply to confirm. Take command!",
       "channel": "SMS",
       "type": "WELCOME",
+      "model": "R1300 RT",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RT"
+      "category": ""
     },
     {
       "id": "R1300RS_WELCOME_EMAIL_001",
@@ -1700,9 +1783,10 @@
       "content": "Subject: Welcome to the R 1300 RS marathon family!\n\nDear [Name],\n\nCongratulations on your new R 1300 RS! Your Marathon Racer awaits, ready to turn every tour into a sports event.\n\nWhat's next:\n- Delivery scheduled for [date] at [time]\n- Pre-delivery inspection underway\n- Your touring sports bike is being prepared\n\nIncluded with your R 1300 RS:\n- 3-year manufacturer warranty\n- 24/7 BMW Motorrad European breakdown cover\n- Owner's handbook and touring guide\n- BMW Motorrad Connected app access\n- First year's European maps update\n\nWe'll call you 24 hours before delivery to confirm.\n\nWelcome to the marathon family!\n\n[Dealer name]\n[Contact details]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "New owner welcome"
     },
     {
       "id": "R1300RS_WELCOME_SMS_001",
@@ -1710,9 +1794,10 @@
       "content": "BMW: Congratulations on your R 1300 RS purchase! Your Marathon Racer delivery confirmed for [date]. Welcome to BMW Motorrad!",
       "channel": "SMS",
       "type": "WELCOME",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Welcome confirmation"
     },
     {
       "id": "R1300RS_WELCOME_EMAIL_002",
@@ -1720,9 +1805,10 @@
       "content": "Subject: Complete your R 1300 RS touring setup\n\nHi [Name],\n\nYour Marathon Racer is almost ready! While we prepare your RS, here are the touring essentials other RS owners recommend:\n\nTouring Essentials:\n- Variable Luggage System - Expandable storage (£[XXX])\n- High Touring Windshield - Ultimate protection (£[XXX])\n- Comfort Seat - Long-distance luxury (£[XXX])\n- GPS Mount - Never miss a turn (£[XXX])\n- Tank Bag (Strapless) - Easy access storage (£[XXX])\n\nExclusive Offer: Order before delivery and save 15% plus free fitting!\n\n**[Browse Touring Accessories]**\n\nPlanning any tours? I'd love to help optimize your setup.\n\n[Dealer name]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Accessory upsell"
     },
     {
       "id": "R1300RS_WELCOME_EMAIL_003",
@@ -1730,9 +1816,10 @@
       "content": "Subject: Your R 1300 RS Marathon Racer is ready!\n\nDear [Name],\n\nThe moment has arrived - your R 1300 RS is ready for collection!\n\nDelivery Details:\n📅 Date: [Date]\n⏰ Time: [Time]\n📍 Location: [Dealership address]\n\nWhat to bring:\n- Driving license\n- Insurance documents\n- Payment balance (if applicable)\n- Your touring plans - we'd love to hear them!\n\nWhat we'll cover:\n- Complete bike walkthrough\n- Technology & touring features demo\n- First service scheduling\n- BMW Motorrad Connected app setup\n- Your first marathon mile!\n\nCan't wait to see you start your sporting tour adventure!\n\n[Dealer name]",
       "channel": "Email",
       "type": "WELCOME",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Delivery notification"
     },
     {
       "id": "R1300RS_WELCOME_WA_001",
@@ -1740,9 +1827,10 @@
       "content": "🎉 YOUR MARATHON BEGINS! R 1300 RS ready!\n\n📅 Collection: [Date] at [Time]\n📍 Location: [Dealership]\n\nBring:\n- ✓ License\n- ✓ Insurance docs\n- ✓ Touring spirit 🏁\n\nReady to turn your first tour into a sports event? See you soon!",
       "channel": "WhatsApp",
       "type": "WELCOME",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Delivery alert"
     },
     {
       "id": "R1300RS_WELCOME_SMS_001_1",
@@ -1750,89 +1838,97 @@
       "content": "BMW: Your R 1300 RS Marathon Racer is ready! Collection [date] at [time]. Bring license & insurance. Reply to confirm. Let's ride!",
       "channel": "SMS",
       "type": "WELCOME",
+      "model": "R1300 RS",
       "date": "2025-05-27",
       "isDemo": false,
-      "category": "R1300 RS"
+      "category": "Delivery confirmation"
     }
   ],
   "guides": [
     {
       "id": "launch-communication-strategy",
-      "title": "🚀 Launch Communication Guide",
+      "title": "Launch Communication Strategy",
       "type": "LAUNCH",
+      "model": "R1300 R",
       "thumbnail": "/assets/images/guides/launch-strategy-thumb.jpg",
       "url": "/guides/launch-communication-strategy.pdf",
       "isDemo": false,
-      "category": "R1300 R",
+      "category": "Launch Communication Strategy",
       "contentLastModified": "2025-06-02T14:22:15.561Z",
-      "content": "# 🚀 Launch Communication Strategy Guide\n\n**For**: R 1300 RT (KA3), R 1300 R (KA4), R 1300 RS (KA5)\n\n---\n\n## 🎯 Purpose\n\nHelp your dealership turn warm leads into customers by building launch excitement, tailoring comms by model, and driving actions like test rides and showroom visits.\n\n---\n\n## 🏁 At a Glance: Launch Key Points by Model\n\n### R 1300 RT (KA3)\n- **Character:** The Commander\n- **Positioning:** *Be in Full Command*\n- **Key Messages:** Ultimate Expertise / Hidden Champion / Beyond Zeitgeist\n- **SOC Date:** 29 April 2025\n- **Dealer Availability:** Early June 2025\n- **Target Customers:** Touring experts, older loyalists, long-distance riders, comfort seekers, two-up riders\n- **Comms Focus:** Dynamic performance + touring comfort + professional appeal\n- **Hashtags:**\n  - **Mandatory:** `#MakeLifeARide #R1300RT #RideAndShare #BMWMotorrad`\n  - **Visual Realisation:** `#RECHARGE #RIDEANDSHARE`\n\n### R 1300 R (KA4)\n- **Character:** The Genie\n- **Positioning:** *Sexy Versatility / Boxer Punch on Every Tarmac*\n- **Key Messages:** Versatile Naked Bike / Born for the Curve / Beyond Zeitgeist\n- **SOC Date:** 10 April 2025\n- **Dealer Availability:** Early July 2025\n- **Target Customers:** Boxer lovers, spontaneous riders, returners, women, style-conscious\n- **Comms Focus:** Sporty freedom + design dynamism + agile experience\n- **Hashtags:**\n  - **Mandatory:** `#MakeLifeARide #R1300R #NeverStopChallenging #BMWMotorrad`\n  - **Visual Realisation:** `#SHARPEN #NEVERSTOPCHALLENGING`\n  - **Recommended:** `#R1300R`\n\n### R 1300 RS (KA5)\n- **Character:** The Marathon Racer\n- **Positioning:** *Turn Your Tour into a Sports Event*\n- **Key Messages:** Refined Race Tourer / Persistent Excitement / Beyond Zeitgeist\n- **SOC Date:** 29 April 2025\n- **Dealer Availability:** Early July 2025\n- **Target Customers:** Sport-focused riders, tech lovers, younger audience, long-distance with edge\n- **Comms Focus:** Sporty endurance + design-led appeal + performance leadership\n- **Hashtags:**\n  - **Mandatory:** `#MakeLifeARide #R1300RS #RideAndShare #BMWMotorrad`\n  - **Visual Realisation:** `#SHARPEN #NEVERSTOPCHALLENGING`\n  - **Recommended:** `#R1300RS`\n\n---\n\n## 🚀 Dealer Action Steps\n\n### Access Launch Assets\n→ Find CGI/AI videos and imagery in the Assets section, or your designated platform\n\n### Use AI Content Responsibly\n→ In the EU, label AI-generated assets clearly (e.g., \"Background processed with the help of AI\"). Check your market's legal requirements.\n\n### Plan Your Comms Calendar\n→ Align outreach with each model's timeline using pre-launch teasers, SOC announcements, and arrival updates.\n\n### Segment Your CRM\n→ Identify likely buyers:\n  - **RT:** Previous RT, K 1600 GT owners\n  - **R:** R 1250 R, returners, female riders\n  - **RS:** R 1250 RS, sports tourer fans, younger prospects\n\n### Customise Messaging\n→ Use provided templates to tailor your outreach:\n  - Emphasise comfort and control for **RT**\n  - Highlight agility and design for **R**\n  - Promote sporty performance and endurance for **RS**\n\n### Activate Your Social Channels\n- Access and decide on the available imagery and video content\n- Use mandatory and recommended hashtags\n- Share in correct formats (feeds, reels, stories)\n- Spark engagement (e.g., \"Which route would you race on the RS?\")\n- Use BMW's Social Media Best Practice Guide\n\n### Be Ready to Talk Features\n→ Practice a few talking points per model focused on new benefits:\n  - New 1300cc Boxer engine\n  - Lighter, more dynamic design\n  - Enhanced ergonomics\n  - Features like DCC, ASA, Riding Assistant\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Download image & video assets\n- [ ] Check AI asset label requirements\n- [ ] Review each model's timeline\n- [ ] Segment CRM by model interest\n- [ ] Customise and schedule emails\n- [ ] Plan and post social content with correct hashtags\n- [ ] Prepare 2–3 talking points per model\n- [ ] Highlight key features in-store and online\n"
+      "content": "<!-- Last updated: 2025-06-02T14:21:51.680Z -->\n<!-- Last updated: 2025-06-02T09:17:37.716Z -->\nLaaunch Communication Strategy Guide\nFor: R 1300 RT (KA3), R 1300 R (KA4), R 1300 RS (KA5)\n\n\nPurpose:\nHelp your dealership turn warm leads into customers by building launch excitement, tailoring comms by model, and driving actions like test rides and showroom visits.\n\n🏁 At a Glance: Launch Key Points by Model\nR 1300 RT (KA3)\nCharacter: The Commander\n\n\nPositioning: Be in Full Command\n\n\nKey Messages: Ultimate Expertise / Hidden Champion / Beyond Zeitgeist\n\n\nSOC Date: 29 April 2025\n\n\nDealer Availability: Early June 2025\n\n\nTarget Customers: Touring experts, older loyalists, long-distance riders, comfort seekers, two-up riders\n\n\nComms Focus: Dynamic performance + touring comfort + professional appeal\n\n\nHashtags:\n\n\nMandatory: #MakeLifeARide #R1300RT #RideAndShare #BMWMotorrad\n\n\nVisual Realisation: #RECHARGE #RIDEANDSHARE\n\n\nR 1300 R (KA4)\nCharacter: The Genie\n\n\nPositioning: Sexy Versatility / Boxer Punch on Every Tarmac\n\n\nKey Messages: Versatile Naked Bike / Born for the Curve / Beyond Zeitgeist\n\n\nSOC Date: 10 April 2025\n\n\nDealer Availability: Early July 2025\n\n\nTarget Customers: Boxer lovers, spontaneous riders, returners, women, style-conscious\n\n\nComms Focus: Sporty freedom + design dynamism + agile experience\n\n\nHashtags:\n\n\nMandatory: #MakeLifeARide #R1300R #NeverStopChallenging #BMWMotorrad\n\n\nVisual Realisation: #SHARPEN #NEVERSTOPCHALLENGING\n\n\nRecommended: #R1300R\n\n\nR 1300 RS (KA5)\nCharacter: The Marathon Racer\n\n\nPositioning: Turn Your Tour into a Sports Event\n\n\nKey Messages: Refined Race Tourer / Persistent Excitement / Beyond Zeitgeist\n\n\nSOC Date: 29 April 2025\n\n\nDealer Availability: Early July 2025\n\n\nTarget Customers: Sport-focused riders, tech lovers, younger audience, long-distance with edge\n\n\nComms Focus: Sporty endurance + design-led appeal + performance leadership\n\n\nHashtags:\n\n\nMandatory: #MakeLifeARide #R1300RS #RideAndShare #BMWMotorrad\n\n\nVisual Realisation: #SHARPEN #NEVERSTOPCHALLENGING\n\n\nRecommended: #R1300RS\n\n\n\n🚀 Dealer Action Steps \nAccess Launch Assets\n → Find CGI/AI videos and imagery in the Assets section, or your your designated platform\n\n\nUse AI Content Responsibly\n → In the EU, label AI-generated assets clearly (e.g., \n\nBackground processed with the help of AI\n\n). Check your market's legal requirements.\n\n\nPlan Your Comms Calendar\n → Align outreach with each model's timeline using pre-launch teasers, SOC announcements, and arrival updates.\n\n\nSegment Your CRM\n → Identify likely buyers:\n\n\nRT: Previous RT, K 1600 GT owners\n\n\nR: R 1250 R, returners, female riders\n\n\nRS: R 1250 RS, sports tourer fans, younger prospects\n\n\nCustomise Messaging\n → Use provided templates to tailor your outreach:\n\n\nEmphasise comfort and control for RT\n\n\nHighlight agility and design for R\n\n\nPromote sporty performance and endurance for RS\n\n\nActivate Your Social Channels\n\n\nAccess and decide on the available imagery and video content \n\n\nUse mandatory and recommended hashtags\n\n\nShare in correct formats (feeds, reels, stories)\n\n\nSpark engagement (e.g., \"Which route would you race on the RS?\")\n\n\nUse BMW's Social Media Best Practice Guide\n\n\nBe Ready to Talk Features\n → Practice a few talking points per model focused on new benefits:\n\n\nNew 1300cc Boxer engine\n\n\nLighter, more dynamic design\n\n\nEnhanced ergonomics\n\n\nFeatures like DCC, ASA, Riding Assistant\n\n\n\n✅ Quick Reference Checklist\nDownload image & video assets\n\n\nCheck AI asset label requirements\n\n\nReview each model's timeline\n\n\nSegment CRM by model interest\n\n\nCustomise and schedule emails\n\n\nPlan and post social content with correct hashtags\n\n\nPrepare 2–3 talking points per model\n\n\nHighlight key features in-store and online"
     },
     {
       "id": "diy-video-walkaround-filming-guide",
-      "title": "🎥 Tips for Recording Video Walkarounds",
+      "title": "Tips for Recording Video Walkarounds",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "thumbnail": "/assets/images/guides/video-filming-thumb.jpg",
       "url": "/guides/diy-video-walkaround.pdf",
       "isDemo": false,
-      "category": "R1300 R",
+      "category": "DIY Video Walkaround Filming Guide",
       "contentLastModified": "2025-06-02T09:23:18.830Z",
-      "content": "# 🎥 Tips for Recording Video Walkarounds\n\n**For iPhone and Android | Social Media & WhatsApp Ready**\n\nThese video recording tips are intended to produce results that are good enough for social media purposes (Instagram, Facebook) and also WhatsApp.\n\n---\n\n## ✅ Key Takeaways:\n\n- Shoot in portrait for Instagram Reels/TikTok/WhatsApp\n- Enable grid lines to keep the bike centred.\n- Use a gimbal if available, but most new phones have good stabilization.\n- Keep audio clear – speak close to the mic or use a plug-in microphone for better sound.\n- Clean the lens before filming!\n\n---\n\n## 📝 Before You Start\n\n- Use a phone from 2020 or newer  \n  _(iPhone 11+, Samsung S20+, Pixel 5+, etc.)_\n- Clean your camera lens\n- Choose a quiet location with natural light  \n  _Sun behind the camera, not in front of the bike_\n- Set camera to 1080p or 4K at 30fps\n- Turn on gridlines to centre your shots\n\n---\n\n## 📍 Location & Setup\n\n- Shoot away from roads, crowds, or noisy environments\n- Use non-reflective backgrounds and avoid capturing other people\n- Avoid strip lighting if possible\n- Check no reflections show the camera operator in windows/panels\n- Choose a location with natural light\n\n---\n\n## 🎙️ Audio Quality\n\n- Test before recording — play back a clip\n- Avoid background noise like phones, tables or chairs moving, background chatter, etc.\n- If using a mic, try:\n  - Rode VideoMic GO\n  - Movo Lapel Mic\n\n---\n\n## 🎥 Camera Settings & Consistency\n\n- Use the same lighting, angle, and position if filming multiple bikes\n- DSLR users: shoot at 4K or 1080p / 30fps with a 50mm or 85mm lens\n- Use gimbals for smooth handheld shots (DJI OM)\n\n---\n\n## 🎬 Recording Format\n\n**Intro**\n> _\"Hi, I'm [Name] at [Dealership]. Here's the [Bike Model, Year, Colour]!\"_\n\n**Walkaround**\n- Show full bike, then highlight key features\n- Speak naturally, pause between features\n- Use hand gestures to point at parts (POV style)\n\n**Closing**\n> _\"Come check it out in person or message us to book a ride!\"_\n\n---\n\n## 🎤 What to Say\n\n- Start with bike basics: make, model, year, colour\n- Walk through features that you love or that stand out visually\n- Pause between sentences to make edits easier\n- Use hand gestures to highlight features, as if guiding the viewer\n- Show personality: speak with energy, humour, and curiosity\n- Be conversational and energetic, yet informative.\n\n---\n\n## 🧠 Pro Tips\n\n- Keep it to under 1 minute\n- Be conversational, energetic, and authentic\n- Smile while talking – it comes through in your voice\n- Don't worry about perfection\n\n---\n\n## ✂️ Editing\n\n- Not necessary for most clips — aim for one clean take\n- If editing, trim the start/end for smooth transitions and any 'umms' or stutters\n- Keep the final cut to under 60–90 seconds\n\n---\n\n## 🎥 Optional Tools\n\n- Tripod or phone stabiliser for smoother footage\n- Use Cinematic mode (iPhone 13+) or Video Enhancer (Samsung)\n\n---\n\n## 🧑‍⚖️ Permissions\n\n- If no people appear, no permission is needed\n- If people are in frame, get written consent:\n  - Name, company, job title, signature, date\n  - Declare they're happy to appear in marketing content\n"
+      "content": "<!-- Last updated: 2025-06-02T09:23:18.830Z -->\nTips for Recording Video Walkarounds\nFor iPhone and Android | Social Media & WhatsApp Ready\nThese video recording tips are intended to produce results that are good enough for social media purposes (Instagram, Facebook) and also WhatsApp.\n\n✅  Key Takeaways:\n\nShoot in portrait for Instagram Reels/TikTok/WhatsApp\nEnable grid lines to keep the bike centred.\nUse a gimbal if available, but most new phones have good stabilization.\nKeep audio clear – speak close to the mic or use a plug-in microphone for better sound.\nClean the lens before filming!\n\nBefore You Start\nUse a phone from 2020 or newer\n (iPhone 11+, Samsung S20+, Pixel 5+, etc.)\nClean your camera lens\nChoose a quiet location with natural light\nSun behind the camera, not in front of the bike\nSet camera to 1080p or 4K at 30fps\nTurn on gridlines to centre your shots\n\n\n📍Location & Setup\nShoot away from roads, crowds, or noisy environments  e.g. away from the road\nUse non-reflective backgrounds and avoid capturing other people\nAvoid strip lighting if possible\nCheck no reflections show the camera operator in windows/panels\nChoose a location with natural light\n🎙️  Audio Quality\nTest before recording — play back a clip\nAvoid background noise like phones, tables or chairs moving, background chatter, etc.\nIf using a mic, try:\nRode VideoMic GO\nMovo Lapel Mic\n\n🎥 Camera Settings & Consistency\nUse the same lighting, angle, and position if filming multiple bikes\nDSLR users: shoot at 4K or 1080p / 30fps with a 50mm or 85mm lens\nUse gimbals for smooth handheld shots (DJI OM)\n\n🎬 Recording Format\nIntro\n\n “Hi, I'm [Name] at [Dealership]. Here's the [Bike Model, Year, Colour]!”\n\n\nWalkaround\n\n\nShow full bike, then highlight key features\n\n\nSpeak naturally, pause between features\n\n\nUse hand gestures to point at parts (POV style)\n\n\nClosing\n\n “Come check it out in person or message us to book a ride!”\n\n🎤 What to Say\nStart with bike basics: make, model, year, colour\nWalk through features that you love or that stand out visually\nPause between sentences to make edits easier\nUse hand gestures to highlight features, as if guiding the viewer\nShow personality: speak with energy, humour, and curiosity\nBe conversational and energetic, yet informative. \n\n🧠 Pro Tips\nKeep it to under 1 minute\nBe conversational, energetic, and authentic\nSmile while talking – it comes through in your voice\nDon't worry about perfection \n\n✂️ Editing\nNot necessary for most clips — aim for one clean take\nIf editing, trim the start/end for smooth transitions and any 'umms' or stutters\nKeep the final cut to under 60–90 seconds\n\n\n\n🎥 Optional Tools\nTripod or phone stabiliser for smoother footage\nUse Cinematic mode (iPhone 13+) or Video Enhancer (Samsung)\n\n\n\n🧑‍⚖️ Permissions\nIf no people appear, no permission is needed\nIf people are in frame, get written consent:\nName, company, job title, signature, date\nDeclare they're happy to appear in marketing content"
     },
     {
       "id": "social-media-clip-editing-guide",
       "title": "🎞️ Social Media Video Editing ",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "thumbnail": "/assets/images/guides/social-editing-thumb.jpg",
       "url": "/guides/social-media-clip-editing.pdf",
       "isDemo": false,
-      "category": "R1300 R",
+      "category": "Social Media Clip Editing Guide",
       "description": "Complete guide for editing BMW R-Series footage into engaging social media clips",
       "contentLastModified": "2025-06-02T09:24:35.350Z",
-      "content": "# 🎞️ Social Media Video Editing Guide\n\n**For R 1300 RT / R / RS Launch Campaigns**\n\nThis guide provides quick, practical tips to help dealership teams adapt and post provided video assets (teasers, walkarounds, product features, etc.) to their own social channels. The aim: drive launch interest and convert views into test rides and dealership visits.\n\n---\n\n## 📂 Accessing Your Video Assets\n\n- Video content is available in Falcon Social from each model's **Start of Communication (SOC)** date.\n- AI/CGI can be found on the **Messaging tab** of this website.\n- **Do not post before each model's SOC date** — assets remain confidential until then.\n\n---\n\n## 🧱 Understanding Formats\n\nYour video assets are supplied in various formats suited to different platforms:\n\n| Format | Use For |\n|--------|---------|\n| **16:9** | Facebook feed, YouTube, LinkedIn (ideal for walkarounds & product features) |\n| **9:16** | Instagram Reels, TikTok, Stories (vertical-first platforms) |\n| **4:5** | Instagram & Facebook feed posts (high impact visual format) |\n\n---\n\n## 🛠️ Core Editing Tips\n\n- **🎣 Hook Early:** Grab attention in the first 3–5 seconds. Start with a visually striking moment or key message.\n- **✂️ Keep It Short:** Target lengths:\n  - Teasers/highlights = 15–30 sec\n  - Walkarounds = 60 sec\n- **🔇 Sound Off Ready:** Many scroll without audio. Use text overlays or subtitles to share key points.\n- **🛍️ Branding:** Add your dealership logo subtly and follow BMW Motorrad visual guidelines.\n- **Model-Specific Storytelling:** Reinforce each bike's unique identity:\n\n### RT (KA3)\n- **Character:** The Commander\n- **Positioning:** *Be in Full Command*\n- **Key Messages:** Ultimate Expertise, Hidden Champion, Beyond Zeitgeist\n- **Highlight:** Long-distance comfort, weather protection, \"professional tool\" image\n\n### R (KA4)\n- **Character:** The Genie\n- **Positioning:** *Sexy Versatility / Boxer Punch on Every Tarmac*\n- **Key Messages:** Versatile Naked Bike, Born for the Curve, Beyond Zeitgeist\n- **Highlight:** Agility, design, accessibility, short-trip appeal\n\n### RS (KA5)\n- **Character:** The Marathon Racer\n\n- **Positioning:** *Turn Your Tour Into a Sports Event*\n\n- **Key Messages:** Refined Race Tourer, Persistent Excitement, Beyond Zeitgeist\n\n- **Highlight:** 80/20 sports-to-touring blend, premium ride dynamics\n\n- **🔍 Feature Focus**: Use close-ups to show key features like:\n  - 1300cc Boxer engine\n  - DCC, ASA, Riding Assistant\n  - Keyless Ride\n  - RT's luggage system or R's handlebar-end mirrors\n  - Follow the FFB rule: Feature → Function → Benefit*\n\n- **📢 CTA**: End every video with a clear call to action:  \n*\"Book a test ride,\" \"Message us now,\" \"Visit our showroom,\" etc.*\n\n- **🤖 AI Labelling**: If any footage includes AI-generated backgrounds, label accordingly (e.g. \"The background was processed with the help of AI\"). Mandatory in many EU markets.\n\n---\n\n## 📱 Platform-Specific Tips\n\n### Instagram / TikTok (9:16)\n- Prioritise **Reels and Stories**\n- Add text overlays (sound often off)\n- Consider **trending audio**, where BMW guidelines permit\n- Emphasise **emotion and visuals**, especially model personality\n\n### Facebook / X / LinkedIn\n- Use **4:5 or 16:9** for feed content\n- Keep it short and text-friendly\n- Highlight RT's \"professional tool\" appeal or RS's precision\n- Add detailed context in the post caption\n\n### YouTube\n- Best for **long-form walkarounds (16:9)**\n- Break longer content into **shorter clips** for other channels\n\n---\n\n## 🏷️ Hashtags\n\n**Mandatory in all posts:**\n\n1. `#MakeLifeARide`\n2. `#R1300RT`, `#R1300R`, or `#R1300RS` (as relevant)\n3. `#RideAndShare` (for RT and RS) or `#NeverStopChallenging` (for R)\n4. `#BMWMotorrad`\n\n**Also include:**\n- Recommended model-specific tags like `#R1300R` where appropriate\n\n---\n\n## ✅ Quick Reference Checklist\n\n- [ ] Select video assets suited to your platform and message\n- [ ] Edit for conciseness (target under 30–60 seconds)\n- [ ] Add text overlays/subtitles for sound-off viewing\n- [ ] Include BMW and dealership branding\n- [ ] Emphasise model-specific character + key messages\n- [ ] End with a strong Call to Action (CTA)\n- [ ] Add AI disclosure label (if needed)\n- [ ] Check video aspect ratio is correct (9:16, 4:5, 16:9)\n- [ ] Use all mandatory hashtags + relevant recommended tags\n- [ ] (Optional) Add music — ensure it's rights-cleared\n\n---\n\n## 📚 Resources\n\n**BMW Social Media Best Practice Guide**  \n*(for detailed branding and platform guidelines)*\n"
+      "content": "<!-- Last updated: 2025-06-02T09:24:35.350Z -->\n🎞️ Social Media Video Editing Guide\nFor R 1300 RT / R / RS Launch Campaigns\nThis guide provides quick, practical tips to help dealership teams adapt and post provided video assets (teasers, walkarounds, product features, etc.) to their own social channels. The aim: drive launch interest and convert views into test rides and dealership visits.\n\n📂 Accessing Your Video Assets\nVideo content is available in Falcon Social from each model's Start of Communication (SOC) date.\n\n\nAdditional AI/CGI or real imagery can be accessed via DAM or Google Drive.\n\n\nDo not post before each model's SOC date — assets remain confidential until then.\n\n\n\n🧱 Understanding Formats\nYour video assets are supplied in various formats suited to different platforms:\nFormat\nUse For\n16:9\nFacebook feed, YouTube, LinkedIn (ideal for walkarounds & product features)\n9:16\nInstagram Reels, TikTok, Stories (vertical-first platforms)\n4:5\nInstagram & Facebook feed posts (high impact visual format)\n\n\n🛠️ Core Editing Tips\n🎣 Hook Early: Grab attention in the first 3–5 seconds. Start with a visually striking moment or key message.\n\n\n✂️ Keep It Short: Target lengths:\n\n\nTeasers/highlights = 15–30 sec\n\n\nWalkarounds = 60 sec\n\n\n🔇 Sound Off Ready: Many scroll without audio. Use text overlays or subtitles to share key points.\n\n\n🛍️ Branding: Add your dealership logo subtly and follow BMW Motorrad visual guidelines.\n\n\n📖 Model-Specific Storytelling: Reinforce each bike's unique identity:\n\n\nRT (KA3)\nCharacter: The Commander\n\n\nPositioning: Be in Full Command\n\n\nKey Messages: Ultimate Expertise, Hidden Champion, Beyond Zeitgeist\n\n\nHighlight: Long-distance comfort, weather protection, \"professional tool\" image\n\n\nR (KA4)\nCharacter: The Genie\n\n\nPositioning: Sexy Versatility / Boxer Punch on Every Tarmac\n\n\nKey Messages: Versatile Naked Bike, Born for the Curve, Beyond Zeitgeist\n\n\nHighlight: Agility, design, accessibility, short-trip appeal\n\n\nRS (KA5)\nCharacter: The Marathon Racer\n\n\nPositioning: Turn Your Tour Into a Sports Event\n\n\nKey Messages: Refined Race Tourer, Persistent Excitement, Beyond Zeitgeist\n\n\nHighlight: 80/20 sports-to-touring blend, premium ride dynamics\n\n\n🔍 Feature Focus: Use close-ups to show key features like:\n\n\n1300cc Boxer engine\n\n\nDCC, ASA, Riding Assistant\n\n\nKeyless Ride\n\n\nRT's luggage system or R's handlebar-end mirrors\n\n\nFollow the FFB rule: Feature → Function → Benefit\n\n\n📢 CTA: End every video with a clear call to action:\n “Book a test ride,” “Message us now,” “Visit our showroom,” etc.\n\n\n🤖 AI Labelling: If any footage includes AI-generated backgrounds, label accordingly (e.g. The background was processed with the help of AI). Mandatory in many EU markets.\n\n\n\n📱 Platform-Specific Tips\nInstagram / TikTok (9:16)\nPrioritise Reels and Stories\n\n\nAdd text overlays (sound often off)\n\n\nConsider trending audio, where BMW guidelines permit\n\n\nEmphasise emotion and visuals, especially model personality\n\n\nFacebook / X / LinkedIn\nUse 4:5 or 16:9 for feed content\n\n\nKeep it short and text-friendly\n\n\nHighlight RT's professional tool appeal or RS's precision\n\n\nAdd detailed context in the post caption\n\n\nYouTube\nBest for long-form walkarounds (16:9)\n\n\nBreak longer content into shorter clips for other channels\n\n\n\n🏷️ Hashtags\nMandatory in all posts:\n#MakeLifeARide\n\n\n#R1300RT, #R1300R, or #R1300RS (as relevant)\n\n\n#RideAndShare (for RT and RS) or #NeverStopChallenging (for R)\n\n\n#BMWMotorrad\n\n\nAlso include:\nRecommended model-specific tags like #R1300R where appropriate\n\n\n\n✅ Quick Reference Checklist\nSelect video assets suited to your platform and message\n\n\nEdit for conciseness (target under 30–60 seconds)\n\n\nAdd text overlays/subtitles for sound-off viewing\n\n\nInclude BMW and dealership branding\n\n\nEmphasise model-specific character + key messages\n\n\nEnd with a strong Call to Action (CTA)\n\n\nAdd AI disclosure label (if needed)\n\n\nCheck video aspect ratio is correct (9:16, 4:5, 16:9)\n\n\nUse all mandatory hashtags + relevant recommended tags\n\n\n(Optional) Add music — ensure it's rights-cleared\n\n\n\n📚 Resources\nBMW Social Media Best Practice Guide\n (for detailed branding and platform guidelines)"
     },
     {
       "id": "test-ride-generation-guide",
-      "title": "🏍️ Generating Test Rides from Your CRM Leads",
+      "title": "Generating Test Rides from Your CRM Leads: A Quick Reference Guide",
       "type": "GENERATE TEST RIDES",
+      "model": "R1300 R",
       "thumbnail": "/assets/images/guides/test-ride-gen-thumb.jpg",
       "url": "/guides/test-ride-generation.pdf",
       "isDemo": false,
-      "category": "R1300 R",
+      "category": "Test Ride Generation Guide",
       "contentLastModified": "2025-06-02T09:25:13.545Z",
-      "content": "# 🏍️ Generating Test Rides from Your CRM Leads\n\n**Quick Reference Guide**\n\nThis guide provides practical tips for dealership sales teams to convert warm leads in your CRM—such as past enquirers and BMW Motorrad customers—into test ride bookings for the new **R 1300 RT (KA3), R (KA4), and RS (KA5)** models.\n\n---\n\n## 🎯 Goal\n\n**Drive test ride bookings and in-store visits** by leveraging customer insights and model-specific storytelling.\n\n---\n\n## 🔍 Why Focus on CRM Leads?\n\nYour CRM is a goldmine of warm prospects. These individuals:\n- Already know your brand\n- Are likely to respond to new model launches\n- Have higher conversion potential than cold audiences\n\n---\n\n## ✅ Key Steps & Best Practices\n\n### 1. Identify and Segment Your Warm Leads\n- Use your CRM system to filter for leads most likely interested in a specific model.\n\n**Prioritise:**\n- Owners of previous **R 1250 RT/R/RS** models\n- **GS** owners interested in more touring comfort (RT)\n- **K 1600 GT** owners seeking a lighter tourer (RT)\n\n**Segment by lifestyle/demographic:**\n- **R:** Younger riders, returnees, women\n- **RT:** Long-distance, mature touring riders\n- **RS:** Dynamic riders who value tech and sporty handling\n\n---\n\n### 2. Tailor Your Communication (Email, Phone, Messaging)\nUse each model's **Character and Positioning**:\n\n**RT (KA3) – *The Commander***  \n- **Positioning**: *Be in Full Command*\n- **Key Messages:** Ultimate Expertise / Hidden Champion / Beyond Zeitgeist  \n- **Highlight:** A professional tool for expert riders who value long-distance comfort, class, and control.\n\n**R (KA4) – *The Genie***  \n- **Positioning**: *Sexy Versatility / Boxer Punch on Every Tarmac*  \n- **Key Messages:** Versatile Naked Bike / Born for the Curve / Beyond Zeitgeist  \n- **Highlight:** A dynamic and agile all-rounder for commuting, after-work escapes, and weekend tours.\n\n**RS (KA5) – *The Marathon Racer***  \n- **Positioning**: *Turn Your Tour into a Sports Event*  \n- **Key Messages:** Refined Race Tourer / Persistent Excitement / Beyond Zeitgeist  \n- **Highlight:** A powerful sportbike with touring comfort — the most dynamic riding experience in the KAX family.\n\n---\n\n### 3. Translate Features into Benefits (FFB)\nExplain **why** features matter using **Feature → Function → Benefit**:\n\n- **1300cc Boxer engine:** Broad torque curve, relaxed or sporty ride\n\n**RT highlights:**\n- **DCA (Dynamic Chassis Adaption):** Comfort/dynamic settings, automatic load balancing\n- **Riding Assistant:** ACC, SWW, rear warning\n- **Variable luggage system and heated pillion package**\n\n**R / RS highlights:**\n- **DSA (Dynamic Suspension Adjustment)**\n- **ASA (Automated Shift Assistant)**\n- **Riding Assistant:** Radar front (R) / radar front + rear (RS)\n\n**All models:** Improved ergonomics, more dynamic and modern design\n\n---\n\n### 4. Choose Appropriate Content and Visuals\n- Use teasers, walkarounds, and product images from Falcon Social, DAM, or Google Drive\n- Align visuals with the model's character:\n    - Dynamic action shots for **R/RS**\n    - Comfort-focused visuals for **RT**\n- Add **AI-labels** to any AI-generated imagery (required in EU markets)\n\n---\n\n### 5. Craft a Clear Call to Action (CTA)\n- Invite customers directly:  \n    *“Book your test ride today.”*\n\n- Make it easy:\n    - Email reply\n    -Website booking link\n    -Phone call or message\n\n- Encourage visits: \n    *“See it in person at our showroom.”*\n\n---\n\n### 6. Follow Up Consistently\n- Plan follow-up actions in your workflow\n- Be ready to answer FAQs about features, pricing, or availability\n- Use the Product Guide to support detailed answers\n\n---\n\n### 7. Know Your Product (and the Assets)\n- Be familiar with each model's positioning and selling points\n- Know where to find the assets and how to use them effectively\n\n---\n\n## 📋 Quick Reference Checklist\n\n- [ ] Segment CRM leads by model interest\n- [ ] Tailor outreach using model character + benefits\n- [ ] Highlight 2–3 key features with relevance\n- [ ] Use visuals that support your message\n- [ ] Ensure AI-labelling is present where required\n- [ ] Include a clear CTA with easy next steps\n- [ ] Schedule follow-up actions\n- [ ] Know your product inside and out (via the Product Guide)\n"
+      "content": "<!-- Last updated: 2025-06-02T09:25:13.545Z -->\nGenerating Test Rides from Your CRM Leads: A Quick Reference Guide\nThis guide offers practical tips to help dealership sales teams effectively engage warm leads in your CRM database — such as existing BMW Motorrad customers or past enquirers — to generate test ride bookings for the new R 1300 RT (KA3), R (KA4), and RS (KA5) models. Use insights from the communication materials to make your outreach more relevant and impactful, and prepare customers for the next step in their journey.\n\n🎯 Your Goal: Drive Test Ride Bookings and Showroom Visits\nWhy focus on your CRM leads?\n Your CRM database contains warm prospects — existing customers and recent enquirers — who already know and trust the BMW Motorrad brand. They're your most promising audience for conversion.\n\n✅ Key Steps & Best Practices\n1. Identify and Segment Your Warm Leads\nUse your CRM system to filter for leads most likely to be interested in a specific model.\n\n\nPrioritise:\n\n\nOwners of previous R 1250 RT/R/RS models — they typically have high repurchase rates and strong loyalty to the Boxer engine and model character.\n\n\nOwners of other BMW models considering a switch — for example, GS owners who want more touring comfort (RT), or K 1600 GT owners exploring a lighter tourer (RT).\n\n\nConsider demographic factors:\n\n\nR: Younger riders, women, returnees (appeals through accessibility and agility).\n\n\nRT: More mature riders who value comfort, distance capability, and professional-grade performance.\n\n\nRS: Passionate riders interested in sport dynamics and cutting-edge tech.\n\n\n\n2. Tailor Your Communication (Email, Phone, Social Messaging)\nUse the character and positioning of each model to personalise your outreach:\nRT (KA3) – The Commander\n\n\nPositioning: Be in Full Command\n\n\nKey Messages: Ultimate Expertise / Hidden Champion / Beyond Zeitgeist\n\n\nHighlight: A professional tool for expert riders who value long-distance comfort, class, and control.\n\n\nR (KA4) – The Genie\n\n\nPositioning: Sexy Versatility / Boxer Punch on Every Tarmac\n\n\nKey Messages: Versatile Naked Bike / Born for the Curve / Beyond Zeitgeist\n\n\nHighlight: A dynamic and agile all-rounder for commuting, after-work escapes, and weekend tours.\n\n\nRS (KA5) – The Marathon Racer\n\n\nPositioning: Turn Your Tour into a Sports Event\n\n\nKey Messages: Refined Race Tourer / Persistent Excitement / Beyond Zeitgeist\n\n\nHighlight: A powerful sportbike with touring comfort — the most dynamic riding experience in the KAX family.\n\n\n\n3. Translate Features into Benefits (FFB)\nMove beyond listing features — explain why they matter for the customer. Focus on Feature → Function → Benefit:\nNew 1300cc Boxer engine: Broad torque curve, responsive for both relaxed and sporty riding.\n\n\nRT highlights:\n\n\nDCA (Dynamic Chassis Adaption): Automatic load balancing and comfort or dynamic settings.\n\n\nRiding Assistant: ACC, SWW, rear warning alerts.\n\n\nVariable luggage system and heated pillion package (grips + backrest heating).\n\n\nR and RS highlights:\n\n\nDSA (Dynamic Suspension Adjustment): Spring rate adjustment for varied conditions.\n\n\nASA (Automated Shift Assistant): Smooth clutchless gear changes.\n\n\nRiding Assistant: Radar front (R), radar front + rear (RS).\n\n\nAll models: Improved ergonomics and visual design — lighter, sharper, more modern.\n\n\n\n4. Choose Appropriate Content and Visuals\nUse teaser videos, product imagery, and walkaround clips available via Falcon Social, DAM, or Google Drive.\n\n\nUse dynamic riding content for R/RS and elegant, comfortable lifestyle imagery for RT.\n\n\nEnsure AI-generated backgrounds are clearly labelled where required, especially in EU markets.\n\n\n\n5. Craft a Clear Call to Action (CTA)\nInvite the customer directly: Book a test ride today.\n\n\nMake it easy to act:\n\n\nReply to your email\n\n\nClick to book via website\n\n\nCall or message the dealership\n\n\nEncourage showroom visits: Come see it in person.\n\n\n\n6. Follow Up Consistently\nPlan follow-up steps for each contact attempt.\n\n\nBe prepared to answer common questions about new features, pricing, delivery, etc.\n\n\nRefer to the Product Guide for in-depth product knowledge.\n\n\n\n7. Know Your Product (and Your Assets)\nBe confident in discussing the model's character, new features, and key benefits.\n\n\nKnow where to find visual assets and which ones are best suited to each customer segment or message.\n\n\n\n📋 Quick Reference Checklist (Generating Test Rides)\nSegment CRM leads by interest and model\n\n\nTailor messaging using the model's character and benefits\n\n\nHighlight 2–3 key features with customer relevance\n\n\nSelect visuals aligned to your message and audience\n\n\nCheck for AI image labelling requirements\n\n\nInclude a clear CTA with easy follow-up actions\n\n\nSchedule and execute follow-up conversations\n\n\nBe prepared with product details from the Product Guide"
     },
     {
       "id": "in-store-comms-guide",
-      "title": "🛎️ In-Store Communication Guide",
+      "title": "In-Store Communication Guide: Reinforcing the R 1300 Models",
       "type": "IN-STORE",
+      "model": "R1300 R",
       "thumbnail": "/assets/images/guides/in-store-comms-thumb.jpg",
       "url": "/guides/in-store-communications.pdf",
       "isDemo": false,
-      "category": "R1300 R",
+      "category": "In-Store Comms Guide",
       "contentLastModified": "2025-06-02T09:25:43.651Z",
-      "content": "# 🛎️ In-Store Communication Guide: Reinforcing the R 1300 Models\n\nThis quick guide supports sales teams in delivering consistent, high-impact messaging for the **R 1300 RT (KA3), R (KA4), and RS (KA5)** across all dealership touchpoints — from posters to conversations. The goal is to seamlessly connect what customers have seen online with what they experience in-store.\n\n---\n\n## 🎯 Your Goal\n\nEnsure every customer interaction — visual or verbal — reinforces the **core messaging** of the R 1300 launch, converting interest into **test rides and sales**.\n\n---\n\n## 💡 Why Consistency Matters\n\nBy the time customers enter the showroom, they may have already seen launch emails, social posts, and online videos.  \n**Your in-store environment must echo these same themes to build trust, reinforce their excitement, and move them confidently to the next step.**\n\n> _“Unclear or inconsistent messaging has been a known barrier in the past — clarity is now critical to success.”_\n\n---\n\n## 🧭 Key Principle: Align All Touchpoints (Pre-Visit & In-Store)\n\n### 1. 🖼️ Visual Consistency\n- Use only official BMW Motorrad **POS materials, posters, and on-screen content** from the launch asset library.\n- Match the **visual style and imagery** to each model's identity:\n  - **RT:** Modern, Unexpected & Fresh\n  - **R:** Dynamic staging of sporty versatility\n  - **RS:** Sport-touring energy and motion\n- If you're using AI-generated content, ensure **AI background labeling** is visible — required in the EU and some markets.\n\n---\n\n### 2. 🗣️ Messaging Consistency\n**Use the same talking points in-store that customers will have seen online:**\n\n**RT (KA3) – *The Commander***  \n- **Positioning**: *Be in Full Command*  \n- **Key Messages**: Ultimate Expertise / Hidden Champion / Beyond Zeitgeist  \n- **Focus on**: long-distance comfort, refined control, and \"professional tool\" status\n\n**R (KA4) – *The Genie***  \n- **Positioning**: *Sexy Versatility / Boxer Punch on Every Tarmac*  \n- **Key Messages**: Versatile Naked Bike / Born for the Curve / Beyond Zeitgeist  \n- **Focus on**: agile riding, daily practicality, dynamic styling\n\n**RS (KA5) – *The Marathon Racer***  \n- **Positioning**: *Turn Your Tour Into a Sports Event*  \n**Key Messages**: Refined Race Tourer / Persistent Excitement / Beyond Zeitgeist  \n- **Focus on**: sporty ride feel + long-distance capability\n\n**Translate Features into Benefits**\nConnect technical specs to real customer value:\n- **1300cc Boxer engine** → torque + smooth power delivery\n- **ASA / DSA / DCA** → comfort, adaptability, control\n- **Heated seats, radar systems** → year-round comfort, safety, and premium experience\n\nUse the tone and phrasing found in the official launch materials to keep everything \"on brand.\"\n\n---\n\n### 3. 📢 Call to Action (CTA) Consistency\nEvery poster, screen, and conversation should make the **Test Ride** the obvious next step:\n\nUse phrasing like:\n> _\"Want to feel the difference? Let's get you booked in.\"_  \n> _\"This bike's designed to be experienced — not just looked at.\"_\n\nEnsure the test ride booking process is visible, easy, and encouraged at every point.\n\n---\n\n## 📋 Quick In-Store Checklist\n\n- [ ] In-store visuals match current BMW Motorrad R 1300 assets\n- [ ] AI content is clearly labelled where required\n- [ ] Conversations reflect the official Character, Positioning, and Key Messages\n- [ ] Features are explained in terms of real-world customer benefits\n- [ ] Test Rides are promoted as the next step in every interaction\n- [ ] Talking points align with what customers saw before entering the showroom (email, social, etc.)\n"
+      "content": "<!-- Last updated: 2025-06-02T09:25:43.651Z -->\nIn-Store Communication Guide: Reinforcing the R 1300 Models\nThis quick guide supports sales teams in delivering consistent, high-impact messaging for the R 1300 RT (KA3), R (KA4), and RS (KA5) across all dealership touchpoints — from posters to conversations. The goal is to seamlessly connect what customers have seen online with what they experience in-store.\n\n🎯 Your Goal:\nEnsure every customer interaction — visual or verbal — reinforces the core messaging of the R 1300 launch, converting interest into test rides and sales.\n\n💡 Why Consistency Matters\nBy the time customers enter the showroom, they may have already seen launch emails, social posts, and online videos.\n Your in-store environment must echo these same themes to build trust, reinforce their excitement, and move them confidently to the next step.\nUnclear or inconsistent messaging has been a known barrier in the past — clarity is now critical to success.\n\n🧭 Key Principle: Align All Touchpoints (Pre-Visit & In-Store)\n1. 🖼️ Visual Consistency\nUse only official BMW Motorrad POS materials, posters, and on-screen content from the launch asset library.\n\n\nMatch the visual style and imagery to each model's identity:\n\n\nRT: Modern, Unexpected & Fresh\n\n\nR: Dynamic staging of sporty versatility\n\n\nRS: Sport-touring energy and motion\n\n\nIf you're using AI-generated content, ensure AI background labeling is visible — required in the EU and some markets.\n\n\n\n2. 🗣️ Messaging Consistency\nUse the same talking points in-store that customers will have seen online:\nRT (KA3) – The Commander\n\n\nPositioning: Be in Full Command\n\n\nKey Messages: Ultimate Expertise / Hidden Champion / Beyond Zeitgeist\n\n\nFocus on: long-distance comfort, refined control, and professional tool status\n\n\nR (KA4) – The Genie\n\n\nPositioning: Sexy Versatility / Boxer Punch on Every Tarmac\n\n\nKey Messages: Versatile Naked Bike / Born for the Curve / Beyond Zeitgeist\n\n\nFocus on: agile riding, daily practicality, dynamic styling\n\n\nRS (KA5) – The Marathon Racer\n\n\nPositioning: Turn Your Tour Into a Sports Event\n\n\nKey Messages: Refined Race Tourer / Persistent Excitement / Beyond Zeitgeist\n\n\nFocus on: sporty ride feel + long-distance capability\n\n\nTranslate Features into Benefits\nConnect technical specs to real customer value:\n\n\n1300cc Boxer engine → torque + smooth power delivery\n\n\nASA / DSA / DCA → comfort, adaptability, control\n\n\nHeated seats, radar systems → year-round comfort, safety, and premium experience\n\n\nUse the tone and phrasing found in the official launch materials to keep everything on brand.\n\n3. 📢 Call to Action (CTA) Consistency\nEvery poster, screen, and conversation should make the Test Ride the obvious next step:\nUse phrasing like:\n Want to feel the difference? Let's get you booked in.\n This bike's designed to be experienced — not just looked at.\n\n\nEnsure the test ride booking process is visible, easy, and encouraged at every point.\n\n\n\n📋 Quick In-Store Checklist\nIn-store visuals match current BMW Motorrad R 1300 assets\n\n\nAI content is clearly labelled where required\n\n\nConversations reflect the official Character, Positioning, and Key Messages\n\n\nFeatures are explained in terms of real-world customer benefits\n\n\nTest Rides are promoted as the next step in every interaction\n\n\nTalking points align with what customers saw before entering the showroom (email, social, etc.)"
     },
     {
       "id": "effective-follow-up-strategies",
       "title": "📞 Post-Showroom Follow-Up Guide",
       "type": "FOLLOW-UP",
+      "model": "R1300 R",
       "thumbnail": "/assets/images/guides/follow-up-strategies-thumb.jpg",
       "url": "/guides/effective-follow-up-strategies.pdf",
       "isDemo": false,
-      "category": "R1300 R",
+      "category": "Effective Follow-Up Strategies",
       "contentLastModified": "2025-06-02T09:26:37.068Z",
-      "content": "# 📞 Post-Showroom Follow-Up Guide: Driving the Next Step\n\n**For R 1300 RT / R / RS Prospects**\n\nThis guide outlines best practices for following up with potential customers after their dealership visit. Whether they looked, asked questions, or sat on a bike, your goal now is to build on that experience — reinforcing their interest and nudging them toward a test ride or purchase.\n\n---\n\n## 🎯 Your Goal\n\nConvert showroom visitors into **test rides or sales** by following up in a way that reflects the consistent messaging they've seen and heard across all touchpoints.\n\n---\n\n## 🔁 Core Principle: Stay Consistent\n\nYour follow-up message should reflect:\n- The character and positioning of the model(s) they viewed\n- The tone of previous communications\n- What you discussed during their visit\n\nConsistency builds trust and shows you listened.\n\n---\n\n## 🧩 Key Follow-Up Elements\n\n### 1. Acknowledge the Visit\nStart by thanking them for visiting and referencing the specific R 1300 model(s) they explored. Make it personal.\n\n> _\"Thanks for coming in to check out the new R 1300 RS — it was great chatting with you about your ideal long-distance ride.\"_\n\n---\n\n### 2. Reinforce What Stood Out\nMention one or two specific things they reacted to positively during your chat. This shows attention and builds rapport.\n\n> _\"You seemed especially drawn to the RS's aggressive stance and high-spec radar tech — totally understandable.\"_\n\n---\n\n### 3. Re-emphasise Benefits (FFB Style)\nConnect features to their real-world value using **Feature → Function → Benefit**. Tailor this by model:\n\n- **RT – The Commander**\n  - Reinforce comfort, long-distance ability, and ride-in-control confidence.\n  - Mention: Automated Shift Assistant, Comfort Passenger Package, Touring technology stack\n- **R – The Genie**\n  - Highlight its everyday flexibility, responsive handling, and confident design.\n  - Mention: Boxer engine punch, low seat height, commute-to-weekend appeal\n- **RS – The Marathon Racer**\n  - Emphasise sport-touring balance and riding excitement.\n  - Mention: Radar assistance front & rear, dynamic suspension, long-distance endurance with edge\n\n  ---\n\n### 4. Guide Them Clearly to the Next Step\nUse a strong, direct **Call to Action**:\n\n> _\"Let's get you booked in for a test ride — it's the best way to experience it.\"_\n> \n> _\"Want to explore colours and spec options? I can walk you through the configurator or send you a link.\"_\n\nIf they've already test ridden:\n- Offer to discuss financing, availability, or trade-in options.\n\n---\n\n## 📡 Choosing the Right Channel\n\n### Email\n- Great for detailed follow-up with links to the online **configurator or product page**\n- Reinforce the model's character through tone and imagery\n- Attach a spec sheet or highlight unique features again\n\n### Text (SMS/WhatsApp)\n- Ideal for a quick, **personal nudge**\n- Keep it short and direct:\n  > _\"Great to meet you today — want to lock in a test ride this weekend?\"_\n\n### Phone Call\n- Personal and high-impact\n- Best for warm leads who showed serious interest\n- Useful for answering questions, addressing hesitations, or guiding to purchase\n\n---\n\n## ✅ Post-Showroom Follow-Up Checklist\n\n- [ ] Thank them for their visit\n- [ ] Reference the specific bike(s) they saw\n- [ ] Mention a personal takeaway from your conversation\n- [ ] Highlight 1–2 benefits tied to their needs and the model's character\n- [ ] Use a clear CTA (Book a Test Ride / Explore Configurations)\n- [ ] Choose the right channel:\n  - Email = detail\n  - Phone = depth\n  - Text = speed\n- [ ] Keep messaging aligned with everything they've already seen\n"
+      "content": "<!-- Last updated: 2025-06-02T09:26:37.068Z -->\n📞 Post-Showroom Follow-Up Guide\nFor R 1300 RT / R / RS Prospects\nThis guide outlines best practices for following up with potential customers after their dealership visit. Whether they looked, asked questions, or sat on a bike, your goal now is to build on that experience — reinforcing their interest and nudging them toward a test ride or purchase.\n\n🎯 Your Goal\nConvert showroom visitors into test rides or sales by following up in a way that reflects the consistent messaging they've seen and heard across all touchpoints.\n\n🔁 Core Principle: Stay Consistent\nYour follow-up message should reflect:\nThe character and positioning of the model(s) they viewed\n\n\nThe tone of previous communications\n\n\nWhat you discussed during their visit\n\n\nConsistency builds trust and shows you listened.\n\n🧩 Key Follow-Up Elements\n1. Acknowledge the Visit\nStart by thanking them for visiting and referencing the specific R 1300 model(s) they explored. Make it personal.\nThanks for coming in to check out the new R 1300 RS — it was great chatting with you about your ideal long-distance ride.\n\n2. Reinforce What Stood Out\nMention one or two specific things they reacted to positively during your chat. This shows attention and builds rapport.\nYou seemed especially drawn to the RS's aggressive stance and high-spec radar tech — totally understandable.\n\n3. Re-emphasise Benefits (FFB Style)\nConnect features to their real-world value using Feature → Function → Benefit. Tailor this by model:\nRT – The Commander\n\n\nReinforce comfort, long-distance ability, and ride-in-control confidence.\n\n\nMention: Automated Shift Assistant, Comfort Passenger Package, Touring technology stack\n\n\nR – The Genie\n\n\nHighlight its everyday flexibility, responsive handling, and confident design.\n\n\nMention: Boxer engine punch, low seat height, commute-to-weekend appeal\n\n\nRS – The Marathon Racer\n\n\nEmphasise sport-touring balance and riding excitement.\n\n\nMention: Radar assistance front & rear, dynamic suspension, long-distance endurance with edge\n\n\n\n4. Guide Them Clearly to the Next Step\nUse a strong, direct Call to Action:\nLet's get you booked in for a test ride — it's the best way to experience it.\n\n\nWant to explore colours and spec options? I can walk you through the configurator or send you a link.\n\n\nIf they've already test ridden:\nOffer to discuss financing, availability, or trade-in options.\n\n\n\n📡 Choosing the Right Channel\nEmail:\nGreat for detailed follow-up with links to the online configurator or product page\n\n\nReinforce the model's character through tone and imagery\n\n\nAttach a spec sheet or highlight unique features again\n\n\nText (SMS/WhatsApp):\nIdeal for a quick, personal nudge\n\n\nKeep it short and direct:\n Great to meet you today — want to lock in a test ride this weekend?\n\n\nPhone Call:\nPersonal and high-impact\n\n\nBest for warm leads who showed serious interest\n\n\nUseful for answering questions, addressing hesitations, or guiding to purchase\n\n\n\n✅ Post-Showroom Follow-Up Checklist\nThank them for their visit\n\n\nReference the specific bike(s) they saw\n\n\nMention a personal takeaway from your conversation\n\n\nHighlight 1–2 benefits tied to their needs and the model's character\n\n\nUse a clear CTA (Book a Test Ride / Explore Configurations)\n\n\nChoose the right channel:\n\n\nEmail = detail\n\n\nPhone = depth\n\n\nText = speed\n\n\nKeep messaging aligned with everything they've already seen"
     },
     {
       "id": "new-owner-welcome-process",
-      "title": "🛍️ Post-Purchase Welcome Guide",
+      "title": "Post-Purchase Welcome Guide: Building Lasting Relationships",
       "type": "WELCOME",
+      "model": "R1300 R",
       "thumbnail": "/assets/images/guides/welcome-process-thumb.jpg",
       "url": "/guides/new-owner-welcome-process.pdf",
       "isDemo": false,
-      "category": "R1300 R",
+      "category": "New Owner Welcome Process",
       "contentLastModified": "2025-06-02T09:27:06.530Z",
-      "content": "# 🛍️Post-Purchase Welcome Guide: Building Lasting Relationships\n\n**For customers of the BMW R 1300 RT, R, and RS**\n\nThis guide reminds sales teams of simple, high-impact actions to deliver a premium welcome experience for new R 1300 owners. Your aim is to go beyond the sale — reinforcing their decision, enhancing satisfaction, and building long-term loyalty.\n\n---\n\n## 🎯 Your Goal\n\n**Turn a happy buyer into a loyal advocate and repeat customer.**\n\n---\n\n## 🌟 Core Principle: Continue the BMW Experience\n\nThe BMW Motorrad journey doesn't stop at purchase.  \nYour welcome should extend the **premium, expert, and personal** touch customers received during the sales process — always consistent with the bike's character and their riding lifestyle.\n\n---\n\n## ✅ Key Welcome Best Practices\n\n### 1. 🧑‍🏫 Personalised Handover\n- Spend time showing them key features **specific to their configuration**.\n- Focus on innovations like:\n  - **ASA (Automated Shift Assistant)**\n  - **DSA/DCA (Dynamic Suspension Adaption/Chassis Adaption)**\n  - **Riding Assistant radar features**\n- Tailor your walk-through to the model's identity:\n  - **RT** → command, comfort, control\n  - **R** → versatility, agility\n  - **RS** → sporty balance and ride precision\n\n  ---\n\n### 2. 🔁 Reinforce the \"Why\"\n- Remind them why this model fits their riding needs and goals.\n- Reference the **character** they connected with:\n  - **RT – The Commander**\n  - **R – The Genie**\n  - **RS – The Marathon Racer**\n- Reaffirm the value of their choice.\n\n---\n\n### 3. 🛠️ Introduce Service & Care\n- Explain scheduled **maintenance plans** (e.g. Service Inclusive)\n- Highlight **warranty extension options**\n- Emphasise the benefits of servicing with the dealership:\n  - Optimised performance\n  - Peace of mind\n  - Resale value\n\n  ---\n\n### 4. 🧳 Suggest Relevant Accessories\n- Recommend accessories that match their usage (touring, sport, commuting):\n  - **Luggage systems** (incl. electrified panniers, tank bags)\n  - **Ergonomic options** (e.g. adjustable footpegs)\n  - **BMW gear & protective clothing**\n- Tie suggestions back to their needs and the bike's character.\n\n---\n\n### 5. 🌍 Invite Community Connection\n- Mention local events, rider groups, or BMW Motorrad's online communities.\n- Help them feel part of a broader community, not just a purchase.\n\n---\n\n### 6. 📬 Establish Future Contact\n- Let them know you're available for questions.\n- Set an expectation for a check-in — not just about upselling, but staying connected.\n- Position the dealership as a long-term partner, not a one-time seller.\n\n---\n\n## 📋 Post-Purchase Welcome Checklist\n\n- [ ] Provide a full, tailored handover with feature highlights\n- [ ] Reaffirm the bike's fit for their preferences\n- [ ] Introduce service, maintenance, and warranty options\n- [ ] Recommend 1–2 personalised accessories\n- [ ] Invite them to events, groups, or communities\n- [ ] Set the tone for future contact and relationship-building\n"
+      "content": "<!-- Last updated: 2025-06-02T09:27:06.530Z -->\nPost-Purchase Welcome Guide: Building Lasting Relationships\nFor customers of the BMW R 1300 RT, R, and RS\nThis guide reminds sales teams of simple, high-impact actions to deliver a premium welcome experience for new R 1300 owners. Your aim is to go beyond the sale — reinforcing their decision, enhancing satisfaction, and building long-term loyalty.\n\n🎯 Your Goal\nTurn a happy buyer into a loyal advocate and repeat customer.\n\n🌟 Core Principle: Continue the BMW Experience\nThe BMW Motorrad journey doesn't stop at purchase.\n Your welcome should extend the premium, expert, and personal touch customers received during the sales process — always consistent with the bike's character and their riding lifestyle.\n\n✅ Key Welcome Best Practices\n1. 🧑‍🏫 Personalised Handover\nSpend time showing them key features specific to their configuration.\n\n\nFocus on innovations like:\n\n\nASA (Automated Shift Assistant)\n\n\nDSA/DCA (Dynamic Suspension Adaption/Chassis Adaption)\n\n\nRiding Assistant radar features\n\n\nTailor your walk-through to the model's identity:\n\n\nRT → command, comfort, control\n\n\nR → versatility, agility\n\n\nRS → sporty balance and ride precision\n\n\n\n2. 🔁 Reinforce the Why\nRemind them why this model fits their riding needs and goals.\n\n\nReference the character they connected with:\n\n\nRT – The Commander\n\n\nR – The Genie\n\n\nRS – The Marathon Racer\n\n\nReaffirm the value of their choice.\n\n\n\n3. 🛠️ Introduce Service & Care\nExplain scheduled maintenance plans (e.g. Service Inclusive)\n\n\nHighlight warranty extension options\n\n\nEmphasise the benefits of servicing with the dealership:\n\n\nOptimised performance\n\n\nPeace of mind\n\n\nResale value\n\n\n\n4. 🧳 Suggest Relevant Accessories\nRecommend accessories that match their usage (touring, sport, commuting):\n\n\nLuggage systems (incl. electrified panniers, tank bags)\n\n\nErgonomic options (e.g. adjustable footpegs)\n\n\nBMW gear & protective clothing\n\n\nTie suggestions back to their needs and the bike's character.\n\n\n\n5. 🌍 Invite Community Connection\nMention local events, rider groups, or BMW Motorrad's online communities.\n\n\nHelp them feel part of a broader community, not just a purchase.\n\n\n\n6. 📬 Establish Future Contact\nLet them know you're available for questions.\n\n\nSet an expectation for a check-in — not just about upselling, but staying connected.\n\n\nPosition the dealership as a long-term partner, not a one-time seller.\n\n\n\n📋 Post-Purchase Welcome Checklist\nProvide a full, tailored handover with feature highlights\n\n\nReaffirm the bike's fit for their preferences\n\n\nIntroduce service, maintenance, and warranty options\n\n\nRecommend 1–2 personalised accessories\n\n\nInvite them to events, groups, or communities\n\n\nSet the tone for future contact and relationship-building"
     }
   ],
   "journeySteps": [
@@ -1878,6 +1974,12 @@
       "STATIC",
       "VIDEO"
     ],
+    "models": [
+      "ALL",
+      "R1300 R",
+      "R1300 RS",
+      "R1300 RT"
+    ],
     "channels": [
       "ALL",
       "Digital",
@@ -1898,18 +2000,12 @@
       "IN-STORE",
       "FOLLOW-UP",
       "WELCOME"
-    ],
-    "categories": [
-      "ALL",
-      "R1300 R",
-      "R1300 RS",
-      "R1300 RT"
     ]
   },
   "metadata": {
-    "lastModified": "2025-08-07T11:04:38.505Z",
-    "modifiedBy": "model-to-category-migration",
-    "version": 59,
+    "lastModified": "2025-06-02T20:31:04.812Z",
+    "modifiedBy": "force-update-script",
+    "version": 58,
     "source": "file"
   },
   "lastModified": "2025-06-02T20:31:04.812Z",

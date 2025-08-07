@@ -167,7 +167,7 @@ const Assets: React.FC = () => {
             onFilterChange={(filter) =>
               setModelFilter(filter as MotorcycleModel)
             }
-            label="Model"
+            label="Category"
           />
         </div>
       </div>

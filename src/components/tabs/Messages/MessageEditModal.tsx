@@ -156,10 +156,10 @@ const MessageEditModal: React.FC<MessageEditModalProps> = ({
               </select>
             </div>
 
-            {/* Model */}
+            {/* Category */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Model
+                Category
               </label>
               <select
                 value={editedMessage.model}

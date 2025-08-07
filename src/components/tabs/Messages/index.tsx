@@ -190,7 +190,7 @@ const Messages: React.FC = () => {
             filterOptions={modelOptions as string[]}
             activeFilter={modelFilter}
             onFilterChange={handleModelFilterChange}
-            label="Model"
+            label="Category"
           />
           <FilterGroup
             filterOptions={stageOptions as string[]}
