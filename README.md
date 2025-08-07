@@ -154,7 +154,13 @@ Complete the **Basic Information** section:
   - `Technical`: Detailed and precise
   - `Casual`: Relaxed and conversational
 - **Adaptation Instructions**: Provide detailed guidance for content adaptation
-  - Example: "Focus on sustainability and renewable energy. Replace motorcycle terminology with eco-friendly solutions. Target environmentally conscious consumers who value innovation and environmental responsibility."
+  - **CRITICAL**: This field drives the content focus and themes. Be specific about:
+    - Brand values and messaging approach
+    - Key terminology and language preferences
+    - Target audience characteristics
+    - Industry-specific requirements
+    - Content tone and style preferences
+  - **Example**: "Focus on sustainability and renewable energy. Replace motorcycle terminology with eco-friendly solutions. Target environmentally conscious consumers who value innovation and environmental responsibility. Use technical but accessible language. Emphasize cost savings and environmental impact."
 
 ##### Step 3: Configure Campaign Context
 Complete the **Campaign Context** section:
@@ -173,7 +179,15 @@ Complete the **Campaign Context** section:
   - `Dealers`: Distribution partners
   - `Custom`: Specify your own audience
 - **Primary Goal**: Describe your main campaign objective
-- **Key Deliverables**: List the main outputs you need (e.g., "Social media graphics", "Email templates", "Training guides")
+- **Key Deliverables**: List the main outputs you need
+  - **CRITICAL**: This field determines the exact types of content created. Be specific about:
+    - Asset types (e.g., "Social media graphics", "Print materials", "Video content")
+    - Message formats (e.g., "Email templates", "Social media posts", "SMS messages")
+    - Guide types (e.g., "Training materials", "Best practice guides", "Implementation guides")
+  - **Examples**: 
+    - "Social media graphics, Email templates, Training guides"
+    - "Print brochures, Digital ads, Sales scripts, Product guides"
+    - "Video content, Social posts, Email campaigns, Compliance materials"
 
 ##### Step 4: Upload Brand Assets (Optional)
 - **Logo Upload**: Upload your brand logo/icon
@@ -222,6 +236,24 @@ The system uses a sophisticated prompt engineering approach:
 3. **Template Structure**: Ensures output follows exact interface requirements
 4. **Content Requirements**: Specifies quantity and diversity of examples
 5. **Structure Compliance**: Enforces strict adherence to existing templates
+
+##### Prompt Improvements
+Recent enhancements ensure the AI focuses on your specific requirements:
+
+**Deliverable-Focused Generation**:
+- **Key Deliverables Priority**: The AI now prioritizes creating the exact types of content specified in your Key Deliverables
+- **No Generic Content**: Prevents defaulting to generic "landing pages" or "content strategy guides" unless specifically requested
+- **Specific Content Types**: If you specify "Social media posts", the AI creates actual social media posts; if "Email templates", it creates email templates
+
+**Adaptation Instructions Integration**:
+- **Theme-Driven Content**: Uses your Adaptation Instructions to determine content themes, terminology, and focus areas
+- **Brand-Specific Messaging**: Ensures all content aligns with your brand's values and messaging approach
+- **Industry-Specific Language**: Applies the terminology and concepts you specify in your Adaptation Instructions
+
+**Content Relevance**:
+- **Campaign-Specific**: All content is tailored to your specific campaign objectives and target audience
+- **Industry-Appropriate**: Uses language and concepts relevant to your specified industry
+- **Tone Consistency**: Maintains your chosen brand tone throughout all generated content
 
 ##### Generated File Structure
 

@@ -57,17 +57,24 @@ export class LLMGenerator {
             role: "system",
             content: `You are a creative marketing strategist with deep expertise in campaign development. Your role is to CREATE COMPLETELY ORIGINAL, INNOVATIVE CONTENT for real marketing campaigns.
 
+CRITICAL CONTENT FOCUS REQUIREMENTS:
+- PRIORITIZE USER-SPECIFIED DELIVERABLES: Focus on creating the exact types of assets, messages, and guides specified in the Key Deliverables field
+- FOLLOW ADAPTATION INSTRUCTIONS: Use the Adaptation Instructions to determine content themes, terminology, and focus areas
+- DO NOT DEFAULT TO GENERIC CONTENT: Avoid creating generic "landing pages", "content strategy guides", or "cover images" unless specifically requested
+- CREATE DELIVERABLE-SPECIFIC CONTENT: If deliverables include "Social media posts", create actual social media posts; if "Email templates", create email templates, etc.
+
 CRITICAL QUANTITY REQUIREMENT:
 - GENERATE AT LEAST 5 EXAMPLES FOR EACH CONTENT TYPE: You MUST create at least 5 assets, 5 messages, and 5 guides
 - COMPREHENSIVE COVERAGE: Each section should demonstrate different formats, channels, and approaches
 - VARIETY IS ESSENTIAL: Include diverse content types, platforms, and campaign phases
-- CHANNEL DIVERSITY: Cover email, WhatsApp/SMS, social media, digital ads, landing pages, events, etc.
+- FOCUS ON REQUESTED DELIVERABLES: Ensure content directly addresses the specific deliverables requested
 
 CRITICAL CAMPAIGN CONTEXT REQUIREMENTS:
 - USE ALL FORM INFORMATION: Incorporate brand name, industry, campaign type, target audience, primary goal, and key deliverables
 - CAMPAIGN-SPECIFIC CONTENT: Tailor all content to the specific campaign objectives and target audience
 - INDUSTRY-SPECIFIC TERMINOLOGY: Use language and concepts relevant to the specified industry
 - BRAND TONE CONSISTENCY: Maintain the specified brand tone throughout all content
+- ADAPTATION INSTRUCTIONS COMPLIANCE: Ensure all content follows the specific adaptation instructions provided
 
 CRITICAL TEMPLATE REQUIREMENTS:
 - FOLLOW TEMPLATE STRUCTURE EXACTLY: Use en_template.ts and config_en_template.json as the EXACT structure
@@ -143,28 +150,42 @@ You must generate exactly two files: a TypeScript site copy file and a JSON conf
 - Primary Goal: ${formData.primaryGoal}
 - Key Deliverables: ${formData.keyDeliverables.join(', ')}
 - Brand Tone: ${formData.tone}
-- Context: ${formData.adaptationPrompt}
+- Adaptation Instructions: ${formData.adaptationPrompt}
 
-**CRITICAL CAMPAIGN CONTEXT INTEGRATION**:
-You MUST incorporate ALL of the above campaign information into your generated content:
+**CRITICAL CONTENT GENERATION REQUIREMENTS**:
+You MUST use the specific Adaptation Instructions and Key Deliverables to determine what content to create:
+
+**ADAPTATION INSTRUCTIONS DRIVE CONTENT FOCUS**:
+"${formData.adaptationPrompt}"
+- Use these instructions to determine the specific themes, terminology, and focus areas
+- Create content that aligns with the brand's values and messaging approach described here
+- Ensure all assets, messages, and guides reflect the specific requirements outlined
+
+**KEY DELIVERABLES DETERMINE CONTENT TYPES**:
+${formData.keyDeliverables.map(deliverable => `- ${deliverable}`).join('\n')}
+- Create content that directly addresses these specific deliverables
+- Do NOT default to generic content types like "landing pages" or "content strategy guides" unless specifically listed
+- Focus on the exact deliverables requested by the user
+- If deliverables include specific formats (e.g., "Social media posts", "Email templates"), create content in those exact formats
+
+**CAMPAIGN CONTEXT INTEGRATION**:
 - Use the specific campaign type to determine messaging strategy and content focus
 - Tailor all content to the exact target audience specified
-- Align with the primary goal and key deliverables
-- Match the brand tone consistently across all content
-- Reference the adaptation prompt context throughout
+- Align with the primary goal: "${formData.primaryGoal}"
+- Match the ${formData.tone} tone consistently across all content
 - Create content that directly supports the campaign objectives`;
 
     const creativeMandate = `CREATIVE MANDATE:
-1. **CREATE COMPLETELY ORIGINAL CONTENT**: Do NOT copy, adapt, or reference ANY content from the template files
-2. **BE SPECIFIC TO THE INDUSTRY**: Use industry-specific terminology and concepts relevant to ${formData.industry}
-3. **BE CREATIVE**: Think of unique, innovative approaches that would actually work for this ${formData.campaignType} campaign
-4. **BE PRACTICAL**: Create content that real marketing teams would find genuinely useful for ${formData.targetAudience}
-5. **MARKETING CAMPAIGN FOCUS**: All assets and messages should be for EXTERNAL marketing campaigns targeting ${formData.targetAudience}
-6. **CUSTOMER-FACING CONTENT**: Create content that marketing teams will use to reach customers, prospects, and the public
+1. **PRIORITIZE USER-SPECIFIED CONTENT**: Focus on creating the exact types of assets, messages, and guides specified in the Key Deliverables
+2. **FOLLOW ADAPTATION INSTRUCTIONS**: Use the Adaptation Instructions to determine content themes, terminology, and focus areas
+3. **CREATE COMPLETELY ORIGINAL CONTENT**: Do NOT copy, adapt, or reference ANY content from the template files
+4. **BE SPECIFIC TO THE INDUSTRY**: Use industry-specific terminology and concepts relevant to ${formData.industry}
+5. **BE CREATIVE**: Think of unique, innovative approaches that would actually work for this ${formData.campaignType} campaign
+6. **BE PRACTICAL**: Create content that real marketing teams would find genuinely useful for ${formData.targetAudience}
 7. **CAMPAIGN-SPECIFIC**: Tailor all content to support the primary goal: "${formData.primaryGoal}"
-8. **CHANNEL DIVERSITY**: Include content for multiple channels: email, social media, WhatsApp/SMS, digital ads, landing pages, events, etc.
-9. **NO TEMPLATE CONTENT**: Never use words like "retailer", "dealership", "test ride", "motorcycle", "BMW", "R Series" or any other template-specific terms
-10. **BRAND TONE CONSISTENCY**: Maintain the ${formData.tone} tone throughout all content`;
+8. **NO TEMPLATE CONTENT**: Never use words like "retailer", "dealership", "test ride", "motorcycle", "BMW", "R Series" or any other template-specific terms
+9. **BRAND TONE CONSISTENCY**: Maintain the ${formData.tone} tone throughout all content
+10. **DELIVERABLE-FOCUSED**: Create content that directly addresses the specific deliverables: ${formData.keyDeliverables.join(', ')}`;
 
     const structureRequirements = `CRITICAL TEMPLATE STRUCTURE REQUIREMENTS:
 
@@ -291,34 +312,46 @@ CHANGE ONLY THE VALUES:
 
     const contentRequirements = `**CRITICAL CONTENT QUANTITY REQUIREMENTS - MANDATORY**:
 
+**DELIVERABLE-FOCUSED CONTENT CREATION**:
+You MUST create content that directly addresses the specific Key Deliverables provided: ${formData.keyDeliverables.join(', ')}
+
+**ADAPTATION INSTRUCTIONS COMPLIANCE**:
+All content must follow the Adaptation Instructions: "${formData.adaptationPrompt}"
+
 **YOU MUST GENERATE EXACTLY 5+ ITEMS FOR EACH SECTION**:
 
 **ASSETS SECTION - MANDATORY 5+ ITEMS**:
-You MUST create AT LEAST 5 different assets in the "assets" array. Each asset must be a complete object with all required fields. Examples:
-- Asset 1: Social media graphic for Instagram
-- Asset 2: Digital banner ad for Facebook
-- Asset 3: Email header visual
-- Asset 4: Print brochure design
-- Asset 5: Video thumbnail
-- Asset 6+: Additional diverse assets
+You MUST create AT LEAST 5 different assets in the "assets" array. Each asset must be a complete object with all required fields. 
+**FOCUS ON REQUESTED DELIVERABLES**: Create assets that directly address the Key Deliverables specified (e.g., if deliverables include "Social media graphics", create actual social media graphics; if "Print materials", create print materials, etc.)
+Examples based on deliverables:
+- Asset 1: [Specific asset type from deliverables]
+- Asset 2: [Specific asset type from deliverables]
+- Asset 3: [Specific asset type from deliverables]
+- Asset 4: [Specific asset type from deliverables]
+- Asset 5: [Specific asset type from deliverables]
+- Asset 6+: Additional assets relevant to deliverables
 
 **MESSAGES SECTION - MANDATORY 5+ ITEMS**:
-You MUST create AT LEAST 5 different messages in the "messages" array. Each message must be a complete object with all required fields. Examples:
-- Message 1: Launch announcement email
-- Message 2: Social media post for Instagram
-- Message 3: WhatsApp promotional message
-- Message 4: Digital ad copy for Google Ads
-- Message 5: Landing page headline
-- Message 6+: Additional diverse messages
+You MUST create AT LEAST 5 different messages in the "messages" array. Each message must be a complete object with all required fields.
+**FOCUS ON REQUESTED DELIVERABLES**: Create messages that directly address the Key Deliverables specified (e.g., if deliverables include "Email templates", create actual email templates; if "Social media posts", create social media posts, etc.)
+Examples based on deliverables:
+- Message 1: [Specific message type from deliverables]
+- Message 2: [Specific message type from deliverables]
+- Message 3: [Specific message type from deliverables]
+- Message 4: [Specific message type from deliverables]
+- Message 5: [Specific message type from deliverables]
+- Message 6+: Additional messages relevant to deliverables
 
 **GUIDES SECTION - MANDATORY 5+ ITEMS**:
-You MUST create AT LEAST 5 different guides in the "guides" array. Each guide must be a complete object with all required fields. Examples:
-- Guide 1: Campaign strategy guide
-- Guide 2: Social media best practices
-- Guide 3: Email marketing optimization
-- Guide 4: Content creation guidelines
-- Guide 5: Analytics setup guide
-- Guide 6+: Additional practical guides
+You MUST create AT LEAST 5 different guides in the "guides" array. Each guide must be a complete object with all required fields.
+**FOCUS ON REQUESTED DELIVERABLES**: Create guides that directly address the Key Deliverables specified (e.g., if deliverables include "Training materials", create training guides; if "Best practices", create best practice guides, etc.)
+Examples based on deliverables:
+- Guide 1: [Specific guide type from deliverables]
+- Guide 2: [Specific guide type from deliverables]
+- Guide 3: [Specific guide type from deliverables]
+- Guide 4: [Specific guide type from deliverables]
+- Guide 5: [Specific guide type from deliverables]
+- Guide 6+: Additional guides relevant to deliverables
 
 **JOURNEY STEPS SECTION - MANDATORY 5+ ITEMS**:
 You MUST create AT LEAST 5 different journey steps in the "journeySteps" array. Each journey step must be a complete object with all required fields (id, title, description, icon). 
@@ -648,11 +681,20 @@ export default brandStrings;
 - CREATE COMPLETELY NEW CONTENT that is relevant to the specific industry and campaign
 - The template files are ONLY for structure - ignore all their content completely
 
+**CRITICAL WARNING - NO GENERIC CONTENT TYPES**:
+- DO NOT default to creating generic "landing pages", "content strategy guides", "cover images", or "brand guidelines" unless specifically requested in Key Deliverables
+- DO NOT create generic marketing content that could apply to any brand
+- FOCUS ON SPECIFIC DELIVERABLES: Create the exact types of content specified in Key Deliverables: ${formData.keyDeliverables.join(', ')}
+- FOLLOW ADAPTATION INSTRUCTIONS: Use the specific Adaptation Instructions to determine content focus: "${formData.adaptationPrompt}"
+- CREATE DELIVERABLE-SPECIFIC CONTENT: If deliverables include "Social media posts", create actual social media posts; if "Email templates", create email templates; if "Training materials", create training guides, etc.
+
 **CRITICAL**: Follow the template files EXACTLY. Do not add, remove, or modify any keys. Only change the content values to be relevant to this specific campaign.
 
 **CAMPAIGN CONTEXT INTEGRATION REQUIREMENTS**:
 - **USE ALL FORM DATA**: Incorporate brand name, industry, campaign type, target audience, primary goal, and key deliverables throughout
-- **CHANNEL DIVERSITY**: Ensure messages cover email, WhatsApp/SMS, social media (Instagram, Facebook, LinkedIn, TikTok), digital ads, landing pages, events, etc.
+- **PRIORITIZE KEY DELIVERABLES**: Create content that directly addresses these specific deliverables: ${formData.keyDeliverables.join(', ')}
+- **FOLLOW ADAPTATION INSTRUCTIONS**: Use the Adaptation Instructions to determine content themes and focus: "${formData.adaptationPrompt}"
+- **CONTENT TYPES**: Focus on the exact types of content specified in Key Deliverables, not generic templates
 - **MINIMUM QUANTITY**: Generate AT LEAST 5 assets, 5 messages, and 5 guides to ensure comprehensive coverage
 - **CAMPAIGN PHASES**: Structure content around the 5 campaign phases (Launch, Generate Interest, In-Store/Engagement, Follow-Up, Welcome/Onboarding)
 - **BRAND TONE**: Maintain consistent ${formData.tone} tone across all content
