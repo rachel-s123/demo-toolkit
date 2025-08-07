@@ -338,6 +338,19 @@ export default function BrandSetup() {
       setHasGeneratedOnce(true);
       setLastGeneratedFormData(JSON.stringify(formData));
       console.log("Generation completed successfully!");
+      
+      // Automatically trigger upload to backend after successful generation
+      console.log("Auto-uploading to backend...");
+      try {
+        await uploadToBackend();
+        console.log("Auto-upload completed successfully!");
+        setAutoUploadSuccess("✅ Content generated and automatically uploaded to backend successfully!");
+        // Clear the success message after 5 seconds
+        setTimeout(() => setAutoUploadSuccess(null), 5000);
+      } catch (uploadError) {
+        console.error("Auto-upload failed:", uploadError);
+        // Don't show error to user as this is automatic - they can still manually upload
+      }
     } catch (error) {
       console.error("Error generating brand locale:", error);
       alert("Error generating brand locale. Please try again.");
@@ -373,6 +386,7 @@ export default function BrandSetup() {
     message: string;
   } | null>(null);
   const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
+  const [autoUploadSuccess, setAutoUploadSuccess] = useState<string | null>(null);
 
   const uploadToBackend = async () => {
     const content = getCurrentContent();
@@ -547,6 +561,7 @@ export default function BrandSetup() {
 
   const getButtonText = () => {
     if (isGenerating) return "Generating Rich Brand Content...";
+    if (isUploading) return "Uploading to Backend...";
     if (!hasGeneratedOnce) return "Generate Enhanced Brand Locale";
     if (hasFormChanged()) return "Regenerate with Changes";
     return "Regenerate";
@@ -878,7 +893,7 @@ export default function BrandSetup() {
                 console.log("adaptationPrompt:", formData.adaptationPrompt);
                 generateBrandLocale();
               }}
-              disabled={isGenerating || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt}
+              disabled={isGenerating || isUploading || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt}
               className="px-8 py-3"
             >
               {getButtonText()}
@@ -905,6 +920,12 @@ export default function BrandSetup() {
             <h3 className="text-xl font-semibold text-gray-900 mb-4">
               Generated Brand Files
             </h3>
+            
+            {autoUploadSuccess && (
+              <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-sm text-green-800 font-medium">{autoUploadSuccess}</p>
+              </div>
+            )}
 
             <div className="mb-4 flex flex-wrap gap-2 items-center">
               <div className="flex gap-2">
