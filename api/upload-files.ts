@@ -307,24 +307,48 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (brandCode && brandName && successCount > 0) {
       console.log(`🔄 Completing brand setup for ${brandName} (${brandCode})...`);
       try {
-        // In production, we need to update the locales index file
-        // In development, we also update the locales index file
-        try {
-          const { completeBrandSetup } = await import('../src/utils/brandSetupUtils');
-          brandSetupResult = completeBrandSetup(brandCode, brandName);
-        } catch (importError) {
-          console.warn('Could not import brandSetupUtils:', importError);
+        // Call the new API endpoint to update the locales index
+        const baseUrl = process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}` 
+          : 'https://demo-toolkit.vercel.app';
+        
+        const updateResponse = await fetch(`${baseUrl}/api/update-locales-index`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            brandCode,
+            brandName,
+            action: 'add'
+          })
+        });
+
+        if (updateResponse.ok) {
+          const updateResult = await updateResponse.json();
           brandSetupResult = {
             success: true,
-            message: `Brand setup completed successfully! ${brandName} has been uploaded.`,
+            message: `Brand setup completed successfully! ${brandName} has been added to the frontend.`,
+            details: {
+              localeIndexUpdated: true,
+              headerUpdated: true,
+              updateResult
+            }
+          };
+          console.log(`✅ Brand setup completed:`, updateResult);
+        } else {
+          const errorText = await updateResponse.text();
+          console.error(`❌ Failed to update locales index:`, errorText);
+          brandSetupResult = {
+            success: false,
+            message: `Brand setup partially completed. ${brandName} has been uploaded but not added to the frontend.`,
             details: {
               localeIndexUpdated: false,
               headerUpdated: false,
-              note: "Brand setup utils not available"
+              error: `Failed to update locales index: ${errorText}`
             }
           };
         }
-        console.log(`✅ Brand setup result:`, brandSetupResult);
       } catch (brandSetupError: any) {
         console.error(`❌ Brand setup failed:`, brandSetupError);
         brandSetupResult = {

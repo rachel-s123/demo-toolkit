@@ -6,6 +6,7 @@ import { useLanguage } from "../../context/LanguageContext";
 import { useHighlight } from "../../context/HighlightContext";
 import { useConfig } from "../../hooks/useConfig";
 import { BrandLoader, BrandConfig } from "../../services/brandLoader";
+import { dynamicLocalesLoader } from "../../services/dynamicLocalesLoader";
 import { Menu, X, LogOut, RefreshCw } from "lucide-react";
 
 interface HeaderProps {
@@ -49,8 +50,31 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
       setIsLoadingBrands(true);
       console.log('🔄 Loading dynamic brands...');
       
-      // Try to load from our unified brands endpoint first
-      // Add cache-busting parameter to ensure fresh data
+      // Try to load from dynamic locales loader first (for newly uploaded brands)
+      try {
+        const availableBrands = await dynamicLocalesLoader.getAvailableBrands();
+        console.log('📦 Dynamic locales loader found brands:', availableBrands);
+        
+        if (availableBrands.length > 0) {
+          // Convert brand codes to BrandConfig objects
+          const dynamicBrandConfigs: BrandConfig[] = availableBrands.map(brandCode => ({
+            brandCode,
+            brandName: brandDisplayNames[brandCode] || brandCode,
+            files: [],
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          }));
+          
+          console.log(`📦 Setting ${dynamicBrandConfigs.length} dynamic brands from locales loader:`, dynamicBrandConfigs);
+          setDynamicBrands(dynamicBrandConfigs);
+          setIsLoadingBrands(false);
+          return;
+        }
+      } catch (dynamicError) {
+        console.warn('Dynamic locales loader failed, falling back to API:', dynamicError);
+      }
+      
+      // Fallback to unified brands endpoint
       const timestamp = Date.now();
       const response = await fetch(`/api/brands?t=${timestamp}`);
       console.log('📡 Brands API response status:', response.status);
@@ -88,6 +112,8 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
 
   const handleRefreshBrands = async () => {
     console.log('🔄 Refreshing brands...');
+    // Clear the dynamic locales cache to force a fresh load
+    dynamicLocalesLoader.clearCache();
     await loadDynamicBrands();
   };
 
