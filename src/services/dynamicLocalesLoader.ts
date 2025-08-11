@@ -122,6 +122,46 @@ export class VercelBlobLocalesLoader implements DynamicLocalesLoader {
   }
 
   /**
+   * Get available brands with their proper names
+   */
+  async getAvailableBrandsWithNames(): Promise<Array<{brandCode: string, brandName: string}>> {
+    try {
+      const locales = await this.loadLocalesIndex();
+      const brandsWithNames: Array<{brandCode: string, brandName: string}> = [];
+      
+      for (const [brandCode, locale] of Object.entries(locales)) {
+        try {
+          // Try to extract brand name from the locale content
+          let brandName = brandCode; // fallback to brand code
+          
+          // Look for brand name in various places in the locale
+          if (locale.brand?.name) {
+            brandName = locale.brand.name;
+          } else if (locale.home?.mainTitle) {
+            // Extract brand name from main title (e.g., "BMW Motorrad R Series Dealership Toolkit" -> "BMW Motorrad")
+            const title = locale.home.mainTitle;
+            if (title.includes('Toolkit')) {
+              brandName = title.replace(' Toolkit', '').replace(' Dealership', '').replace(' R Series', '');
+            } else {
+              brandName = title;
+            }
+          }
+          
+          brandsWithNames.push({ brandCode, brandName });
+        } catch (error) {
+          console.warn(`Could not extract brand name for ${brandCode}:`, error);
+          brandsWithNames.push({ brandCode, brandName: brandCode });
+        }
+      }
+      
+      return brandsWithNames;
+    } catch (error) {
+      console.error('❌ Error getting available brands with names:', error);
+      return [];
+    }
+  }
+
+  /**
    * Extract brand codes from the index content
    */
   private extractBrandCodesFromIndex(indexContent: string): string[] {

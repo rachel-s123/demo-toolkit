@@ -14,13 +14,14 @@ interface HeaderProps {
   onLogout?: () => void;
 }
 
-const brandDisplayNames: Record<string, string> = {en: "Brilliant Noise",
+// Fallback brand display names for static brands (when dynamic loading fails)
+const fallbackBrandDisplayNames: Record<string, string> = {
+  en: "Brilliant Noise",
   edf: "\uD83C\uDDEC\uD83C\uDDE7 EDF Energy",
   edf_fr: "\uD83C\uDDEB\uD83C\uDDF7 EDF \u00C9nergie",
   bmw: "BMW Motorrad",
   hedosoph: "Hedosophia",
-  test: "Test",
-  testbran: "Test brand",
+  en_template: "English Template",
 };
 
 const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
@@ -52,14 +53,14 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
       
       // Try to load from dynamic locales loader first (for newly uploaded brands)
       try {
-        const availableBrands = await dynamicLocalesLoader.getAvailableBrands();
-        console.log('📦 Dynamic locales loader found brands:', availableBrands);
+        const availableBrandsWithNames = await dynamicLocalesLoader.getAvailableBrandsWithNames();
+        console.log('📦 Dynamic locales loader found brands:', availableBrandsWithNames);
         
-        if (availableBrands.length > 0) {
-          // Convert brand codes to BrandConfig objects
-          const dynamicBrandConfigs: BrandConfig[] = availableBrands.map(brandCode => ({
+        if (availableBrandsWithNames.length > 0) {
+          // Convert to BrandConfig objects using the proper brand names
+          const dynamicBrandConfigs: BrandConfig[] = availableBrandsWithNames.map(({ brandCode, brandName }) => ({
             brandCode,
-            brandName: brandDisplayNames[brandCode] || brandCode,
+            brandName: brandName, // Use the actual brand name from the locale
             files: [],
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
@@ -304,10 +305,10 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 disabled={isLoadingBrands}
               >
                 {/* Static brands */}
-                <option value="en">{brandDisplayNames.en}</option>
-                <option value="edf">{brandDisplayNames.edf}</option>
-                <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
-                <option value="bmw">{brandDisplayNames.bmw}</option>
+                <option value="en">{fallbackBrandDisplayNames.en}</option>
+                <option value="edf">{fallbackBrandDisplayNames.edf}</option>
+                <option value="edf_fr">{fallbackBrandDisplayNames.edf_fr}</option>
+                <option value="bmw">{fallbackBrandDisplayNames.bmw}</option>
                 <option value="hedosoph">Hedosophia</option>
                 
                                       {/* Dynamic brands from backend */}
@@ -452,10 +453,10 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   disabled={isLoadingBrands}
                 >
                   {/* Static brands */}
-                  <option value="en">{brandDisplayNames.en}</option>
-                  <option value="edf">{brandDisplayNames.edf}</option>
-                  <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
-                  <option value="bmw">{brandDisplayNames.bmw}</option>
+                  <option value="en">{fallbackBrandDisplayNames.en}</option>
+                  <option value="edf">{fallbackBrandDisplayNames.edf}</option>
+                  <option value="edf_fr">{fallbackBrandDisplayNames.edf_fr}</option>
+                  <option value="bmw">{fallbackBrandDisplayNames.bmw}</option>
                   <option value="hedosoph">Hedosophia</option>
                   
                   {/* Dynamic brands from backend */}
