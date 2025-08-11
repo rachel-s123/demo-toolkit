@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
       setIsLoadingBrands(true);
       console.log('🔄 Loading dynamic brands...');
       
-      // Try to load from Redis first (our new endpoint)
+      // Try to load from our unified brands endpoint first
       // Add cache-busting parameter to ensure fresh data
       const timestamp = Date.now();
       const response = await fetch(`/api/brands?t=${timestamp}`);
@@ -60,19 +60,19 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
         console.log('📡 Brands API response data:', data);
         
         if (data.success && data.brands) {
-          console.log(`📦 Setting ${data.brands.length} dynamic brands:`, data.brands);
+          console.log(`📦 Setting ${data.brands.length} dynamic brands from unified API:`, data.brands);
           setDynamicBrands(data.brands);
-          console.log(`📦 Header loaded ${data.brands.length} dynamic brands from Redis`);
+          console.log(`📦 Header loaded ${data.brands.length} dynamic brands from unified API`);
         } else {
-          console.log('📦 No brands found in Redis');
+          console.log('📦 No brands found in unified API');
           setDynamicBrands([]);
         }
       } else {
-        console.log('📡 Brands API failed, falling back to BrandLoader');
-        // Fallback to existing BrandLoader if Redis fails
+        console.log('📡 Unified brands API failed, falling back to BrandLoader');
+        // Fallback to existing BrandLoader if unified API fails
         const brands = await BrandLoader.loadBrandsConfig();
         setDynamicBrands(brands);
-        console.log(`📦 Header loaded ${brands.length} dynamic brands from BrandLoader`);
+        console.log(`📦 Header loaded ${brands.length} dynamic brands from BrandLoader fallback`);
       }
     } catch (error) {
       console.error('Failed to load dynamic brands in Header:', error);

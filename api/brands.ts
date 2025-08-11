@@ -6,18 +6,64 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    console.log('📡 Brands API called - attempting to get brands from backend');
+    console.log('📡 Brands API called - getting brands from blob storage');
     
-    // In production, we need to call the local server or use a different approach
-    // For now, return an empty list since we can't access Redis directly from Vercel
-    // The frontend will fall back to BrandLoader which loads from blob storage
+    // Import the blob list function
+    const { list } = await import('@vercel/blob');
     
-    console.log('📡 Production environment - returning empty brands list');
+    // Check if Vercel Blob is configured
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      console.warn('⚠️ Vercel Blob not configured');
+      return res.status(200).json({
+        success: true,
+        brands: [],
+        total: 0,
+        note: "Vercel Blob Storage is not configured."
+      });
+    }
+
+    // Get all brands by scanning blob storage (same logic as get-brands-from-blob)
+    console.log('🔍 Scanning Vercel Blob Storage for brands...');
+    
+    // List all config files
+    const configBlobs = await list({ prefix: 'brand-assets/configs/' });
+    console.log(`📁 Found ${configBlobs.blobs.length} config files`);
+
+    const brands = [];
+
+    for (const blob of configBlobs.blobs) {
+      try {
+        // Extract brand code from filename (config_brandcode.json)
+        const filename = blob.pathname.split('/').pop() || '';
+        const brandCodeMatch = filename.match(/config_(.+)\.json$/);
+        
+        if (brandCodeMatch) {
+          const brandCode = brandCodeMatch[1];
+          
+          // Fetch the config file
+          const response = await fetch(blob.url);
+          const configContent = await response.json();
+          
+          const brandConfig = {
+            brandCode,
+            brandName: configContent.brand?.name || brandCode,
+            createdAt: blob.uploadedAt,
+            updatedAt: blob.uploadedAt
+          };
+
+          brands.push(brandConfig);
+        }
+      } catch (error) {
+        console.warn(`⚠️ Could not process brand config: ${blob.pathname}`, error);
+      }
+    }
+
+    console.log(`📦 Returning ${brands.length} brands from blob storage`);
     
     return res.status(200).json({
       success: true,
-      brands: [],
-      message: 'Production environment - using BrandLoader fallback'
+      brands: brands,
+      total: brands.length
     });
 
   } catch (error: any) {
