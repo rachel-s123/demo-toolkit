@@ -59,6 +59,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         } else {
           storagePath = `brand-assets/uploads/${filename}`;
         }
+        
+        console.log(`🗂️ Path mapping: targetPath="${targetPath}" → storagePath="${storagePath}"`);
 
         // Upload to Vercel Blob Storage
         let blobData;
@@ -86,6 +88,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           throw new Error(`Blob upload failed: ${blobError.message}`);
         }
 
+        // Log the full blobData response to understand what Vercel is returning
+        console.log(`🔍 Full blobData response:`, JSON.stringify(blobData, null, 2));
+        
+        // Check if we have the expected properties
+        if (!blobData.url) {
+          console.error(`❌ No URL in blobData response for ${storagePath}`);
+          console.error(`❌ blobData keys:`, Object.keys(blobData));
+        }
+        
         const result = {
           filename,
           targetPath,
@@ -101,6 +112,29 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         console.log(`✅ Successfully uploaded file to Vercel Blob: ${storagePath}`);
         console.log(`🔗 Public URL: ${blobData.url}`);
         console.log(`📁 Storage path: ${storagePath}`);
+        
+        // Test the URL format and accessibility immediately
+        if (blobData.url) {
+          console.log(`🧪 Testing immediate URL accessibility: ${blobData.url}`);
+          try {
+            const immediateTest = await fetch(blobData.url);
+            console.log(`🧪 Immediate test result: ${immediateTest.status} ${immediateTest.statusText}`);
+          } catch (immediateError) {
+            console.log(`🧪 Immediate test failed:`, immediateError);
+          }
+          
+          // Also test with the standard Vercel Blob Storage URL format
+          const standardUrl = `https://chfu3qqwfe2lgq2b.public.blob.vercel-storage.com/${storagePath}`;
+          if (standardUrl !== blobData.url) {
+            console.log(`🔍 Testing alternative URL format: ${standardUrl}`);
+            try {
+              const alternativeTest = await fetch(standardUrl);
+              console.log(`🔍 Alternative URL test result: ${alternativeTest.status} ${alternativeTest.statusText}`);
+            } catch (alternativeError) {
+              console.log(`🔍 Alternative URL test failed:`, alternativeError);
+            }
+          }
+        }
         
         // Test if the file is immediately accessible (with delay and retry)
         if (isBinary && mimeType?.startsWith('image/')) {
