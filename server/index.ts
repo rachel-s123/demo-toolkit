@@ -580,6 +580,65 @@ app.post('/api/sync-brand-to-backend', async (req, res) => {
   }
 });
 
+// DELETE /api/brands/:brandCode - Delete a brand from backend
+app.delete('/api/brands/:brandCode', async (req, res) => {
+  try {
+    const { brandCode } = req.params;
+    
+    if (!brandCode) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing brand code'
+      });
+    }
+
+    if (!redisClient) {
+      return res.status(500).json({
+        success: false,
+        error: 'Redis client not initialized'
+      });
+    }
+
+    console.log(`🗑️ Deleting brand ${brandCode} from backend...`);
+
+    // Remove the brand from Redis
+    const brandKey = `brand:${brandCode}`;
+    await redisClient.del(brandKey);
+    console.log(`✅ Brand ${brandCode} removed from Redis`);
+
+    // Update the central brands list
+    const brandsListKey = 'brands:list';
+    let brandsList = [];
+    
+    try {
+      const existingList = await redisClient.get(brandsListKey);
+      if (existingList) {
+        brandsList = JSON.parse(existingList);
+        // Remove the brand from the list
+        brandsList = brandsList.filter((b: any) => b.brandCode !== brandCode);
+        await redisClient.set(brandsListKey, JSON.stringify(brandsList));
+        console.log(`✅ Brands list updated in Redis`);
+      }
+    } catch (parseError) {
+      console.warn('Could not parse existing brands list');
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: `Brand ${brandCode} deleted from backend successfully`,
+      brandCode
+    });
+
+  } catch (error: any) {
+    console.error('❌ Error deleting brand from backend:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to delete brand from backend',
+      details: error.message
+    });
+  }
+});
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });

@@ -81,6 +81,39 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
     await loadDynamicBrands();
   };
 
+  const handleDeleteBrand = async (brandCode: string, brandName: string) => {
+    if (!confirm(`Are you sure you want to delete "${brandName}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      console.log(`🗑️ Deleting brand ${brandCode}...`);
+      
+      // Call the delete API
+      const response = await fetch(`/api/delete-brand?brandCode=${brandCode}`, {
+        method: 'DELETE'
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        console.log('✅ Brand deleted successfully:', result);
+        
+        // Refresh the brands list
+        await loadDynamicBrands();
+        
+        // Show success message
+        alert(`Brand "${brandName}" has been deleted successfully!`);
+      } else {
+        const error = await response.json();
+        console.error('❌ Failed to delete brand:', error);
+        alert(`Failed to delete brand: ${error.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('❌ Error deleting brand:', error);
+      alert('Failed to delete brand. Please try again.');
+    }
+  };
+
   const tabPaths: Record<TabType, string> = {
     HOME: "/",
     ASSETS: "/assets",
@@ -128,7 +161,21 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   const handleLanguageChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setLanguage(event.target.value as LanguageCode);
+    const value = event.target.value;
+    
+    // Check if this is a delete action
+    if (value.startsWith('delete-')) {
+      const brandCode = value.replace('delete-', '');
+      const brand = dynamicBrands.find(b => b.brandCode === brandCode);
+      if (brand) {
+        handleDeleteBrand(brand.brandCode, brand.brandName);
+        // Reset the select to the current language
+        event.target.value = language;
+        return;
+      }
+    }
+    
+    setLanguage(value as LanguageCode);
   };
 
   const handleLogout = () => {
@@ -190,17 +237,29 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 <option value="bmw">{brandDisplayNames.bmw}</option>
                 <option value="hedosoph">Hedosophia</option>
                 
-                {/* Dynamic brands from backend */}
-                {dynamicBrands.length > 0 && (
-                  <>
-                    <option disabled>──────────</option>
-                    {dynamicBrands.map((brand) => (
-                      <option key={brand.brandCode} value={brand.brandCode}>
-                        {brand.brandName}
-                      </option>
-                    ))}
-                  </>
-                )}
+                                      {/* Dynamic brands from backend */}
+                      {dynamicBrands.length > 0 && (
+                        <>
+                          <option disabled>──────────</option>
+                          {dynamicBrands.map((brand) => (
+                            <option key={brand.brandCode} value={brand.brandCode}>
+                              {brand.brandName}
+                            </option>
+                          ))}
+                        </>
+                      )}
+                      
+                      {/* Delete brand options */}
+                      {dynamicBrands.length > 0 && (
+                        <>
+                          <option disabled>──────────</option>
+                          {dynamicBrands.map((brand) => (
+                            <option key={`delete-${brand.brandCode}`} value={`delete-${brand.brandCode}`} className="text-red-600">
+                              🗑️ Delete {brand.brandName}
+                            </option>
+                          ))}
+                        </>
+                      )}
               </select>
               
               {/* Refresh brands button */}
@@ -333,6 +392,18 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                       {dynamicBrands.map((brand) => (
                         <option key={brand.brandCode} value={brand.brandCode}>
                           {brand.brandName}
+                        </option>
+                      ))}
+                    </>
+                  )}
+                  
+                  {/* Delete brand options */}
+                  {dynamicBrands.length > 0 && (
+                    <>
+                      <option disabled>──────────</option>
+                      {dynamicBrands.map((brand) => (
+                        <option key={`delete-${brand.brandCode}`} value={`delete-${brand.brandCode}`} className="text-red-600">
+                          🗑️ Delete {brand.brandName}
                         </option>
                       ))}
                     </>
