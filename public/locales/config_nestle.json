@@ -1,0 +1,261 @@
+{
+  "isDemo": true,
+  "demoNotice": "These are demo assets using placeholder images. Replace with actual Nestlé marketing materials.",
+  "lastUpdated": "2023-10-01T06:06:20.361Z",
+  "brand": {
+    "name": "Nestlé",
+    "logo": "/assets/logos/nestle-logo.png",
+    "logoAlt": "Nestlé Logo"
+  },
+  "assets": [
+    {
+      "id": "launch_001",
+      "title": "Product Feature Poster",
+      "phase": "LAUNCH PREPARATION",
+      "type": "STATIC",
+      "model": "Plant-Based",
+      "description": "feature-poster",
+      "textOverlay": "no-text",
+      "orientation": "portrait",
+      "dimensions": "1080x1920",
+      "fileExtension": ".jpg",
+      "originalFileName": "feature_poster.tif",
+      "newAssetName": "Launch_Static_Plant-Based_feature-poster_no-text_portrait_1080x1920.jpg",
+      "thumbnail": "/assets/images/Launch_Static_Plant-Based_feature-poster_no-text_portrait_1080x1920.jpg",
+      "url": "/assets/images/Launch_Static_Plant-Based_feature-poster_no-text_portrait_1080x1920.jpg",
+      "isDemo": false
+    },
+    {
+      "id": "launch_002",
+      "title": "Training Presentation",
+      "phase": "INTERNAL TRAINING",
+      "type": "PRESENTATION",
+      "model": "Plant-Based",
+      "description": "training-presentation",
+      "textOverlay": "no-text",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": ".ppt",
+      "originalFileName": "training_presentation.ppt",
+      "newAssetName": "Training_Plant-Based_training-presentation_no-text_landscape_1920x1080.ppt",
+      "thumbnail": "/assets/images/Training_Plant-Based_training-presentation_no-text_landscape_1920x1080.jpg",
+      "url": "/assets/images/Training_Plant-Based_training-presentation_no-text_landscape_1920x1080.jpg",
+      "isDemo": false
+    },
+    {
+      "id": "launch_003",
+      "title": "Internal Newsletter",
+      "phase": "INTERNAL ENGAGEMENT",
+      "type": "DOCUMENT",
+      "model": "Plant-Based",
+      "description": "internal-newsletter",
+      "textOverlay": "no-text",
+      "orientation": "portrait",
+      "dimensions": "210x297",
+      "fileExtension": ".pdf",
+      "originalFileName": "internal_newsletter.pdf",
+      "newAssetName": "Internal_Plant-Based_internal-newsletter_no-text_portrait_210x297.pdf",
+      "thumbnail": "/assets/images/Internal_Plant-Based_internal-newsletter_no-text_portrait_210x297.jpg",
+      "url": "/assets/images/Internal_Plant-Based_internal-newsletter_no-text_portrait_210x297.jpg",
+      "isDemo": false
+    },
+    {
+      "id": "launch_004",
+      "title": "Product Launch Video",
+      "phase": "LAUNCH PREPARATION",
+      "type": "VIDEO",
+      "model": "Plant-Based",
+      "description": "launch-video",
+      "textOverlay": "With text",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": ".mp4",
+      "originalFileName": "launch_video.mp4",
+      "newAssetName": "Launch_Video_Plant-Based_launch-video_with-text_landscape_1920x1080.mp4",
+      "thumbnail": "/assets/images/Launch_Video_Plant-Based_launch-video_with-text_landscape_1920x1080.jpg",
+      "url": "/assets/images/Launch_Video_Plant-Based_launch-video_with-text_landscape_1920x1080.jpg",
+      "isDemo": false
+    },
+    {
+      "id": "launch_005",
+      "title": "Interactive Workshop Guide",
+      "phase": "INTERNAL ENGAGEMENT",
+      "type": "DOCUMENT",
+      "model": "Plant-Based",
+      "description": "workshop-guide",
+      "textOverlay": "no-text",
+      "orientation": "portrait",
+      "dimensions": "210x297",
+      "fileExtension": ".pdf",
+      "originalFileName": "workshop_guide.pdf",
+      "newAssetName": "Engagement_Plant-Based_workshop-guide_no-text_portrait_210x297.pdf",
+      "thumbnail": "/assets/images/Engagement_Plant-Based_workshop-guide_no-text_portrait_210x297.jpg",
+      "url": "/assets/images/Engagement_Plant-Based_workshop-guide_no-text_portrait_210x297.jpg",
+      "isDemo": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "message_001",
+      "title": "Launch Announcement Email",
+      "content": "Subject: Introducing Our New Plant-Based Product\n\nDear Team,\n\nWe are excited to announce the latest addition to our product line – a groundbreaking plant-based product that champions both taste and sustainability.\n\nJoin us in bringing this innovation to life. Stay tuned for more details in our internal launch presentation.\n\nBest,\nNestlé Team",
+      "channel": "Email",
+      "type": "LAUNCH PREPARATION",
+      "model": "Plant-Based",
+      "date": "2023-10-01",
+      "isDemo": false,
+      "category": "Internal Communication"
+    },
+    {
+      "id": "message_002",
+      "title": "Training Session Reminder",
+      "content": "Subject: Upcoming Training Session on New Product\n\nHello Team,\n\nA friendly reminder about our training session tomorrow on the new plant-based product. Join us to learn more and get your questions answered.\n\nLooking forward to seeing you there!\n\nBest,\nTraining Coordinator",
+      "channel": "Email",
+      "type": "INTERNAL TRAINING",
+      "model": "Plant-Based",
+      "date": "2023-10-02",
+      "isDemo": false,
+      "category": "Internal Training"
+    },
+    {
+      "id": "message_003",
+      "title": "Internal Engagement Kick-Off",
+      "content": "Subject: Engage with Our New Product Launch\n\nHi Everyone,\n\nWe are thrilled to kick off the engagement phase for our new plant-based product. Participate in interactive workshops and contribute to our growing product narrative.\n\nLet’s make this launch a success!\n\nWarm Regards,\nInternal Engagement Team",
+      "channel": "Email",
+      "type": "INTERNAL ENGAGEMENT",
+      "model": "Plant-Based",
+      "date": "2023-10-03",
+      "isDemo": false,
+      "category": "Internal Engagement"
+    },
+    {
+      "id": "message_004",
+      "title": "Feedback Request",
+      "content": "Subject: We Value Your Feedback on Our New Launch\n\nDear Team,\n\nYour insights are invaluable. Please share your feedback on the launch and let us know how we can enhance future product rollouts.\n\nThank you!\n\nNestlé Feedback Team",
+      "channel": "Email",
+      "type": "FEEDBACK COLLECTION",
+      "model": "Plant-Based",
+      "date": "2023-10-04",
+      "isDemo": false,
+      "category": "Feedback Collection"
+    },
+    {
+      "id": "message_005",
+      "title": "Continuous Support Announcement",
+      "content": "Subject: Ongoing Support for Our New Product\n\nHi Team,\n\nWe're committed to providing continuous support for our new plant-based product. Access resources anytime and reach out for assistance if needed.\n\nTogether, we thrive!\n\nSupport Team",
+      "channel": "Email",
+      "type": "CONTINUOUS SUPPORT",
+      "model": "Plant-Based",
+      "date": "2023-10-05",
+      "isDemo": false,
+      "category": "Ongoing Support"
+    }
+  ],
+  "guides": [
+    {
+      "id": "guide_001",
+      "title": "Product Launch Strategy Guide",
+      "type": "LAUNCH PREPARATION",
+      "model": "Plant-Based",
+      "thumbnail": "/assets/images/guides/launch-strategy-thumb.jpg",
+      "url": "/guides/product-launch-strategy-guide.pdf",
+      "isDemo": false,
+      "category": "Strategy",
+      "contentLastModified": "2023-10-01T10:00:00.000Z",
+      "content": "# Product Launch Strategy Guide\n\n**To Equip Teams for a Successful Launch**\n\n---\n\n## Purpose\n\nTo provide a structured approach and resources for launching the new plant-based product, empowering teams with knowledge and guidelines to ensure a seamless internal rollout."
+    },
+    {
+      "id": "guide_002",
+      "title": "Internal Training Resource",
+      "type": "INTERNAL TRAINING",
+      "model": "Plant-Based",
+      "thumbnail": "/assets/images/guides/training-resource-thumb.jpg",
+      "url": "/guides/internal-training-resource.pdf",
+      "isDemo": false,
+      "category": "Training",
+      "contentLastModified": "2023-10-02T10:00:00.000Z",
+      "content": "# Internal Training Resource\n\n**Enhancing Product Knowledge within Teams**\n\n---\n\n## Overview\n\nThis guide provides comprehensive training materials and engagement strategies to ensure teams are well-versed in the product’s features and benefits."
+    },
+    {
+      "id": "guide_003",
+      "title": "Engagement Workshop Activities",
+      "type": "INTERNAL ENGAGEMENT",
+      "model": "Plant-Based",
+      "thumbnail": "/assets/images/guides/engagement-workshop-thumb.jpg",
+      "url": "/guides/engagement-workshop-activities.pdf",
+      "isDemo": false,
+      "category": "Engagement",
+      "contentLastModified": "2023-10-03T10:00:00.000Z",
+      "content": "# Engagement Workshop Activities\n\n**Fostering Internal Excitement**\n\n---\n\n## Activities\n\nA collection of workshop ideas and interactive sessions designed to engage teams and encourage active participation in the product launch."
+    },
+    {
+      "id": "guide_004",
+      "title": "Feedback Collection Guide",
+      "type": "FEEDBACK COLLECTION",
+      "model": "Plant-Based",
+      "thumbnail": "/assets/images/guides/feedback-collection-thumb.jpg",
+      "url": "/guides/feedback-collection-guide.pdf",
+      "isDemo": false,
+      "category": "Feedback",
+      "contentLastModified": "2023-10-04T10:00:00.000Z",
+      "content": "# Feedback Collection Guide\n\n**Gathering Valuable Insights**\n\n---\n\n## Methods\n\nThis guide outlines effective feedback collection strategies to capture insights and improve future launches."
+    },
+    {
+      "id": "guide_005",
+      "title": "Continuous Support Resource",
+      "type": "CONTINUOUS SUPPORT",
+      "model": "Plant-Based",
+      "thumbnail": "/assets/images/guides/continuous-support-thumb.jpg",
+      "url": "/guides/continuous-support-resource.pdf",
+      "isDemo": false,
+      "category": "Support",
+      "contentLastModified": "2023-10-05T10:00:00.000Z",
+      "content": "# Continuous Support Resource\n\n**Ensuring Ongoing Success**\n\n---\n\n## Support Tools\n\nA comprehensive resource to provide continuous support and maintain momentum post-launch."
+    }
+  ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Launch Preparation",
+      "description": "Preparing teams and resources for the launch of the new product",
+      "icon": "Rocket"
+    },
+    {
+      "id": "2",
+      "title": "Internal Training",
+      "description": "Training teams on product knowledge and messaging",
+      "icon": "Calendar"
+    },
+    {
+      "id": "3",
+      "title": "Internal Engagement",
+      "description": "Engaging teams with interactive workshops and materials",
+      "icon": "Group"
+    },
+    {
+      "id": "4",
+      "title": "Feedback Collection",
+      "description": "Gathering feedback and insights post-launch",
+      "icon": "Feedback"
+    },
+    {
+      "id": "5",
+      "title": "Continuous Support",
+      "description": "Providing ongoing resources and support to teams",
+      "icon": "Support"
+    }
+  ],
+  "filterOptions": {
+    "phases": ["ALL", "LAUNCH PREPARATION", "INTERNAL TRAINING", "INTERNAL ENGAGEMENT", "FEEDBACK COLLECTION", "CONTINUOUS SUPPORT"],
+    "types": ["ALL", "STATIC", "VIDEO", "PRESENTATION", "DOCUMENT"],
+    "models": ["ALL", "Plant-Based"],
+    "channels": ["ALL", "Email", "WhatsApp", "SMS", "Intranet", "Print", "Presentation"],
+    "actionTypes": ["ALL","LAUNCH PREPARATION","INTERNAL TRAINING","INTERNAL ENGAGEMENT","FEEDBACK COLLECTION","CONTINUOUS SUPPORT"]
+  },
+  "metadata": {
+    "lastModified": "2023-10-01T06:06:20.361Z",
+    "modifiedBy": "Nestlé Marketing Team",
+    "version": "1.0.0",
+    "source": "Nestlé Plant-Based Product Launch Campaign"
+  }
+}

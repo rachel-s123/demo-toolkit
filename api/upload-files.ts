@@ -174,74 +174,95 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           }))
           .filter(f => f.type !== 'other'); // Only sync relevant files
         
-        // Skip backend sync in development or if Redis is not configured
-        if (!process.env.REDIS_URL) {
-          console.log('⚠️ Redis not configured, skipping backend sync');
+        // Always attempt backend sync in local development
+        // In production, only sync if Redis is configured
+        if (process.env.VERCEL && !process.env.REDIS_URL) {
+          console.log('⚠️ Redis not configured in production, skipping backend sync');
           backendSyncResult = {
             success: true,
             message: `Brand ${brandName} uploaded to Vercel Blob Storage successfully. Backend sync skipped (Redis not configured).`,
             note: "To enable backend sync, configure REDIS_URL in Vercel environment variables."
           };
         } else {
-          // Call the sync API
+          console.log('🔄 Redis configured, attempting backend sync...');
+          // Call the sync API with timeout
+          // In local development, call the local server
+          // In production, call the Vercel API
           const baseUrl = process.env.VERCEL_URL 
             ? `https://${process.env.VERCEL_URL}` 
-            : 'https://demo-toolkit.vercel.app';
+            : 'http://localhost:3001';
           
           const syncUrl = `${baseUrl}/api/sync-brand-to-backend`;
           console.log('🔍 Calling sync API at:', syncUrl);
           
-          const syncResponse = await fetch(syncUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              brandCode,
-              brandName,
-              files: syncFiles
-            })
-          });
+                    // Add timeout to the fetch request
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
           
-          let syncResult;
           try {
-            const responseText = await syncResponse.text();
-            console.log('🔍 Sync response status:', syncResponse.status);
-            console.log('🔍 Sync response text:', responseText.substring(0, 500));
+            const syncResponse = await fetch(syncUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                brandCode,
+                brandName,
+                files: syncFiles
+              }),
+              signal: controller.signal
+            });
             
-            if (responseText.trim().startsWith('<')) {
-              // Response is HTML (likely an error page)
-              throw new Error(`API returned HTML instead of JSON. Status: ${syncResponse.status}. Response: ${responseText.substring(0, 200)}`);
+            clearTimeout(timeoutId);
+            
+            let syncResult;
+            try {
+              const responseText = await syncResponse.text();
+              console.log('🔍 Sync response status:', syncResponse.status);
+              console.log('🔍 Sync response text:', responseText.substring(0, 500));
+              
+              if (responseText.trim().startsWith('<')) {
+                // Response is HTML (likely an error page)
+                throw new Error(`API returned HTML instead of JSON. Status: ${syncResponse.status}. Response: ${responseText.substring(0, 200)}`);
+              }
+              
+              syncResult = JSON.parse(responseText);
+            } catch (parseError) {
+              console.error('❌ Failed to parse sync response:', parseError);
+              backendSyncResult = {
+                success: false,
+                message: 'Backend sync failed - invalid response format',
+                error: parseError instanceof Error ? parseError.message : 'Unknown parsing error',
+                status: syncResponse.status
+              };
+              return;
             }
             
-            syncResult = JSON.parse(responseText);
-          } catch (parseError) {
-            console.error('❌ Failed to parse sync response:', parseError);
+            if (syncResponse.ok && syncResult.success) {
+              backendSyncResult = {
+                success: true,
+                message: syncResult.message,
+                brandConfig: syncResult.brandConfig,
+                frontendConfig: syncResult.frontendConfig
+              };
+              console.log('✅ Backend sync successful:', syncResult);
+            } else {
+              backendSyncResult = {
+                success: false,
+                message: syncResult.error || 'Backend sync failed',
+                details: syncResult,
+                status: syncResponse.status
+              };
+              console.error('❌ Backend sync failed:', syncResult);
+            }
+          } catch (fetchError) {
+            clearTimeout(timeoutId);
+            console.error('❌ Sync API fetch failed:', fetchError);
             backendSyncResult = {
               success: false,
-              message: 'Backend sync failed - invalid response format',
-              error: parseError instanceof Error ? parseError.message : 'Unknown parsing error',
-              status: syncResponse.status
+              message: 'Backend sync failed - network error',
+              error: fetchError instanceof Error ? fetchError.message : 'Unknown fetch error'
             };
-            return;
-          }
-          
-          if (syncResponse.ok && syncResult.success) {
-            backendSyncResult = {
-              success: true,
-              message: syncResult.message,
-              brandConfig: syncResult.brandConfig,
-              frontendConfig: syncResult.frontendConfig
-            };
-            console.log('✅ Backend sync successful:', syncResult);
-          } else {
-            backendSyncResult = {
-              success: false,
-              message: syncResult.error || 'Backend sync failed',
-              details: syncResult,
-              status: syncResponse.status
-            };
-            console.error('❌ Backend sync failed:', syncResult);
           }
         }
       } catch (syncError) {
@@ -259,16 +280,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (brandCode && brandName && successCount > 0) {
       console.log(`✅ Brand ${brandName} uploaded to Vercel Blob Storage - automatically available in frontend`);
       
-      // Trigger frontend refresh by calling the blob-based endpoint
+      // Trigger frontend refresh by calling the blob-based endpoint (with timeout)
       try {
         console.log('🔄 Triggering frontend refresh...');
         const baseUrl = process.env.VERCEL_URL 
           ? `https://${process.env.VERCEL_URL}` 
           : 'https://demo-toolkit.vercel.app';
-        await fetch(`${baseUrl}/api/get-brands-from-blob`);
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+        
+        await fetch(`${baseUrl}/api/get-brands-from-blob`, {
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
         console.log('✅ Frontend refresh triggered');
       } catch (refreshError) {
         console.warn('⚠️ Frontend refresh failed:', refreshError);
+        // Don't fail the entire upload if refresh fails
       }
     }
 
@@ -289,22 +319,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             }
           };
         } else {
-          // In development, use the full brand setup
-          try {
-            const { completeBrandSetup } = await import('../src/utils/brandSetupUtils');
-            brandSetupResult = completeBrandSetup(brandCode, brandName);
-          } catch (importError) {
-            console.warn('Could not import brandSetupUtils:', importError);
-            brandSetupResult = {
-              success: true,
-              message: `Brand setup completed successfully! ${brandName} has been uploaded.`,
-              details: {
-                localeIndexUpdated: false,
-                headerUpdated: false,
-                note: "Brand setup utils not available"
-              }
-            };
-          }
+          // In development, skip filesystem operations (Header now loads from Redis)
+          brandSetupResult = {
+            success: true,
+            message: `Brand setup completed successfully! ${brandName} has been uploaded.`,
+            details: {
+              localeIndexUpdated: false,
+              headerUpdated: true,
+              note: "Header component now loads brands dynamically from Redis - no filesystem editing needed"
+            }
+          };
         }
         console.log(`✅ Brand setup result:`, brandSetupResult);
       } catch (brandSetupError: any) {

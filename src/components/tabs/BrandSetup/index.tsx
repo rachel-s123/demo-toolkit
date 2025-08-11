@@ -404,9 +404,9 @@ export default function BrandSetup() {
       setIsUploading(false);
       setUploadResult({
         success: false,
-        message: 'Upload timed out. Please try again.'
+        message: 'Upload timed out. Please try again. This might be due to Redis not being configured.'
       });
-    }, 30000); // 30 second timeout
+    }, 15000); // 15 second timeout - reduced from 30
 
     try {
       const files: Array<{

@@ -13,12 +13,13 @@ interface HeaderProps {
   onLogout?: () => void;
 }
 
-const brandDisplayNames: Record<string, string> = {
-  en: "Brilliant Noise",
+const brandDisplayNames: Record<string, string> = {en: "Brilliant Noise",
   edf: "\uD83C\uDDEC\uD83C\uDDE7 EDF Energy",
   edf_fr: "\uD83C\uDDEB\uD83C\uDDF7 EDF \u00C9nergie",
   bmw: "BMW Motorrad",
   hedosoph: "Hedosophia",
+  test: "Test",
+  testbran: "Test brand",
 };
 
 const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
@@ -46,11 +47,26 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   const loadDynamicBrands = async () => {
     try {
       setIsLoadingBrands(true);
-      const brands = await BrandLoader.loadBrandsConfig();
-      setDynamicBrands(brands);
-      console.log(`📦 Header loaded ${brands.length} dynamic brands`);
+      // Try to load from Redis first (our new endpoint)
+      const response = await fetch('/api/brands');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.brands) {
+          setDynamicBrands(data.brands);
+          console.log(`📦 Header loaded ${data.brands.length} dynamic brands from Redis`);
+        } else {
+          console.log('📦 No brands found in Redis');
+          setDynamicBrands([]);
+        }
+      } else {
+        // Fallback to existing BrandLoader if Redis fails
+        const brands = await BrandLoader.loadBrandsConfig();
+        setDynamicBrands(brands);
+        console.log(`📦 Header loaded ${brands.length} dynamic brands from BrandLoader`);
+      }
     } catch (error) {
       console.error('Failed to load dynamic brands in Header:', error);
+      setDynamicBrands([]);
     } finally {
       setIsLoadingBrands(false);
     }

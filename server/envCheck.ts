@@ -1,9 +1,6 @@
 export function checkEnv() {
   const required = [
-    'KV_REST_API_URL',
-    'KV_REST_API_TOKEN',
-    'SUPABASE_URL',
-    'SUPABASE_ANON_KEY'
+    'REDIS_URL'
   ];
   const missing = required.filter((key) => !process.env[key]);
   if (missing.length > 0) {

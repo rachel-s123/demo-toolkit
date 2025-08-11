@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
-import { kv } from '@vercel/kv';
+import { createClient } from 'redis';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Config } from '../src/types';
@@ -10,18 +10,44 @@ import { checkEnv } from './envCheck';
 import { completeBrandSetup } from '../src/utils/brandSetupUtils';
 
 dotenv.config();
-// Only check environment variables for non-upload endpoints
-// checkEnv();
+// Check environment variables
+checkEnv();
 
 const app = express();
 const PORT = process.env.API_PORT || 3001;
 const BMW_CONFIG_KEY = 'bmw:config';
 
+// Redis client setup
+let redisClient: any = null;
+
+async function initRedis() {
+  try {
+    if (process.env.REDIS_URL) {
+      redisClient = createClient({
+        url: process.env.REDIS_URL
+      });
+      
+      redisClient.on('error', (err: any) => console.error('Redis Client Error', err));
+      redisClient.on('connect', () => console.log('✅ Connected to Redis'));
+      
+      await redisClient.connect();
+      console.log('🚀 Redis client initialized');
+    } else {
+      console.warn('⚠️ REDIS_URL not set, Redis operations will be skipped');
+    }
+  } catch (error) {
+    console.error('❌ Failed to initialize Redis:', error);
+  }
+}
+
+// Initialize Redis on startup
+initRedis();
+
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 
-// No custom auth endpoints when using Supabase Auth
+
 
 // Helper function to add metadata to config
 function addMetadata(config: Config, source: 'file' | 'redis', modifiedBy: string = 'system'): Config {
@@ -43,7 +69,10 @@ async function syncConfigs(): Promise<Config> {
   
   // Get Redis config
   try {
-    redisConfig = await kv.get<Config>(BMW_CONFIG_KEY);
+    if (redisClient) {
+      const redisData = await redisClient.get(BMW_CONFIG_KEY);
+      redisConfig = redisData ? JSON.parse(redisData) : null;
+    }
   } catch (error) {
     console.warn('Could not read from Redis:', error);
   }
@@ -65,7 +94,9 @@ async function syncConfigs(): Promise<Config> {
   if (!redisConfig && fileConfig) {
     console.log('📁 Only file config exists, syncing to Redis');
     const configWithMetadata = addMetadata(fileConfig, 'file');
-    await kv.set(BMW_CONFIG_KEY, configWithMetadata);
+    if (redisClient) {
+      await redisClient.set(BMW_CONFIG_KEY, JSON.stringify(configWithMetadata));
+    }
     return configWithMetadata;
   }
   
@@ -88,7 +119,9 @@ async function syncConfigs(): Promise<Config> {
   } else if (fileTime > redisTime) {
     console.log('📁 File config is newer, syncing to Redis');
     const configWithMetadata = addMetadata(fileConfig!, 'file');
-    await kv.set(BMW_CONFIG_KEY, configWithMetadata);
+    if (redisClient) {
+      await redisClient.set(BMW_CONFIG_KEY, JSON.stringify(configWithMetadata));
+    }
     return configWithMetadata;
   } else {
     console.log('🔄 Configs have same timestamp, using Redis as source of truth');
@@ -123,6 +156,113 @@ app.put('/api/messages/:id', verifyToken, (req, res) => {
 app.put('/api/guides/:id', verifyToken, (req, res) => {
   res.status(403).json({ error: 'Editing disabled' });
 });
+
+// Sync brand data to Redis endpoint
+app.post('/api/sync-brand-to-backend', async (req, res) => {
+  try {
+    console.log('🔄 Sync API called with data:', req.body);
+    
+    const { brandCode, brandName, configContent, localeContent } = req.body;
+    
+    if (!brandCode || !configContent) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Missing required brand data' 
+      });
+    }
+
+    // Create a new brand config object
+    const newBrandConfig = {
+      brandCode,
+      brandName: brandName || brandCode,
+      config: configContent,
+      locale: localeContent,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    // Store in Redis with a unique key
+    const brandKey = `brand:${brandCode}`;
+    if (redisClient) {
+      await redisClient.set(brandKey, JSON.stringify(newBrandConfig));
+      console.log(`✅ Brand ${brandCode} synced to Redis with key: ${brandKey}`);
+    }
+
+    // Also update the main brands list
+    const brandsListKey = 'brands:list';
+    let brandsList = [];
+    
+    if (redisClient) {
+      const existingList = await redisClient.get(brandsListKey);
+      if (existingList) {
+        brandsList = JSON.parse(existingList);
+      }
+      
+      // Add new brand if not already in list
+      if (!brandsList.find((b: any) => b.brandCode === brandCode)) {
+        brandsList.push({
+          brandCode,
+          brandName: brandName || brandCode,
+          createdAt: new Date().toISOString()
+        });
+        
+        await redisClient.set(brandsListKey, JSON.stringify(brandsList));
+        console.log(`✅ Brands list updated in Redis`);
+      }
+    }
+
+    res.json({ 
+      success: true, 
+      message: `Brand ${brandCode} synced successfully`,
+      brandKey,
+      brandsListKey
+    });
+
+  } catch (error: any) {
+    console.error('❌ Sync API error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message 
+    });
+  }
+});
+
+  // Get brands list from Redis
+  app.get('/api/brands', async (req, res) => {
+    try {
+      if (!redisClient) {
+        return res.status(500).json({ 
+          success: false, 
+          error: 'Redis not connected' 
+        });
+      }
+
+      const brandsListKey = 'brands:list';
+      const brandsList = await redisClient.get(brandsListKey);
+      
+      if (brandsList) {
+        const brands = JSON.parse(brandsList);
+        console.log(`📦 Retrieved ${brands.length} brands from Redis`);
+        res.json({ 
+          success: true, 
+          brands: brands 
+        });
+      } else {
+        console.log('📦 No brands found in Redis');
+        res.json({ 
+          success: true, 
+          brands: [] 
+        });
+      }
+
+    } catch (error: any) {
+      console.error('❌ Get brands API error:', error);
+      res.status(500).json({ 
+        success: false, 
+        error: error.message 
+      });
+    }
+  });
 
 // POST /api/upload-files - Upload generated files to backend
 app.post('/api/upload-files', verifyToken, (req, res) => {
@@ -296,23 +436,146 @@ app.get('/api/get-brands-from-blob', (req, res) => {
   }
 });
 
-// GET /api/get-brands - Mock endpoint for local development
-app.get('/api/get-brands', (req, res) => {
+// GET /api/get-brands - Get brands from Redis
+app.get('/api/brands', async (req, res) => {
   try {
-    console.log('🔍 Local development: Mocking get-brands endpoint');
+    console.log('🔍 Getting brands from Redis...');
     
-    // Return empty brands array for local development
-    res.status(200).json({
-      success: true,
-      brands: [],
-      message: 'Local development mode - no backend storage available'
-    });
+    if (!redisClient) {
+      return res.status(500).json({
+        success: false,
+        error: 'Redis client not initialized'
+      });
+    }
+
+    const brandsList = await redisClient.get('brands:list');
+    if (brandsList) {
+      const brands = JSON.parse(brandsList);
+      console.log(`✅ Retrieved ${brands.length} brands from Redis`);
+      return res.status(200).json({
+        success: true,
+        brands
+      });
+    } else {
+      console.log('📦 No brands found in Redis');
+      return res.status(200).json({
+        success: true,
+        brands: []
+      });
+    }
   } catch (error) {
     console.error('Error retrieving brands:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to retrieve brands',
       details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+// POST /api/sync-brand-to-backend - Sync brand data to Redis
+app.post('/api/sync-brand-to-backend', async (req, res) => {
+  try {
+    const { brandCode, brandName, files } = req.body;
+    
+    if (!brandCode || !brandName) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required fields: brandCode and brandName'
+      });
+    }
+
+    if (!redisClient) {
+      return res.status(500).json({
+        success: false,
+        error: 'Redis client not initialized'
+      });
+    }
+
+    console.log(`🔄 Syncing brand ${brandName} (${brandCode}) to Redis...`);
+    console.log(`📁 Files received:`, files ? files.length : 0);
+
+    // Extract config and locale content from files
+    let configContent = null;
+    let localeContent = null;
+
+    if (files && Array.isArray(files)) {
+      const configFile = files.find((f: any) => f.filename && f.filename.includes('config_'));
+      const localeFile = files.find((f: any) => f.filename && f.filename.includes('.ts'));
+
+      if (configFile && configFile.content) {
+        try {
+          configContent = JSON.parse(configFile.content);
+          console.log(`✅ Config content extracted from ${configFile.filename}`);
+        } catch (parseError) {
+          console.warn(`⚠️ Could not parse config content from ${configFile.filename}`);
+        }
+      }
+
+      if (localeFile && localeFile.content) {
+        localeContent = localeFile.content;
+        console.log(`✅ Locale content extracted from ${localeFile.filename}`);
+      }
+    }
+
+    // Store the full brand configuration
+    const brandKey = `brand:${brandCode}`;
+    const brandData = {
+      brandCode,
+      brandName,
+      configContent,
+      localeContent,
+      syncedAt: new Date().toISOString()
+    };
+
+    await redisClient.set(brandKey, JSON.stringify(brandData));
+    console.log(`✅ Brand ${brandCode} synced to Redis`);
+
+    // Update the central brands list
+    const brandsListKey = 'brands:list';
+    let brandsList = [];
+    
+    try {
+      const existingList = await redisClient.get(brandsListKey);
+      if (existingList) {
+        brandsList = JSON.parse(existingList);
+      }
+    } catch (parseError) {
+      console.warn('Could not parse existing brands list, starting fresh');
+    }
+
+    // Add or update the brand in the list
+    const existingBrandIndex = brandsList.findIndex((b: any) => b.brandCode === brandCode);
+    if (existingBrandIndex >= 0) {
+      brandsList[existingBrandIndex] = {
+        brandCode,
+        brandName,
+        syncedAt: brandData.syncedAt
+      };
+    } else {
+      brandsList.push({
+        brandCode,
+        brandName,
+        syncedAt: brandData.syncedAt
+      });
+    }
+
+    await redisClient.set(brandsListKey, JSON.stringify(brandsList));
+    console.log(`✅ Brands list updated in Redis`);
+
+    return res.status(200).json({
+      success: true,
+      message: `Brand ${brandName} synced to Redis successfully`,
+      brandCode,
+      brandName
+    });
+
+  } catch (error: any) {
+    console.error('❌ Error syncing brand to backend:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to sync brand to backend',
+      details: error.message
     });
   }
 });

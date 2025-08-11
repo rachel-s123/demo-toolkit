@@ -1,0 +1,446 @@
+{
+  "isDemo": true,
+  "demoNotice": "These are demo assets for AI literacy education. Replace with your organization's specific training materials.",
+  "lastUpdated": "2025-07-09T18:30:00.000Z",
+  "brand": {
+    "name": "test brand",
+    "logo": "/assets/logos/testbran.png",
+    "logoAlt": "test brand Logo"
+  },
+  "assets": [
+    {
+      "id": "testbran_logo",
+      "title": "test brand Logo",
+      "description": "Official brand logo",
+      "model": "test brand",
+      "category": "Brand Assets",
+      "type": "IMAGE",
+      "tags": [
+        "logo",
+        "brand"
+      ],
+      "channel": "All",
+      "dateCreated": "2025-08-11T09:21:33.776Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "png",
+      "thumbnail": "/assets/logos/testbran_thumb.jpg",
+      "url": "/assets/logos/testbran.png",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_social_banner",
+      "title": "test brand Social Media Banner",
+      "description": "Social media header banner",
+      "model": "test brand",
+      "category": "Social Media",
+      "type": "IMAGE",
+      "tags": [
+        "banner",
+        "social",
+        "header"
+      ],
+      "channel": "Social Media",
+      "dateCreated": "2025-08-11T09:21:33.779Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1200x630",
+      "fileExtension": "png",
+      "thumbnail": "/assets/social/testbran_banner_thumb.jpg",
+      "url": "/assets/social/testbran_banner.png",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_email_header",
+      "title": "test brand Email Header",
+      "description": "Email marketing header image",
+      "model": "test brand",
+      "category": "Email Marketing",
+      "type": "IMAGE",
+      "tags": [
+        "email",
+        "header",
+        "marketing"
+      ],
+      "channel": "Email",
+      "dateCreated": "2025-08-11T09:21:33.779Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "600x200",
+      "fileExtension": "png",
+      "thumbnail": "/assets/email/testbran_header_thumb.jpg",
+      "url": "/assets/email/testbran_header.png",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_infographic",
+      "title": "test brand Infographic",
+      "description": "Educational infographic",
+      "model": "test brand",
+      "category": "Educational",
+      "type": "IMAGE",
+      "tags": [
+        "infographic",
+        "educational",
+        "visual"
+      ],
+      "channel": "All",
+      "dateCreated": "2025-08-11T09:21:33.779Z",
+      "phase": "FOLLOW-UP",
+      "orientation": "portrait",
+      "dimensions": "1080x1920",
+      "fileExtension": "png",
+      "thumbnail": "/assets/infographics/testbran_infographic_thumb.jpg",
+      "url": "/assets/infographics/testbran_infographic.png",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_brochure",
+      "title": "test brand Brochure",
+      "description": "Print-ready brochure",
+      "model": "test brand",
+      "category": "Print Materials",
+      "type": "PDF",
+      "tags": [
+        "brochure",
+        "print",
+        "marketing"
+      ],
+      "channel": "Print",
+      "dateCreated": "2025-08-11T09:21:33.779Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "8.5x11",
+      "fileExtension": "pdf",
+      "thumbnail": "/assets/print/testbran_brochure_thumb.jpg",
+      "url": "/assets/print/testbran_brochure.pdf",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_video_intro",
+      "title": "test brand Introduction Video",
+      "description": "Brand introduction video",
+      "model": "test brand",
+      "category": "Video Content",
+      "type": "VIDEO",
+      "tags": [
+        "video",
+        "introduction",
+        "brand"
+      ],
+      "channel": "All",
+      "dateCreated": "2025-08-11T09:21:33.779Z",
+      "phase": "LAUNCH",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": "mp4",
+      "thumbnail": "/assets/videos/testbran_intro_thumb.jpg",
+      "url": "/assets/videos/testbran_intro.mp4",
+      "isDemo": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "testbran_launch_email",
+      "title": "test brand Launch - Email Campaign",
+      "content": "Subject: Welcome to test brand\n\nDear Valued Partner,\n\nWelcome to test brand! We're excited to help you achieve test the toolkit functionality with campaign luanch.\n\n[Learn More] [Get Started]\n\nBest regards,\nThe test brand Team",
+      "channel": "Email",
+      "stage": "LAUNCH",
+      "model": "test brand",
+      "tags": [
+        "launch",
+        "email",
+        "welcome"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "testbran_social_post",
+      "title": "test brand Social Media Post",
+      "content": "🚀 Exciting news! test brand is here to help you achieve test the toolkit functionality with campaign luanch.\n\nDiscover how we can transform your business:\n\n✅ Streamlined processes\n✅ Improved performance\n✅ Measurable results\n\n[Learn More] #testbrand #Innovation",
+      "channel": "Social Media",
+      "stage": "LAUNCH",
+      "model": "test brand",
+      "tags": [
+        "launch",
+        "social",
+        "announcement"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "testbran_newsletter",
+      "title": "test brand Newsletter",
+      "content": "📧 test brand Monthly Newsletter\n\nStay updated with the latest insights and strategies to achieve test the toolkit functionality with campaign luanch.\n\nThis month's highlights:\n• Industry trends and insights\n• Success stories and case studies\n• Tips and best practices\n• Upcoming events and webinars\n\n[Read More] [Subscribe]",
+      "channel": "Email",
+      "stage": "FOLLOW-UP",
+      "model": "test brand",
+      "tags": [
+        "newsletter",
+        "email",
+        "engagement"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "testbran_web_content",
+      "title": "test brand Website Content",
+      "content": "Transform Your Business with test brand\n\nDiscover how test brand can help you achieve test the toolkit functionality with campaign luanch through innovative solutions and proven strategies.\n\nOur comprehensive approach includes:\n• Strategic planning and implementation\n• Performance optimization\n• Continuous improvement\n• Measurable results\n\n[Get Started Today] [Learn More]",
+      "channel": "Website",
+      "stage": "LAUNCH",
+      "model": "test brand",
+      "tags": [
+        "website",
+        "content",
+        "conversion"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "testbran_press_release",
+      "title": "test brand Press Release",
+      "content": "FOR IMMEDIATE RELEASE\n\ntest brand Launches Revolutionary Solution to Help Businesses Achieve test the toolkit functionality with campaign luanch\n\n[City, Date] - test brand today announced the launch of its comprehensive toolkit designed to help organizations achieve test the toolkit functionality with campaign luanch.\n\n\"Our solution addresses the critical needs of modern businesses,\" said a company spokesperson. \"We're excited to help our clients transform their operations and achieve measurable success.\"\n\n[Contact Information]",
+      "channel": "Press",
+      "stage": "LAUNCH",
+      "model": "test brand",
+      "tags": [
+        "press",
+        "announcement",
+        "launch"
+      ],
+      "isDemo": false
+    },
+    {
+      "id": "testbran_sales_enablement",
+      "title": "test brand Sales Enablement",
+      "content": "Empower Your Sales Team with test brand\n\nKey talking points for your sales conversations:\n\n🎯 Problem: Organizations struggle to achieve test the toolkit functionality with campaign luanch\n💡 Solution: test brand provides comprehensive tools and strategies\n✅ Benefits: Streamlined processes, improved efficiency, measurable results\n📊 Proof: Industry-leading success rates and customer satisfaction\n\n[Download Sales Kit] [Schedule Demo]",
+      "channel": "Sales",
+      "stage": "IN-STORE",
+      "model": "test brand",
+      "tags": [
+        "sales",
+        "enablement",
+        "conversion"
+      ],
+      "isDemo": false
+    }
+  ],
+  "guides": [
+    {
+      "id": "testbran_getting_started",
+      "title": "test brand Getting Started Guide",
+      "description": "Complete guide to getting started with test brand",
+      "stage": "LAUNCH",
+      "model": "test brand",
+      "category": "Getting Started",
+      "sections": [
+        {
+          "title": "Introduction",
+          "content": "Welcome to test brand! This guide will help you get started."
+        },
+        {
+          "title": "Setup Process",
+          "content": "Step-by-step setup instructions"
+        },
+        {
+          "title": "First Steps",
+          "content": "Essential first steps to achieve success"
+        }
+      ],
+      "estimatedReadTime": "10-15 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-08-11T09:21:33.779Z",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_best_practices",
+      "title": "test brand Best Practices Guide",
+      "description": "Industry best practices and optimization strategies",
+      "stage": "FOLLOW-UP",
+      "model": "test brand",
+      "category": "Best Practices",
+      "sections": [
+        {
+          "title": "Optimization Strategies",
+          "content": "Learn how to optimize your performance and achieve better results."
+        },
+        {
+          "title": "Common Pitfalls",
+          "content": "Avoid common mistakes and challenges."
+        },
+        {
+          "title": "Success Metrics",
+          "content": "Key metrics to track and measure success."
+        }
+      ],
+      "estimatedReadTime": "20-25 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-08-11T09:21:33.779Z",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_campaign_strategy",
+      "title": "test brand Campaign Strategy Guide",
+      "description": "Comprehensive campaign planning and execution",
+      "stage": "LAUNCH",
+      "model": "test brand",
+      "category": "Strategy",
+      "sections": [
+        {
+          "title": "Campaign Planning",
+          "content": "Strategic approach to campaign development and execution."
+        },
+        {
+          "title": "Target Audience",
+          "content": "How to identify and reach your target audience effectively."
+        },
+        {
+          "title": "Measurement & Analytics",
+          "content": "Track and measure campaign performance and ROI."
+        }
+      ],
+      "estimatedReadTime": "30-35 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-08-11T09:21:33.779Z",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_content_creation",
+      "title": "test brand Content Creation Guide",
+      "description": "Guidelines for creating effective marketing content",
+      "stage": "IN-STORE",
+      "model": "test brand",
+      "category": "Content Creation",
+      "sections": [
+        {
+          "title": "Content Strategy",
+          "content": "Develop a comprehensive content strategy that resonates with your audience."
+        },
+        {
+          "title": "Content Types",
+          "content": "Different types of content and when to use each."
+        },
+        {
+          "title": "Brand Voice",
+          "content": "Maintain consistent brand voice across all content."
+        }
+      ],
+      "estimatedReadTime": "25-30 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-08-11T09:21:33.779Z",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_social_media",
+      "title": "test brand Social Media Guide",
+      "description": "Social media marketing strategies and best practices",
+      "stage": "FOLLOW-UP",
+      "model": "test brand",
+      "category": "Social Media",
+      "sections": [
+        {
+          "title": "Platform Strategy",
+          "content": "Choose the right platforms for your target audience."
+        },
+        {
+          "title": "Content Calendar",
+          "content": "Plan and schedule your social media content effectively."
+        },
+        {
+          "title": "Engagement Tactics",
+          "content": "Build meaningful relationships with your audience."
+        }
+      ],
+      "estimatedReadTime": "20-25 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-08-11T09:21:33.779Z",
+      "isDemo": false
+    },
+    {
+      "id": "testbran_analytics_guide",
+      "title": "test brand Analytics & Reporting Guide",
+      "description": "How to measure and report on campaign performance",
+      "stage": "FOLLOW-UP",
+      "model": "test brand",
+      "category": "Analytics",
+      "sections": [
+        {
+          "title": "Key Metrics",
+          "content": "Identify and track the most important performance indicators."
+        },
+        {
+          "title": "Reporting Tools",
+          "content": "Tools and platforms for effective reporting and analysis."
+        },
+        {
+          "title": "Data Interpretation",
+          "content": "How to interpret data and make informed decisions."
+        }
+      ],
+      "estimatedReadTime": "15-20 minutes",
+      "downloadFormat": "PDF",
+      "lastUpdated": "2025-08-11T09:21:33.779Z",
+      "isDemo": false
+    }
+  ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Discovery",
+      "description": "Explore test brand's capabilities and solutions",
+      "icon": "Rocket"
+    },
+    {
+      "id": "2",
+      "title": "Assessment",
+      "description": "Evaluate your needs and requirements",
+      "icon": "Calendar"
+    },
+    {
+      "id": "3",
+      "title": "Implementation",
+      "description": "Deploy and implement solutions",
+      "icon": "Store"
+    },
+    {
+      "id": "4",
+      "title": "Optimization",
+      "description": "Optimize and improve performance",
+      "icon": "MessageSquare"
+    },
+    {
+      "id": "5",
+      "title": "Mastery",
+      "description": "Achieve success and mastery",
+      "icon": "UserPlus"
+    }
+  ],
+  "filterOptions": {
+    "actionTypes": [
+      "ALL",
+      "LAUNCH",
+      "GENERATE TEST RIDES",
+      "IN-STORE",
+      "FOLLOW-UP",
+      "WELCOME"
+    ],
+    "channels": [
+      "ALL",
+      "Email",
+      "Social Media",
+      "SMS",
+      "Website"
+    ],
+    "models": [
+      "ALL",
+      "test brand"
+    ]
+  },
+  "metadata": {
+    "lastModified": "2025-08-07T11:04:38.524Z",
+    "modifiedBy": "model-to-category-migration",
+    "version": 2,
+    "source": "ai-literacy-campaign"
+  }
+}
