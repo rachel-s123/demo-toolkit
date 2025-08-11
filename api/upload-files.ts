@@ -85,7 +85,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           throw new Error(`Blob upload failed: ${blobError.message}`);
         }
 
-        results.push({
+        const result = {
           filename,
           targetPath,
           storagePath,
@@ -93,9 +93,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           success: true,
           isBinary,
           mimeType
-        });
+        };
+        
+        results.push(result);
 
         console.log(`✅ Successfully uploaded file to Vercel Blob: ${storagePath}`);
+        console.log(`🔗 Public URL: ${blobData.url}`);
+        console.log(`📁 Storage path: ${storagePath}`);
+        
+        // Test if the file is immediately accessible
+        if (isBinary && mimeType?.startsWith('image/')) {
+          try {
+            const testResponse = await fetch(blobData.url);
+            console.log(`🖼️ Logo accessibility test: ${testResponse.status} ${testResponse.statusText}`);
+          } catch (testError) {
+            console.warn(`⚠️ Logo accessibility test failed:`, testError);
+          }
+        }
 
       } catch (fileError: any) {
         console.error(`Error processing file ${file.filename || "unknown"}:`, fileError);
@@ -121,13 +135,37 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (logoFile && configFile && logoFile.publicUrl) {
         try {
           console.log('🔄 Updating config file with logo URL...');
+          console.log('📁 Config file URL:', configFile.publicUrl);
           
           // Fetch the uploaded config file
           const configResponse = await fetch(configFile.publicUrl);
-          const configContent = await configResponse.json();
+          console.log('📡 Config response status:', configResponse.status);
+          
+          if (!configResponse.ok) {
+            throw new Error(`Failed to fetch config file: ${configResponse.status} ${configResponse.statusText}`);
+          }
+          
+          const configText = await configResponse.text();
+          console.log('📄 Config file content (first 200 chars):', configText.substring(0, 200));
+          
+          let configContent;
+          try {
+            configContent = JSON.parse(configText);
+          } catch (parseError) {
+            console.error('❌ Failed to parse config JSON:', parseError);
+            console.error('📄 Raw config content:', configText);
+            const errorMessage = parseError instanceof Error ? parseError.message : 'Unknown parse error';
+            throw new Error(`Invalid JSON in config file: ${errorMessage}`);
+          }
+          
+          // Ensure brand object exists
+          if (!configContent.brand) {
+            configContent.brand = {};
+          }
           
           // Update the logo URL
           configContent.brand.logo = logoFile.publicUrl;
+          console.log('🖼️ Updated logo URL in config:', logoFile.publicUrl);
           
           // Re-upload the updated config file
           const updatedConfigBlob = await put(configFile.storagePath, JSON.stringify(configContent, null, 2), {
@@ -312,6 +350,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           ? `https://${process.env.VERCEL_URL}` 
           : 'https://demo-toolkit.vercel.app';
         
+        console.log('🌐 Calling locales index update API at:', `${baseUrl}/api/update-locales-index`);
+        console.log('📤 Request payload:', { brandCode, brandName, action: 'add' });
+        
         const updateResponse = await fetch(`${baseUrl}/api/update-locales-index`, {
           method: 'POST',
           headers: {
@@ -324,6 +365,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           })
         });
 
+        console.log('📡 Update response status:', updateResponse.status);
+        
         if (updateResponse.ok) {
           const updateResult = await updateResponse.json();
           brandSetupResult = {
@@ -339,6 +382,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         } else {
           const errorText = await updateResponse.text();
           console.error(`❌ Failed to update locales index:`, errorText);
+          console.error(`📡 Response headers:`, Object.fromEntries(updateResponse.headers.entries()));
           brandSetupResult = {
             success: false,
             message: `Brand setup partially completed. ${brandName} has been uploaded but not added to the frontend.`,
