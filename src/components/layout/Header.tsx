@@ -47,11 +47,20 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   const loadDynamicBrands = async () => {
     try {
       setIsLoadingBrands(true);
+      console.log('🔄 Loading dynamic brands...');
+      
       // Try to load from Redis first (our new endpoint)
-      const response = await fetch('/api/brands');
+      // Add cache-busting parameter to ensure fresh data
+      const timestamp = Date.now();
+      const response = await fetch(`/api/brands?t=${timestamp}`);
+      console.log('📡 Brands API response status:', response.status);
+      
       if (response.ok) {
         const data = await response.json();
+        console.log('📡 Brands API response data:', data);
+        
         if (data.success && data.brands) {
+          console.log(`📦 Setting ${data.brands.length} dynamic brands:`, data.brands);
           setDynamicBrands(data.brands);
           console.log(`📦 Header loaded ${data.brands.length} dynamic brands from Redis`);
         } else {
@@ -59,6 +68,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
           setDynamicBrands([]);
         }
       } else {
+        console.log('📡 Brands API failed, falling back to BrandLoader');
         // Fallback to existing BrandLoader if Redis fails
         const brands = await BrandLoader.loadBrandsConfig();
         setDynamicBrands(brands);
@@ -123,8 +133,14 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
         const result = await response.json();
         console.log('✅ Brand deleted successfully:', result);
         
-        // Refresh the brands list
-        await loadDynamicBrands();
+        // Force immediate state update by clearing the brands first
+        setDynamicBrands([]);
+        
+        // Wait a moment then refresh the brands list
+        setTimeout(async () => {
+          console.log('🔄 Refreshing brands after deletion...');
+          await loadDynamicBrands();
+        }, 100);
         
         // Show success message
         alert(`Brand "${brandName}" has been deleted successfully!`);
