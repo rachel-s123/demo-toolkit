@@ -513,12 +513,14 @@ export default function BrandSetup() {
                 
                 // Also update the uploaded logo URL state
                 setUploadedLogoUrl(logoFile.publicUrl);
+                console.log('✅ Set uploadedLogoUrl state to:', logoFile.publicUrl);
               } catch (configError) {
                 console.error('❌ Error updating config with logo URL:', configError);
                 message += ` Warning: Could not update config with logo URL.`;
               }
             } else {
               console.log('No logo file found in uploaded files');
+              console.log('Available files:', uploadedFiles.map((f: any) => ({ filename: f.filename, targetPath: f.targetPath, publicUrl: f.publicUrl })));
             }
             
             // Show public URLs for uploaded files
@@ -770,36 +772,50 @@ export default function BrandSetup() {
                 )}
                 
                 {/* Uploaded Logo URL Display */}
-                {uploadResult?.success && uploadResult.message.includes('Logo URL updated') && (
+                {uploadedLogoUrl && (
                   <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
                     <p className="text-sm font-medium text-green-800 mb-2">✅ Logo Successfully Uploaded!</p>
                     <p className="text-xs text-green-700">
                       Your logo has been uploaded to Vercel Blob Storage and is now available in your brand configuration.
                     </p>
-                    {uploadedLogoUrl && (
-                      <div className="mt-2">
-                        <p className="text-xs text-green-700 mb-1"><strong>Logo URL:</strong></p>
-                        <div className="flex items-center space-x-2">
-                          <img
-                            src={uploadedLogoUrl}
-                            alt="Uploaded logo"
-                            className="h-8 w-8 object-contain border border-gray-300 rounded"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                            }}
-                          />
-                          <a
-                            href={uploadedLogoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-blue-600 hover:text-blue-800 underline truncate"
-                          >
-                            {uploadedLogoUrl}
-                          </a>
-                        </div>
+                    <div className="mt-2">
+                      <p className="text-xs text-green-700 mb-1"><strong>Logo URL:</strong></p>
+                      <div className="flex items-center space-x-2">
+                        <img
+                          src={`${uploadedLogoUrl}?t=${Date.now()}`}
+                          alt="Uploaded logo"
+                          className="h-8 w-8 object-contain border border-gray-300 rounded"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
+                        />
+                        <a
+                          href={uploadedLogoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-blue-600 hover:text-blue-800 underline truncate"
+                        >
+                          {uploadedLogoUrl}
+                        </a>
                       </div>
-                    )}
+                    </div>
+                  </div>
+                )}
+                
+                {/* Debug: Show upload result for troubleshooting */}
+                {uploadResult && (
+                  <div className="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                    <p className="text-sm font-medium text-gray-800 mb-2">📋 Upload Result:</p>
+                    <p className="text-xs text-gray-700">
+                      <strong>Success:</strong> {uploadResult.success ? 'Yes' : 'No'}
+                    </p>
+                    <p className="text-xs text-gray-700">
+                      <strong>Message:</strong> {uploadResult.message}
+                    </p>
+                    <p className="text-xs text-gray-700">
+                      <strong>Logo URL State:</strong> {uploadedLogoUrl || 'Not set'}
+                    </p>
                   </div>
                 )}
               </div>
