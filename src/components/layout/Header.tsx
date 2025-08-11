@@ -114,7 +114,11 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   const handleRefreshBrands = async () => {
     console.log('🔄 Refreshing brands...');
     // Clear the dynamic locales cache to force a fresh load
-    dynamicLocalesLoader.clearCache();
+    try {
+      dynamicLocalesLoader.clearCache();
+    } catch (error) {
+      console.warn('Could not clear dynamic locales cache:', error);
+    }
     await loadDynamicBrands();
   };
 

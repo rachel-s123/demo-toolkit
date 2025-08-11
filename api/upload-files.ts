@@ -20,6 +20,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.log("Upload Files Handler: Request body:", req.body);
 
     const { files, brandCode, brandName } = req.body;
+    console.log('🔍 Upload request details:', { brandCode, brandName, filesCount: files?.length });
 
     if (!files || !Array.isArray(files)) {
       return res.status(400).json({ 
@@ -342,6 +343,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // If brand setup information is provided, complete the brand setup
     let brandSetupResult: any = null;
+    console.log(`🔍 Brand setup check: brandCode=${brandCode}, brandName=${brandName}, successCount=${successCount}`);
+    
     if (brandCode && brandName && successCount > 0) {
       console.log(`🔄 Completing brand setup for ${brandName} (${brandCode})...`);
       try {
