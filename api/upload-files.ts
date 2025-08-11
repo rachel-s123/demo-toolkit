@@ -102,14 +102,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         console.log(`🔗 Public URL: ${blobData.url}`);
         console.log(`📁 Storage path: ${storagePath}`);
         
-        // Test if the file is immediately accessible
+        // Test if the file is immediately accessible (with delay and retry)
         if (isBinary && mimeType?.startsWith('image/')) {
-          try {
-            const testResponse = await fetch(blobData.url);
-            console.log(`🖼️ Logo accessibility test: ${testResponse.status} ${testResponse.statusText}`);
-          } catch (testError) {
-            console.warn(`⚠️ Logo accessibility test failed:`, testError);
-          }
+          // Add delay for Vercel Blob Storage processing
+          setTimeout(async () => {
+            try {
+              console.log(`🖼️ Testing logo accessibility after delay: ${blobData.url}`);
+              const testResponse = await fetch(blobData.url);
+              console.log(`🖼️ Logo accessibility test: ${testResponse.status} ${testResponse.statusText}`);
+            } catch (testError) {
+              console.warn(`⚠️ Logo accessibility test failed:`, testError);
+            }
+          }, 3000); // 3 second delay
         }
 
       } catch (fileError: any) {
@@ -126,6 +130,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const failureCount = results.length - successCount;
 
     console.log(`✅ Upload Files Handler: Processed ${results.length} files. ${successCount} successful, ${failureCount} failed`);
+    console.log('📊 Results summary:', results.map(r => ({
+      filename: r.filename,
+      success: r.success,
+      storagePath: r.storagePath,
+      publicUrl: r.publicUrl,
+      error: r.error
+    })));
 
     // Update config file with correct logo URL if logo was uploaded
     let updatedConfigResult: any = null;
@@ -137,10 +148,44 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         try {
           console.log('🔄 Updating config file with logo URL...');
           console.log('📁 Config file URL:', configFile.publicUrl);
+          console.log('📁 Config file storage path:', configFile.storagePath);
           
-          // Fetch the uploaded config file
-          const configResponse = await fetch(configFile.publicUrl);
-          console.log('📡 Config response status:', configResponse.status);
+          // Add a small delay to ensure Vercel Blob Storage has processed the upload
+          console.log('⏳ Waiting for Vercel Blob Storage to process upload...');
+          await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
+          
+          // Fetch the uploaded config file with retry logic
+          let configResponse;
+          let retryCount = 0;
+          const maxRetries = 3;
+          
+          while (retryCount < maxRetries) {
+            try {
+              console.log(`📡 Attempting to fetch config file (attempt ${retryCount + 1}/${maxRetries})...`);
+              configResponse = await fetch(configFile.publicUrl);
+              console.log('📡 Config response status:', configResponse.status);
+              
+              if (configResponse.ok) {
+                break; // Success, exit retry loop
+              } else {
+                console.log(`⚠️ Config fetch failed with status ${configResponse.status}, retrying...`);
+                retryCount++;
+                if (retryCount < maxRetries) {
+                  await new Promise(resolve => setTimeout(resolve, 1000 * retryCount)); // Exponential backoff
+                }
+              }
+            } catch (fetchError) {
+              console.log(`⚠️ Config fetch error (attempt ${retryCount + 1}/${maxRetries}):`, fetchError);
+              retryCount++;
+              if (retryCount < maxRetries) {
+                await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
+              }
+            }
+          }
+          
+          if (!configResponse || !configResponse.ok) {
+            throw new Error(`Failed to fetch config file after ${maxRetries} attempts: ${configResponse?.status} ${configResponse?.statusText}`);
+          }
           
           if (!configResponse.ok) {
             throw new Error(`Failed to fetch config file: ${configResponse.status} ${configResponse.statusText}`);
