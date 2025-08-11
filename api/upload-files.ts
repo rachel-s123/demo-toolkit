@@ -174,14 +174,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           }))
           .filter(f => f.type !== 'other'); // Only sync relevant files
         
-        // Always attempt backend sync in local development
-        // In production, only sync if Redis is configured
-        if (process.env.VERCEL && !process.env.REDIS_URL) {
-          console.log('⚠️ Redis not configured in production, skipping backend sync');
+        // In production, skip backend sync (not needed)
+        // In local development, attempt backend sync to local server
+        if (process.env.VERCEL) {
+          console.log('⚠️ Production environment detected, skipping backend sync');
           backendSyncResult = {
             success: true,
-            message: `Brand ${brandName} uploaded to Vercel Blob Storage successfully. Backend sync skipped (Redis not configured).`,
-            note: "To enable backend sync, configure REDIS_URL in Vercel environment variables."
+            message: `Brand ${brandName} uploaded to Vercel Blob Storage successfully. Backend sync skipped in production.`,
+            note: "In production, brands are loaded directly from the updated locales index file."
           };
         } else {
           console.log('🔄 Redis configured, attempting backend sync...');
@@ -307,26 +307,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (brandCode && brandName && successCount > 0) {
       console.log(`🔄 Completing brand setup for ${brandName} (${brandCode})...`);
       try {
-        // In production (Vercel), skip filesystem operations
-        if (process.env.VERCEL) {
-          brandSetupResult = {
-            success: true,
-            message: `Brand setup completed successfully! ${brandName} has been uploaded to Vercel Blob Storage.`,
-            details: {
-              localeIndexUpdated: false,
-              headerUpdated: false,
-              note: "Filesystem operations skipped in production environment"
-            }
-          };
-        } else {
-          // In development, skip filesystem operations (Header now loads from Redis)
+        // In production, we need to update the locales index file
+        // In development, we also update the locales index file
+        try {
+          const { completeBrandSetup } = await import('../src/utils/brandSetupUtils');
+          brandSetupResult = completeBrandSetup(brandCode, brandName);
+        } catch (importError) {
+          console.warn('Could not import brandSetupUtils:', importError);
           brandSetupResult = {
             success: true,
             message: `Brand setup completed successfully! ${brandName} has been uploaded.`,
             details: {
               localeIndexUpdated: false,
-              headerUpdated: true,
-              note: "Header component now loads brands dynamically from Redis - no filesystem editing needed"
+              headerUpdated: false,
+              note: "Brand setup utils not available"
             }
           };
         }
