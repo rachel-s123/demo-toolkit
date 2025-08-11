@@ -2,12 +2,23 @@ import { VercelRequest, VercelResponse } from '@vercel/node';
 import { put } from '@vercel/blob';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (req.method === 'GET') {
+    // Allow GET requests for testing the endpoint
+    return res.status(200).json({
+      message: 'Update locales index endpoint is working',
+      endpoint: '/api/update-locales-index',
+      methods: ['POST', 'GET'],
+      note: 'Use POST to add/remove brands from the locales index'
+    });
+  }
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
     const { brandCode, brandName, action } = req.body;
+    console.log('📥 Received request:', { brandCode, brandName, action });
 
     if (!brandCode || !brandName || !action) {
       return res.status(400).json({ 
@@ -42,19 +53,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Upload the updated locales index to Vercel Blob Storage
     const storagePath = `brand-assets/locales/index_${Date.now()}.ts`;
+    console.log('📤 Uploading timestamped index to:', storagePath);
+    
     const blob = await put(storagePath, updatedContent, {
       contentType: 'text/typescript',
       access: 'public',
     });
+    console.log('✅ Timestamped index uploaded:', blob.url);
 
     // Also update the main locales index in the repository
     // This will be used by the frontend to load the updated index
     const mainIndexPath = `brand-assets/locales/index.ts`;
+    console.log('📤 Uploading main index to:', mainIndexPath);
+    
     await put(mainIndexPath, updatedContent, {
       contentType: 'text/typescript',
       access: 'public',
       allowOverwrite: true,
     });
+    console.log('✅ Main index uploaded successfully');
 
     console.log(`✅ Locales index updated successfully for ${brandCode}`);
 
@@ -83,16 +100,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
  */
 async function getCurrentLocalesIndex(): Promise<string | null> {
   try {
-    // Try to fetch from the current repository
-    const response = await fetch('https://raw.githubusercontent.com/rachel-s123/demo-toolkit/main/src/locales/index.ts');
+    // First, try to fetch the existing index from Vercel Blob Storage
+    const existingIndexUrl = 'https://chfu3qqwfe2lgq2b.public.blob.vercel-storage.com/brand-assets/locales/index.ts';
+    console.log('🔄 Trying to fetch existing index from blob storage:', existingIndexUrl);
+    
+    const response = await fetch(existingIndexUrl);
     if (response.ok) {
-      return await response.text();
+      const existingContent = await response.text();
+      console.log('✅ Found existing index in blob storage, length:', existingContent.length);
+      return existingContent;
     }
     
-    // Fallback to a template if we can't fetch from GitHub
+    console.log('⚠️ No existing index found in blob storage, using fallback template');
     return getDefaultLocalesIndexTemplate();
   } catch (error) {
-    console.warn('Could not fetch from GitHub, using template:', error);
+    console.warn('Could not fetch from blob storage, using template:', error);
     return getDefaultLocalesIndexTemplate();
   }
 }
@@ -108,8 +130,10 @@ import edfFrStrings from './edf_fr';
 import bmwStrings from './bmw';
 import enTemplateStrings from './en_template';
 import hedosophStrings from './hedosoph';
+import knightfrStrings from './knightfr';
+import nestleStrings from './nestle';
 
-export type LanguageCode = 'en' | 'edf' | 'edf_fr' | 'bmw' | 'en_template' | 'hedosoph';
+export type LanguageCode = 'en' | 'edf' | 'edf_fr' | 'bmw' | 'en_template' | 'hedosoph' | 'knightfr' | 'nestle';
 
 export const languages: Record<LanguageCode, SiteCopy> = {
   en: enStrings,
@@ -118,6 +142,8 @@ export const languages: Record<LanguageCode, SiteCopy> = {
   bmw: bmwStrings,
   en_template: enTemplateStrings,
   hedosoph: hedosophStrings,
+  knightfr: knightfrStrings,
+  nestle: nestleStrings,
 };
 
 export const defaultLang: LanguageCode = 'en';
