@@ -90,17 +90,34 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
       console.log(`🗑️ Deleting brand ${brandCode}...`);
       
       // Determine the correct API endpoint based on environment
-      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      // Check if we're running on localhost or if we have a local server running
+      const isDevelopment = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.port === '5173'; // Vite dev server port
+      
       const apiEndpoint = isDevelopment 
         ? `http://localhost:3001/api/brands/${brandCode}`
         : `/api/delete-brand?brandCode=${brandCode}`;
       
-      console.log(`🌍 Using ${isDevelopment ? 'local' : 'production'} API: ${apiEndpoint}`);
+      console.log(`🌍 Environment: ${isDevelopment ? 'local' : 'production'}`);
+      console.log(`🌍 Hostname: ${window.location.hostname}`);
+      console.log(`🌍 Port: ${window.location.port}`);
+      console.log(`🌍 Using API: ${apiEndpoint}`);
       
       // Call the delete API
-      const response = await fetch(apiEndpoint, {
+      let response = await fetch(apiEndpoint, {
         method: 'DELETE'
       });
+      
+      // If production API fails and we're in development, try local server as fallback
+      if (!response.ok && !isDevelopment && window.location.hostname === 'localhost') {
+        console.log('🔄 Production API failed, trying local server as fallback...');
+        const localEndpoint = `http://localhost:3001/api/brands/${brandCode}`;
+        response = await fetch(localEndpoint, {
+          method: 'DELETE'
+        });
+        console.log(`🔄 Local server response: ${response.status}`);
+      }
       
       if (response.ok) {
         const result = await response.json();
