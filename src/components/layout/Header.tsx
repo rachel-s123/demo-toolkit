@@ -89,8 +89,16 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
     try {
       console.log(`🗑️ Deleting brand ${brandCode}...`);
       
+      // Determine the correct API endpoint based on environment
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const apiEndpoint = isDevelopment 
+        ? `http://localhost:3001/api/brands/${brandCode}`
+        : `/api/delete-brand?brandCode=${brandCode}`;
+      
+      console.log(`🌍 Using ${isDevelopment ? 'local' : 'production'} API: ${apiEndpoint}`);
+      
       // Call the delete API
-      const response = await fetch(`/api/delete-brand?brandCode=${brandCode}`, {
+      const response = await fetch(apiEndpoint, {
         method: 'DELETE'
       });
       
@@ -104,9 +112,15 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
         // Show success message
         alert(`Brand "${brandName}" has been deleted successfully!`);
       } else {
-        const error = await response.json();
-        console.error('❌ Failed to delete brand:', error);
-        alert(`Failed to delete brand: ${error.error || 'Unknown error'}`);
+        let errorMessage = 'Unknown error';
+        try {
+          const error = await response.json();
+          errorMessage = error.error || error.message || 'Unknown error';
+        } catch (parseError) {
+          errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+        }
+        console.error('❌ Failed to delete brand:', errorMessage);
+        alert(`Failed to delete brand: ${errorMessage}`);
       }
     } catch (error) {
       console.error('❌ Error deleting brand:', error);
