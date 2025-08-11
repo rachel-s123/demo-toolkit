@@ -57,8 +57,13 @@ export class LLMGenerator {
             role: "system",
             content: `You are a creative marketing strategist with deep expertise in campaign development. Your role is to CREATE COMPLETELY ORIGINAL, INNOVATIVE CONTENT for real marketing campaigns.
 
+**CRITICAL LANGUAGE REQUIREMENT:**
+- ALL RESPONSES MUST BE IN BRITISH ENGLISH: Use British English spelling, grammar, and terminology throughout
+- Use British English spellings: prioritise, maximise, customise, organise, realise, analyse, etc.
+- Use British English terminology: programme, colour, centre, favourite, behaviour, defence, licence, practice, etc.
+
 CRITICAL CONTENT FOCUS REQUIREMENTS:
-- PRIORITIZE USER-SPECIFIED DELIVERABLES: Focus on creating the exact types of assets, messages, and guides specified in the Key Deliverables field
+- PRIORITISE USER-SPECIFIED DELIVERABLES: Focus on creating the exact types of assets, messages, and guides specified in the Key Deliverables field
 - FOLLOW ADAPTATION INSTRUCTIONS: Use the Adaptation Instructions to determine content themes, terminology, and focus areas
 - DO NOT DEFAULT TO GENERIC CONTENT: Avoid creating generic "landing pages", "content strategy guides", or "cover images" unless specifically requested
 - CREATE DELIVERABLE-SPECIFIC CONTENT: If deliverables include "Social media posts", create actual social media posts; if "Email templates", create email templates, etc.
@@ -176,7 +181,7 @@ ${formData.keyDeliverables.map(deliverable => `- ${deliverable}`).join('\n')}
 - Create content that directly supports the campaign objectives`;
 
     const creativeMandate = `CREATIVE MANDATE:
-1. **PRIORITIZE USER-SPECIFIED CONTENT**: Focus on creating the exact types of assets, messages, and guides specified in the Key Deliverables
+1. **PRIORITISE USER-SPECIFIED CONTENT**: Focus on creating the exact types of assets, messages, and guides specified in the Key Deliverables
 2. **FOLLOW ADAPTATION INSTRUCTIONS**: Use the Adaptation Instructions to determine content themes, terminology, and focus areas
 3. **CREATE COMPLETELY ORIGINAL CONTENT**: Do NOT copy, adapt, or reference ANY content from the template files
 4. **BE SPECIFIC TO THE INDUSTRY**: Use industry-specific terminology and concepts relevant to ${formData.industry}
@@ -675,7 +680,12 @@ export default brandStrings;
 4. **Messages/Guides arrays**: Must contain full objects, not references
 5. **All keys must be preserved**: Only change content values, never the structure`;
 
-    const finalInstructions = `**CRITICAL WARNING - NO TEMPLATE CONTENT**:
+    const finalInstructions = `**CRITICAL LANGUAGE REQUIREMENT**:
+- **ALL RESPONSES MUST BE IN BRITISH ENGLISH**: Use British English spelling, grammar, and terminology throughout
+- Use British English spellings: prioritise, maximise, customise, organise, realise, analyse, etc.
+- Use British English terminology: programme, colour, centre, favourite, behaviour, defence, licence, practice, etc.
+
+**CRITICAL WARNING - NO TEMPLATE CONTENT**:
 - NEVER use words like "retailer", "dealership", "test ride", "motorcycle", "BMW", "R Series", "Boxer engine", "naked bike", "touring", "sport bike" or any other template-specific terms
 - NEVER copy phrases, sentences, or concepts from the template files
 - CREATE COMPLETELY NEW CONTENT that is relevant to the specific industry and campaign
@@ -692,7 +702,7 @@ export default brandStrings;
 
 **CAMPAIGN CONTEXT INTEGRATION REQUIREMENTS**:
 - **USE ALL FORM DATA**: Incorporate brand name, industry, campaign type, target audience, primary goal, and key deliverables throughout
-- **PRIORITIZE KEY DELIVERABLES**: Create content that directly addresses these specific deliverables: ${formData.keyDeliverables.join(', ')}
+- **PRIORITISE KEY DELIVERABLES**: Create content that directly addresses these specific deliverables: ${formData.keyDeliverables.join(', ')}
 - **FOLLOW ADAPTATION INSTRUCTIONS**: Use the Adaptation Instructions to determine content themes and focus: "${formData.adaptationPrompt}"
 - **CONTENT TYPES**: Focus on the exact types of content specified in Key Deliverables, not generic templates
 - **MINIMUM QUANTITY**: Generate AT LEAST 5 assets, 5 messages, and 5 guides to ensure comprehensive coverage
