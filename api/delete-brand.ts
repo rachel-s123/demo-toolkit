@@ -26,21 +26,44 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const localeResult = removeBrandFromLocales(brandCode);
     if (!localeResult.success) {
       console.error('❌ Failed to remove brand from locales:', localeResult.error);
-      
-      // For now, return success but log the issue
-      // This prevents the frontend from showing an error to users
-      console.warn('⚠️ Continuing with deletion despite locale file issue');
-      
-      return res.status(200).json({
-        success: true,
-        message: `Brand ${brandCode} deleted successfully`,
-        brandCode,
-        details: {
-          localesUpdated: false,
-          warning: 'Brand deleted but locale file could not be updated'
-        }
-      });
     }
+
+    // Remove from Vercel Blob Storage
+    let blobDeleted = false;
+    try {
+      const { del } = await import('@vercel/blob');
+      
+      // Delete config file
+      await del(`brand-assets/configs/config_${brandCode}.json`);
+      console.log(`✅ Deleted config file for ${brandCode}`);
+      
+      // Delete locale file
+      await del(`brand-assets/locales/${brandCode}.ts`);
+      console.log(`✅ Deleted locale file for ${brandCode}`);
+      
+      // Delete logo file (if exists)
+      try {
+        await del(`brand-assets/logos/${brandCode}.png`);
+        console.log(`✅ Deleted logo file for ${brandCode}`);
+      } catch (logoError) {
+        console.log(`ℹ️ No logo file found for ${brandCode}`);
+      }
+      
+      blobDeleted = true;
+    } catch (blobError) {
+      console.error('❌ Failed to delete from blob storage:', blobError);
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: `Brand ${brandCode} deleted successfully`,
+      brandCode,
+      details: {
+        localesUpdated: localeResult.success,
+        blobDeleted,
+        warning: blobDeleted ? undefined : 'Brand deleted but blob files could not be removed'
+      }
+    });
 
     return res.status(200).json({
       success: true,
