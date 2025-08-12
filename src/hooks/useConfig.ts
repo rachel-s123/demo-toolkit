@@ -67,8 +67,9 @@ export const useConfig = (): UseConfigReturn => {
       if (possibleBrand && possibleBrand.files && possibleBrand.files.length > 0) {
         const configFile = possibleBrand.files.find((file: any) => file.type === 'config');
         if (configFile?.url) {
-          console.log(`📁 Loading config from KV-provided URL: ${configFile.url}`);
-          const response = await fetch(configFile.url);
+          const bustUrl = `${configFile.url}${configFile.url.includes('?') ? '&' : '?'}t=${Date.now()}`;
+          console.log(`📁 Loading config from KV-provided URL: ${bustUrl}`);
+          const response = await fetch(bustUrl, { cache: 'no-store' as RequestCache });
           if (!response.ok) throw new Error(`Failed to load brand config: ${response.statusText}`);
           const data = await response.json();
           setConfig(data);
@@ -78,22 +79,16 @@ export const useConfig = (): UseConfigReturn => {
 
       const brandConfig = BrandLoader.getBrandConfig(language);
       console.log(`🔍 Brand config for ${language}:`, brandConfig ? 'Found' : 'Not found');
-      
       if (brandConfig) {
-        // This is a dynamic brand - load from blob storage
-        const configFile = brandConfig.files.find(file => file.type === 'config');
-        if (configFile) {
-          console.log(`📁 Loading config from: ${configFile.url}`);
-          const response = await fetch(configFile.url);
-          if (!response.ok) {
-            throw new Error(`Failed to load brand config: ${response.statusText}`);
-          }
+        const cfg = brandConfig.files?.find((f: any) => f.type === 'config');
+        if (cfg?.url) {
+          const bustUrl = `${cfg.url}${cfg.url.includes('?') ? '&' : '?'}t=${Date.now()}`;
+          console.log(`📁 Loading config from: ${bustUrl}`);
+          const response = await fetch(bustUrl, { cache: 'no-store' as RequestCache });
+          if (!response.ok) throw new Error(`Failed to load brand config: ${response.statusText}`);
           const data = await response.json();
-          console.log(`✅ Loaded dynamic brand config for ${language}:`, data.brand?.name, 'Logo:', data.brand?.logo);
           setConfig(data);
           return;
-        } else {
-          console.warn(`⚠️ No config file found for brand ${language}`);
         }
       }
       

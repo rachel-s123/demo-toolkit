@@ -9,66 +9,48 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const { brandCode } = req.query;
 
-    // Check if Redis is configured
     if (!process.env.REDIS_URL) {
       console.warn('⚠️ Redis not configured, returning empty response');
-      return res.status(200).json({
-        success: true,
-        brands: [],
-        message: 'No backend storage configured'
-      });
+      return res.status(200).json({ success: true, brands: [], message: 'No backend storage configured' });
     }
 
     if (brandCode) {
-      // Get specific brand
-      const brandKey = `brand:${brandCode}`;
-      const brand = await kv.get(brandKey);
-      
-      if (!brand) {
-        return res.status(404).json({
-          success: false,
-          error: `Brand ${brandCode} not found`
-        });
+      try {
+        const brandKey = `brand:${brandCode}`;
+        const brand = await kv.get(brandKey);
+        if (!brand) {
+          return res.status(404).json({ success: false, error: `Brand ${brandCode} not found` });
+        }
+        return res.status(200).json({ success: true, brand, message: `Brand ${brandCode} retrieved successfully` });
+      } catch (e: any) {
+        console.error('❌ KV get brand error:', e);
+        return res.status(200).json({ success: true, brand: null, message: 'KV error; returning null brand' });
       }
-
-      return res.status(200).json({
-        success: true,
-        brand,
-        message: `Brand ${brandCode} retrieved successfully`
-      });
     } else {
-      // Get all brands
-      const mainConfig = await kv.get('bmw:config');
-      
-      if (!mainConfig || !mainConfig.brands) {
-        return res.status(200).json({
-          success: true,
-          brands: [],
-          message: 'No brands found'
-        });
+      try {
+        const mainConfig: any = await kv.get('bmw:config');
+        if (!mainConfig || !mainConfig.brands) {
+          return res.status(200).json({ success: true, brands: [], message: 'No brands found' });
+        }
+        const detailedBrands = await Promise.all(
+          mainConfig.brands.map(async (brandSummary: any) => {
+            try {
+              const brandKey = `brand:${brandSummary.brandCode}`;
+              const detailedBrand = await kv.get(brandKey);
+              return detailedBrand || brandSummary;
+            } catch (e) {
+              return brandSummary;
+            }
+          })
+        );
+        return res.status(200).json({ success: true, brands: detailedBrands, message: `Retrieved ${detailedBrands.length} brands successfully` });
+      } catch (e: any) {
+        console.error('❌ KV list brands error:', e);
+        return res.status(200).json({ success: true, brands: [], message: 'KV error; returning empty brand list' });
       }
-
-      // Get detailed information for each brand
-      const detailedBrands = await Promise.all(
-        mainConfig.brands.map(async (brandSummary: any) => {
-          const brandKey = `brand:${brandSummary.brandCode}`;
-          const detailedBrand = await kv.get(brandKey);
-          return detailedBrand || brandSummary;
-        })
-      );
-
-      return res.status(200).json({
-        success: true,
-        brands: detailedBrands,
-        message: `Retrieved ${detailedBrands.length} brands successfully`
-      });
     }
   } catch (error: any) {
     console.error('Error retrieving brands:', error);
-    return res.status(500).json({
-      success: false,
-      error: 'Failed to retrieve brands',
-      details: error.message
-    });
+    return res.status(200).json({ success: true, brands: [], message: 'Unhandled error; returning empty' });
   }
 } 
