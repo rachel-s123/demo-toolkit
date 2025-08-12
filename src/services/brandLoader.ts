@@ -22,26 +22,37 @@ export class BrandLoader {
    */
   static async loadBrandsConfig(): Promise<BrandConfig[]> {
     try {
-      // Try the blob-based endpoint first
+      // Prefer KV-based endpoint first (brand registry), then fall back to blob-based scan
+      try {
+        const kvResponse = await fetch('/api/get-brands');
+        const kvData = await kvResponse.json();
+        if (kvResponse.ok && kvData.success && Array.isArray(kvData.brands) && kvData.brands.length > 0) {
+          this.brandsConfig = kvData.brands;
+          console.log(`📦 Loaded ${kvData.brands.length} brands from KV/Redis`);
+          return kvData.brands;
+        }
+      } catch (kvError) {
+        console.warn('KV/Redis brands endpoint failed, will try blob:', kvError);
+      }
+
+      // Blob-based endpoint
       const response = await fetch('/api/get-brands-from-blob');
       const data = await response.json();
-      
       if (data.success && data.brands) {
         this.brandsConfig = data.brands;
         console.log(`📦 Loaded ${data.brands.length} brands from blob storage`);
         return data.brands;
       }
-      
-      // Fallback to KV-based endpoint if blob endpoint fails
-      console.log('🔄 Falling back to KV-based endpoint...');
-      const kvResponse = await fetch('/api/get-brands');
-      const kvData = await kvResponse.json();
-      
-      if (kvData.success && kvData.brands) {
-        this.brandsConfig = kvData.brands;
-        return kvData.brands;
+
+      // Final fallback to older endpoint
+      console.log('🔄 Falling back to legacy unified brands endpoint...');
+      const unified = await fetch('/api/brands');
+      const unifiedData = await unified.json();
+      if (unified.ok && unifiedData.success && unifiedData.brands) {
+        this.brandsConfig = unifiedData.brands;
+        return unifiedData.brands;
       }
-      
+
       return [];
     } catch (error) {
       console.error('Failed to load brands config:', error);

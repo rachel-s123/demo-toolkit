@@ -340,6 +340,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Sync brand information to backend (including logo)
     let backendSyncResult: any = null;
     if (brandCode && brandName && successCount > 0) {
+      // In all environments, attempt backend sync to API route
       try {
         console.log('🔄 Syncing brand information to backend...');
         
@@ -354,105 +355,53 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                   r.targetPath?.includes('public/locales/') ? 'config' :
                   r.targetPath?.includes('src/locales/') ? 'locale' : 'other'
           }))
-          .filter(f => f.type !== 'other'); // Only sync relevant files
+          .filter(f => f.type !== 'other');
         
-        // In production, skip backend sync (not needed)
-        // In local development, attempt backend sync to local server
-        if (process.env.VERCEL) {
-          console.log('⚠️ Production environment detected, skipping backend sync');
+        const baseUrl = process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}` 
+          : 'http://localhost:3001';
+        
+        const syncUrl = `${baseUrl}/api/sync-brand-to-backend`;
+        console.log('🔍 Calling sync API at:', syncUrl);
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        
+        const syncResponse = await fetch(syncUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ brandCode, brandName, files: syncFiles }),
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        const responseText = await syncResponse.text();
+        if (!responseText.trim().startsWith('{')) {
+          throw new Error(`Unexpected response: ${responseText.substring(0, 200)}`);
+        }
+        const syncResult = JSON.parse(responseText);
+        
+        if (syncResponse.ok && syncResult.success) {
           backendSyncResult = {
             success: true,
-            message: `Brand ${brandName} uploaded to Vercel Blob Storage successfully. Backend sync skipped in production.`,
-            note: "In production, brands are loaded directly from the updated locales index file."
+            message: `Brand ${brandName} synced to backend successfully`,
+            details: syncResult
           };
         } else {
-          console.log('🔄 Redis configured, attempting backend sync...');
-          // Call the sync API with timeout
-          // In local development, call the local server
-          // In production, call the Vercel API
-          const baseUrl = process.env.VERCEL_URL 
-            ? `https://${process.env.VERCEL_URL}` 
-            : 'http://localhost:3001';
-          
-          const syncUrl = `${baseUrl}/api/sync-brand-to-backend`;
-          console.log('🔍 Calling sync API at:', syncUrl);
-          
-                    // Add timeout to the fetch request
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-          
-          try {
-            const syncResponse = await fetch(syncUrl, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                brandCode,
-                brandName,
-                files: syncFiles
-              }),
-              signal: controller.signal
-            });
-            
-            clearTimeout(timeoutId);
-            
-            let syncResult;
-            try {
-              const responseText = await syncResponse.text();
-              console.log('🔍 Sync response status:', syncResponse.status);
-              console.log('🔍 Sync response text:', responseText.substring(0, 500));
-              
-              if (responseText.trim().startsWith('<')) {
-                // Response is HTML (likely an error page)
-                throw new Error(`API returned HTML instead of JSON. Status: ${syncResponse.status}. Response: ${responseText.substring(0, 200)}`);
-              }
-              
-              syncResult = JSON.parse(responseText);
-            } catch (parseError) {
-              console.error('❌ Failed to parse sync response:', parseError);
-              backendSyncResult = {
-                success: false,
-                message: 'Backend sync failed - invalid response format',
-                error: parseError instanceof Error ? parseError.message : 'Unknown parsing error',
-                status: syncResponse.status
-              };
-              return;
-            }
-            
-            if (syncResponse.ok && syncResult.success) {
-              backendSyncResult = {
-                success: true,
-                message: syncResult.message,
-                brandConfig: syncResult.brandConfig,
-                frontendConfig: syncResult.frontendConfig
-              };
-              console.log('✅ Backend sync successful:', syncResult);
-            } else {
-              backendSyncResult = {
-                success: false,
-                message: syncResult.error || 'Backend sync failed',
-                details: syncResult,
-                status: syncResponse.status
-              };
-              console.error('❌ Backend sync failed:', syncResult);
-            }
-          } catch (fetchError) {
-            clearTimeout(timeoutId);
-            console.error('❌ Sync API fetch failed:', fetchError);
-            backendSyncResult = {
-              success: false,
-              message: 'Backend sync failed - network error',
-              error: fetchError instanceof Error ? fetchError.message : 'Unknown fetch error'
-            };
-          }
+          backendSyncResult = {
+            success: false,
+            message: 'Backend sync failed',
+            status: syncResponse.status,
+            details: syncResult
+          };
         }
-      } catch (syncError) {
-        console.error('❌ Error during backend sync:', syncError);
+      } catch (syncError: any) {
+        console.error('❌ Backend sync error:', syncError);
         backendSyncResult = {
           success: false,
           message: 'Backend sync error',
-          error: syncError instanceof Error ? syncError.message : 'Unknown error'
+          error: syncError?.message || String(syncError)
         };
       }
     }

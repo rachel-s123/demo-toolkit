@@ -59,10 +59,23 @@ export const useConfig = (): UseConfigReturn => {
       
       // Check if this is a dynamic brand (not a static locale)
       const { BrandLoader } = await import('../services/brandLoader');
-      
-      // First, ensure brands are loaded
       await BrandLoader.loadBrandsConfig();
-      
+
+      // If KV supplied richer brand objects with file URLs, prefer those
+      const possibleBrand = (BrandLoader as any).getBrandConfig(language);
+
+      if (possibleBrand && possibleBrand.files && possibleBrand.files.length > 0) {
+        const configFile = possibleBrand.files.find((file: any) => file.type === 'config');
+        if (configFile?.url) {
+          console.log(`📁 Loading config from KV-provided URL: ${configFile.url}`);
+          const response = await fetch(configFile.url);
+          if (!response.ok) throw new Error(`Failed to load brand config: ${response.statusText}`);
+          const data = await response.json();
+          setConfig(data);
+          return;
+        }
+      }
+
       const brandConfig = BrandLoader.getBrandConfig(language);
       console.log(`🔍 Brand config for ${language}:`, brandConfig ? 'Found' : 'Not found');
       
