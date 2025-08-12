@@ -55,34 +55,47 @@ export const useConfig = (): UseConfigReturn => {
       setLoading(true);
       setError(null);
       
+      console.log(`🔄 Fetching config for language: ${language}`);
+      
       // Check if this is a dynamic brand (not a static locale)
       const { BrandLoader } = await import('../services/brandLoader');
+      
+      // First, ensure brands are loaded
+      await BrandLoader.loadBrandsConfig();
+      
       const brandConfig = BrandLoader.getBrandConfig(language);
+      console.log(`🔍 Brand config for ${language}:`, brandConfig ? 'Found' : 'Not found');
       
       if (brandConfig) {
         // This is a dynamic brand - load from blob storage
         const configFile = brandConfig.files.find(file => file.type === 'config');
         if (configFile) {
+          console.log(`📁 Loading config from: ${configFile.url}`);
           const response = await fetch(configFile.url);
           if (!response.ok) {
             throw new Error(`Failed to load brand config: ${response.statusText}`);
           }
           const data = await response.json();
+          console.log(`✅ Loaded dynamic brand config for ${language}:`, data.brand?.name, 'Logo:', data.brand?.logo);
           setConfig(data);
           return;
+        } else {
+          console.warn(`⚠️ No config file found for brand ${language}`);
         }
       }
       
       // Fallback to static config for built-in locales
+      console.log(`📁 Loading static config for: ${language}`);
       const response = await fetch(`/locales/config_${language}.json`);
       if (!response.ok) {
         throw new Error(`Failed to load config: ${response.statusText}`);
       }
       const data = await response.json();
+      console.log(`✅ Loaded static config for ${language}:`, data.brand?.name, 'Logo:', data.brand?.logo);
       setConfig(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load configuration');
-      console.error('Error loading config:', err);
+      console.error('❌ Error loading config:', err);
     } finally {
       setLoading(false);
     }

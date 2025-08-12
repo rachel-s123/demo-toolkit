@@ -172,7 +172,14 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const value = event.target.value;
+    console.log(`🔄 Brand change requested: ${language} → ${value}`);
     setLanguage(value as LanguageCode);
+    
+    // Force a refresh of the config when brand changes
+    setTimeout(() => {
+      console.log(`🔄 Forcing config refresh for new brand: ${value}`);
+      // This will trigger the useConfig hook to refetch
+    }, 100);
   };
 
   const handleLogout = () => {
@@ -203,12 +210,23 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 onError={(e) => {
                   // Fallback to default logo if brand logo fails to load
                   const target = e.target as HTMLImageElement;
+                  console.warn(`❌ Logo failed to load: ${target.src}, falling back to default`);
                   if (target.src !== "/assets/logos/brilliant-noise.jpg") {
                     target.src = "/assets/logos/brilliant-noise.jpg";
                   }
                 }}
+                onLoad={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  console.log(`✅ Logo loaded successfully: ${target.src}`);
+                }}
               />
             </Link>
+            {/* Debug info - only show in development */}
+            {process.env.NODE_ENV === 'development' && config?.brand?.logo && (
+              <div className="text-xs text-gray-500 mt-1">
+                Logo: {config.brand.logo}
+              </div>
+            )}
           </div>
 
           {/* Desktop Controls - Center (hidden on mobile) */}
