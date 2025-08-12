@@ -27,7 +27,7 @@ const fallbackBrandDisplayNames: Record<string, string> = {
 const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   // Add safety checks for context availability
   let language: LanguageCode = 'en';
-  let setLanguage = (lang: LanguageCode) => {};
+  let setLanguage = (_lang: LanguageCode) => {};
   let translations: any = {};
   
   try {
@@ -122,75 +122,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
     await loadDynamicBrands();
   };
 
-  const handleDeleteBrand = async (brandCode: string, brandName: string) => {
-    if (!confirm(`Are you sure you want to delete "${brandName}"? This action cannot be undone.`)) {
-      return;
-    }
-
-    try {
-      console.log(`🗑️ Deleting brand ${brandCode}...`);
-      
-      // Determine the correct API endpoint based on environment
-      // Check if we're running on localhost or if we have a local server running
-      const isDevelopment = window.location.hostname === 'localhost' || 
-                           window.location.hostname === '127.0.0.1' ||
-                           window.location.port === '5173'; // Vite dev server port
-      
-      const apiEndpoint = isDevelopment 
-        ? `http://localhost:3001/api/brands/${brandCode}`
-        : `/api/delete-brand?brandCode=${brandCode}`;
-      
-      console.log(`🌍 Environment: ${isDevelopment ? 'local' : 'production'}`);
-      console.log(`🌍 Hostname: ${window.location.hostname}`);
-      console.log(`🌍 Port: ${window.location.port}`);
-      console.log(`🌍 Using API: ${apiEndpoint}`);
-      
-      // Call the delete API
-      let response = await fetch(apiEndpoint, {
-        method: 'DELETE'
-      });
-      
-      // If production API fails and we're in development, try local server as fallback
-      if (!response.ok && !isDevelopment && window.location.hostname === 'localhost') {
-        console.log('🔄 Production API failed, trying local server as fallback...');
-        const localEndpoint = `http://localhost:3001/api/brands/${brandCode}`;
-        response = await fetch(localEndpoint, {
-          method: 'DELETE'
-        });
-        console.log(`🔄 Local server response: ${response.status}`);
-      }
-      
-      if (response.ok) {
-        const result = await response.json();
-        console.log('✅ Brand deleted successfully:', result);
-        
-        // Force immediate state update by clearing the brands first
-        setDynamicBrands([]);
-        
-        // Wait a moment then refresh the brands list
-        setTimeout(async () => {
-          console.log('🔄 Refreshing brands after deletion...');
-          await loadDynamicBrands();
-        }, 100);
-        
-        // Show success message
-        alert(`Brand "${brandName}" has been deleted successfully!`);
-      } else {
-        let errorMessage = 'Unknown error';
-        try {
-          const error = await response.json();
-          errorMessage = error.error || error.message || 'Unknown error';
-        } catch (parseError) {
-          errorMessage = `HTTP ${response.status}: ${response.statusText}`;
-        }
-        console.error('❌ Failed to delete brand:', errorMessage);
-        alert(`Failed to delete brand: ${errorMessage}`);
-      }
-    } catch (error) {
-      console.error('❌ Error deleting brand:', error);
-      alert('Failed to delete brand. Please try again.');
-    }
-  };
+  // Brand deletion moved to Brand Setup page
 
   const tabPaths: Record<TabType, string> = {
     HOME: "/",
@@ -240,19 +172,6 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const value = event.target.value;
-    
-    // Check if this is a delete action
-    if (value.startsWith('delete-')) {
-      const brandCode = value.replace('delete-', '');
-      const brand = dynamicBrands.find(b => b.brandCode === brandCode);
-      if (brand) {
-        handleDeleteBrand(brand.brandCode, brand.brandName);
-        // Reset the select to the current language
-        event.target.value = language;
-        return;
-      }
-    }
-    
     setLanguage(value as LanguageCode);
   };
 
@@ -327,17 +246,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                         </>
                       )}
                       
-                      {/* Delete brand options */}
-                      {dynamicBrands.length > 0 && (
-                        <>
-                          <option disabled>──────────</option>
-                          {dynamicBrands.map((brand) => (
-                            <option key={`delete-${brand.brandCode}`} value={`delete-${brand.brandCode}`} className="text-red-600">
-                              🗑️ Delete {brand.brandName}
-                            </option>
-                          ))}
-                        </>
-                      )}
+                      
               </select>
               
               {/* Refresh brands button */}
@@ -475,17 +384,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                     </>
                   )}
                   
-                  {/* Delete brand options */}
-                  {dynamicBrands.length > 0 && (
-                    <>
-                      <option disabled>──────────</option>
-                      {dynamicBrands.map((brand) => (
-                        <option key={`delete-${brand.brandCode}`} value={`delete-${brand.brandCode}`} className="text-red-600">
-                          🗑️ Delete {brand.brandName}
-                        </option>
-                      ))}
-                    </>
-                  )}
+                  
                 </select>
                 
                 {/* Refresh brands button - Mobile */}

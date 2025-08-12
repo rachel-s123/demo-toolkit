@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../ui/Button";
 import Card from "../../ui/Card";
 import { LLMGenerator, BrandFormData as LLMBrandFormData } from '../../../services/llmGenerator';
+import { dynamicLocalesLoader } from '../../../services/dynamicLocalesLoader';
 import { useLanguage } from "../../../context/LanguageContext";
 import { Plus, X, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -122,11 +123,9 @@ const CollapsibleSection = ({
 );
 
 export default function BrandSetup() {
-  // Add safety check for context availability
-  let language: string = 'en';
+  // Access language context if needed in future; not required for this section
   try {
-    const languageContext = useLanguage();
-    language = languageContext.language;
+    useLanguage();
   } catch (error) {
     console.warn('Language context not available in BrandSetup');
   }
@@ -157,6 +156,89 @@ export default function BrandSetup() {
     basic: true,
     "campaign-context": true
   });
+
+  // Brands management state
+  type ExistingBrand = { brandCode: string; brandName: string };
+  const [existingBrands, setExistingBrands] = useState<ExistingBrand[]>([]);
+  const [isLoadingBrands, setIsLoadingBrands] = useState<boolean>(false);
+  const [brandsError, setBrandsError] = useState<string | null>(null);
+
+  const fetchExistingBrands = async () => {
+    try {
+      setIsLoadingBrands(true);
+      setBrandsError(null);
+
+      // Use same strategy as Header: try dynamic locales loader first, then fallback
+      try {
+        const fromLocales = await dynamicLocalesLoader.getAvailableBrandsWithNames();
+        if (fromLocales && fromLocales.length > 0) {
+          console.log('📦 Found brands from dynamic locales loader:', fromLocales);
+          setExistingBrands(fromLocales.map(b => ({ brandCode: b.brandCode, brandName: b.brandName })));
+          return;
+        }
+      } catch (dynamicError) {
+        console.warn('Dynamic locales loader failed, falling back to API:', dynamicError);
+      }
+
+      // Fallback to unified brands endpoint
+      const response = await fetch(`/api/brands?t=${Date.now()}`);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const data = await response.json();
+      const brands = (data?.brands || []) as Array<{ brandCode: string; brandName: string }>;
+      console.log('📦 Found brands from API fallback:', brands);
+      setExistingBrands(brands);
+    } catch (err: any) {
+      setBrandsError(err?.message || 'Failed to load brands');
+      setExistingBrands([]);
+    } finally {
+      setIsLoadingBrands(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchExistingBrands();
+  }, []);
+
+  const deleteBrand = async (brandCode: string, brandName: string) => {
+    if (!confirm(`Are you sure you want to delete "${brandName}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      // Determine the correct API endpoint based on environment (match Header behavior)
+      const isDevelopment = window.location.hostname === 'localhost' ||
+                            window.location.hostname === '127.0.0.1' ||
+                            window.location.port === '5173';
+
+      const apiEndpoint = isDevelopment
+        ? `http://localhost:3001/api/brands/${brandCode}`
+        : `/api/delete-brand?brandCode=${brandCode}`;
+
+      let response = await fetch(apiEndpoint, { method: 'DELETE' });
+
+      if (!response.ok && !isDevelopment && window.location.hostname === 'localhost') {
+        const localEndpoint = `http://localhost:3001/api/brands/${brandCode}`;
+        response = await fetch(localEndpoint, { method: 'DELETE' });
+      }
+
+      if (!response.ok) {
+        let errorMessage = 'Unknown error';
+        try {
+          const error = await response.json();
+          errorMessage = error.error || error.message || errorMessage;
+        } catch {}
+        throw new Error(errorMessage);
+      }
+
+      // Update list
+      setExistingBrands((prev) => prev.filter((b) => b.brandCode !== brandCode));
+      alert(`Brand "${brandName}" has been deleted successfully!`);
+    } catch (error: any) {
+      alert(`Failed to delete brand: ${error?.message || 'Unknown error'}`);
+    }
+  };
 
   const handleInputChange = (field: keyof BrandFormData, value: string | File) => {
     if (field === "brandName" && typeof value === "string") {
@@ -973,6 +1055,51 @@ export default function BrandSetup() {
               </Button>
             )}
           </div>
+        </div>
+      </Card>
+
+      {/* Existing Brands Management */}
+      <Card>
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Existing Brands</h3>
+          <p className="text-gray-600 mb-4">View brands that have been set up. You can delete any brand here.</p>
+
+          <div className="mb-3">
+            <Button variant="outline" onClick={fetchExistingBrands} disabled={isLoadingBrands}>
+              {isLoadingBrands ? 'Refreshing…' : 'Refresh List'}
+            </Button>
+          </div>
+
+          {brandsError && (
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm">
+              {brandsError}
+            </div>
+          )}
+
+          {isLoadingBrands ? (
+            <div className="text-sm text-gray-600">Loading brands…</div>
+          ) : existingBrands.length === 0 ? (
+            <div className="text-sm text-gray-500">No brands found.</div>
+          ) : (
+            <div className="divide-y divide-gray-200">
+              {existingBrands.map((brand) => (
+                <div key={brand.brandCode} className="flex items-center justify-between py-3">
+                  <div>
+                    <div className="font-medium text-gray-900">{brand.brandName}</div>
+                    <div className="text-xs text-gray-500">Code: {brand.brandCode}</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      onClick={() => deleteBrand(brand.brandCode, brand.brandName)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </Card>
 

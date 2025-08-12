@@ -7,10 +7,10 @@ export interface DynamicLocalesLoader {
 }
 
 export class VercelBlobLocalesLoader implements DynamicLocalesLoader {
-  private static cachedLocalesIndex: Record<string, SiteCopy> | null = null;
-  private static cachedBrands: Map<string, SiteCopy> = new Map();
-  private static lastIndexUpdate: number = 0;
-  private static readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+  private cachedLocalesIndex: Record<string, SiteCopy> | null = null;
+  private cachedBrands: Map<string, SiteCopy> = new Map();
+  private lastIndexUpdate: number = 0;
+  private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
   /**
    * Load the locales index from Vercel Blob Storage
@@ -134,17 +134,11 @@ export class VercelBlobLocalesLoader implements DynamicLocalesLoader {
           // Try to extract brand name from the locale content
           let brandName = brandCode; // fallback to brand code
           
-          // Look for brand name in various places in the locale
-          if (locale.brand?.name) {
-            brandName = locale.brand.name;
-          } else if (locale.home?.mainTitle) {
-            // Extract brand name from main title (e.g., "BMW Motorrad R Series Dealership Toolkit" -> "BMW Motorrad")
+          // Look for brand name in the main title
+          if (locale.home?.mainTitle) {
+            // Extract brand name from main title by removing common suffixes
             const title = locale.home.mainTitle;
-            if (title.includes('Toolkit')) {
-              brandName = title.replace(' Toolkit', '').replace(' Dealership', '').replace(' R Series', '');
-            } else {
-              brandName = title;
-            }
+            brandName = this.cleanBrandTitle(title);
           }
           
           brandsWithNames.push({ brandCode, brandName });
@@ -159,6 +153,63 @@ export class VercelBlobLocalesLoader implements DynamicLocalesLoader {
       console.error('❌ Error getting available brands with names:', error);
       return [];
     }
+  }
+
+  /**
+   * Clean up a brand title to show just the brand name
+   */
+  private cleanBrandTitle(title: string): string {
+    if (!title) return '';
+    
+    console.log(`🧹 Cleaning brand title: "${title}"`);
+    
+    // Remove common toolkit-related suffixes
+    const suffixesToRemove = [
+      ' Toolkit',
+      ' Dealership Toolkit',
+      ' Dealer Toolkit',
+      ' R Series',
+      ' R Series Dealership',
+      ' Dealership',
+      ' Dealer',
+      ' Training',
+      ' Training Toolkit',
+      ' Enablement',
+      ' Enablement Toolkit',
+      ' Partner Enablement',
+      ' Partner Toolkit',
+      ' Solutions',
+      ' Solutions Toolkit',
+      ' Platform',
+      ' Platform Toolkit',
+      ' AI Literacy Campaign',
+      ' Small Business: Your for a Sustainable Future',
+      ' Petites Entreprises : Votre boîte à outils pour un avenir durable',
+      ' AI Decision Intelligence'
+    ];
+    
+    let cleanTitle = title;
+    for (const suffix of suffixesToRemove) {
+      if (cleanTitle.endsWith(suffix)) {
+        cleanTitle = cleanTitle.slice(0, -suffix.length);
+        console.log(`  ✂️ Removed suffix "${suffix}" -> "${cleanTitle}"`);
+        break; // Only remove one suffix to avoid over-cleaning
+      }
+    }
+    
+    // Also remove from anywhere in the title (not just end)
+    for (const suffix of suffixesToRemove) {
+      if (cleanTitle.includes(suffix)) {
+        cleanTitle = cleanTitle.replace(suffix, '');
+        console.log(`  🔍 Removed "${suffix}" from anywhere -> "${cleanTitle}"`);
+      }
+    }
+    
+    // Clean up any extra spaces
+    cleanTitle = cleanTitle.replace(/\s+/g, ' ').trim();
+    
+    console.log(`  ✨ Final cleaned title: "${cleanTitle}"`);
+    return cleanTitle || title; // Fallback to original if we cleaned everything
   }
 
   /**
