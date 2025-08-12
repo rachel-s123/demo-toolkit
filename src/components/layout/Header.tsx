@@ -111,6 +111,20 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
     loadDynamicBrands();
   }, []);
 
+  // Listen for custom refresh event from BrandSetup
+  useEffect(() => {
+    const handleRefreshBrands = () => {
+      console.log('🔄 Received refreshBrands event, refreshing brands...');
+      loadDynamicBrands();
+    };
+
+    window.addEventListener('refreshBrands', handleRefreshBrands);
+    
+    return () => {
+      window.removeEventListener('refreshBrands', handleRefreshBrands);
+    };
+  }, []);
+
   const handleRefreshBrands = async () => {
     console.log('🔄 Refreshing brands...');
     // Clear the dynamic locales cache to force a fresh load

@@ -573,7 +573,30 @@ export default function BrandSetup() {
               
               // Update the generated content with the correct logo URL
               try {
-                const updatedConfigContent = JSON.parse(content.configContentFile);
+                // First, validate that the config content is valid JSON
+                let updatedConfigContent;
+                try {
+                  updatedConfigContent = JSON.parse(content.configContentFile);
+                } catch (jsonParseError) {
+                  console.error('❌ Invalid JSON in configContentFile:', jsonParseError);
+                  console.error('❌ Config content preview:', content.configContentFile.substring(0, 200));
+                  
+                  // Try to clean up the JSON by removing comments and fixing common issues
+                  let cleanedConfig = content.configContentFile
+                    .replace(/\/\/.*$/gm, '') // Remove single-line comments
+                    .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
+                    .replace(/,\s*}/g, '}') // Remove trailing commas
+                    .replace(/,\s*]/g, ']'); // Remove trailing commas in arrays
+                  
+                  try {
+                    updatedConfigContent = JSON.parse(cleanedConfig);
+                    console.log('✅ Successfully cleaned and parsed config JSON');
+                  } catch (cleanupError) {
+                    console.error('❌ Failed to clean JSON:', cleanupError);
+                    message += ` Warning: Could not update config with logo URL due to invalid JSON.`;
+                    return;
+                  }
+                }
                 
                 // Ensure brand object exists
                 if (!updatedConfigContent.brand) {
@@ -655,6 +678,13 @@ export default function BrandSetup() {
         // Also update auto-upload success message if this was an auto-upload
         setAutoUploadSuccess(`✅ ${message}`);
         setTimeout(() => setAutoUploadSuccess(null), 5000);
+        
+        // Force refresh of brands list to show the new brand in dropdown
+        setTimeout(() => {
+          console.log('🔄 Triggering brands refresh to show new brand in dropdown...');
+          // Dispatch a custom event to trigger brands refresh in Header
+          window.dispatchEvent(new CustomEvent('refreshBrands'));
+        }, 1000);
       } else {
         console.error('❌ Upload failed:', result.error);
         const errorMessage = `Upload failed: ${result.error || 'Unknown error'}`;
