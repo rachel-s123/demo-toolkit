@@ -228,32 +228,96 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           const configText = await configResponse.text();
           console.log('📄 Config file content (first 200 chars):', configText.substring(0, 200));
           
-          let configContent;
-          try {
-            configContent = JSON.parse(configText);
-          } catch (parseError) {
-            console.error('❌ Failed to parse config JSON:', parseError);
-            console.error('📄 Raw config content:', configText);
-            const errorMessage = parseError instanceof Error ? parseError.message : 'Unknown parse error';
-            throw new Error(`Invalid JSON in config file: ${errorMessage}`);
-          }
+          // Defer parsing and updating until after attempting to read config from the original request payload.
+          // A unified parsing/update flow exists below that prefers the request payload and falls back to blob.
           
+          // Update the logo URL
+          // Prefer using the original config content from the request to avoid eventual-consistency 404s
+          let configContent: any | null = null;
+
+          try {
+            // Find the original config file in the incoming payload
+            const originalConfigPayload = (req.body?.files || []).find((f: any) => f.targetPath?.startsWith('public/locales/') && f.filename?.startsWith('config_'));
+            if (originalConfigPayload && typeof originalConfigPayload.content === 'string') {
+              try {
+                // Attempt to parse as JSON first
+                configContent = JSON.parse(originalConfigPayload.content);
+                console.log('📄 Parsed config JSON directly from request payload');
+              } catch (parseError) {
+                // If parsing fails, try to clean common issues (comments, trailing commas)
+                console.warn('⚠️ Failed to parse config JSON from payload, attempting cleanup...');
+                const cleaned = originalConfigPayload.content
+                  .replace(/\/\/.*$/gm, '')
+                  .replace(/\/\*[\s\S]*?\*\//g, '')
+                  .replace(/,\s*}/g, '}')
+                  .replace(/,\s*]/g, ']');
+                try {
+                  configContent = JSON.parse(cleaned);
+                  console.log('✅ Parsed cleaned config JSON from payload');
+                } catch (cleanupError) {
+                  console.warn('⚠️ Cleanup parse failed, will fall back to fetching from blob');
+                }
+              }
+            }
+          } catch (payloadError) {
+            console.warn('⚠️ Could not read config from request payload:', payloadError);
+          }
+
+          if (!configContent) {
+            // Fallback: fetch the config that we just uploaded to blob (may 404 briefly)
+            console.log('↩️ Falling back to fetching config from blob URL');
+            let retryCount = 0;
+            const maxRetries = 3;
+            while (retryCount < maxRetries) {
+              try {
+                configResponse = await fetch(configFile.publicUrl);
+                console.log('📡 Config response status:', configResponse.status);
+                if (configResponse.ok) {
+                  break;
+                }
+                retryCount++;
+                if (retryCount < maxRetries) {
+                  await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
+                }
+              } catch (fetchError) {
+                console.log(`⚠️ Config fetch error (attempt ${retryCount + 1}/${maxRetries}):`, fetchError);
+                retryCount++;
+                if (retryCount < maxRetries) {
+                  await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
+                }
+              }
+            }
+            if (!configResponse || !configResponse.ok) {
+              throw new Error(`Failed to fetch config file after ${maxRetries} attempts: ${configResponse?.status} ${configResponse?.statusText}`);
+            }
+            const configTextFallback = await configResponse.text();
+            console.log('📄 Config file content (first 200 chars):', configTextFallback.substring(0, 200));
+            try {
+              configContent = JSON.parse(configTextFallback);
+            } catch (parseError) {
+              console.error('❌ Failed to parse config JSON:', parseError);
+              console.error('📄 Raw config content:', configTextFallback);
+              const errorMessage = parseError instanceof Error ? parseError.message : 'Unknown parse error';
+              throw new Error(`Invalid JSON in config file: ${errorMessage}`);
+            }
+          }
+
           // Ensure brand object exists
           if (!configContent.brand) {
             configContent.brand = {};
           }
-          
+
           // Update the logo URL
           configContent.brand.logo = logoFile.publicUrl;
           console.log('🖼️ Updated logo URL in config:', logoFile.publicUrl);
-          
+
           // Re-upload the updated config file
           const updatedConfigBlob = await put(configFile.storagePath, JSON.stringify(configContent, null, 2), {
             contentType: 'application/json',
             access: 'public',
             allowOverwrite: true
           });
-          
+
           updatedConfigResult = {
             success: true,
             originalConfigUrl: configFile.publicUrl,
@@ -261,7 +325,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             logoUrl: logoFile.publicUrl,
             message: 'Config file updated with correct logo URL'
           };
-          
+
           console.log('✅ Config file updated with logo URL:', logoFile.publicUrl);
         } catch (configUpdateError) {
           console.error('❌ Failed to update config with logo URL:', configUpdateError);
