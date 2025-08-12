@@ -118,12 +118,28 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
       loadDynamicBrands();
     };
 
+    const handleRefreshConfig = () => {
+      console.log('🔄 Received refreshConfig event, refreshing config...');
+      // Force config refresh by triggering a language change
+      try {
+        const currentLang = language;
+        setLanguage('en'); // Temporarily change
+        setTimeout(() => {
+          setLanguage(currentLang as LanguageCode); // Change back
+        }, 100);
+      } catch (error) {
+        console.warn('Could not refresh config:', error);
+      }
+    };
+
     window.addEventListener('refreshBrands', handleRefreshBrands);
+    window.addEventListener('refreshConfig', handleRefreshConfig);
     
     return () => {
       window.removeEventListener('refreshBrands', handleRefreshBrands);
+      window.removeEventListener('refreshConfig', handleRefreshConfig);
     };
-  }, []);
+  }, [language, setLanguage]);
 
   const handleRefreshBrands = async () => {
     console.log('🔄 Refreshing brands...');

@@ -619,6 +619,13 @@ export default function BrandSetup() {
                 // Also update the uploaded logo URL state
                 setUploadedLogoUrl(logoFile.publicUrl);
                 console.log('✅ Set uploadedLogoUrl state to:', logoFile.publicUrl);
+                
+                // Force config refresh to show the new logo immediately
+                setTimeout(() => {
+                  console.log('🔄 Forcing config refresh to show new logo...');
+                  // Dispatch a custom event to trigger config refresh
+                  window.dispatchEvent(new CustomEvent('refreshConfig'));
+                }, 500);
               } catch (configError) {
                 console.error('❌ Error updating config with logo URL:', configError);
                 message += ` Warning: Could not update config with logo URL.`;
