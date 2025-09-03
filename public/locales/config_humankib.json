@@ -1,0 +1,269 @@
+{
+  "isDemo": true,
+  "demoNotice": "These are demo assets using placeholder images. Replace with actual Human Kibble marketing materials.",
+  "lastUpdated": "2023-10-10T06:06:20.361Z",
+  "brand": {
+    "name": "Human Kibble",
+    "logo": "/assets/logos/humankib.png",
+    "logoAlt": "Human Kibble Logo"
+  },
+  "assets": [
+    {
+      "id": "phase1_01",
+      "title": "Product Reveal",
+      "phase": "PHASE 1",
+      "type": "STATIC",
+      "model": "Human Kibble",
+      "description": "front-view",
+      "textOverlay": "no-text",
+      "orientation": "portrait",
+      "dimensions": "1080x1920",
+      "fileExtension": ".jpg",
+      "originalFileName": "ProductReveal.jpg",
+      "newAssetName": "Phase1_Static_HumanKibble_front-view_no-text_portrait_1080x1920.jpg",
+      "thumbnail": "/assets/images/Phase1_Static_HumanKibble_front-view_no-text_portrait_1080x1920.jpg",
+      "url": "/assets/images/Phase1_Static_HumanKibble_front-view_no-text_portrait_1080x1920.jpg",
+      "isDemo": false
+    },
+    {
+      "id": "phase1_02",
+      "title": "Lifestyle Banner",
+      "phase": "PHASE 1",
+      "type": "STATIC",
+      "model": "Human Kibble",
+      "description": "lifestyle-scene",
+      "textOverlay": "with-text",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": ".jpg",
+      "originalFileName": "LifestyleBanner.jpg",
+      "newAssetName": "Phase1_Static_HumanKibble_lifestyle-scene_with-text_landscape_1920x1080.jpg",
+      "thumbnail": "/assets/images/Phase1_Static_HumanKibble_lifestyle-scene_with-text_landscape_1920x1080.jpg",
+      "url": "/assets/images/Phase1_Static_HumanKibble_lifestyle-scene_with-text_landscape_1920x1080.jpg",
+      "isDemo": false
+    },
+    {
+      "id": "phase1_03",
+      "title": "Teaser Video",
+      "phase": "PHASE 1",
+      "type": "VIDEO",
+      "model": "Human Kibble",
+      "description": "teaser",
+      "textOverlay": "no-text",
+      "orientation": "landscape",
+      "dimensions": "1920x1080",
+      "fileExtension": ".mp4",
+      "originalFileName": "TeaserVideo.mp4",
+      "newAssetName": "Phase1_Video_HumanKibble_teaser_no-text_landscape_1920x1080.mp4",
+      "thumbnail": "/assets/images/Phase1_Video_HumanKibble_teaser_no-text_landscape_1920x1080.jpg",
+      "url": "/assets/videos/Phase1_Video_HumanKibble_teaser_no-text_landscape_1920x1080.mp4",
+      "isDemo": false
+    },
+    {
+      "id": "phase1_04",
+      "title": "Social Media Graphic",
+      "phase": "PHASE 1",
+      "type": "STATIC",
+      "model": "Human Kibble",
+      "description": "social-post",
+      "textOverlay": "with-text",
+      "orientation": "square",
+      "dimensions": "1080x1080",
+      "fileExtension": ".png",
+      "originalFileName": "SocialMediaGraphic.png",
+      "newAssetName": "Phase1_Static_HumanKibble_social-post_with-text_square_1080x1080.png",
+      "thumbnail": "/assets/images/Phase1_Static_HumanKibble_social-post_with-text_square_1080x1080.png",
+      "url": "/assets/images/Phase1_Static_HumanKibble_social-post_with-text_square_1080x1080.png",
+      "isDemo": false
+    },
+    {
+      "id": "phase1_05",
+      "title": "Outdoor Billboard",
+      "phase": "PHASE 1",
+      "type": "STATIC",
+      "model": "Human Kibble",
+      "description": "billboard",
+      "textOverlay": "with-text",
+      "orientation": "landscape",
+      "dimensions": "2000x1000",
+      "fileExtension": ".jpg",
+      "originalFileName": "OutdoorBillboard.jpg",
+      "newAssetName": "Phase1_Static_HumanKibble_billboard_with-text_landscape_2000x1000.jpg",
+      "thumbnail": "/assets/images/Phase1_Static_HumanKibble_billboard_with-text_landscape_2000x1000.jpg",
+      "url": "/assets/images/Phase1_Static_HumanKibble_billboard_with-text_landscape_2000x1000.jpg",
+      "isDemo": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "HK_LAUNCH_EMAIL_001",
+      "title": "Exciting Launch Email",
+      "content": "Subject: Introducing Human Kibble - Revolutionise Your Meal Times!\n\nDear [Name],\n\nSay goodbye to meal prep stress! Human Kibble, the new convenience food for those on-the-go, is here. Packed with nutrients and ready in seconds, it’s perfect for your busy lifestyle.\n\nHighlights:\n- Nutrient-rich for balanced meals\n- Ready in under 2 minutes\n- Perfect for any time of day\n\nDiscover the convenience today and never look back.\n\n**[Explore More]**\n\nBest regards,\nThe Human Kibble Team",
+      "channel": "Email",
+      "type": "LAUNCH",
+      "model": "Human Kibble",
+      "date": "2023-10-10",
+      "isDemo": false,
+      "category": "Launch announcement"
+    },
+    {
+      "id": "HK_SOCIAL_POST_001",
+      "title": "Launch Social Post",
+      "content": "Caption: 🥄 Freshly launched! Discover Human Kibble - your new go-to for quick and nutritious meals. #HumanKibble #ConvenienceRedefined",
+      "channel": "Instagram",
+      "type": "SOCIAL",
+      "model": "Human Kibble",
+      "date": "2023-10-10",
+      "isDemo": false,
+      "category": "Social media"
+    },
+    {
+      "id": "HK_TEASER_WHATSAPP_001",
+      "title": "Teaser WhatsApp",
+      "content": "Get ready for the game-changer in convenience food. Launching soon: Human Kibble. Stay tuned! 🍽️",
+      "channel": "WhatsApp",
+      "type": "TEASER",
+      "model": "Human Kibble",
+      "date": "2023-10-09",
+      "isDemo": false,
+      "category": "Teaser"
+    },
+    {
+      "id": "HK_AD_TEXT_001",
+      "title": "Ad Copy",
+      "content": "Busy life? Meet Human Kibble. Quick, nutritious, delicious - your perfect meal solution is here!",
+      "channel": "Online Ads",
+      "type": "AD",
+      "model": "Human Kibble",
+      "date": "2023-10-10",
+      "isDemo": false,
+      "category": "Advertisement"
+    },
+    {
+      "id": "HK_BROADCAST_SMS_001",
+      "title": "Launch SMS",
+      "content": "Hello [Name]! Human Kibble is now available. Fast meals, full of nutrients. Try it today!",
+      "channel": "SMS",
+      "type": "BROADCAST",
+      "model": "Human Kibble",
+      "date": "2023-10-10",
+      "isDemo": false,
+      "category": "SMS"
+    }
+  ],
+  "guides": [
+    {
+      "id": "launch-strategy-guide",
+      "title": "Launch Strategy Guide",
+      "type": "LAUNCH",
+      "model": "Human Kibble",
+      "thumbnail": "/assets/images/guides/launch-strategy-thumb.jpg",
+      "url": "/guides/launch-strategy-guide.pdf",
+      "isDemo": false,
+      "category": "Launch Strategy",
+      "contentLastModified": "2023-10-10T14:22:15.561Z",
+      "content": "# Launch Strategy Guide\n\n**Objective**: Successfully introduce Human Kibble to the market through coordinated marketing efforts."
+    },
+    {
+      "id": "social-media-guide",
+      "title": "Social Media Engagement Guide",
+      "type": "ENGAGE",
+      "model": "All",
+      "thumbnail": "/assets/images/guides/social-media-thumb.jpg",
+      "url": "/guides/social-media-engagement-guide.pdf",
+      "isDemo": false,
+      "category": "Social Media",
+      "contentLastModified": "2023-10-10T14:22:15.561Z",
+      "content": "# Social Media Engagement Guide\n\n**Objective**: Utilise social platforms to broaden reach and engage with potential customers."
+    },
+    {
+      "id": "video-production-guide",
+      "title": "Video Production Guide",
+      "type": "ENGAGE",
+      "model": "All",
+      "thumbnail": "/assets/images/guides/video-production-thumb.jpg",
+      "url": "/guides/video-production-guide.pdf",
+      "isDemo": false,
+      "category": "Video Production",
+      "contentLastModified": "2023-10-10T14:22:15.561Z",
+      "content": "# Video Production Guide\n\n**Objective**: Create high-quality video content that showcases unique product features."
+    },
+    {
+      "id": "customer-retention-guide",
+      "title": "Customer Retention Guide",
+      "type": "FOLLOW-UP",
+      "model": "All",
+      "thumbnail": "/assets/images/guides/customer-retention-thumb.jpg",
+      "url": "/guides/customer-retention-guide.pdf",
+      "isDemo": false,
+      "category": "Customer Retention",
+      "contentLastModified": "2023-10-10T14:22:15.561Z",
+      "content": "# Customer Retention Guide\n\n**Objective**: Develop strategies to maintain a strong relationship with customers after their initial purchase."
+    },
+    {
+      "id": "onboarding-guide",
+      "title": "Customer Onboarding Guide",
+      "type": "ONBOARD",
+      "model": "Human Kibble",
+      "thumbnail": "/assets/images/guides/onboarding-thumb.jpg",
+      "url": "/guides/customer-onboarding-guide.pdf",
+      "isDemo": false,
+      "category": "Onboarding",
+      "contentLastModified": "2023-10-10T14:22:15.561Z",
+      "content": "# Customer Onboarding Guide\n\n**Objective**: Welcome new customers effectively and introduce them to the world of Human Kibble."
+    }
+  ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Launch",
+      "description": "Kick-off the product launch and create buzz.",
+      "icon": "Rocket"
+    },
+    {
+      "id": "2",
+      "title": "Generate Interest",
+      "description": "Engage potential customers through targeted campaigns.",
+      "icon": "Target"
+    },
+    {
+      "id": "3",
+      "title": "Engage",
+      "description": "Interactive marketing strategies to boost engagement.",
+      "icon": "Handshake"
+    },
+    {
+      "id": "4",
+      "title": "Follow-Up",
+      "description": "Maintain relationships with potential customers post-launch.",
+      "icon": "MessageCircle"
+    },
+    {
+      "id": "5",
+      "title": "Onboard",
+      "description": "Welcoming new customers to the Human Kibble family.",
+      "icon": "Smile"
+    }
+  ],
+  "filterOptions": {
+    "phases": ["ALL", "LAUNCH", "GENERATE INTEREST", "ENGAGE", "FOLLOW-UP", "ONBOARD"],
+    "types": ["ALL", "STATIC", "VIDEO", "INTERACTIVE"],
+    "models": ["ALL", "Human Kibble"],
+    "channels": ["ALL", "Email", "WhatsApp", "SMS", "Facebook", "Instagram", "Social", "Print", "Digital", "In-Store", "Phone"],
+    "actionTypes": ["ALL","LAUNCH","GENERATE INTEREST","ENGAGE","FOLLOW-UP","ONBOARD"]
+  },
+  "metadata": {
+    "lastModified": "2023-10-10T06:06:20.361Z",
+    "modifiedBy": "Human Kibble Marketing",
+    "version": "1.0.0",
+    "source": "Human Kibble Launch Campaign"
+  },
+  "pathConfig": {
+    "environments": {
+      "development": "/locales/",
+      "staging": "/locales/",
+      "production": "/locales/",
+      "cdn": "https://cdn.example.com/locales/"
+    }
+  }
+}

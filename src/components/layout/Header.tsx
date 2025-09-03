@@ -5,22 +5,21 @@ import { LanguageCode } from "../../locales";
 import { useLanguage } from "../../context/LanguageContext";
 import { useHighlight } from "../../context/HighlightContext";
 import { useConfig } from "../../hooks/useConfig";
-import { BrandLoader, BrandConfig } from "../../services/brandLoader";
-import { dynamicLocalesLoader } from "../../services/dynamicLocalesLoader";
-import { Menu, X, LogOut, RefreshCw } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 
 interface HeaderProps {
   activeTab: TabType;
   onLogout?: () => void;
 }
 
-// Fallback brand display names for static brands (when dynamic loading fails)
-const fallbackBrandDisplayNames: Record<string, string> = {
+// Clean brand display names for dropdown
+const brandDisplayNames: Record<string, string> = {
   en: "Brilliant Noise",
-  edf: "\uD83C\uDDEC\uD83C\uDDE7 EDF Energy",
-  edf_fr: "\uD83C\uDDEB\uD83C\uDDF7 EDF \u00C9nergie",
+  edf: "EDF Energy",
+  edf_fr: "EDF Énergie",
   bmw: "BMW Motorrad",
   hedosoph: "Hedosophia",
+  humankib: "Human Kibble",
   en_template: "English Template",
 };
 
@@ -42,82 +41,12 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   const { isHighlightEnabled } = useHighlight();
   const { config } = useConfig();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [dynamicBrands, setDynamicBrands] = useState<BrandConfig[]>([]);
-  const [isLoadingBrands, setIsLoadingBrands] = useState(true);
 
-  // Load dynamic brands from backend
-  const loadDynamicBrands = async () => {
-    try {
-      setIsLoadingBrands(true);
-      console.log('🔄 Loading dynamic brands...');
-      
-      // Try to load from dynamic locales loader first (for newly uploaded brands)
-      try {
-        const availableBrandsWithNames = await dynamicLocalesLoader.getAvailableBrandsWithNames();
-        console.log('📦 Dynamic locales loader found brands:', availableBrandsWithNames);
-        
-        if (availableBrandsWithNames.length > 0) {
-          // Convert to BrandConfig objects using the proper brand names
-          const dynamicBrandConfigs: BrandConfig[] = availableBrandsWithNames.map(({ brandCode, brandName }) => ({
-            brandCode,
-            brandName: brandName, // Use the actual brand name from the locale
-            files: [],
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-          }));
-          
-          console.log(`📦 Setting ${dynamicBrandConfigs.length} dynamic brands from locales loader:`, dynamicBrandConfigs);
-          setDynamicBrands(dynamicBrandConfigs);
-          setIsLoadingBrands(false);
-          return;
-        }
-      } catch (dynamicError) {
-        console.warn('Dynamic locales loader failed, falling back to API:', dynamicError);
-      }
-      
-      // Fallback to unified brands endpoint
-      const timestamp = Date.now();
-      const response = await fetch(`/api/brands?t=${timestamp}`);
-      console.log('📡 Brands API response status:', response.status);
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('📡 Brands API response data:', data);
-        
-        if (data.success && data.brands) {
-          console.log(`📦 Setting ${data.brands.length} dynamic brands from unified API:`, data.brands);
-          setDynamicBrands(data.brands);
-          console.log(`📦 Header loaded ${data.brands.length} dynamic brands from unified API`);
-        } else {
-          console.log('📦 No brands found in unified API');
-          setDynamicBrands([]);
-        }
-      } else {
-        console.log('📡 Unified brands API failed, falling back to BrandLoader');
-        // Fallback to existing BrandLoader if unified API fails
-        const brands = await BrandLoader.loadBrandsConfig();
-        setDynamicBrands(brands);
-        console.log(`📦 Header loaded ${brands.length} dynamic brands from BrandLoader fallback`);
-      }
-    } catch (error) {
-      console.error('Failed to load dynamic brands in Header:', error);
-      setDynamicBrands([]);
-    } finally {
-      setIsLoadingBrands(false);
-    }
-  };
 
-  useEffect(() => {
-    loadDynamicBrands();
-  }, []);
+
 
   // Listen for custom refresh event from BrandSetup
   useEffect(() => {
-    const handleRefreshBrands = () => {
-      console.log('🔄 Received refreshBrands event, refreshing brands...');
-      loadDynamicBrands();
-    };
-
     const handleRefreshConfig = () => {
       console.log('🔄 Received refreshConfig event, refreshing config...');
       // Force config refresh by triggering a language change
@@ -132,25 +61,14 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
       }
     };
 
-    window.addEventListener('refreshBrands', handleRefreshBrands);
     window.addEventListener('refreshConfig', handleRefreshConfig);
     
     return () => {
-      window.removeEventListener('refreshBrands', handleRefreshBrands);
       window.removeEventListener('refreshConfig', handleRefreshConfig);
     };
   }, [language, setLanguage]);
 
-  const handleRefreshBrands = async () => {
-    console.log('🔄 Refreshing brands...');
-    // Clear the dynamic locales cache to force a fresh load
-    try {
-      dynamicLocalesLoader.clearCache();
-    } catch (error) {
-      console.warn('Could not clear dynamic locales cache:', error);
-    }
-    await loadDynamicBrands();
-  };
+
 
   // Brand deletion moved to Brand Setup page
 
@@ -225,7 +143,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo - Left */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-2">
@@ -236,7 +154,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   translations.navigation?.homeTab ||
                   "Brand Logo"
                 }
-                className="h-12 w-auto"
+                className="h-16 w-auto"
                 onError={(e) => {
                   // Fallback to default logo if brand logo fails to load
                   const target = e.target as HTMLImageElement;
@@ -252,11 +170,11 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
               />
             </Link>
             {/* Debug info - only show in development */}
-            {process.env.NODE_ENV === 'development' && config?.brand?.logo && (
+            {/* {process.env.NODE_ENV === 'development' && config?.brand?.logo && (
               <div className="text-xs text-gray-500 mt-1">
                 Logo: {config.brand.logo}
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Desktop Controls - Center (hidden on mobile) */}
@@ -273,39 +191,19 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 value={language}
                 onChange={handleLanguageChange}
                 className="rounded-md border-secondary-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 h-[38px] min-w-[160px]"
-                disabled={isLoadingBrands}
               >
                 {/* Static brands */}
-                <option value="en">{fallbackBrandDisplayNames.en}</option>
-                <option value="edf">{fallbackBrandDisplayNames.edf}</option>
-                <option value="edf_fr">{fallbackBrandDisplayNames.edf_fr}</option>
-                <option value="bmw">{fallbackBrandDisplayNames.bmw}</option>
-                <option value="hedosoph">Hedosophia</option>
-                
-                                      {/* Dynamic brands from backend */}
-                      {dynamicBrands.length > 0 && (
-                        <>
-                          <option disabled>──────────</option>
-                          {dynamicBrands.map((brand) => (
-                            <option key={brand.brandCode} value={brand.brandCode}>
-                              {brand.brandName}
-                            </option>
-                          ))}
-                        </>
-                      )}
+                <option value="en">{brandDisplayNames.en}</option>
+                <option value="edf">{brandDisplayNames.edf}</option>
+                <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
+                <option value="bmw">{brandDisplayNames.bmw}</option>
+                <option value="hedosoph">{brandDisplayNames.hedosoph}</option>
+                <option value="humankib">{brandDisplayNames.humankib}</option>
                       
                       
               </select>
               
-              {/* Refresh brands button */}
-              <button
-                onClick={handleRefreshBrands}
-                disabled={isLoadingBrands}
-                className="p-2 rounded-md hover:bg-secondary-100 transition-colors disabled:opacity-50"
-                title="Refresh brands"
-              >
-                <RefreshCw className={`h-4 w-4 text-secondary-700 ${isLoadingBrands ? 'animate-spin' : ''}`} />
-              </button>
+
             </div>
           </div>
 
@@ -411,39 +309,19 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   value={language}
                   onChange={handleLanguageChange}
                   className="flex-1 rounded-md border-secondary-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-                  disabled={isLoadingBrands}
                 >
                   {/* Static brands */}
-                  <option value="en">{fallbackBrandDisplayNames.en}</option>
-                  <option value="edf">{fallbackBrandDisplayNames.edf}</option>
-                  <option value="edf_fr">{fallbackBrandDisplayNames.edf_fr}</option>
-                  <option value="bmw">{fallbackBrandDisplayNames.bmw}</option>
-                  <option value="hedosoph">Hedosophia</option>
-                  
-                  {/* Dynamic brands from backend */}
-                  {dynamicBrands.length > 0 && (
-                    <>
-                      <option disabled>──────────</option>
-                      {dynamicBrands.map((brand) => (
-                        <option key={brand.brandCode} value={brand.brandCode}>
-                          {brand.brandName}
-                        </option>
-                      ))}
-                    </>
-                  )}
+                  <option value="en">{brandDisplayNames.en}</option>
+                  <option value="edf">{brandDisplayNames.edf}</option>
+                  <option value="edf_fr">{brandDisplayNames.edf_fr}</option>
+                  <option value="bmw">{brandDisplayNames.bmw}</option>
+                  <option value="hedosoph">{brandDisplayNames.hedosoph}</option>
+                  <option value="humankib">{brandDisplayNames.humankib}</option>
                   
                   
                 </select>
                 
-                {/* Refresh brands button - Mobile */}
-                <button
-                  onClick={handleRefreshBrands}
-                  disabled={isLoadingBrands}
-                  className="p-2 rounded-md hover:bg-secondary-100 transition-colors disabled:opacity-50"
-                  title="Refresh brands"
-                >
-                  <RefreshCw className={`h-5 w-5 text-secondary-700 ${isLoadingBrands ? 'animate-spin' : ''}`} />
-                </button>
+
               </div>
 
               {/* Mobile Logout Button */}

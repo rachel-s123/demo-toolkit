@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../../ui/Button";
 import Card from "../../ui/Card";
 import { LLMGenerator, BrandFormData as LLMBrandFormData } from '../../../services/llmGenerator';
-import { dynamicLocalesLoader } from '../../../services/dynamicLocalesLoader';
 import { useLanguage } from "../../../context/LanguageContext";
 import { Plus, X, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -157,88 +156,11 @@ export default function BrandSetup() {
     "campaign-context": true
   });
 
-  // Brands management state
-  type ExistingBrand = { brandCode: string; brandName: string };
-  const [existingBrands, setExistingBrands] = useState<ExistingBrand[]>([]);
-  const [isLoadingBrands, setIsLoadingBrands] = useState<boolean>(false);
-  const [brandsError, setBrandsError] = useState<string | null>(null);
 
-  const fetchExistingBrands = async () => {
-    try {
-      setIsLoadingBrands(true);
-      setBrandsError(null);
 
-      // Use same strategy as Header: try dynamic locales loader first, then fallback
-      try {
-        const fromLocales = await dynamicLocalesLoader.getAvailableBrandsWithNames();
-        if (fromLocales && fromLocales.length > 0) {
-          console.log('📦 Found brands from dynamic locales loader:', fromLocales);
-          setExistingBrands(fromLocales.map(b => ({ brandCode: b.brandCode, brandName: b.brandName })));
-          return;
-        }
-      } catch (dynamicError) {
-        console.warn('Dynamic locales loader failed, falling back to API:', dynamicError);
-      }
 
-      // Fallback to unified brands endpoint
-      const response = await fetch(`/api/brands?t=${Date.now()}`);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-      const data = await response.json();
-      const brands = (data?.brands || []) as Array<{ brandCode: string; brandName: string }>;
-      console.log('📦 Found brands from API fallback:', brands);
-      setExistingBrands(brands);
-    } catch (err: any) {
-      setBrandsError(err?.message || 'Failed to load brands');
-      setExistingBrands([]);
-    } finally {
-      setIsLoadingBrands(false);
-    }
-  };
 
-  useEffect(() => {
-    fetchExistingBrands();
-  }, []);
 
-  const deleteBrand = async (brandCode: string, brandName: string) => {
-    if (!confirm(`Are you sure you want to delete "${brandName}"? This action cannot be undone.`)) {
-      return;
-    }
-
-    try {
-      // Determine the correct API endpoint based on environment (match Header behavior)
-      const isDevelopment = window.location.hostname === 'localhost' ||
-                            window.location.hostname === '127.0.0.1' ||
-                            window.location.port === '5173';
-
-      const apiEndpoint = isDevelopment
-        ? `http://localhost:3001/api/brands/${brandCode}`
-        : `/api/delete-brand?brandCode=${brandCode}`;
-
-      let response = await fetch(apiEndpoint, { method: 'DELETE' });
-
-      if (!response.ok && !isDevelopment && window.location.hostname === 'localhost') {
-        const localEndpoint = `http://localhost:3001/api/brands/${brandCode}`;
-        response = await fetch(localEndpoint, { method: 'DELETE' });
-      }
-
-      if (!response.ok) {
-        let errorMessage = 'Unknown error';
-        try {
-          const error = await response.json();
-          errorMessage = error.error || error.message || errorMessage;
-        } catch {}
-        throw new Error(errorMessage);
-      }
-
-      // Update list
-      setExistingBrands((prev) => prev.filter((b) => b.brandCode !== brandCode));
-      alert(`Brand "${brandName}" has been deleted successfully!`);
-    } catch (error: any) {
-      alert(`Failed to delete brand: ${error?.message || 'Unknown error'}`);
-    }
-  };
 
   const handleInputChange = (field: keyof BrandFormData, value: string | File) => {
     if (field === "brandName" && typeof value === "string") {
@@ -260,8 +182,7 @@ export default function BrandSetup() {
         icon: value,
         logoPath,
       }));
-      // Clear the uploaded logo URL when a new logo is selected
-      setUploadedLogoUrl(null);
+
     } else {
       setFormData((prev) => ({
         ...prev,
@@ -305,32 +226,20 @@ export default function BrandSetup() {
   };
 
   const generateBrandLocale = async () => {
-    console.log("Generate button clicked");
-    console.log("Form data:", formData);
-    
     if (!formData.brandName || !formData.brandCode || !formData.adaptationPrompt || !formData.primaryGoal) {
       alert("Please fill in all required fields (Brand Name, Brand Code, Adaptation Instructions, and Primary Goal)");
       return;
     }
 
-    console.log("Validation passed, starting generation...");
     setIsGenerating(true);
-    setUploadedLogoUrl(null); // Reset uploaded logo URL when starting new generation
 
     try {
-      console.log("Getting base site copy...");
-
-      
-      console.log("Fetching config template...");
       const baseConfigResponse = await fetch("/locales/config_en_template.json");
 
       if (!baseConfigResponse.ok) {
         console.error("Failed to load template config:", baseConfigResponse.status, baseConfigResponse.statusText);
         throw new Error("Failed to load template config");
       }
-
-      console.log("Config template fetched successfully");
-      
 
       let logoPath = formData.logoPath;
       if (formData.icon) {
@@ -340,36 +249,41 @@ export default function BrandSetup() {
       // Clean up empty array items
       const cleanArrayField = (arr: string[]) => arr.filter(item => item.trim() !== "");
 
-      console.log("Creating adaptation options...");
-                  const llmFormData: LLMBrandFormData = {
-              brandName: formData.brandName,
-              brandCode: formData.brandCode,
-              adaptationPrompt: formData.adaptationPrompt,
-              industry: formData.industry,
-              tone: formData.tone,
-              logoPath,
-              
-              // Campaign Context
-              campaignType: formData.campaignType,
-              targetAudience: formData.targetAudience,
-              primaryGoal: formData.primaryGoal,
-              keyDeliverables: cleanArrayField(formData.keyDeliverables),
-              customCampaignType: formData.customCampaignType,
-              customTargetAudience: formData.customTargetAudience,
-            };
+      const llmFormData: LLMBrandFormData = {
+        brandName: formData.brandName,
+        brandCode: formData.brandCode,
+        adaptationPrompt: formData.adaptationPrompt,
+        industry: formData.industry,
+        tone: formData.tone,
+        logoPath,
+        
+        // Campaign Context
+        campaignType: formData.campaignType,
+        targetAudience: formData.targetAudience,
+        primaryGoal: formData.primaryGoal,
+        keyDeliverables: cleanArrayField(formData.keyDeliverables),
+        customCampaignType: formData.customCampaignType,
+        customTargetAudience: formData.customTargetAudience,
+      };
 
-      console.log("Calling LLMGenerator.generateBrandFiles...");
       let generatedFiles;
       try {
+        console.log('🤖 Attempting LLM generation...');
         generatedFiles = await LLMGenerator.generateBrandFiles(llmFormData);
-        console.log("Generated files with LLM:", generatedFiles);
+        console.log('✅ LLM generation successful');
       } catch (llmError) {
-        console.log("LLM generation failed, falling back to basic generator:", llmError);
+        console.warn('⚠️ LLM generation failed, using fallback generator:', llmError);
         // Fallback to basic generator
         const LocaleGenerator = (await import('./LocaleGenerator')).default;
         const baseSiteCopy = (await import('../../../locales')).languages.en_template;
-        const baseConfigResponse = await fetch('/locales/config_en.json');
+        const baseConfigResponse = await fetch('/locales/config_en_template.json');
+        
+        if (!baseConfigResponse.ok) {
+          throw new Error(`Failed to fetch template config: ${baseConfigResponse.status}`);
+        }
+        
         const baseConfigContent = await baseConfigResponse.json();
+        console.log('📋 Using fallback generator with template config');
         
         generatedFiles = await LocaleGenerator.generateBrandFiles(
           baseSiteCopy,
@@ -389,10 +303,9 @@ export default function BrandSetup() {
             customTargetAudience: formData.customTargetAudience,
           }
         );
-        console.log("Generated files with fallback:", generatedFiles);
+        console.log('✅ Fallback generation successful');
       }
 
-      console.log("Generating installation instructions...");
       const installationInstructions = `# ${formData.brandName} Setup Instructions
 
 ## Files Generated
@@ -411,7 +324,12 @@ export default function BrandSetup() {
 - Test the brand configuration
 - Deploy your changes`;
 
-      console.log("Setting generated content...");
+      // Debug: Log the generated content
+      console.log('📄 Generated siteCopy length:', generatedFiles.siteCopy.length);
+      console.log('📄 Generated configContent length:', generatedFiles.configContent.length);
+      console.log('📄 SiteCopy preview:', generatedFiles.siteCopy.substring(0, 200));
+      console.log('📄 ConfigContent preview:', generatedFiles.configContent.substring(0, 200));
+      
       setGeneratedContent({
         siteCopyFile: generatedFiles.siteCopy,
         configContentFile: generatedFiles.configContent,
@@ -419,22 +337,6 @@ export default function BrandSetup() {
       });
       setHasGeneratedOnce(true);
       setLastGeneratedFormData(JSON.stringify(formData));
-      console.log("Generation completed successfully!");
-      
-      // Automatically trigger upload to backend after successful generation
-      console.log("Auto-uploading to backend...");
-      try {
-        await uploadToBackend();
-        console.log("Auto-upload completed successfully!");
-        
-        // Set success message - the upload function will handle the actual success/failure
-        setAutoUploadSuccess("✅ Content generated and automatically uploaded to backend successfully!");
-        // Clear the success message after 5 seconds
-        setTimeout(() => setAutoUploadSuccess(null), 5000);
-      } catch (uploadError) {
-        console.error("Auto-upload failed:", uploadError);
-        // Don't show error to user as this is automatic - they can still manually upload
-      }
     } catch (error) {
       console.error("Error generating brand locale:", error);
       alert("Error generating brand locale. Please try again.");
@@ -464,261 +366,9 @@ export default function BrandSetup() {
     }
   };
 
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadResult, setUploadResult] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
-  const [uploadedLogoUrl, setUploadedLogoUrl] = useState<string | null>(null);
-  const [autoUploadSuccess, setAutoUploadSuccess] = useState<string | null>(null);
 
-  const uploadToBackend = async () => {
-    const content = getCurrentContent();
-    if (!content) return;
 
-    console.log('🔄 Starting upload to backend...');
-    setIsUploading(true);
-    setUploadResult(null);
 
-    // Add timeout to prevent hanging
-    const uploadTimeout = setTimeout(() => {
-      console.error('❌ Upload timeout - taking too long');
-      setIsUploading(false);
-      setUploadResult({
-        success: false,
-        message: 'Upload timed out. Please try again. This might be due to Redis not being configured.'
-      });
-    }, 15000); // 15 second timeout - reduced from 30
-
-    try {
-      const files: Array<{
-        filename: string;
-        content: string;
-        targetPath: string;
-        isBinary?: boolean;
-        mimeType?: string;
-      }> = [
-        {
-          filename: `${formData.brandCode}.ts`,
-          content: content.siteCopyFile,
-          targetPath: `src/locales/${formData.brandCode}.ts`
-        },
-        {
-          filename: `config_${formData.brandCode}.json`,
-          content: content.configContentFile,
-          targetPath: `public/locales/config_${formData.brandCode}.json`
-        }
-      ];
-
-      // Add logo file if uploaded
-      if (formData.icon) {
-        try {
-          // Convert File to base64
-          const arrayBuffer = await formData.icon.arrayBuffer();
-          const base64 = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
-          const fileExtension = formData.icon.name.split('.').pop() || 'png';
-          
-          files.push({
-            filename: `${formData.brandCode}.${fileExtension}`,
-            content: base64,
-            targetPath: `public/assets/logos/${formData.brandCode}.${fileExtension}`,
-            isBinary: true,
-            mimeType: formData.icon.type
-          });
-        } catch (logoError) {
-          console.error('Error processing logo file:', logoError);
-          // Continue without logo if there's an error
-        }
-      }
-
-      console.log('📤 Sending files to upload API...');
-      const response = await fetch('/api/upload-files', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          files,
-          brandCode: formData.brandCode,
-          brandName: formData.brandName
-        })
-      });
-
-      console.log('📥 Received response from upload API:', response.status);
-      const result = await response.json();
-      console.log('📋 Upload API result:', result);
-
-      if (response.ok && result.success) {
-        let message = `Successfully processed ${result.summary.successful} files!`;
-        
-        // Add brand setup information if available
-        if (result.brandSetup) {
-          if (result.brandSetup.success) {
-            message += ` ${result.brandSetup.message}`;
-          } else {
-            message += ` Files processed, but brand setup had issues: ${result.brandSetup.message}`;
-          }
-        }
-        
-        // Handle Vercel Blob storage response and update config with logo URL
-        if (result.results && result.results.length > 0) {
-          const uploadedFiles = result.results.filter((fileResult: any) => fileResult.success);
-          if (uploadedFiles.length > 0) {
-            message += ` Files have been uploaded to Vercel Blob Storage.`;
-            
-            // Find the logo file and update the config
-            const logoFile = uploadedFiles.find((f: any) => f.targetPath?.includes('public/assets/logos/'));
-            if (logoFile && logoFile.publicUrl) {
-              console.log('Found uploaded logo:', logoFile);
-              
-              // Update the generated content with the correct logo URL
-              try {
-                // First, validate that the config content is valid JSON
-                let updatedConfigContent;
-                try {
-                  updatedConfigContent = JSON.parse(content.configContentFile);
-                } catch (jsonParseError) {
-                  console.error('❌ Invalid JSON in configContentFile:', jsonParseError);
-                  console.error('❌ Config content preview:', content.configContentFile.substring(0, 200));
-                  
-                  // Try to clean up the JSON by removing comments and fixing common issues
-                  let cleanedConfig = content.configContentFile
-                    .replace(/\/\/.*$/gm, '') // Remove single-line comments
-                    .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
-                    .replace(/,\s*}/g, '}') // Remove trailing commas
-                    .replace(/,\s*]/g, ']'); // Remove trailing commas in arrays
-                  
-                  try {
-                    updatedConfigContent = JSON.parse(cleanedConfig);
-                    console.log('✅ Successfully cleaned and parsed config JSON');
-                  } catch (cleanupError) {
-                    console.error('❌ Failed to clean JSON:', cleanupError);
-                    message += ` Warning: Could not update config with logo URL due to invalid JSON.`;
-                    return;
-                  }
-                }
-                
-                // Ensure brand object exists
-                if (!updatedConfigContent.brand) {
-                  updatedConfigContent.brand = {};
-                }
-                
-                // Update logo URL
-                updatedConfigContent.brand.logo = logoFile.publicUrl;
-                updatedConfigContent.brand.logoAlt = `${formData.brandName} Logo`;
-                
-                // Update the generated content state
-                setGeneratedContent(prev => prev ? {
-                  ...prev,
-                  configContentFile: JSON.stringify(updatedConfigContent, null, 2)
-                } : prev);
-                
-                console.log('✅ Updated config with logo URL:', logoFile.publicUrl);
-                message += ` Logo URL updated in config: ${logoFile.publicUrl}`;
-                
-                // Also update the uploaded logo URL state
-                setUploadedLogoUrl(logoFile.publicUrl);
-                console.log('✅ Set uploadedLogoUrl state to:', logoFile.publicUrl);
-                
-                // Force config refresh to show the new logo immediately
-                setTimeout(() => {
-                  console.log('🔄 Forcing config refresh to show new logo...');
-                  // Dispatch a custom event to trigger config refresh
-                  window.dispatchEvent(new CustomEvent('refreshConfig'));
-                }, 500);
-              } catch (configError) {
-                console.error('❌ Error updating config with logo URL:', configError);
-                message += ` Warning: Could not update config with logo URL.`;
-              }
-            } else {
-              console.log('No logo file found in uploaded files');
-              console.log('Available files:', uploadedFiles.map((f: any) => ({ filename: f.filename, targetPath: f.targetPath, publicUrl: f.publicUrl })));
-            }
-            
-            // Show public URLs for uploaded files
-            console.log('Uploaded files with public URLs:', uploadedFiles.map((f: any) => ({
-              filename: f.filename,
-              publicUrl: f.publicUrl,
-              storagePath: f.storagePath
-            })));
-          }
-        }
-
-        // Handle config update response
-        if (result.configUpdate) {
-          if (result.configUpdate.success) {
-            message += ` Config updated with logo URL: ${result.configUpdate.logoUrl}`;
-            console.log('Config update result:', result.configUpdate);
-            setUploadedLogoUrl(result.configUpdate.logoUrl);
-          } else {
-            message += ` Config update failed: ${result.configUpdate.error}`;
-            console.error('Config update failed:', result.configUpdate.error);
-          }
-        }
-
-        // Handle backend sync response
-        if (result.backendSync) {
-          if (result.backendSync.success) {
-            message += ` Backend sync: ${result.backendSync.message}`;
-            console.log('Backend sync result:', result.backendSync);
-            
-            // Show logo information if available
-            if (result.backendSync.brandConfig?.files) {
-              const logoFile = result.backendSync.brandConfig.files.find((f: any) => f.type === 'logo');
-              if (logoFile) {
-                message += ` Logo saved to backend: ${logoFile.filename}`;
-                console.log('Logo saved to backend:', logoFile);
-              }
-            }
-          } else {
-            message += ` Backend sync failed: ${result.backendSync.message}`;
-            console.error('Backend sync failed:', result.backendSync);
-          }
-        }
-        
-        console.log('✅ Upload completed successfully');
-        setUploadResult({
-          success: true,
-          message
-        });
-        
-        // Also update auto-upload success message if this was an auto-upload
-        setAutoUploadSuccess(`✅ ${message}`);
-        setTimeout(() => setAutoUploadSuccess(null), 5000);
-        
-        // Force refresh of brands list to show the new brand in dropdown
-        setTimeout(() => {
-          console.log('🔄 Triggering brands refresh to show new brand in dropdown...');
-          // Dispatch a custom event to trigger brands refresh in Header
-          window.dispatchEvent(new CustomEvent('refreshBrands'));
-        }, 1000);
-      } else {
-        console.error('❌ Upload failed:', result.error);
-        const errorMessage = `Upload failed: ${result.error || 'Unknown error'}`;
-        setUploadResult({
-          success: false,
-          message: errorMessage
-        });
-        
-        // Clear any auto-upload success message on error
-        setAutoUploadSuccess(null);
-      }
-    } catch (error) {
-      console.error('❌ Error uploading files:', error);
-      const errorMessage = `Upload failed: ${error instanceof Error ? error.message : 'Network error'}`;
-      setUploadResult({
-        success: false,
-        message: errorMessage
-      });
-      
-      // Clear any auto-upload success message on error
-      setAutoUploadSuccess(null);
-    } finally {
-      clearTimeout(uploadTimeout);
-      setIsUploading(false);
-      console.log('🏁 Upload process finished');
-    }
-  };
 
   const hasFormChanged = () => {
     if (!hasGeneratedOnce || !lastGeneratedFormData) return false;
@@ -728,7 +378,6 @@ export default function BrandSetup() {
 
   const getButtonText = () => {
     if (isGenerating) return "Generating Rich Brand Content...";
-    if (isUploading) return "Uploading to Backend...";
     if (!hasGeneratedOnce) return "Generate Enhanced Brand Locale";
     if (hasFormChanged()) return "Regenerate with Changes";
     return "Regenerate";
@@ -890,53 +539,9 @@ export default function BrandSetup() {
                   </div>
                 )}
                 
-                {/* Uploaded Logo URL Display */}
-                {uploadedLogoUrl && (
-                  <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <p className="text-sm font-medium text-green-800 mb-2">✅ Logo Successfully Uploaded!</p>
-                    <p className="text-xs text-green-700">
-                      Your logo has been uploaded to Vercel Blob Storage and is now available in your brand configuration.
-                    </p>
-                    <div className="mt-2">
-                      <p className="text-xs text-green-700 mb-1"><strong>Logo URL:</strong></p>
-                      <div className="flex items-center space-x-2">
-                        <img
-                          src={`${uploadedLogoUrl}?t=${Date.now()}`}
-                          alt="Uploaded logo"
-                          className="h-8 w-8 object-contain border border-gray-300 rounded"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                          }}
-                        />
-                        <a
-                          href={uploadedLogoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-blue-600 hover:text-blue-800 underline truncate"
-                        >
-                          {uploadedLogoUrl}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                )}
+
                 
-                {/* Debug: Show upload result for troubleshooting */}
-                {uploadResult && (
-                  <div className="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
-                    <p className="text-sm font-medium text-gray-800 mb-2">📋 Upload Result:</p>
-                    <p className="text-xs text-gray-700">
-                      <strong>Success:</strong> {uploadResult.success ? 'Yes' : 'No'}
-                    </p>
-                    <p className="text-xs text-gray-700">
-                      <strong>Message:</strong> {uploadResult.message}
-                    </p>
-                    <p className="text-xs text-gray-700">
-                      <strong>Logo URL State:</strong> {uploadedLogoUrl || 'Not set'}
-                    </p>
-                  </div>
-                )}
+
               </div>
 
               <div>
@@ -1066,15 +671,9 @@ export default function BrandSetup() {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                console.log("Button clicked directly");
-                console.log("Button disabled state:", isGenerating || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt);
-                console.log("isGenerating:", isGenerating);
-                console.log("brandName:", formData.brandName);
-                console.log("brandCode:", formData.brandCode);
-                console.log("adaptationPrompt:", formData.adaptationPrompt);
                 generateBrandLocale();
               }}
-              disabled={isGenerating || isUploading || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt}
+              disabled={isGenerating || !formData.brandName || !formData.brandCode || !formData.adaptationPrompt}
               className="px-8 py-3"
             >
               {getButtonText()}
@@ -1095,50 +694,7 @@ export default function BrandSetup() {
         </div>
       </Card>
 
-      {/* Existing Brands Management */}
-      <Card>
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">Existing Brands</h3>
-          <p className="text-gray-600 mb-4">View brands that have been set up. You can delete any brand here.</p>
 
-          <div className="mb-3">
-            <Button variant="outline" onClick={fetchExistingBrands} disabled={isLoadingBrands}>
-              {isLoadingBrands ? 'Refreshing…' : 'Refresh List'}
-            </Button>
-          </div>
-
-          {brandsError && (
-            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm">
-              {brandsError}
-            </div>
-          )}
-
-          {isLoadingBrands ? (
-            <div className="text-sm text-gray-600">Loading brands…</div>
-          ) : existingBrands.length === 0 ? (
-            <div className="text-sm text-gray-500">No brands found.</div>
-          ) : (
-            <div className="divide-y divide-gray-200">
-              {existingBrands.map((brand) => (
-                <div key={brand.brandCode} className="flex items-center justify-between py-3">
-                  <div>
-                    <div className="font-medium text-gray-900">{brand.brandName}</div>
-                    <div className="text-xs text-gray-500">Code: {brand.brandCode}</div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      onClick={() => deleteBrand(brand.brandCode, brand.brandName)}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </Card>
 
       {generatedContent && (
         <Card>
@@ -1147,11 +703,7 @@ export default function BrandSetup() {
               Generated Brand Files
             </h3>
             
-            {autoUploadSuccess && (
-              <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-sm text-green-800 font-medium">{autoUploadSuccess}</p>
-              </div>
-            )}
+
 
             <div className="mb-4 flex flex-wrap gap-2 items-center">
               <div className="flex gap-2">
@@ -1251,27 +803,9 @@ export default function BrandSetup() {
               <Button onClick={downloadAll} variant="primary">
                 Download All Files
               </Button>
-              <Button 
-                onClick={uploadToBackend} 
-                variant="secondary"
-                disabled={isUploading}
-              >
-                {isUploading ? "Uploading..." : "Add to Backend"}
-              </Button>
             </div>
 
-            {uploadResult && (
-              <div className={`mt-4 p-3 rounded-lg ${
-                uploadResult.success 
-                  ? 'bg-green-50 border border-green-200 text-green-800' 
-                  : 'bg-red-50 border border-red-200 text-red-800'
-              }`}>
-                <p className="text-sm font-medium">
-                  {uploadResult.success ? "✅ " : "❌ "}
-                  {uploadResult.message}
-                </p>
-              </div>
-            )}
+
           </div>
         </Card>
       )}
