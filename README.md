@@ -51,7 +51,7 @@ This toolkit is designed to help you **create demo toolkits for new business opp
 
 ## 📋 Prerequisites
 
-- Node.js 18+
+- Node.js 22+
 - npm or yarn
 - Upstash Redis account (for production)
 
