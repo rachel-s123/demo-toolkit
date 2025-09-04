@@ -55,45 +55,9 @@ export const useConfig = (): UseConfigReturn => {
       setLoading(true);
       setError(null);
       
-      console.log(`🔄 Fetching config for language: ${language}`);
+      console.log(`🔄 Loading static config for language: ${language}`);
       
-      // Check if this is a dynamic brand (not a static locale)
-      const { BrandLoader } = await import('../services/brandLoader');
-      await BrandLoader.loadBrandsConfig();
-
-      // If KV supplied richer brand objects with file URLs, prefer those
-      const possibleBrand = (BrandLoader as any).getBrandConfig(language);
-
-      if (possibleBrand && possibleBrand.files && possibleBrand.files.length > 0) {
-        const configFile = possibleBrand.files.find((file: any) => file.type === 'config');
-        if (configFile?.url) {
-          const bustUrl = `${configFile.url}${configFile.url.includes('?') ? '&' : '?'}t=${Date.now()}`;
-          console.log(`📁 Loading config from KV-provided URL: ${bustUrl}`);
-          const response = await fetch(bustUrl, { cache: 'no-store' as RequestCache });
-          if (!response.ok) throw new Error(`Failed to load brand config: ${response.statusText}`);
-          const data = await response.json();
-          setConfig(data);
-          return;
-        }
-      }
-
-      const brandConfig = BrandLoader.getBrandConfig(language);
-      console.log(`🔍 Brand config for ${language}:`, brandConfig ? 'Found' : 'Not found');
-      if (brandConfig) {
-        const cfg = brandConfig.files?.find((f: any) => f.type === 'config');
-        if (cfg?.url) {
-          const bustUrl = `${cfg.url}${cfg.url.includes('?') ? '&' : '?'}t=${Date.now()}`;
-          console.log(`📁 Loading config from: ${bustUrl}`);
-          const response = await fetch(bustUrl, { cache: 'no-store' as RequestCache });
-          if (!response.ok) throw new Error(`Failed to load brand config: ${response.statusText}`);
-          const data = await response.json();
-          setConfig(data);
-          return;
-        }
-      }
-      
-      // Fallback to static config for built-in locales
-      console.log(`📁 Loading static config for: ${language}`);
+      // Load from static config for built-in locales
       const response = await fetch(`/locales/config_${language}.json`);
       if (!response.ok) {
         throw new Error(`Failed to load config: ${response.statusText}`);

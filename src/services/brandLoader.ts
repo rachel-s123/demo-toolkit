@@ -13,139 +13,57 @@ export interface BrandConfig {
   updatedAt: string;
 }
 
+/**
+ * Simplified BrandLoader - only handles static brands
+ * Dynamic brand loading has been removed
+ */
 export class BrandLoader {
-  private static cachedBrands: Map<string, SiteCopy> = new Map();
-  private static brandsConfig: BrandConfig[] = [];
-
   /**
-   * Load all available brands from the backend
+   * Load all available brands from static locales
+   * This is now a simple function that returns empty array
+   * since we only use static brands
    */
   static async loadBrandsConfig(): Promise<BrandConfig[]> {
-    try {
-      // Prefer KV-based endpoint first (brand registry), then fall back to blob-based scan
-      try {
-        const kvResponse = await fetch('/api/get-brands');
-        const kvData = await kvResponse.json();
-        if (kvResponse.ok && kvData.success && Array.isArray(kvData.brands) && kvData.brands.length > 0) {
-          this.brandsConfig = kvData.brands;
-          console.log(`📦 Loaded ${kvData.brands.length} brands from KV/Redis`);
-          return kvData.brands;
-        }
-      } catch (kvError) {
-        console.warn('KV/Redis brands endpoint failed, will try blob:', kvError);
-      }
-
-      // Blob-based endpoint
-      const response = await fetch('/api/get-brands-from-blob');
-      const data = await response.json();
-      if (data.success && data.brands) {
-        this.brandsConfig = data.brands;
-        console.log(`📦 Loaded ${data.brands.length} brands from blob storage`);
-        return data.brands;
-      }
-
-      // Final fallback to older endpoint
-      console.log('🔄 Falling back to legacy unified brands endpoint...');
-      const unified = await fetch('/api/brands');
-      const unifiedData = await unified.json();
-      if (unified.ok && unifiedData.success && unifiedData.brands) {
-        this.brandsConfig = unifiedData.brands;
-        return unifiedData.brands;
-      }
-
-      return [];
-    } catch (error) {
-      console.error('Failed to load brands config:', error);
-      return [];
-    }
+    // Return empty array since we only use static brands
+    return [];
   }
 
   /**
-   * Load a specific brand's locale file from Vercel Blob Storage
+   * Load a specific brand's locale file
+   * This is now a no-op since we only use static brands
    */
   static async loadBrandLocale(brandCode: string): Promise<SiteCopy | null> {
-    // Check cache first
-    if (this.cachedBrands.has(brandCode)) {
-      return this.cachedBrands.get(brandCode)!;
-    }
-
-    try {
-      // Find the brand config
-      const brandConfig = this.brandsConfig.find(brand => brand.brandCode === brandCode);
-      if (!brandConfig) {
-        console.warn(`Brand config not found for: ${brandCode}`);
-        return null;
-      }
-
-      // Find the locale file
-      const localeFile = brandConfig.files.find(file => file.type === 'locale');
-      if (!localeFile) {
-        console.warn(`Locale file not found for brand: ${brandCode}`);
-        return null;
-      }
-
-      // Fetch the locale file from Vercel Blob Storage
-      const response = await fetch(localeFile.url);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch locale file: ${response.statusText}`);
-      }
-
-      const fileContent = await response.text();
-      
-      // Extract the brandStrings export from the TypeScript file
-      const brandStringsMatch = fileContent.match(/const brandStrings: SiteCopy = ({[\s\S]*?});/);
-      if (!brandStringsMatch) {
-        throw new Error('Could not parse brandStrings from locale file');
-      }
-
-      // Convert the TypeScript object to JavaScript
-      const brandStringsCode = brandStringsMatch[1];
-      
-      // Create a function to evaluate the brandStrings object
-      const brandStrings = eval(`(${brandStringsCode})`);
-      
-      // Cache the result
-      this.cachedBrands.set(brandCode, brandStrings);
-      
-      console.log(`✅ Successfully loaded brand locale for: ${brandCode}`);
-      return brandStrings;
-
-    } catch (error) {
-      console.error(`Failed to load brand locale for ${brandCode}:`, error);
-      return null;
-    }
+    // Return null since we only use static brands
+    return null;
   }
 
   /**
    * Get all available brand codes
+   * This is now a simple function that returns empty array
    */
   static getAvailableBrandCodes(): string[] {
-    return this.brandsConfig.map(brand => brand.brandCode);
+    return [];
   }
 
   /**
-   * Get brand config by code
+   * Get brand configuration by brand code
+   * This is now a simple function that returns null
    */
-  static getBrandConfig(brandCode: string): BrandConfig | undefined {
-    return this.brandsConfig.find(brand => brand.brandCode === brandCode);
+  static getBrandConfig(brandCode: string): BrandConfig | null {
+    return null;
   }
 
   /**
-   * Clear cache for a specific brand or all brands
+   * Clear cache - no-op since we don't cache anything
    */
-  static clearCache(brandCode?: string) {
-    if (brandCode) {
-      this.cachedBrands.delete(brandCode);
-    } else {
-      this.cachedBrands.clear();
-    }
+  static clearCache(brandCode?: string): void {
+    // No-op
   }
 
   /**
-   * Refresh brands config and clear cache
+   * Refresh brands config - no-op since we don't load dynamic brands
    */
   static async refresh(): Promise<BrandConfig[]> {
-    this.clearCache();
-    return await this.loadBrandsConfig();
+    return [];
   }
-} 
+}

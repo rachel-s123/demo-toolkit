@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { LanguageCode, defaultLang } from "../locales";
 import { SiteCopy } from "../types/siteCopy";
-import { BrandLoader } from "../services/brandLoader";
 
 // Dynamic import to allow reloading languages
 let languages: Record<LanguageCode, SiteCopy> = {};
@@ -19,24 +18,6 @@ async function loadLanguages() {
       // Load static locales from src/locales
       const localesModule = await import("../locales");
       languages = localesModule.languages;
-      
-      // Load dynamic brands from Vercel Blob Storage
-      try {
-        const brandsConfig = await BrandLoader.loadBrandsConfig();
-        console.log(`📦 Loaded ${brandsConfig.length} brands from backend`);
-        
-        // Load each brand's locale file
-        for (const brandConfig of brandsConfig) {
-          const brandLocale = await BrandLoader.loadBrandLocale(brandConfig.brandCode);
-          if (brandLocale) {
-            languages[brandConfig.brandCode as LanguageCode] = brandLocale;
-            console.log(`✅ Added brand: ${brandConfig.brandName} (${brandConfig.brandCode})`);
-          }
-        }
-      } catch (brandError) {
-        console.warn("Failed to load dynamic brands:", brandError);
-        // Continue with static locales only
-      }
       
       languagesLoaded = true;
     } catch (error) {
