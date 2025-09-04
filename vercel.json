@@ -1,10 +1,5 @@
 {
   "framework": "vite",
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "@vercel/node@5.3.6"
-    }
-  },
   "build": {
     "env": {
       "NODE_ENV": "production"
