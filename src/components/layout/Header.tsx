@@ -155,7 +155,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   translations.navigation?.homeTab ||
                   "Brand Logo"
                 }
-                className="h-24 w-auto"
+                className="h-16 w-auto max-h-16"
                 onError={(e) => {
                   // Fallback to default logo if brand logo fails to load
                   const target = e.target as HTMLImageElement;
