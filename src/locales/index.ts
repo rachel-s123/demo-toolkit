@@ -6,8 +6,9 @@ import bmwStrings from './bmw';
 import enTemplateStrings from './en_template';
 import hedosophStrings from './hedosoph';
 import humankibStrings from './humankib';
+import knightfrStrings from './knightfr';
 
-export type LanguageCode = 'en' | 'edf' | 'edf_fr' | 'bmw' | 'en_template' | 'hedosoph' | 'humankib';
+export type LanguageCode = 'en' | 'edf' | 'edf_fr' | 'bmw' | 'en_template' | 'hedosoph' | 'humankib' | 'knightfr';
 
 export const languages: Record<LanguageCode, SiteCopy> = {en: enStrings,
   edf: edfStrings,
@@ -16,6 +17,7 @@ export const languages: Record<LanguageCode, SiteCopy> = {en: enStrings,
   en_template: enTemplateStrings,
   hedosoph: hedosophStrings,
   humankib: humankibStrings,
+  knightfr: knightfrStrings,
 };
 
 export const defaultLang: LanguageCode = 'en'; 

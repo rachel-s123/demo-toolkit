@@ -1,0 +1,269 @@
+{
+  "isDemo": true,
+  "demoNotice": "These are demo assets using placeholder images. Replace with actual Knight Frank marketing materials.",
+  "lastUpdated": "2023-10-03T06:06:20.361Z",
+  "brand": {
+    "name": "Knight Frank LLP",
+    "logo": "/assets/logo/knight-frank-logo.png",
+    "logoAlt": "Knight Frank Logo"
+  },
+  "assets": [
+    {
+      "id": "personalised_email_template_001",
+      "title": "Client-Specific Email",
+      "phase": "DISCOVERY",
+      "type": "TEMPLATE",
+      "model": "PERSONALISATION",
+      "description": "email-template",
+      "textOverlay": "no-text",
+      "orientation": "portrait",
+      "dimensions": "600x800",
+      "fileExtension": ".html",
+      "originalFileName": "client_email_template.html",
+      "newAssetName": "Discovery_Email_Template.html",
+      "thumbnail": "/assets/images/Discovery_Email_Template_600x800.jpg",
+      "url": "/assets/templates/Discovery_Email_Template.html",
+      "isDemo": false
+    },
+    {
+      "id": "meeting_talking_points_001",
+      "title": "Meeting Talking Points",
+      "phase": "MEETINGS",
+      "type": "DOCUMENT",
+      "model": "STRATEGY",
+      "description": "talking-points-document",
+      "textOverlay": "no-text",
+      "orientation": "portrait",
+      "dimensions": "210x297",
+      "fileExtension": ".pdf",
+      "originalFileName": "meeting_talking_points.pdf",
+      "newAssetName": "Meeting_Talking_Points.pdf",
+      "thumbnail": "/assets/images/Meeting_Talking_Points_210x297.jpg",
+      "url": "/assets/documents/Meeting_Talking_Points.pdf",
+      "isDemo": false
+    },
+    {
+      "id": "follow_up_bundle_001",
+      "title": "Follow-Up Content Bundle",
+      "phase": "FOLLOW-UP",
+      "type": "KIT",
+      "model": "ENGAGEMENT",
+      "description": "content-bundle",
+      "textOverlay": "no-text",
+      "orientation": "mixed",
+      "dimensions": "various",
+      "fileExtension": ".zip",
+      "originalFileName": "follow_up_bundle.zip",
+      "newAssetName": "Follow_Up_Content_Bundle.zip",
+      "thumbnail": "/assets/images/Follow_Up_Content_Bundle.jpg",
+      "url": "/assets/bundles/Follow_Up_Content_Bundle.zip",
+      "isDemo": false
+    },
+    {
+      "id": "report_extracts_001",
+      "title": "Tailored Report Extracts",
+      "phase": "ENGAGEMENT",
+      "type": "REPORT",
+      "model": "INSIGHT",
+      "description": "report-extracts",
+      "textOverlay": "no-text",
+      "orientation": "portrait",
+      "dimensions": "A4",
+      "fileExtension": ".pdf",
+      "originalFileName": "report_extracts.pdf",
+      "newAssetName": "Tailored_Report_Extracts.pdf",
+      "thumbnail": "/assets/images/Tailored_Report_Extracts.jpg",
+      "url": "/assets/reports/Tailored_Report_Extracts.pdf",
+      "isDemo": false
+    },
+    {
+      "id": "client_persona_profile_001",
+      "title": "Client Persona Profile",
+      "phase": "DISCOVERY",
+      "type": "PROFILE",
+      "model": "PERSONALISATION",
+      "description": "persona-profile",
+      "textOverlay": "no-text",
+      "orientation": "portrait",
+      "dimensions": "A4",
+      "fileExtension": ".pdf",
+      "originalFileName": "client_persona_profile.pdf",
+      "newAssetName": "Client_Persona_Profile.pdf",
+      "thumbnail": "/assets/images/Client_Persona_Profile.jpg",
+      "url": "/assets/profiles/Client_Persona_Profile.pdf",
+      "isDemo": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "personalised_email_001",
+      "title": "Personalised Discovery Email",
+      "content": "Subject: Discover Tailored Opportunities with Knight Frank\n\nDear [Client Name],\n\nWe are excited to share exclusive insights tailored to your specific interests and preferences. Whether you're considering new opportunities in the property market or simply seeking updated insights, our personalised approach ensures you receive only the most relevant information.\n\nExplore potential investments with ease and confidence.\n\nWarm regards,\n\nYour Personal Advisor at Knight Frank",
+      "channel": "Email",
+      "type": "DISCOVERY",
+      "model": "PERSONALISATION",
+      "date": "2023-10-03",
+      "isDemo": false,
+      "category": "Client Discovery"
+    },
+    {
+      "id": "meeting_invitation_email_001",
+      "title": "Meeting Invitation Email",
+      "content": "Subject: Your Upcoming Consultation\n\nDear [Client Name],\n\nWe're looking forward to our upcoming consultation, where we will discuss strategies and opportunities specifically catered to your needs. Please confirm your available time slots for a seamless discussion.\n\nLooking forward to seeing you.\n\nSincerely,\n\nKnight Frank Team",
+      "channel": "Email",
+      "type": "MEETINGS",
+      "model": "ENGAGEMENT",
+      "date": "2023-10-04",
+      "isDemo": false,
+      "category": "Meeting Setup"
+    },
+    {
+      "id": "follow_up_email_001",
+      "title": "Follow-Up Email Post-Meeting",
+      "content": "Subject: Thank You for Meeting with Us\n\nDear [Client Name],\n\nThank you for taking the time to meet with us. We have compiled the discussed opportunities and actions and attached them for your review. Please feel free to reach out with any additional questions.\n\nBest regards,\n\nYour Knight Frank Team",
+      "channel": "Email",
+      "type": "FOLLOW-UP",
+      "model": "ENGAGEMENT",
+      "date": "2023-10-04",
+      "isDemo": false,
+      "category": "Post-Meeting Follow-Up"
+    },
+    {
+      "id": "report_release_announcement_001",
+      "title": "New Report Release Announcement",
+      "content": "Subject: Explore Our Latest Market Insights\n\nDear [Client Name],\n\nDiscover our latest report highlighting key market trends and how they affect your interests. Our insights are tailored to provide you with the best opportunities and advice.\n\nAccess your exclusive copy and stay ahead.\n\nWarm regards,\n\nKnight Frank Insights Team",
+      "channel": "Email",
+      "type": "ENGAGEMENT",
+      "model": "INSIGHT",
+      "date": "2023-10-04",
+      "isDemo": false,
+      "category": "Insights Release"
+    },
+    {
+      "id": "client_welcome_email_001",
+      "title": "Welcome to Knight Frank",
+      "content": "Subject: Welcome to Your Personalised Real Estate Experience\n\nDear [Client Name],\n\nWelcome to Knight Frank. We are thrilled to embark on this journey with you, offering bespoke solutions and tailored insights to match your aspirations.\n\nOur team is here to assist you in every way.\n\nWarmly,\n\nYour Knight Frank Advisor",
+      "channel": "Email",
+      "type": "ONBOARDING",
+      "model": "PERSONALISATION",
+      "date": "2023-10-04",
+      "isDemo": false,
+      "category": "Client Onboarding"
+    }
+  ],
+  "guides": [
+    {
+      "id": "personalisation_email_guide_001",
+      "title": "Email Personalisation Guide",
+      "type": "DISCOVERY",
+      "model": "PERSONALISATION",
+      "thumbnail": "/assets/images/guides/email_personalisation_guide.jpg",
+      "url": "/guides/email_personalisation_guide.pdf",
+      "isDemo": false,
+      "category": "Email Strategy",
+      "contentLastModified": "2023-10-01T08:30:00.000Z",
+      "content": "# Email Personalisation Strategy\n\nLearn how to craft highly personalised client emails that enhance engagement and deliver value immediately. Include tailored insights and client-specific messaging."
+    },
+    {
+      "id": "meeting_prep_guide_001",
+      "title": "Client Meeting Preparation Guide",
+      "type": "MEETINGS",
+      "model": "STRATEGY",
+      "thumbnail": "/assets/images/guides/meeting_prep_guide.jpg",
+      "url": "/guides/meeting_prep_guide.pdf",
+      "isDemo": false,
+      "category": "Meeting Strategy",
+      "contentLastModified": "2023-10-01T09:00:00.000Z",
+      "content": "# Client Meeting Preparation Guide\n\nDiscover techniques to prepare for client meetings effectively, ensuring you offer value and insight tailored to client needs."
+    },
+    {
+      "id": "follow_up_engagement_guide_001",
+      "title": "Effective Follow-Up Engagement Guide",
+      "type": "FOLLOW-UP",
+      "model": "ENGAGEMENT",
+      "thumbnail": "/assets/images/guides/follow_up_engagement_guide.jpg",
+      "url": "/guides/follow_up_engagement_guide.pdf",
+      "isDemo": false,
+      "category": "Follow-Up",
+      "contentLastModified": "2023-10-01T09:30:00.000Z",
+      "content": "# Follow-Up Engagement Strategy\n\nUtilise this guide to implement strategic follow-ups that reinforce client relationships and encourage action."
+    },
+    {
+      "id": "tailored_reports_guide_001",
+      "title": "Tailored Reports Creation Guide",
+      "type": "ENGAGEMENT",
+      "model": "INSIGHT",
+      "thumbnail": "/assets/images/guides/tailored_reports_guide.jpg",
+      "url": "/guides/tailored_reports_guide.pdf",
+      "isDemo": false,
+      "category": "Report Strategy",
+      "contentLastModified": "2023-10-01T10:00:00.000Z",
+      "content": "# Tailored Reports Guide\n\nA comprehensive approach to creating reports that speak directly to your client's interests and positioning you as a trusted advisor."
+    },
+    {
+      "id": "onboarding_welcome_guide_001",
+      "title": "Client Onboarding Welcome Guide",
+      "type": "ONBOARDING",
+      "model": "PERSONALISATION",
+      "thumbnail": "/assets/images/guides/onboarding_welcome_guide.jpg",
+      "url": "/guides/onboarding_welcome_guide.pdf",
+      "isDemo": false,
+      "category": "Onboarding",
+      "contentLastModified": "2023-10-01T10:30:00.000Z",
+      "content": "# Client Onboarding Welcome Guide\n\nEnsure seamless client onboarding with this guide to warm welcomes and personalised introductions to Knight Frank's suite of services."
+    }
+  ],
+  "journeySteps": [
+    {
+      "id": "1",
+      "title": "Discovery",
+      "description": "Understanding client preferences and initial setup",
+      "icon": "Search"
+    },
+    {
+      "id": "2",
+      "title": "Engagement",
+      "description": "Providing personalised insights and communication",
+      "icon": "MessageCircle"
+    },
+    {
+      "id": "3",
+      "title": "Meetings",
+      "description": "Delivering bespoke meeting agendas and points",
+      "icon": "Briefcase"
+    },
+    {
+      "id": "4",
+      "title": "Follow-Up",
+      "description": "Tailored post-meeting communication and insights",
+      "icon": "Repeat"
+    },
+    {
+      "id": "5",
+      "title": "Onboarding",
+      "description": "Ensuring a seamless introduction to our services",
+      "icon": "UserCheck"
+    }
+  ],
+  "filterOptions": {
+    "phases": ["ALL", "DISCOVERY", "ENGAGEMENT", "MEETINGS", "FOLLOW-UP", "ONBOARDING"],
+    "types": ["ALL", "TEMPLATE", "DOCUMENT", "KIT", "REPORT", "PROFILE"],
+    "models": ["ALL", "PERSONALISATION", "STRATEGY", "ENGAGEMENT", "INSIGHT"],
+    "channels": ["ALL", "Email", "WhatsApp", "SMS", "Report", "Profile", "Document"],
+    "actionTypes": ["ALL","DISCOVERY","ENGAGEMENT","MEETINGS","FOLLOW-UP","ONBOARDING"]
+  },
+  "metadata": {
+    "lastModified": "2023-10-03T06:06:20.361Z",
+    "modifiedBy": "Knight Frank LLP",
+    "version": "1.0.0",
+    "source": "Knight Frank IPAS Campaign"
+  },
+  "pathConfig": {
+    "environments": {
+      "development": "/locales/",
+      "staging": "/locales/",
+      "production": "/locales/",
+      "cdn": "https://cdn.knightfrank.com/locales/"
+    }
+  }
+}

@@ -6,6 +6,7 @@ import Button from "../../ui/Button";
 import { marked } from "marked";
 import { useTranslations } from "../../../context/LanguageContext";
 import { useHighlight } from "../../../context/HighlightContext";
+import { useConfig } from "../../../hooks/useConfig";
 // @ts-ignore - html2pdf.js doesn't have TypeScript definitions
 import html2pdf from "html2pdf.js";
 
@@ -21,6 +22,7 @@ const GuideContent: React.FC<GuideContentProps> = ({ guide }) => {
   const t = useTranslations();
   const copy = t.guides;
   const { isHighlightEnabled } = useHighlight();
+  const { config } = useConfig();
 
   useEffect(() => {
     if (guide) {
@@ -189,8 +191,8 @@ const GuideContent: React.FC<GuideContentProps> = ({ guide }) => {
         </style>
         
         <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #1f2937; padding-bottom: 20px;">
-          <img src="/bmw-logo.png" alt="BMW Motorrad" style="height: 40px; margin-bottom: 10px;" onerror="this.style.display='none'">
-          <h1 style="color: #1f2937; margin: 0; font-size: 24px;">BMW Motorrad Marketing Guide</h1>
+          <img src="${config?.brand?.logo || '/assets/logos/brilliant-noise.jpg'}" alt="${config?.brand?.logoAlt || 'Brand Logo'}" style="height: 40px; margin-bottom: 10px;" onerror="this.style.display='none'">
+          <h1 style="color: #1f2937; margin: 0; font-size: 24px;">${config?.brand?.name || 'Brand'} Marketing Guide</h1>
           <h2 style="color: #6b7280; margin: 8px 0 0 0; font-size: 18px; font-weight: 400;">${
             guide.title
           }</h2>
@@ -201,7 +203,7 @@ const GuideContent: React.FC<GuideContentProps> = ({ guide }) => {
         </div>
         
         <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center; color: #6b7280; font-size: 12px;">
-          <p>Generated on ${new Date().toLocaleDateString()} | BMW Motorrad Marketing Platform</p>
+          <p>Generated on ${new Date().toLocaleDateString()} | ${config?.brand?.name || 'Brand'} Marketing Platform</p>
           <p style="margin-top: 8px; font-style: italic;">Category: ${
             guide.model
           } | Type: ${guide.type}</p>

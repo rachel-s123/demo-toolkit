@@ -20,6 +20,7 @@ const brandDisplayNames: Record<string, string> = {
   bmw: "BMW Motorrad",
   hedosoph: "Hedosophia",
   humankib: "Human Kibble",
+  knightfr: "Knight Frank",
   en_template: "English Template",
 };
 
@@ -199,6 +200,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                 <option value="bmw">{brandDisplayNames.bmw}</option>
                 <option value="hedosoph">{brandDisplayNames.hedosoph}</option>
                 <option value="humankib">{brandDisplayNames.humankib}</option>
+                <option value="knightfr">{brandDisplayNames.knightfr}</option>
                       
                       
               </select>
@@ -317,6 +319,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, onLogout }) => {
                   <option value="bmw">{brandDisplayNames.bmw}</option>
                   <option value="hedosoph">{brandDisplayNames.hedosoph}</option>
                   <option value="humankib">{brandDisplayNames.humankib}</option>
+                  <option value="knightfr">{brandDisplayNames.knightfr}</option>
                   
                   
                 </select>
